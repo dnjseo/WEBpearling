@@ -1,0 +1,85 @@
+#l1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-imgs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 80px;
+}
+
+.logo-imgs> :nth-child(1) {
+    width: 128px;
+    height: 129px;
+}
+
+.logo-imgs> :nth-child(2) {
+    width: 300px;
+    height: 43px;
+}
+
+.id-pwd-box {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 80px;
+}
+
+.id-pwd-box>label {
+    align-self: stretch;
+    padding-left: 2%;
+    color: #A587E0;
+}
+
+.id-pwd-box>input {
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    border: none;
+
+    margin-bottom: 15px;
+    padding-left: 15px;
+
+    width: 200px;
+    height: 30px;
+}
+
+.l1-btns {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 80px;
+}
+
+.l1-btns>button {
+    background: rgba(165, 135, 224, 0.2);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05), inset 0px 3px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    border: none;
+
+    width: 120px;
+    height: 30px;
+}
+
+.l1-btns>button>a {
+    color: #A587E0;
+}
+
+.l1-btns>button:active {
+    background: rgba(252, 251, 251, 0.75);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05), inset 0px 3px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+}

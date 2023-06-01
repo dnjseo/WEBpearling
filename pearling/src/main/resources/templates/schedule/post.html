@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/import.css" type="text/css" rel="stylesheet">
+    <link href="/css/schedule/schdule-add.css" type="text/css" rel="stylesheet">
+    <script src="/js/header/header.js"></script>
+    <script src="/js/schedule/schedule-add.js"></script>
+    <script src="/js/system/confirm-modal.js"></script>
+    <script src="/js/schedule/schedule-add-category.js"></script>
+    <title>schedule-add</title>
+</head>
+
+<body>
+
+    <!-- header -->
+    <header>
+        <!--header-wrap-->
+        <div class="header-wrap">
+            <!--header-->
+            <div class="header2">
+                <h1 class="d-none">펄링</h1>
+                <a class="back"><img src="/images/back.png" alt="logo" /></a>
+                <p class="title">일정 추가</p>
+            </div>
+            <p class="gray_border"></p>
+            <!-- header-->
+        </div>
+        <!--header-wrap-->
+    </header>
+
+    <div class="wrap">
+        <h1 class="d-none">일정 추가창</h1>
+        <section id="d1">
+            <h1 class="d-none">추가 사항</h1>
+            <div class="schdule-add-title">
+                <label for="schedule-title">일정 제목</label>
+                <input type="text" id="schedule-title" name="schedule-title">
+                <!-- <input type="submit" value="확인"> -->
+            </div>
+            <!-- 날짜 선택 ------------------------------------------------------------------------------------------------------------------ -->
+
+            <div class="schedule-add-date">
+                <div>
+                    <label for="start-date">시작일:</label>
+                    <input type="datetime-local" id="start-date" name="start-date" value="2023-05-09" min="2000-01-01"
+                        max="2099-12-31">
+                </div>
+                <div>
+                    <label for="end-date">종료일:</label>
+                    <input type="datetime-local" id="end-date" name="end-date" value="2023-05-09" min="2000-01-01"
+                        max="2099-12-31">
+                </div>
+            </div>
+
+            <!-- 장소 선택 ------------------------------------------ -->
+            <div class="schedule-add-location">
+                <label for="location-add">장소 추가</label>
+                <button>카카오맵 추가</button>
+            </div>
+
+            <!-- 친구 태그 선택 ------------------------------------------ -->
+
+            <div class="schedule-add-freind-wrap">
+                <label for="freind-tag">친구 태그</label>
+                <input type="text" value="입력하세요.">
+            </div>
+            <div class="schedule-add-freind-box">
+                <ul class="friendList">
+                    <li class="fr"><img src="/images/profile/profile_yr.png">
+                        <p>탐정</p>
+                    </li>
+                    <li class="fr"><img src="/images/profile/profile_d.png">
+                        <p>감자</p>
+                    </li>
+                    <li class="fr"><img src="/images/profile/profile_c.png">
+                        <p>진미채</p>
+                    </li>
+                    <li class="fr"><img src="/images/profile/profile_yj.png">
+                        <p>name</p>
+                    </li>
+                    <li class="fr"><img src="/images/profile/profile_yj.png">
+                        <p>name</p>
+                    </li>
+                    <li class="fr"><img src="/images/profile/profile_yj.png">
+                        <p>name</p>
+                    </li>
+                    <li class="fr"><img src="/images/profile/profile_yj.png">
+                        <p>name</p>
+                    </li>
+                    <li class="fr"><img src="/images/profile/profile_yj.png">
+                        <p>name</p>
+                    </li>
+                    <li class="fr"><img src="/images/profile/profile_yj.png">
+                        <p>name</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 컬러팔레트 선택 ------------------------------------------ -->
+
+            <!-- <div class="schedule-add-color-wrap">
+                <label for="color-tag">컬러 팔레트</label>
+                <div class="sel-category"></div>
+                <div id="box" class="box">
+                    <div id="palletBox" class="pallet">
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="category-wrap">
+                <span>카테고리 선택</span>
+                <div class="col-box">
+                    <div class="col-ball active"></div>
+                    <div class="col-ball"></div>
+                    <div class="col-ball"></div>
+                    <div class="col-ball"></div>
+                    <div class="col-ball"></div>
+                    <div class="col-ball"></div>
+                    <div class="col-ball"></div>
+                </div>
+            </div>
+
+            <!-- 취소, 확인버튼 선택 ------------------------------------------ -->
+
+            <div class="schedule-add-submit">
+                <input class="defence" type="submit" value="취소">
+                <input class="add-btn defence" type="submit" value="확인">
+            </div>
+
+            <!-- 컨펌 모달 ------------------------------------------ -->
+
+            <div id="confirm-modal" class="modal">
+                <div class="modal-content">
+                    <p>🫧 Message</p>
+                    <p>일정이 등록되었습니다.</p>
+                    <button class="confirm-yes">확인</button>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+</body>
+
+</html>

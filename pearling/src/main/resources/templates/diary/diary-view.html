@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/import.css" type="text/css" rel="stylesheet">
+    <link href="/css/diary/diary-view.css" type="text/css" rel="stylesheet">
+    <script src="/js/header/header.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
+    <script src="/js/diary/diary.js"></script>
+    <script src="/js/diary/diary-comment.js"></script>
+    <title>diary</title>
+</head>
+
+<body>
+    <!-- header -->
+    <header id="header"></header>
+    <h1 class="d-none">다이어리 조회(친구 입장)창</h1>
+
+    <!-- wrap -->
+    <div class="wrap">
+        <section class="diary-view-section">
+            <h1 class="d-none">상단 메뉴 목록</h1>
+
+            <!-- 셸 메뉴 -->
+            <section id="ms1">
+                <h1 class="d-none">쉘 메뉴</h1>
+                <div class="our-shell">
+                    <a href="/html/shell/main-ourshell.html">
+                        <p>our shell</p>
+                    </a>
+                </div>
+
+                <div class="my-shell">
+                    <a href="/html/shell/main-myshell.html">
+                        <p>my shell</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 마이셸 내부 메뉴 -->
+            <section id=ms2>
+                <h1 class="d-none">마이쉘 내부 메뉴</h1>
+                <a class=ms2menu href="/html/shell/main-myshell.html">🌙 먼슬리 ></a>
+                <a class=ms2diary href="/html/diary/diary.html">📓 다이어리 ></a>
+                <a class=ms2menu href="/html/guestbook/guestbook.html">🫧 방명록 ></a>
+            </section>
+
+            <!----------------------- 달력 --------------------->
+            <section id=d2>
+                <h1 class="d-none">달력(오늘 날짜)</h1>
+                <div id='calendar'></div>
+            </section>
+            <!----------------------- 달력 --------------------->
+
+            <!----------------------- 다이어리 내용 --------------------->
+
+            <div class="diary-list">
+                <h1 class="d-none">다이어리 목록</h1>
+                <form>
+                    <ul>
+                        <li>나 지금 와이어프레임 짜다가 디자인을 하고 있어요</li>
+                        <div class="li-box">
+                            <div class="btn-box">
+                                <button><img class="defence" src="/images/diary/heart.png" alt="heart"></button>
+                                <button class="comment-btn"><img class="defence" src="/images/diary/comment.png"
+                                        alt="comment"></button>
+                            </div>
+                            <p>2023/05/10</p>
+                        </div>
+
+                        <!--<댓글 창>-------------------------------------------- -->
+                        <div class="comment-section">
+                            <form>
+                                <ul>
+                                    <li>
+                                        <div class="comment-list">
+                                            <span>채원</span>
+                                            <span>제 다이어리에 오셔서 정처기 정보 얻고 가세요~^^</span>
+                                            <span>2023.05.17 17:02</span>
+
+                                            <!-- <div class="comment-add-box"> -->
+                                                <textarea placeholder="댓글을 입력하세요"></textarea>
+                                                <button type="submit">댓글 작성</button>
+                                            <!-- </div> -->
+                                        </div>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+
+                        <!--<댓글 창>-------------------------------------------- -->
+
+                        <li>이것만 하고 자야지,, 월요일에 봐요,,</li>
+                        <div class="li-box">
+                            <div class="btn-box">
+                                <button><img class="defence" src="/images/diary/heart.png" alt="heart"></button>
+                                <button class="comment-btn"><img class="defence" src="/images/diary/comment.png"
+                                        alt="comment"></button>
+                            </div>
+                            <span>2023/05/10</span>
+                        </div>
+                        <!--<댓글 창>-------------------------------------------- -->
+                        <div class="comment-section">
+                            <form>
+                                <ul>
+                                    <li>
+                                        <div class="comment-list">
+                                            <span>채원</span>
+                                            <span>제 다이어리에 오셔서 정처기 정보 얻고 가세요~^^</span>
+                                            <span>2023.05.17 17:02</span>
+
+                                            <!-- <div class="comment-add-box"> -->
+                                                <textarea placeholder="댓글을 입력하세요"></textarea>
+                                                <button class="defence" type="submit">댓글 작성</button>
+                                            <!-- </div> -->
+                                        </div>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+
+                        <!--<댓글 창>-------------------------------------------- -->
+                    </ul>
+                </form>
+            </div>
+            <!----------------------- 다이어리 내용 --------------------->
+
+
+
+        </section>
+    </div>
+    <!-- /wrap -->
+</body>
+
+</html>

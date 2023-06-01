@@ -1,0 +1,273 @@
+.schdule-add-title {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 5px 20px;
+    margin-bottom: 20px;
+    gap: 10px;
+
+    width: 90%;
+    height: 35px;
+
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+.schdule-add-title>input {
+    
+    border: none;
+    width: 80%;
+    height: 90%;
+    font-weight: bold;
+}
+
+.schedule-add-date {
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 5px 20px;
+    margin-bottom: 20px;
+    gap: 10px;
+
+    width: 90%;
+    height: 120px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+}
+
+.schedule-add-date>div>label {
+    margin-right: 10px;
+}
+
+.schedule-add-date>div>input {
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25), inset 0px 1px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    border: none;
+    color: #A1A1A1;
+
+    width: 200px;
+    padding-left: 10px;
+}
+
+.schedule-add-location {
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 5px 20px;
+    margin-bottom: 20px;
+    gap: 10px;
+
+    width: 90%;
+    height: 35px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+}
+
+.schedule-add-location>button {
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25), inset 0px 1px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    border: none;
+    text-align: center;
+    color: #A1A1A1;
+
+    padding-left: 10px;
+}
+
+.schedule-add-freind-wrap {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: flex-start; */
+    align-items: flex-start;
+    gap: 10px;
+    padding: 5px 20px;
+
+    width: 90%;
+}
+
+.schedule-add-freind-wrap>input {
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25), inset 0px 1px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    border: none;
+    /* text-align: center; */
+    color: #A1A1A1;
+
+    padding-left: 10px;
+}
+
+.schedule-add-freind-box > .friendList {
+    overflow-x: scroll;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+
+    gap: 20px;
+
+    /* background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 40px; */
+    
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.schedule-add-freind-box > .friendList > li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100%;
+    padding: 15px;
+}
+
+
+.schedule-add-freind-box > .friendList > li > img {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.schedule-add-freind-box > .friendList > li >  p {
+    font-family: 'Pretendard-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgba(79,79,79,79,100);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    letter-spacing: 0.1em;
+}
+
+
+.schedule-add-color-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 5px 20px;
+    margin-bottom: 20px;
+    gap: 15px;
+
+    height: 130px;
+
+    /* background: #FFFFFF;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 14px; */
+}
+
+
+
+.schedule-add-submit {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* padding: 10px 0px; */
+    gap: 130px;
+    margin: 0;
+
+    height: 58px;
+}
+
+.schedule-add-submit>input {
+    background: rgba(252, 251, 251, 0.75);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05), inset 0px 3px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    border: none;
+
+    width: 78px;
+    height: 25px;
+    color: #797979;
+}
+
+.schedule-add-submit>input:active {
+    opacity: 0.8;
+}
+
+/* ----<색상 팔레트>------------------------------------------------------- */
+
+
+/* .schedule-add-color-wrap>label {
+    margin-top: 15px;
+}
+
+.schedule-add-color-wrap>.box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+    width: 100%;
+}
+
+.active {
+    outline: 1px solid black;
+}
+
+.colorBox {
+    width: 50px;
+    height: 52px;
+    float: left;
+    margin-right: 12px;
+    cursor: pointer;
+    border-radius: 80px 80px;
+} */
+
+.category-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.category-wrap > span {
+    padding: 5px 20px;
+}
+
+.category-wrap > .col-box {
+    height: 100px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    
+    transition: all 0.3;
+}
+
+.category-wrap > .col-box > .col-ball {
+    width: 50px;
+    height: 52px;
+    border-radius: 30px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.category-wrap > .col-box > .active {
+    opacity: 1;
+    outline: none;
+    border: 2px solid #A1A1A1;
+}

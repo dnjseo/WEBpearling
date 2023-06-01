@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/import.css" type="text/css" rel="stylesheet" >
+    <link href="/css/shell/myshell.css" type="text/css" rel="stylesheet" >
+    <link href="/css/shell/shell-menu.css" type="text/css" rel="stylesheet" >
+    <script src="/js/header/header.js"></script>
+    <script src="/js/footer/footer.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
+    <script src="/js/shell/shell-menu.js"></script>
+    <script src="/js/shell/myshell.js"></script>
+    <title>my shell</title>
+</head>
+<body>
+    <!-- header -->
+    <header id="header"></header>
+
+    <!-- wrap -->
+    <div class="wrap">
+
+        <section id="shell-menu"></section>
+
+        <section id="myshell-menu">
+        </section>
+
+        <section id = ms3>
+            <h1 class="d-none">캘린더</h1>
+            <div id='calendar'></div>
+        </section>
+
+        <section id = ms4>
+            <h1 class="d-none">일정 리스트</h1>
+            <div class = "today">
+                <img src="/images/profile/circle.png">
+                <span class="today-day"></span>
+            </div>
+            
+                <div class="schedule">
+                    <p1>to do.</p1>
+                    <ul>
+
+                        <li>
+                            <div class="content">
+                                <input type="checkbox">
+                                <p>소금빵 사러가기🥐</p> 
+                            </div>
+                            <div class="tag">
+                                <button>@채원</button>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <input type="checkbox">
+                                <p class="task">마라탕 먹기</p> 
+                            </div>
+                            <div class="tag">
+                                <button>@도원</button>
+                                <button>@예린</button>
+                                <button>@채원</button>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <input type="checkbox">
+                                <p>http강의 듣기👩🏻‍💻</p> 
+                            </div>
+                            <div class="tag">
+                                <!-- <button></button> -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="schedule">
+                    <p><br><br></p>
+                    <p1>일정.</p1>
+                    <ul>
+                        <li>
+                            <div class="content">
+                                <p>🎥 비색의 탄환 </p> 
+                            </div>
+                            <div class="tag">
+                                <button>@예린</button>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <p>🎂 누군가의 생일</p> 
+                            </div>
+                            <div class="tag">
+                                <!-- <button></button> -->
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <p>📝 시험</p> 
+                            </div>
+                            <div class="tag">
+                                <!-- <button></button> -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="dayDetail" class="ms-hidden">
+            <h1 class="d-none">일정 디테일</h1>
+            <div class="modal-content">
+                <button class="closeButton">닫기</button>
+                <!-- 섹션 내용 -->
+            </div>
+        </section>
+
+    <section class="plusbox">
+        <h1 class="d-none">작성</h1>
+         <div class="plus">+</div>
+         <div class="plusDetail">
+            <div class="plus-todo"><a  href="/html/schedule/schedule-add.html">할 일</a></div>
+            <div class="plus-schedule"><a href="/html/schedule/schedule-add.html">일정</a></div>
+         </div>
+    </section>
+
+
+    </div>
+    <!-- /wrap -->
+
+    <!-- footer -->
+    <footer id="footer"></footer>
+
+</body>
+</html>

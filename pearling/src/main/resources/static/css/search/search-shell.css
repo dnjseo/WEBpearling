@@ -1,0 +1,229 @@
+
+.search-part{
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    padding: 7px 20px;
+    gap: 14px;
+
+    width: 90%;
+    height: 36px;
+    margin: auto;
+
+    background: #FFFFFF;
+    border: 1.5px solid rgba(217, 217, 217, 0.5);
+    border-radius: 15px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+
+    margin-bottom: 20px;
+    
+}
+
+.icon{
+    background: url(/images/search/search-icon.png);
+    width: 24px;
+    height: 25px;
+     
+}
+
+.field{
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #D9D9D9;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.detail-part{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 30px;
+
+    width: 90%;
+    height: 100%;
+ 
+    background: #FFFFFF;
+    /* REAL 그림자 */
+
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+
+    margin: auto;
+}
+
+#click-menu{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    column-gap: auto;
+    place-items: center;
+    margin: 15px 22px;
+   
+}
+
+.account-click{
+    border: none;
+    background: url(/images/search/account.png) no-repeat -1px;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0px 0px;
+    gap: 10px;
+
+    width: 56px;
+    height: 74px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    
+}
+
+.myshell-click{
+    border: none;
+    background: url(/images/search/my-shell-color.png) no-repeat -1px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0px 0px;
+    gap: 10px;
+    
+    width: 51px;
+    height: 73px;
+      
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.myshell-list{
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    width: 90%;
+}
+
+.todo-list{
+    background: url(/images/search/todo.png);
+    width: 298px;
+    height: 23px;
+    margin-bottom: 15px;
+
+}
+
+.lists{
+    margin-bottom: 35px;
+}
+
+.todo-statement{
+    display: grid;
+    grid-template-columns: 0.7fr 1fr 2fr 5fr;
+    place-items: center;
+}
+
+.todo-statement p:first-child {
+    justify-self: start;
+}
+
+.todo-statement p:nth-child(2) {
+    margin-left: 5px;
+    justify-self: start;     
+}
+
+.todo-statement p:last-child {
+    justify-self: start;
+    
+    font-size: 8px;
+    line-height: 10px;
+    
+}
+
+.todo-content{
+    margin: 12px;
+    
+    font-weight: 515;
+    letter-spacing: 0.15em;
+
+    color: #615E5E;
+}
+
+.schedule-list{
+    background: url(/images/search/schedule.png);
+    width: 298px;
+    height: 23px;
+    margin-bottom: 15px;
+}
+
+.schedule-statement{
+    display: grid;
+    grid-template-columns: 0.7fr 1fr 2fr 5fr;
+    place-items: center;
+}
+
+.schedule-statement p:first-child {
+    justify-self: start;
+}
+
+.schedule-statement p:nth-child(2) {
+    margin-left: 5px;
+    justify-self: start;
+}
+
+.schedule-statement p:last-child {
+    justify-self: start;
+    font-size: 8px;
+    line-height: 10px;
+    
+}
+
+.schedule-content{
+    margin: 12px;
+    font-weight: 515;
+    letter-spacing: 0.15em;
+    color: #615E5E;
+}
+
+.schedule-box>content>p{
+
+    margin-bottom: 12px;
+}
+
+

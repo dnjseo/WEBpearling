@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/import.css" type="text/css" rel="stylesheet">
+    <link href="/css/diary/diary.css" type="text/css" rel="stylesheet">
+    <link href="/css/shell/shell-menu.css" type="text/css" rel="stylesheet" >
+    <script src="/js/header/header.js"></script>
+    <script src="/js/footer/footer.js"></script>
+    <script src="/js/shell/myshell-menu.js"></script>
+    <script src="/js/shell/shell-menu.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
+    <script src="/js/diary/diary.js"></script>
+
+    <title>diary</title>
+</head>
+
+<body>
+    <!-- header -->
+    <header id="header"></header>
+
+    <!-- wrap -->
+    <div class="wrap">
+        <section>
+            <h1 class="d-none">다이어리 전체 조회</h1>
+
+            <section id="shell-menu"></section>
+
+            <section id="myshell-menu"></section>
+
+
+            <!----------------------- 달력 --------------------->
+            <section id = d2>
+                <div id='calendar'></div>
+            </section>
+            <!----------------------- 달력 --------------------->
+
+            <!----------------------- 다이어리 내용 --------------------->
+
+            <div class="diary-list">
+                <form>
+                    <ul>
+                        <li>나 지금 와이어프레임 짜다가 디자인을 하고 있어요</li>
+                        <div>2023/05/10</div>
+                        <li>이것만 하고 자야지,, 월요일에 봐요,,</li>
+                        <div>2023/05/10</div>
+                    </ul>
+                </form>
+
+                <!----------------------- 다이어리 내용 --------------------->
+
+                <div class="add-btn">
+                    <button><a class="defence" href="">+</a></button>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- /wrap -->
+
+
+    <!-- footer -->
+    <footer id="footer"></footer>
+</body>
+
+</html>

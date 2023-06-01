@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/import.css" type="text/css" rel="stylesheet" >
+    <script src="/js/header/header.js"></script>
+    <script src="/js/footer/footer.js"></script>
+    <title>Pearl-ing</title>
+</head>
+
+  <body>
+    <!-- ----------------------헤더---------------------------- -->
+	<!-- header 부분 -->
+		<div th:replace="~{inc/header}"></div>
+	<!-- aside 부분 -->
+		<div th:replace="~{inc/aside}"></div>
+	<!-- main 부분 -->
+		<div layout:fragment="content"></div>
+    <!-- footer 부분 -->
+    	<div th:replace="~{inc/footer}"></div>
+  </body>
+  
+</html>

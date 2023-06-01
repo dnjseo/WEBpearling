@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/import.css" type="text/css" rel="stylesheet">
+    <link href="/css/system/signup.css" type="text/css" rel="stylesheet">
+    <script src="/js/system/confirm-modal.js"></script>
+    <script src="/js/system/sighup-confirm-modal.js"></script>
+    <title>sign-up</title>
+</head>
+
+<body>
+
+    <!-- wrap -->
+    <div class="wrap">
+        <h1 class="d-none">회원가입</h1>
+        <section id="d1">
+            <h1 class="d-none">sign-up</h1>
+            <p class="sign-up">* sign - up *</p>
+
+            <div class="email-box">
+                <label for="email">이메일</label>
+                <input class="text" id="email" type="text">
+            </div>
+
+            <div class="check-num-box">
+                <input class="text-except" type="text" value="인증번호">
+                <input class="add-btn defence" type="submit" value="전송">
+            </div>
+
+            <div class="pwd-box">
+                <label for="pwd">비밀번호</label>
+                <input class="text" id="pwd" type="text">
+            </div>
+
+            <div class="pwd-check-box">
+                <label for="pwd-check">비밀번호 확인</label>
+                <input class="text" id="pwd-check" type="text">
+            </div>
+
+            <div class="nickname-box">
+                <label for="nickname">닉네임(중복 불가)</label>
+                <input class="text" id="nickname" type="text">
+            </div>
+
+            <div class="btns">
+                <input class="signup-btn defence" type="submit" value="가입하기">
+                <input class="defence" type="submit" value="닫기">
+            </div>
+
+        </section>
+        <!-- alert창 ------------------------------->
+
+        <div id="confirm-modal" class="modal">
+            <div class="modal-content">
+                <p>🫧 Message</p>
+                <p>인증이 완료되었습니다.</p>
+                <button class="confirm-yes">확인</button>
+            </div>
+        </div>
+
+        <div id="signup-confirm-modal" class="modal">
+            <div class="modal-content">
+                <p>🫧 Message</p>
+                <p>회원가입이 완료되었습니다.</p>
+                <button class="confirm-yes">확인</button>
+            </div>
+        </div>
+
+        <!-- alert창 ------------------------------->
+
+    </div>
+    <!-- /wrap -->
+
+    <!-- footer -->
+    <!-- <footer id="footer_list"></footer>
+    <footer id="footer"></footer> -->
+</body>
+
+</html>

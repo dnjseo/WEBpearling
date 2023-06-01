@@ -1,0 +1,53 @@
+/* ==========캘린더 조종 ===================== */
+
+#calendar {
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+:root{
+    --fc-border-color: none;
+
+
+        /* 캘린더 버튼 */
+        --fc-button-text-color:rgba(165, 135, 224, 1);
+        --fc-button-bg-color: none;
+        --fc-button-border-color: none;
+        --fc-button-hover-bg-color: none;
+        --fc-button-hover-border-color: #1a252f;
+        --fc-button-active-bg-color: #1a252f;
+        --fc-button-active-border-color: #151e27;
+}
+
+.fc{
+    flex-direction: column;
+    text-align: center;
+}
+.fc-toolbar-chunk{
+    font-size: 12px;
+}
+
+.fc-toolbar-chunk > .fc-toolbar-title{
+    font-family: 'Pretendard-SemiBold';
+    font-size: 12px;
+}
+
+
+.fc-scrollgrid-sync-table{
+    height: 100px;
+}
+
+.fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events{
+    min-height: 0px;
+    min-width: 0px;
+}
+
+.fc .fc-daygrid-day-number{
+    padding: 0px;
+}
+
+.fc .fc-daygrid-day-top {
+    display: flex;
+    flex-direction: column;
+}

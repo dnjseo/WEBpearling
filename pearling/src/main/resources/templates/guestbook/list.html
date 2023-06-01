@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/import.css" type="text/css" rel="stylesheet" >
+    <link href="/css/guestbook/guestbook.css" type="text/css" rel="stylesheet" >
+    <link href="/css/shell/shell-menu.css"type="text/css" rel="stylesheet" >
+    <script src="/js/guestbook/guestbook.js"></script>
+    <script src="/js/guestbook/guestbook-modal.js"></script>
+    <script src="/js/header/header.js"></script>
+    <script src="/js/footer/footer.js"></script>
+    <script src="/js/shell/shell-menu.js"></script>
+    <script src="/js/shell/myshell-menu.js"></script>
+    <title>방명록(내버전)</title>
+</head>
+<body>
+    <header id="header"></header>
+
+    <div id="wrap" class="wrap">
+
+        <section id="shell-menu"></section>
+
+        <section id="myshell-menu"></section>
+
+        <ul class="clam">
+            <li><img src="/images/guestbook/clam_1.png"></li>
+            <li><img src="/images/guestbook/clam_2.png"></li>
+            <li><img src="/images/guestbook/clam_3.png"></li>
+            <li><img src="/images/guestbook/clam_1.png"></li>
+            <li><img src="/images/guestbook/clam_2.png"></li>
+            <li><img src="/images/guestbook/clam_1.png"></li>
+            <li><img src="/images/guestbook/clam_3.png"></li>
+            <li><img src="/images/guestbook/clam_1.png"></li>
+            <li><img src="/images/guestbook/clam_2.png"></li>
+            <li><img src="/images/guestbook/clam_3.png"></li>
+            <li><img src="/images/guestbook/clam_3.png"></li>
+            <li><img src="/images/guestbook/clam_2.png"></li>
+            <li><img src="/images/guestbook/clam_2.png"></li>
+            <li><img src="/images/guestbook/clam_1.png"></li>
+        </ul>
+
+        <section id="s1">
+            <h1 class="d-none">방명록</h1>
+            <div class="book">
+                <div class="pearl">
+                    <p>나 오늘 마라탕 먹으러 감 ㅋ</p>
+                </div>
+                <div class="underline">
+                    <p class="date">2023/12/21</p>
+                    <p class="add-delete">삭제</p>
+                </div>
+            </div>
+            <p class="guestbook-close">x</p>
+        </section>
+
+        <!-- 뒤에 배경 어둡게 하기 -->
+        <div class="black"></div>
+
+        <!-- alert창 ------------------------------->
+        <div id="confirm-modal" class="modal">
+            <div class="modal-content">
+                <p>🫧 Message</p>
+                <p>방명록 삭제가 완료되었습니다.</p>
+                <button class="confirm-yes">확인</button>
+            </div>
+        </div>
+        <!-- alert창 ------------------------------->
+    </div>
+
+    <footer id="footer"></footer>
+</body>
+</html>

@@ -1,0 +1,398 @@
+/* 오늘 달력용 폰트 */
+    @font-face {
+        font-family: 'ghanachoco';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ghanachoco.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .wrap{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+       
+        padding-top: 10px;
+        gap: 10px;
+    }
+
+
+
+
+/* ===================== 쉘 메뉴 선택 섹션 ===================== */
+
+
+        #shell-menu > .our-shell > a > p{
+            font-family: 'Pretendard-SemiBold';
+            font-size: 14px;
+            color : rgba(165, 135, 224, 1);
+            letter-spacing: 0.02em;
+        }
+
+
+        #shell-menu > .my-shell > a > p{
+            font-family: 'Pretendard-SemiBold';
+            font-size: 14px;
+            color: #797979;
+            letter-spacing: 0.02em;
+        }
+
+
+
+/* ===================== 오늘 날짜 달력 섹션 ===================== */
+    #m2-today{
+        padding-top: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 20%;
+
+        width: 90%;
+        height: 190px;
+        font-size: 20px;
+
+        flex: none;
+        order: 2;
+        flex-grow: 0;
+    }
+
+        #m2-today > .todayLeft{
+            background: url(/images/main/s2/buttonTodayLeft.png) no-repeat 5px;
+            border: none;
+            height: 30px;
+            width:  30px;
+
+            color: #797979;
+            flex: none;
+            order: 0;
+            flex-grow: 0;         
+        }
+
+        #m2-today > .todayRight{
+            background: url(/images/main/s2/buttonTodayRight.png);
+            border: none;
+            height: 30px;
+            width:  30px;
+
+            flex: none;
+            order: 2;
+            flex-grow: 0;
+            color: #797979;
+        }
+
+    .dateBox{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+
+        width: 158px;
+        height: 170px;
+
+        background: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 30px;
+
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+    }
+
+        .dateBox > .month {
+
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            /* padding: 9px 0px; */
+            gap: 10px;
+            
+            width: 158px;
+            height: 63px;
+            
+            background: #A19F9F;
+
+            /* REAL 양감그림자(그레이) */
+            border-radius: 30px 30px 0px 0px;
+            box-shadow: inset 0px 0px 55px #FFFFFF, 
+            inset 0px 32px 16px rgba(199, 192, 196, 0.09),
+            inset 0px 16px 8px rgba(199, 192, 196, 0.09), 
+            inset 0px -79px 40px rgba(199, 192, 196, 0.1), 
+            inset 0px -36px 30px rgba(199, 192, 196, 0.15), 
+            inset 0px -23px 25px rgba(199, 192, 196, 0.17);
+
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .dateBox > .month > .month-font{
+            /*폰트 스타일 정보*/
+            font-family: 'ghanachoco';
+            color: #FFFFFF;
+            font-style: italic;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 36px;
+
+            /* 폰트 위치 조종*/
+            display: flex;
+            align-items: center;
+            text-align: center;
+            letter-spacing: 0.1em;
+
+            /* Inside auto layout */
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .dateBox > .day {
+            width: 158px;
+            height: 100px; 
+
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            /* padding: 9px 0px; */
+            gap: 10px;
+                        
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+        }
+
+        .dateBox > .day > .day-font{
+
+            /* 폰트 스타일 */
+            color: #797979;
+            font-family: 'ghanachoco';
+            font-style: bold;
+            font-weight: 700;
+            line-height: 48px;
+            letter-spacing: 0.1em;
+
+            /* 폰트 위치 조종 */
+            text-align: center;
+        }
+
+            .dateBox > .day > .day-font > .today-day{
+                font-size: 16px;
+            }
+
+            .dateBox > .day > .day-font > .today-date{
+                font-size: 45px;
+            }
+
+/* ===================== 친구 섹션 ===================== */
+   
+    #m3-friends {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;    
+        gap: 10px;        
+        width: 95%;
+        height: 170px;
+                
+        flex: none;
+        order: 3;
+        flex-grow: 0;
+    }
+
+        /* 친구 찾기 돋보기 */
+        .findFriend {  
+            display: flex;
+            justify-items: flex-end;            
+        
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+
+            /* 박스 모양 */
+            /* background: #6B6B6B;
+            padding: 8px;
+            box-shadow: inset 0px 0px 55px #FFFFFF, inset 0px 32px 16px rgba(199, 192, 196, 0.09), inset 0px 16px 8px rgba(199, 192, 196, 0.09), inset 0px -79px 40px rgba(199, 192, 196, 0.1), inset 0px -36px 30px rgba(199, 192, 196, 0.15), inset 0px -23px 25px rgba(199, 192, 196, 0.17);
+            border-radius: 10px;
+            transform: rotate(0.28deg); */
+
+            /* background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15), 
+            inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+            border-radius: 40px;
+            padding: 8px; */
+        }
+
+        .findFriend-a{
+            font-family: 'Pretendard-SemiBold';
+            font-size: 12px;
+            color: rgba(97, 94, 94, 1);
+            letter-spacing: 0.05em;
+        }
+
+
+        #m3-friends > .friendList {
+            color: #797979;
+
+            overflow-x: scroll;
+            width: 100%;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            gap: 20px;
+
+
+            /* 박스 모양 */
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15), 
+            inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+            border-radius: 40px;
+
+            
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+        }
+
+        .friendList > li {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            width: 100%;
+            padding: 15px;
+        }
+
+
+        .friendList > li > img {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .friendList > li >  a {
+            gap: 5px;
+
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+
+            font-family: 'Pretendard-Regular';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+            color: rgba(97, 94, 94, 1);
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            letter-spacing: 0.1em;
+
+        }
+
+/* ===================== 친구들 일정 피드 섹션 ===================== */
+    #m4-friendSchedule{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        width: 90% ;
+
+        padding-bottom: 20px;
+
+        /* Inside auto layout */
+        flex: none;
+        order: 4;
+        flex-grow: 0;
+
+
+        /* 폰트 */
+        font-family: 'Pretendard-Regular';
+        font-style: normal;
+        font-size: 12px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.15em;
+        color: rgba(97, 94, 94, 1);
+
+    }
+
+    .friendScheduleList{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        min-width: 95%;
+        max-width: none;
+ 
+        
+    }
+
+    .friendScheduleList > li  {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 90%;
+
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.7);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 40px;
+    }
+    
+    .scheduleContents > ul > li  {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap : 60px;
+        padding: 3px;
+    }
+
+    .scheduleContents > ul > li> .tag > button {
+        color: rgba(97, 94, 94, 1);
+
+        font-size: 12px;
+        padding-top: 3px;
+        width: auto;
+        letter-spacing: 0.15em;
+
+        border: none;
+
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25), 
+        inset 0px 2px 4px rgba(0, 0, 0, 0.25), 
+        inset 0px 0px 55px #FFFFFF, 
+        inset 0px 32px 16px rgba(199, 192, 196, 0.09), 
+        inset 0px 16px 8px rgba(199, 192, 196, 0.09), 
+        inset 0px -79px 40px rgba(199, 192, 196, 0.1), 
+        inset 0px -36px 30px rgba(199, 192, 196, 0.15), 
+        inset 0px -23px 25px rgba(199, 192, 196, 0.17);
+        border-radius: 10px;
+        transform: rotate(0.28deg);
+    
+    }
+
+    .profile-x{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        
+        gap: 15px;
+        padding-bottom: 20px;
+    }
+
+
+    .profile-x > p {
+        font-weight: 600;
+        font-size: 16px;
+        letter-spacing: 0.1em;
+    }

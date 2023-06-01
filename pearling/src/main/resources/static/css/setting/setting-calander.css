@@ -1,0 +1,32 @@
+
+.setting-calander{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.setting-calander ul li{
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 50px 10px 36px;
+    gap: 200px;
+
+    width: 100%;
+    height: 56px;
+
+    background: #EBEBEB;
+    border: 1px solid #C4C4C4;
+
+    box-shadow: inset 0px 0px 55px #FFFFFF, inset 0px 32px 16px rgba(199, 192, 196, 0.09), inset 0px 16px 8px rgba(199, 192, 196, 0.09), inset 0px -79px 40px rgba(199, 192, 196, 0.1), inset 0px -36px 30px rgba(199, 192, 196, 0.15), inset 0px -23px 25px rgba(199, 192, 196, 0.17);
+    border-radius: 10px;
+}
+
+.setting-calander ul li select{
+    position: absolute;
+    right: 15%;
+}

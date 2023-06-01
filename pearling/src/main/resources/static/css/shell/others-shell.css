@@ -1,0 +1,371 @@
+
+input[type=checkbox] {
+    accent-color: rgba(165, 135, 224, 1)
+  }
+
+
+.wrap{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+    padding-top: 10px;
+    padding-bottom: 30px;
+    gap: 20px;
+}
+
+/* ==========(s1) 프로필 섹션 ===================== */
+
+
+#s1{
+    width: 90%;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+    align-items: center;
+    gap: 150px; 
+
+    /* background: rgba(255, 255, 255, 0.7); */
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15), 
+        inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    padding: 20px;
+}
+
+#s1 > .profile-x {
+    font-family: 'Pretendard-SemiBold';
+    font-size: 12px;
+    letter-spacing: 0.1em;
+
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#s1 > .follobutton {
+    /* 폰트 */
+    font-family: 'Pretendard-SemiBold';
+    font-size: 10px;
+    letter-spacing: 0.1em;
+
+
+    /* 버튼 */
+    background: #FFFFFF;
+    border: none;
+    height: 30px;
+    width: 50px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25), 
+        inset 0px 2px 4px rgba(0, 0, 0, 0.25), 
+        inset 0px 0px 55px #FFFFFF, 
+        inset 0px 32px 16px rgba(199, 192, 196, 0.09),
+        inset 0px 16px 8px rgba(199, 192, 196, 0.09),
+        inset 0px -79px 40px rgba(199, 192, 196, 0.1),
+        inset 0px -36px 30px rgba(199, 192, 196, 0.15),
+        inset 0px -23px 25px rgba(199, 192, 196, 0.17);
+    border-radius: 10px;
+    transform: rotate(0.28deg);
+}
+
+
+
+/* ==========(ms1) 쉘 메뉴 선택 섹션 ===================== */
+
+#ms1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15%;
+    
+    width: 90%;
+    height: 50px;
+    
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15), 
+    inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    
+    color: rgba(199, 192, 196, 1);
+}
+
+    #ms1 > .menuOurShell{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        width: 165px;
+        height: 106px;
+
+        border-radius: 20px;
+
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+    }
+
+    #ms1 > .our-shell > a{
+        width: 100px;
+    }
+
+    #ms1 > .our-shell > a > img{
+        width: 50px;
+    }
+
+    #ms1 > .our-shell > a > p{
+        font-family: 'Pretendard-SemiBold';
+        font-size: 14px;
+        color : #797979;
+        letter-spacing: 0.02em;
+    }
+
+
+    #ms1 > .menuMyShell{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        width: 165px;
+        height: 106px;
+
+        border-radius: 20px;
+
+        /* Inside auto layout */
+
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+    }
+
+
+    #ms1 > .my-shell > a > img{
+        width: 50px;
+    }
+    
+    #ms1 > .my-shell > a > p{
+        font-family: 'Pretendard-SemiBold';
+        font-size: 14px;
+        color : rgba(165, 135, 224, 1);
+        letter-spacing: 0.02em;
+    }
+
+/* ==============(ms2) 마이셸 하부 메뉴 섹션 ===================== */
+#ms2{
+    font-size: 12px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 40px;
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+
+    letter-spacing: 0.02em;
+
+    padding: 15px;
+}
+
+
+#ms2 > .monthly {
+    font-family: 'Pretendard-SemiBold';
+    color : rgba(165, 135, 224, 1);
+}
+
+
+#ms2 > .ms2menu {
+    font-family: 'Pretendard-Regular';
+    color: #797979
+}
+
+
+/* ==============(ms3) 캘린더 섹션 ===================== */
+#ms3{
+      
+    flex: none;
+    order: 3;
+    flex-grow: 0;
+
+    width: 90%
+}
+
+#calendar {
+    max-width: 1200px;
+    min-height: 300px;
+    margin: 0 auto;
+  }
+
+ :root {
+    --fc-border-color: rgba(165, 135, 224, 1);
+    --fc-daygrid-event-dot-width: 5px;
+    -webkit-text-fill-color: #797979;
+  
+    /* 캘린더 버튼 */
+    --fc-button-text-color:rgba(165, 135, 224, 1);
+    --fc-button-bg-color: none;
+    --fc-button-border-color: none;
+    --fc-button-hover-bg-color: none;
+    --fc-button-hover-border-color: #1a252f;
+    --fc-button-active-bg-color: #1a252f;
+    --fc-button-active-border-color: #151e27;
+}
+.fc-toolbar-chunk{
+    font-size: 12px;
+}
+
+.fc-toolbar-chunk > .fc-button-primary{
+    font-size: 12px;
+}
+
+.fc-toolbar-chunk > .fc-toolbar-title{
+    font-family: 'Pretendard-SemiBold';
+    font-size: 16px;
+}
+
+
+
+
+
+  /* ==========(ms4) 스케쥴 섹션 ===================== */
+#ms4{
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80%;
+
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 40px;
+
+
+    flex: none;
+    order: 4;
+    flex-grow: 0;
+
+    position: relative;
+}
+
+.today{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.today > img {
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;    
+}
+
+.today-day{
+    font-family: 'Pretendard-SemiBold';
+    font-size: 13px;
+    letter-spacing: 0.1em;
+
+    position: absolute;
+    height: 27px;
+    left: 50px;
+    top: 35px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #797979;
+
+}
+
+.schedule > p1{
+    font-family: 'Pretendard-SemiBold';
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    padding-left: 20px;
+
+}
+
+.schedule > ul > li  {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap : 60px;
+    padding: 3px;
+    padding-left: 30px;
+}
+
+
+.content{
+    display: flex;
+    flex-direction: row;
+    padding: 3px;
+}
+
+.content > p {
+    display: flex;
+    align-items: center;
+
+}
+
+.schedule > ul > li> .tag > button {
+    color: rgba(97, 94, 94, 1);
+
+    font-size: 12px;
+    padding-top: 3px;
+    width: auto;
+    letter-spacing: 0.15em;
+
+    border: none;
+
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25), 
+    inset 0px 2px 4px rgba(0, 0, 0, 0.25), 
+    inset 0px 0px 55px #FFFFFF, 
+    inset 0px 32px 16px rgba(199, 192, 196, 0.09), 
+    inset 0px 16px 8px rgba(199, 192, 196, 0.09), 
+    inset 0px -79px 40px rgba(199, 192, 196, 0.1), 
+    inset 0px -36px 30px rgba(199, 192, 196, 0.15), 
+    inset 0px -23px 25px rgba(199, 192, 196, 0.17);
+    border-radius: 10px;
+    transform: rotate(0.28deg);
+}
+
+
+
+
+  /* ==========(modal) 일정 디테일 ===================== */
+
+    #dayDetail {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+  
+  .modal-content {
+        background-color: #fff;
+        width: 80%;
+        height: 50%;
+  }

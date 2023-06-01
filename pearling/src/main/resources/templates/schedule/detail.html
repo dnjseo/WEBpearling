@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/import.css" type="text/css" rel="stylesheet">
+    <link href="/css/schedule/schdule-detail.css" type="text/css" rel="stylesheet">
+    <script src="/js/header/header.js"></script>
+    <script src="/js/schedule/schedule-add.js"></script>
+    <script src="/js/system/confirm-modal.js"></script>
+    <script src="/js/schedule/schedule-delete-modal.js"></script>
+    <title>schedule-detail</title>
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <!--header-wrap-->
+        <div class="header-wrap">
+            <!--header-->
+            <div class="header2">
+                <h1 class="d-none">펄링</h1>
+                <a class="back"><img src="/images/back.png" alt="logo" /></a>
+                <a class="trash del-btn"><img src="/images/trash.png" alt="trash"></a>
+            </div>
+            <p class="gray_border"></p>
+            <!-- header-->
+        </div>
+        <!--header-wrap-->
+    </header>
+
+    <div class="wrap">
+        <h1 class="d-none">일정 상세확인창</h1>
+        <section id="d1">
+            <h1 class="d-none">상세내용</h1>
+
+            <!-- 일정 제목 ------------------------------------------------------------------------------------------------------------------ -->
+
+            <div class="schdule-add-title">
+                <span>🎬가비지타임</span>
+            </div>
+            <!-- 날짜 선택 ------------------------------------------------------------------------------------------------------------------ -->
+
+            <span>일정일</span>
+            <div class="schedule-add-date">
+                <div class="start-date">
+                    <sapn>시작일: </sapn>
+                    <span>2023-05-17 17:00</span>
+                </div>
+                <div class="end-date">
+                    <sapn>종료일: </sapn>
+                    <span>2023-05-17 20:00</span>
+                </div>
+            </div>
+
+            <!-- 장소 선택 ------------------------------------------ -->
+            <div class="schedule-add-location">
+                <span>장소</span>
+            </div>
+
+            <!-- 친구 태그 선택 ------------------------------------------ -->
+
+            <div class="schedule-add-freind-wrap">
+                <span>친구 태그</span>
+                <div class="tag-box">
+                    <!-- <button>@나</button> -->
+                    <button>@연주</button>
+                    <button>@도원</button>
+                    <button>@예린</button>
+                </div>
+            </div>
+
+            <!-- 컬러팔레트 선택 ------------------------------------------ -->
+
+            <div class="schedule-add-color-wrap">
+                <label for="color-tag">컬러 팔레트</label>
+                <div id="box" class="box">
+                    <div id="palletBox" class="pallet">
+                    </div>
+                </div>
+                <!-- <input type="button" id="color-tag" name="color-tag"> -->
+            </div>
+
+        </section>
+
+        <!-- 삭제 모달창 ------------------------------->
+
+        <div id="delete-modal" class="modal">
+            <div class="del-modal-content">
+                <p>🫧 Message</p>
+                <p>일정을 삭제하시겠습니까?</p>
+                <div class="del-modal-btns">
+                    <button class="del-confirm-yes">예</button>
+                    <button class="del-confirm-no">아니오</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 삭제 모달창 ------------------------------->
+
+    </div>
+
+</body>
+
+</html>

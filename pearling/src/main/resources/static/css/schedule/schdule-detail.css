@@ -1,0 +1,152 @@
+@import url(/css/system/delete-modal.css);
+
+.schdule-add-title {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 5px 20px;
+    margin-bottom: 20px;
+    gap: 10px;
+
+    width: 90%;
+    height: 35px;
+
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+
+    font-weight: bold;
+}
+
+.schedule-add-date {
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 5px 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    gap: 10px;
+
+    width: 90%;
+    height: 120px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+}
+
+.schedule-add-date> div > :nth-child(1) {
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.schedule-add-location {
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 5px 20px;
+    margin-bottom: 20px;
+    gap: 10px;
+
+    width: 90%;
+    height: 35px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+}
+
+.schedule-add-freind-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 20px;
+
+    width: 90%;
+    height: 60px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+}
+
+.schedule-add-freind-wrap > .tag-box > button{
+    color: rgba(97, 94, 94, 1);
+
+    font-size: 12px;
+    padding-top: 3px;
+    width: auto;
+    letter-spacing: 0.15em;
+
+    border: none;
+
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25), 
+    inset 0px 2px 4px rgba(0, 0, 0, 0.25), 
+    inset 0px 0px 55px #FFFFFF, 
+    inset 0px 32px 16px rgba(199, 192, 196, 0.09), 
+    inset 0px 16px 8px rgba(199, 192, 196, 0.09), 
+    inset 0px -79px 40px rgba(199, 192, 196, 0.1), 
+    inset 0px -36px 30px rgba(199, 192, 196, 0.15), 
+    inset 0px -23px 25px rgba(199, 192, 196, 0.17);
+    border-radius: 10px;
+    transform: rotate(0.28deg);
+}
+
+.schedule-add-color-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 5px 20px;
+    margin-bottom: 20px;
+    gap: 15px;
+
+    height: 130px;
+
+    /* background: #FFFFFF;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 14px; */
+}
+
+/* ----<색상 팔레트>------------------------------------------------------- */
+
+
+.schedule-add-color-wrap>label {
+    margin-top: 15px;
+}
+
+.schedule-add-color-wrap>.box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+    width: 100%;
+}
+
+.schedule-add-color-wrap>.box>.pallet {
+    
+}
+
+.active {
+    outline: 1px solid black;
+}
+
+.colorBox {
+    width: 50px;
+    height: 52px;
+    float: left;
+    margin-right: 12px;
+    cursor: pointer;
+    border-radius: 80px 80px;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/import.css" type="text/css" rel="stylesheet" >
+    <link href="/css/shell/others-shell.css" type="text/css" rel="stylesheet" >
+    <script src="/js/header/header.js"></script>
+    <script src="/js/footer/footer.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
+    <script src="/js/shell/myshell.js"></script>
+    <title>탐정's shell</title>
+</head>
+<body>
+    <!-- header -->
+    <header id="header"></header>
+
+    <!-- wrap -->
+    <div class="wrap">
+
+        <section id="s1">
+            <h1 class="d-none">프로필</h1>
+            <div class = "profile-x">
+                <img src="/images/profile/profile_yr.png"><p>탐정's shell</p>
+            </div>
+            <input class="follobutton" type="button" value="팔로잉">
+        </section>
+
+        <section id = ms2>
+            <h1 class="d-none">마이쉘 하위메뉴</h1>
+            <a class = monthly href="/html/others-shell.html">🌙 먼슬리 ></a>
+            <a class = ms2menu href="/html/diary/diary.html">📓 다이어리 ></a>
+            <a class = ms2menu href="/html/guestbook/guestbook.html">🫧 방명록 ></a>
+        </section>
+
+        <section id = ms3>
+            <h1 class="d-none">캘린더</h1>
+            <div id='calendar'></div>
+        </section>
+
+        <section id = ms4>
+            <h1 class="d-none">일정 리스트</h1>
+            <div class = "today">
+                <img src="/images/profile/circle.png">
+                <span class="today-day"></span>
+            </div>
+            
+                <div class="schedule">
+                    <p1>to do.</p1>
+                    <ul>
+                        <li>
+                            <div class="content">
+                                <input type="checkbox">
+                                <p>소금빵 사러가기🥐</p> 
+                            </div>
+                            <div class="tag">
+                                <button>@채원</button>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <input type="checkbox">
+                                <p class="task">마라탕 먹기</p> 
+                            </div>
+                            <div class="tag">
+                                <button>@도원</button>
+                                <button>@예린</button>
+                                <button>@채원</button>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <input type="checkbox">
+                                <p>http강의 듣기👩🏻‍💻</p> 
+                            </div>
+                            <div class="tag">
+                                <!-- <button></button> -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="schedule">
+                    <p><br><br></p>
+                    <p1>일정.</p1>
+                    <ul>
+                        <li>
+                            <div class="content">
+                                <p>🎥 비색의 탄환 </p> 
+                            </div>
+                            <div class="tag">
+                                <button>@예린</button>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <p>🎂 누군가의 생일</p> 
+                            </div>
+                            <div class="tag">
+                                <!-- <button></button> -->
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <p>📝 시험</p> 
+                            </div>
+                            <div class="tag">
+                                <!-- <button></button> -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+    </div>
+    <!-- /wrap -->
+
+    <!-- footer -->
+    <footer id="footer"></footer>
+
+</body>
+</html>

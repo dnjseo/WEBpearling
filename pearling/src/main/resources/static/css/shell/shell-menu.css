@@ -1,0 +1,147 @@
+/* ========== 쉘 메뉴 선택 섹션 ===================== */
+
+#shell-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15%;
+    
+    width: 100%;
+    height: 50px;
+    
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15), 
+    inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    
+    color: rgba(199, 192, 196, 1);
+}
+
+    #shell-menu > .menuOurShell{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        width: 165px;
+        height: 106px;
+
+        border-radius: 20px;
+
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+    }
+
+    #shell-menu  > .our-shell > a{
+        width: 100px;
+        data-transition: "fade";
+    }
+
+    #shell-menu  > .our-shell > a > img{
+        width: 50px;
+    }
+
+    #shell-menu  > .our-shell > a > p{
+        font-family: 'Pretendard-SemiBold';
+        font-size: 14px;
+        color : #797979;
+        letter-spacing: 0.02em;
+    }
+
+
+    #shell-menu > .menuMyShell{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        width: 165px;
+        height: 106px;
+
+        border-radius: 20px;
+
+        /* Inside auto layout */
+
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+    }
+
+
+    #shell-menu > .my-shell > a > img{
+        width: 50px;
+    }
+
+
+    #shell-menu > .my-shell > a > .our-shell{
+        font-family: 'Pretendard-SemiBold';
+        font-size: 14px;
+        color : rgba(165, 135, 224, 1);
+        letter-spacing: 0.02em;
+    }
+
+
+    #shell-menu > .my-shell > a > .my-shell{
+        font-family: 'Pretendard-SemiBold';
+        font-size: 14px;
+        color : rgba(165, 135, 224, 1);
+        letter-spacing: 0.02em;
+    }
+
+    #shell-menu > .my-shell > a > .notselected{
+        font-family: 'Pretendard-SemiBold';
+        font-size: 14px;
+        color: #797979;
+        letter-spacing: 0.02em;
+    }
+
+
+    
+
+    /* ============== 마이셸 하부 메뉴 섹션 ===================== */
+    #myshell-menu{
+        font-size: 12px;
+    
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    
+        gap: 40px;
+    
+        flex: none;
+        order: 2;
+        flex-grow: 0;
+    
+        letter-spacing: 0.02em;
+    
+        padding: 15px;
+    }
+    
+    
+    #myshell-menu > .notselected {
+        font-family: 'Pretendard-Regular';
+        color: #797979
+    }
+    
+    #myshell-menu > .monthly {
+        font-family: 'Pretendard-SemiBold';
+        color : rgba(165, 135, 224, 1);
+    }
+
+    #myshell-menu > .diary {
+        font-family: 'Pretendard-SemiBold';
+        color : rgba(165, 135, 224, 1);
+    }
+    
+    #myshell-menu > .guestbook {
+        font-family: 'Pretendard-SemiBold';
+        color : rgba(165, 135, 224, 1);
+    }
+    

@@ -43,4 +43,9 @@ public class SettingController {
 		return "setting/follow-list";
 	}
 
+	@GetMapping("profile")
+	public String profile() {
+		return "setting/profile";
+	}
+
 }

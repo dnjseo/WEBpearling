@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
 
 <head>
     <meta charset="UTF-8">
@@ -16,10 +17,10 @@
 
 <body>
     <!-- header -------------------------------->
-    <header id="header"></header>
+    <!-- <header id="header"></header> -->
 
     <!-- wrap ---------------------------------->
-    <div class="wrap">
+    <main layout:fragment="content" class="wrap">
 
         <!-- 달력 ------------------------------->
         <section id = d2>
@@ -69,7 +70,7 @@
 
         <!-- alert창 ------------------------------->
 
-    </div>
+    </main>
     <!-- /wrap ------------------------------->
 </body>
 

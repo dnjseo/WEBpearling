@@ -1,12 +1,12 @@
 
 /* ===================== 오늘 날짜 달력 섹션 ===================== */
 
-let todayIndex = 0;
-const todaySection = document.querySelector("#m2-today");
-
 window.addEventListener("DOMContentLoaded", function() {
+  
+  let todayIndex = 0;
+  const todaySection = document.querySelector("#m2-today");
+  
   updateDate(todayIndex); // 현재 날짜로 업데이트
-});
 
 function updateDate(offset) {
     let today = new Date();
@@ -56,4 +56,6 @@ todaySection.querySelector(".todayLeft").addEventListener("click", function() {
 todaySection.querySelector(".todayRight").addEventListener("click", function() {
     todayIndex++; // 내일 날짜로 업데이트
     updateDate(todayIndex);
+  });
+
   });

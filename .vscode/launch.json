@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PearlingApplication<pearling>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.pearling.web.PearlingApplication",
+            "projectName": "pearling",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

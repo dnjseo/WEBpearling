@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" 
-	xmlns:th="http://www.thymeleaf.org" 
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{inc/layout}"
->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,6 +11,7 @@
     <link href="/css/notice/notice-main.css" type="text/css" rel="stylesheet">
     <script src="/js/header/header.js"></script>
 </head>
+
 <body>
     <!-- header -->
     <header>
@@ -21,24 +20,24 @@
             <!--header-->
             <div class="header2">
                 <h1 class="d-none">펄링</h1>
-                <a class="back"><img src="/images/back.png" alt="logo"/></a>
+                <a class="back"><img src="/images/back.png" alt="logo" /></a>
                 <h2 class="title">공지사항</h2>
-            </div>  
+            </div>
             <p class="gray_border"></p>
-        <!-- header-->
+            <!-- header-->
         </div>
         <!--header-wrap-->
     </header>
 
-    <!-- wrap -->                                 
+    <!-- wrap -->
     <main class="wrap" layout:fragment="content">
         <div class="notice-icon"></div>
         <div class="notice-list">
             <h2 class="d-none">공지사항 목록</h2>
             <div class="notice-box">
-                <div class="notice-content"><a href="/html/notice/notice-detail.html">
-                    다이어리 공개범위 설정 변경의 건
-                </a></div>
+                <div class="notice-content"><a href="/html/notice/notice-detail">
+                        다이어리 공개범위 설정 변경의 건
+                    </a></div>
                 <p class="notice-date">2023/04/22</p>
             </div>
             <div class="notice-box">
@@ -53,14 +52,15 @@
                 </div>
                 <p class="notice-date">2023/04/11</p>
             </div>
-           <div class="notice-box">
-               <div class="notice-content">
-                   펄링 베타 서비스 오픈의 건
-               </div>
-               <p class="notice-date">2023/04/10</p>
+            <div class="notice-box">
+                <div class="notice-content">
+                    펄링 베타 서비스 오픈의 건
+                </div>
+                <p class="notice-date">2023/04/10</p>
             </div>
         </div>
     </main>
     <!-- /wrap -->
 </body>
+
 </html>

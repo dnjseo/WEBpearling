@@ -13,9 +13,16 @@ public class ShellController {
 		return "shell/myshell";
 	}
 	
+
 	@GetMapping("ourshell")
 	public String ourShell() {
 		return "shell/ourshell";
 	}
+
+	@GetMapping("others-shell")
+	public String othersShell() {
+		return "shell/others-shell";
+	}
+
 
 }

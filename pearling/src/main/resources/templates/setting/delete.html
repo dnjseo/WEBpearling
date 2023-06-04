@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/setting/setting-delete.css" type="text/css" rel="stylesheet">
     <title>setting-delete</title>
 </head>
@@ -30,7 +27,7 @@
 
 
     <!-- wrap -->
-    <div class="wrap">
+    <main layout:fragment="content" class="wrap">
         <section class="setting-calander">
             <h1 class="d-none">계정 삭제 확인</h1>
             <div class="img-box">
@@ -45,7 +42,7 @@
             </div>
         </section>
 
-    </div>
+    </main>
     <!-- /wrap -->
 
 </body>

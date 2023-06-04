@@ -9,12 +9,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/shell/main-ourshell.css" type="text/css" rel="stylesheet">
     <link href="/css/shell/shell-menu.css" type="text/css" rel="stylesheet">
     <script src="/js/shell/shell-menu.js"></script>
     <title>Pearl-ing</title>
 </head>
+=======
+    <link href="/css/import.css" type="text/css" rel="stylesheet" >
+    <link href="/css/shell/main-ourshell.css" type="text/css" rel="stylesheet" >
+    <link href="/css/shell/shell-menu.css" type="text/css" rel="stylesheet" >
+    <script src="/js/header/header.js"></script>
+    <script src="/js/footer/footer.js"></script>
+    <script src="/js/shell/shell-menu.js"></script>
+    <title>Pearl-ing</title>
+</head>
+<body>
+
+        <!-- header -->
+        <div th:replace="~{inc/header}"></div>
+        <div th:replace="~{inc/aside}"></div>
+
+        <!-- wrap -->
+         <main class = "wrap">
+>>>>>>> f11db1b0d2a72ecc713b8cd96815fd8bb3f0193a
 
 <body>
     <!-- wrap -->
@@ -134,6 +153,7 @@
                         </div>
                     </li>
 
+<<<<<<< HEAD
                     <li class="fs2">
                         <div class="profile-x">
                             <img src="/images/profile/profile_c.png">
@@ -179,8 +199,54 @@
     </main>
     <!-- /wrap -->
 
-    <script src="/js/shell/main-ourshell.js"></script>
+=======
+                        <li class="fs2">
+                            <div class = "profile-x">
+                                <img src="/images/profile/profile_c.png"><p>채원</p>
+                            </div>
+                            <div class = "scheduleContents">
+                                <ul>
+                                    <li>☑︎ 소금빵 사러가기 </li>
+                                    <li>☑︎ 마라탕 먹으러가기 </li>
+                                    <li>☑︎ 산책하기 </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="fs3">
+                            <div class = "profile-x">
+                                <img src="/images/profile/profile_d.png"><p>도원</p>
+                            </div>
+                            <div class = "scheduleContents">
+                                <ul>
+                                    <li>☑︎ 승연이 뮤비 체크하기</li>
+                                    <li>☑︎ 마라탕 먹으러가기 </li>
+                                    <li>☑︎ 승연이 인스타 체크하기 </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="fs4">
+                            <div class = "profile-x">
+                                <img src="/images/profile/profile_yr.png"><p>예린</p>
+                            </div>
+                            <div class = "scheduleContents">
+                                <ul>
+                                    <li>☑︎ 비색의 탄환 다시보기</li>
+                                    <li>☑︎ 포와로 카페 방문 </li>
+                                    <li>☑︎ 마라탕 먹으러가기 </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
 
+
+    </main> <!-- /wrap -->
+
+    <!-- footer -->
+    <div th:replace="~{inc/footer}"></div>
+>>>>>>> f11db1b0d2a72ecc713b8cd96815fd8bb3f0193a
+    <script src="/js/shell/main-ourshell.js"></script>
 </body>
 
 </html>

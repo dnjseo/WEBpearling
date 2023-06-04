@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/setting/setting-accountmanage.css" type="text/css" rel="stylesheet">
     <title>setting-accountmanage</title>
 </head>
@@ -28,7 +25,7 @@
     </header>
 
 
-    <div class="wrap">
+    <main layout:fragment="content" class="wrap">
         <section id="account-setting" class="account-setting">
             <div class="img-box">
                 <img src="/images/profile/purple_circle.png" alt="pearl">
@@ -40,7 +37,7 @@
                 <li><a class="defence" target="" href="">계정 삭제</a></li>
             </ul>
         </section>
-    </div>
+    </main>
 </body>
 
 </html>

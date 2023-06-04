@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/setting/setting-follow-list.css" type="text/css" rel="stylesheet">
     <title>setting-follow</title>
 </head>
@@ -28,7 +25,7 @@
     </header>
 
     <!-- wrap -->
-    <div class="wrap">
+    <main layout:fragment="content" class="wrap">
 
         <section id="setting-follow">
             <h1 class="d-none">친구목록</h1>
@@ -73,7 +70,7 @@
             </div>   
         </section>
 
-    </div>
+    </main>
     <!-- /wrap -->
 
 </body>

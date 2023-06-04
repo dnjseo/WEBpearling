@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/setting/setting-account-pwd.css" type="text/css" rel="stylesheet">
     <script src="/js/system/confirm-modal.js"></script>
     <title>setting-account-pwd</title>
@@ -28,7 +25,7 @@
     </header>
 
     <!-- wrap -->
-    <div class="wrap">
+    <main layout:fragment="content" class="wrap">
         <section id="d1">
             <h1 class="d-none">비밀번호 변경</h1>
             <div class="img-box">
@@ -63,7 +60,7 @@
             </div>
         </div>
 
-    </div>
+    </main>
     <!-- /wrap -->
 </body>
 

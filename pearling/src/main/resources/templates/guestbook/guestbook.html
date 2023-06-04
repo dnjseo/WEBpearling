@@ -1,20 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{inc/layout}">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/css/import.css" type="text/css" rel="stylesheet" >
     <link href="/css/guestbook/guestbook.css" type="text/css" rel="stylesheet" >
     <script src="/js/guestbook/guestbook.js"></script>
     <script src="/js/header/header.js"></script>
-    <script src="/js/footer/footer.js"></script>
     <title>방명록(친구버전)</title>
 </head>
 <body>
-    <header id="header"></header>
+    <!-- <header id="header"></header> -->
 
-    <div id="wrap" class="wrap">
+    <main layout:fragment="content" id="wrap" class="wrap">
         <ul class="clam">
             <li><img src="/images/guestbook/clam_1.png"></li>
             <li><img src="/images/guestbook/clam_2.png"></li>
@@ -46,8 +43,8 @@
         <div class="black"></div>
 
         <div class="plus"><a href="./guestbook-plus.html">+</a></div>
-    </div>
+    </main>
 
-    <footer id="footer"></footer>
+    <!-- <footer id="footer"></footer> -->
 </body>
 </html>

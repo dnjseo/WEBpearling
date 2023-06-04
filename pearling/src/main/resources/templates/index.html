@@ -1,252 +1,83 @@
 <!DOCTYPE html>
-<html lang="en" 
-	xmlns:th="http://www.thymeleaf.org" 
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{inc/layout}"
->
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{inc/layout}">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <link href="/css/import.css" type="text/css" rel="stylesheet">
-    <link href="/css/shell/main-ourshell.css" type="text/css" rel="stylesheet">
-    <link href="/css/shell/shell-menu.css" type="text/css" rel="stylesheet">
-    <script src="/js/shell/shell-menu.js"></script>
-    <title>Pearl-ing</title>
-</head>
-=======
-    <link href="/css/import.css" type="text/css" rel="stylesheet" >
-    <link href="/css/shell/main-ourshell.css" type="text/css" rel="stylesheet" >
-    <link href="/css/shell/shell-menu.css" type="text/css" rel="stylesheet" >
-    <script src="/js/header/header.js"></script>
-    <script src="/js/footer/footer.js"></script>
-    <script src="/js/shell/shell-menu.js"></script>
-    <title>Pearl-ing</title>
+  <title>Pearl-ing</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="/css/system/indexStyle.css">
+
 </head>
 <body>
+<!-- partial:index.partial.html -->
 
-        <!-- header -->
-        <div th:replace="~{inc/header}"></div>
-        <div th:replace="~{inc/aside}"></div>
+  <section class="mainlogo">
+    <div class="logo">
+      <img src="/images/logo/mainlogo.png">
+      <!-- <img src="/images/logo001.png"> -->
+      <object class="shape" data="/images/logo/realLogo.svg" ></object>
+    </div>
+    <div class="style"></div>
+    <!-- <div class="login"> -->
+      <!-- <div>
+        <p><a href="">></a></p>
+      </div> -->
+    <!-- </div> -->
+  </section>
 
-        <!-- wrap -->
-         <main class = "wrap">
->>>>>>> f11db1b0d2a72ecc713b8cd96815fd8bb3f0193a
-
-<body>
-    <!-- wrap -->
-    <main class="wrap" layout:fragment="content">
-
-        <section id="shell-menu"></section>
-
-        <section id="m2-today">
-            <h1 class="d-none">오늘의 날짜</h1>
-            <button class=todayLeft></button>
-            <div class="dateBox">
-                <div class="month">
-                    <p class="month-font"><span class="today-m"></span></p>
-                </div>
-                <div class="day">
-                    <p class="day-font">
-                        <span class="today-day"></span>
-                        <br>
-                        <span class="today-date"></span>
-                    </p>
-                </div>
-            </div>
-            <button class="todayRight"></button>
-        </section>
-
-        <section id="m3-friends">
-            <h1 class="d-none">친구 리스트</h1>
-            <div class="findFriend">
-                <a class="findFriend-a" href="/html/setting/setting-follow-list.html">
-                    <p>🔎 친구 관리 ></p>
-                </a>
-                <!-- <button class = "findFriendButton">🔎 모든 친구</button> -->
-            </div>
-            <ul class="friendList">
-                <li class="fr">
-                    <a href="/html/shell/others-shell.html">
-                        <img src="/images/profile/profile_yr.png">
-                        탐정</a>
-                </li>
-                <li class="fr">
-                    <a href="/html/shell/others-shell.html">
-                        <img src="/images/profile/profile_d.png">
-                        감자</a>
-                </li>
-                <li class="fr">
-                    <a href="/html/shell/others-shell.html">
-                        <img src="/images/profile/profile_c.png">
-                        진미채</a>
-                </li>
-                <li class="fr">
-                    <a href="/html/shell/others-shell.html">
-                        <img src="/images/profile/profile_yj.png">
-                        name</a>
-                </li>
-                <li class="fr">
-                    <a href="/html/others-shell/shell.html">
-                        <img src="/images/profile/profile_yj.png">
-                        name</a>
-                </li>
-                <li class="fr">
-                    <a href="/html/others-shell/shell.html">
-                        <img src="/images/profile/profile_yj.png">
-                        name</a>
-                </li>
-                <li class="fr">
-                    <a href="/html/others-shell/shell.html">
-                        <img src="/images/profile/profile_yj.png">
-                        name</a>
-                </li>
-                <li class="fr">
-                    <a href="/html/others-shell/shell.html">
-                        <img src="/images/profile/profile_yj.png">
-                        name</a>
-                </li>
-                <li class="fr">
-                    <a href="/html/others-shell/shell.html">
-                        <img src="/images/profile/profile_yj.png">
-                        name</a>
-                </li>
-                <div>
-        </section>
-
-        <section id=m4-friendSchedule>
-            <h1 class="d-none">친구 일정</h1>
-            <div class=friendScheduleList>
-                <ul class="friendScheduleList">
-                    <li class="fs1">
-                        <div class="profile-x">
-                            <img src="/images/profile/profile_yj.png">
-                            <p>연주</p>
-                        </div>
-                        <div class="scheduleContents">
-                            <ul>
-                                <li>
-                                    <div class="content">
-                                        <p>☑︎ 마라탕 먹으러가기</p>
-                                    </div>
-                                    <div class="tag">
-                                        <button>@나</button>
-                                        <button>@채원</button>
-                                        <button>@도원</button>
-                                        <button>@예린</button>
-                                    </div>
-                                </li>
-                                <li>
-                                    <p>☑︎ 소금빵 사러가기</p>
-                                    <div class="tag">
-                                        <button>@나</button>
-                                        <button>@채원</button>
-                                    </div>
-                                </li>
-                                <li>
-                                    <p>☑︎ http 강의듣기</p>
-                                    <div class="tag"><button>@나</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-<<<<<<< HEAD
-                    <li class="fs2">
-                        <div class="profile-x">
-                            <img src="/images/profile/profile_c.png">
-                            <p>채원</p>
-                        </div>
-                        <div class="scheduleContents">
-                            <ul>
-                                <li>☑︎ 소금빵 사러가기 </li>
-                                <li>☑︎ 마라탕 먹으러가기 </li>
-                                <li>☑︎ 산책하기 </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="fs3">
-                        <div class="profile-x">
-                            <img src="/images/profile/profile_d.png">
-                            <p>도원</p>
-                        </div>
-                        <div class="scheduleContents">
-                            <ul>
-                                <li>☑︎ 승연이 뮤비 체크하기</li>
-                                <li>☑︎ 마라탕 먹으러가기 </li>
-                                <li>☑︎ 승연이 인스타 체크하기 </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="fs4">
-                        <div class="profile-x">
-                            <img src="/images/profile/profile_yr.png">
-                            <p>예린</p>
-                        </div>
-                        <div class="scheduleContents">
-                            <ul>
-                                <li>☑︎ 비색의 탄환 다시보기</li>
-                                <li>☑︎ 포와로 카페 방문 </li>
-                                <li>☑︎ 마라탕 먹으러가기 </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </section>
-    </main>
-    <!-- /wrap -->
-
-=======
-                        <li class="fs2">
-                            <div class = "profile-x">
-                                <img src="/images/profile/profile_c.png"><p>채원</p>
-                            </div>
-                            <div class = "scheduleContents">
-                                <ul>
-                                    <li>☑︎ 소금빵 사러가기 </li>
-                                    <li>☑︎ 마라탕 먹으러가기 </li>
-                                    <li>☑︎ 산책하기 </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="fs3">
-                            <div class = "profile-x">
-                                <img src="/images/profile/profile_d.png"><p>도원</p>
-                            </div>
-                            <div class = "scheduleContents">
-                                <ul>
-                                    <li>☑︎ 승연이 뮤비 체크하기</li>
-                                    <li>☑︎ 마라탕 먹으러가기 </li>
-                                    <li>☑︎ 승연이 인스타 체크하기 </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="fs4">
-                            <div class = "profile-x">
-                                <img src="/images/profile/profile_yr.png"><p>예린</p>
-                            </div>
-                            <div class = "scheduleContents">
-                                <ul>
-                                    <li>☑︎ 비색의 탄환 다시보기</li>
-                                    <li>☑︎ 포와로 카페 방문 </li>
-                                    <li>☑︎ 마라탕 먹으러가기 </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-
-
-    </main> <!-- /wrap -->
-
-    <!-- footer -->
-    <div th:replace="~{inc/footer}"></div>
->>>>>>> f11db1b0d2a72ecc713b8cd96815fd8bb3f0193a
-    <script src="/js/shell/main-ourshell.js"></script>
+  <section class='canvas'>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+    <div class='bubble'></div>
+  </section>
+  <!-- partial -->
+  
 </body>
 
 </html>

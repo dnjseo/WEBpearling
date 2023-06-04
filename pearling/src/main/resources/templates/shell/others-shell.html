@@ -1,23 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{inc/layout}">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/css/import.css" type="text/css" rel="stylesheet" >
     <link href="/css/shell/others-shell.css" type="text/css" rel="stylesheet" >
-    <script src="/js/header/header.js"></script>
-    <script src="/js/footer/footer.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
     <script src="/js/shell/myshell.js"></script>
     <title>탐정's shell</title>
 </head>
 <body>
     <!-- header -->
-    <header id="header"></header>
+    <!-- <header id="header"></header> -->
 
     <!-- wrap -->
-    <div class="wrap">
+    <main layout:fragment="content" class="wrap">
 
         <section id="s1">
             <h1 class="d-none">프로필</h1>
@@ -114,11 +110,11 @@
             </div>
         </section>
         
-    </div>
+    </main>
     <!-- /wrap -->
 
     <!-- footer -->
-    <footer id="footer"></footer>
+    <!-- <footer id="footer"></footer> -->
 
 </body>
 </html>

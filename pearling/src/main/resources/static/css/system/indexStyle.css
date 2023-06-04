@@ -33,7 +33,7 @@ body{
   height: 100%;
 }
 
-.logo{
+.indexlogo{
   display: flex;
   flex-direction: column;
   justify-self: center;
@@ -47,7 +47,7 @@ body{
   z-index: 1;
 }
 
-.logo > img{
+.indexlogo > img{
   width: 60%;
 }
 

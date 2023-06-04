@@ -2,12 +2,12 @@ fetch("/html/search/search-main.html")
   .then((response) => response.text())
   .then((data) => {
     document.getElementById("dropdown").innerHTML = data;
-    
+
     let dropSearch = document.querySelector('.drop-search');
     let submenu = document.querySelector('.dropdown-submenu');
-    let isOpen = false; 
-    
-    dropSearch.addEventListener('click', function() {
+    let isOpen = false;
+
+    dropSearch.addEventListener('mouseover', function() {
       if (isOpen) {
         submenu.style.display = 'none';
         isOpen = false;
@@ -18,6 +18,3 @@ fetch("/html/search/search-main.html")
     });
   })
   .catch((error) => console.error(error));
-
-
-

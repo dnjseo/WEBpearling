@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/system/profile.css" type="text/css" rel="stylesheet">
     <title>Profile</title>
 </head>
@@ -25,11 +23,11 @@
     </header>
 
     <!-- wrap -->
-    <div class="wrap p_wrap">
+    <main layout:fragment="content" class="wrap p_wrap">
         <p class="button"></p>
-        <h1 class="logo"><img src="/images/logo001.png" ></h1>
+        <h1 class="logo"><img src="/images/logo/realLogo.svg" ></h1>
         <div class="p_img">
-            <img  class="img">
+            <img class="img">
             <img class="edit" src="/images/profile/edit_profile.png" >
         </div>
         <ul class="change">
@@ -38,7 +36,7 @@
             <li>🫧 생년월일</li>
             <li><input placeholder="입력하세요"></li>
         </ul>
-    </div>
+    </main>
     <!-- /wrap -->
 </body>
 </html> 

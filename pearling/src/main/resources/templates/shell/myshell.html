@@ -1,14 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{inc/layout}">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/import.css" type="text/css" rel="stylesheet" >
     <link href="/css/shell/myshell.css" type="text/css" rel="stylesheet" >
     <link href="/css/shell/shell-menu.css" type="text/css" rel="stylesheet" >
-    <script src="/js/header/header.js"></script>
-    <script src="/js/footer/footer.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
     <script src="/js/shell/shell-menu.js"></script>
     <script src="/js/shell/myshell.js"></script>
@@ -16,10 +11,10 @@
 </head>
 <body>
     <!-- header -->
-    <header id="header"></header>
+    <!-- <header id="header"></header> -->
 
     <!-- wrap -->
-    <div class="wrap">
+    <main layout:fragment="content" class="wrap">
 
         <section id="shell-menu"></section>
 
@@ -125,11 +120,11 @@
     </section>
 
 
-    </div>
+    </main>
     <!-- /wrap -->
 
     <!-- footer -->
-    <footer id="footer"></footer>
+    <!-- <footer id="footer"></footer> -->
 
 </body>
 </html>

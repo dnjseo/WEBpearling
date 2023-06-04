@@ -1,26 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{inc/layout}">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/import.css" type="text/css" rel="stylesheet" >
     <link href="/css/shell/main-ourshell.css" type="text/css" rel="stylesheet" >
     <link href="/css/shell/shell-menu.css" type="text/css" rel="stylesheet" >
-    <script src="/js/header/header.js"></script>
-    <script src="/js/footer/footer.js"></script>
-    <script src="/js/shell/shell-menu.js"></script>
     <title>Pearl-ing</title>
 </head>
 <body>
 
-        <!-- header -->
-        <header id="header"></header>
+        <!-- header
+        <header id="header"></header> -->   
+        <section id="shell-menu"></section>
 
         <!-- wrap -->
-         <div class = "wrap">
-
-            <section id="shell-menu"></section>
+        <main layout:fragment="content" class="wrap">
             
             <section id = "m2-today">
                 <h1 class="d-none">오늘의 날짜</h1>
@@ -39,7 +32,7 @@
                 </div>
             <button class="todayRight"></button>
             </section>
-
+            
             <section id = "m3-friends">
                 <h1 class="d-none">친구 리스트</h1>
                 <div class = "findFriend">
@@ -169,10 +162,10 @@
             </section>
 
 
-    </div> <!-- /wrap -->
+    </main> <!-- /wrap -->
 
     <!-- footer -->
-    <footer id="footer"></footer>
+    <!-- <footer id="footer"></footer> -->
 
     <script src="/js/shell/main-ourshell.js"></script>
 

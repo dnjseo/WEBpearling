@@ -7,11 +7,17 @@
     <link href="/css/import.css" type="text/css" rel="stylesheet" >
     <link href="/css/shell/main-ourshell.css" type="text/css" rel="stylesheet" >
     <link href="/css/shell/shell-menu.css" type="text/css" rel="stylesheet" >
+    <script src="/js/header/header.js"></script>
+    <script src="/js/footer/footer.js"></script>
     <script src="/js/shell/shell-menu.js"></script>
     <title>Pearl-ing</title>
 </head>
-<body> 
+<body>
+
+        <!-- header -->
         <div th:replace="~{inc/header}"></div>
+        <div th:replace="~{inc/aside}"></div>
+
         <!-- wrap -->
          <main class = "wrap">
 
@@ -166,7 +172,8 @@
 
     </main> <!-- /wrap -->
 
-    <div th:replace="~{inc/footer}"></div>
+    <!-- footer -->
+    <footer id="footer"></footer>
 
     <script src="/js/shell/main-ourshell.js"></script>
 

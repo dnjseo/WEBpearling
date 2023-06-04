@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{inc/layout}"
+>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +33,7 @@
     </header>
 
     <!-- wrap -->
-    <div class="wrap">
+    <main class="wrap" layout:fragment="content">
         <div clas="=tico">
             <div class="qa-title">
                 <h2 class="d-none">문의 디테일</h2>
@@ -57,7 +61,7 @@
                 <a href="#" class="defense">등록</a>
             </button>
         </div>
-    </div>
+    </main>
     <!-- /wrap -->
 </body>
 </html>

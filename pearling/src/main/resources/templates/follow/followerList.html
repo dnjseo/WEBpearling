@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{inc/layout}"
+>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +31,7 @@
     </header>
 
     <!-- wrap -->
-    <div class="follower-wrap">
+    <main class="follower-wrap" layout:fragment="content">
         <div class="follower-following">
             <h2 class="d-none">메뉴</h2>
             <div class="follower-selection">
@@ -62,10 +66,7 @@
                 </li>
             </ul>
         </div>     
-    </div>
+    </main>
     <!-- wrap -->
-
-    <!-- footer -->
-    <footer id="footer"></footer>
 </body>
 </html>

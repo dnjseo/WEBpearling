@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{inc/layout}"
+>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,14 +12,10 @@
     <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/qa/setting-qa.css" type="text/css" rel="stylesheet">
     <script src="/js/header/header.js"></script>
-    <script src="/js/footer/footer.js"></script>
 </head>
 <body>
-    <!-- header -->
-    <header id="header"></header>
-        
     <!-- wrap -->
-    <div class="wrap">
+    <main class="wrap" layout:fragment="content">
         <div class="qa-list">
             <h2 class="d-none">문의 목록</h2>
             <div class="qa-list-head">
@@ -67,12 +67,7 @@
             </div>
         </div>
         <div class="write-button"><a href="setting-qa-write.html">📝</a></div>    
-    </div>
+    </main>
     <!-- wrap -->
-    
-    <!-- footer -->
-    <footer id="footer_list"></footer>
-    <footer id="footer"></footer>
-    
 </body>
 </html>

@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{inc/layout}"
+>
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,14 +12,11 @@
    <link href="/css/import.css" type="text/css" rel="stylesheet">
    <link href="/css/search/search-shell.css" type="text/css" rel="stylesheet">
    <script src="/js/header/header.js"></script>
-   <script src="/js/footer/footer.js"></script>
+
 </head>
 <body>
-   <!-- header -->
-   <header id="header"></header>
-
    <!-- wrap -->
-   <div class="wrap">
+   <main class="wrap" layout:fragment="content">
        <div class="search-part">
            <h2 class="d-none">검색창</h2>
            <p class="icon"></p>
@@ -80,10 +81,7 @@
                </div>
            </div>
        </div>
-   </div>
+    </main>
    <!-- /wrap -->
-
-   <!-- footer -->
-   <footer id="footer"></footer>
 </body>
 </html>

@@ -40,7 +40,7 @@
 
     #shell-menu  > .our-shell > a{
         width: 100px;
-        data-transition: "fade";
+        /* data-transition: "fade"; */
     }
 
     #shell-menu  > .our-shell > a > img{

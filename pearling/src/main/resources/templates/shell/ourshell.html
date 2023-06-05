@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorate="~{inc/layout}">
 <head>
     <link href="/css/shell/main-ourshell.css" type="text/css" rel="stylesheet" >
-    <link href="/css/shell/shell-menu.css" type="text/css" rel="stylesheet" >
     <script src="/js/shell/main-ourshell.js"></script>
     <title>Pearl-ing</title>
 </head>
@@ -11,7 +11,8 @@ layout:decorate="~{inc/layout}">
 
         <!-- header
         <header id="header"></header> -->   
-		<div th:replace="~{inc/shellmenu}"></div>
+        <!-- <div th:insert="template/inc/shellmenu :: shellmenu"></div> -->
+        <!-- <th:block th:replace="template/inc/shellmenu :: shellmenu"></th:block> -->
 
         <!-- wrap -->
         <main layout:fragment="content" class="wrap">

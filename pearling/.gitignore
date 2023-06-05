@@ -36,4 +36,4 @@ build/
 # General
 .DS_Store
 
-application-secret.yml
+application-no.yml

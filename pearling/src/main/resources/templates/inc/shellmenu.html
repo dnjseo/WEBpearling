@@ -1,16 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.w3.org/1999/xhtml">
 <!-- 쉘 메뉴 -->
-<h1 class="d-none">쉘 메뉴</h1>
-<div class="ourShell" class="notselected">
-    <a href="/html/shell/main-ourshell.html">
-        <!-- <img src="images/main/s1/clamOpen.png"> -->
-        <p>our shell</p>
-    </a>
-</div>
-|
-<div class="myShell" class="notselected"> 
-    <a href="/html/shell/main-myshell.html">
-        <!-- <img src="images/main/s1/clamClose.png"> -->
-        <p>my shell</p>
-    </a>
-</div>
+<th:block th:fragment="shellmenu">
+<div class ="shellmenu">
+    <h1 class="d-none">쉘 메뉴</h1>
+    <div class="ourShell" class="notselected">
+        <!-- <a href="/html/shell/main-ourshell.html"> -->
+            <!-- <img src="images/main/s1/clamOpen.png"> -->
+            <p>our shell</p>
+        </a>
+    </div>
+    |
+    <div class="myShell" class="notselected"> 
+        <!-- <a href="/html/shell/main-myshell.html"> -->
+            <!-- <img src="images/main/s1/clamClose.png"> -->
+            <p>my shell</p>
+        </a>
+    </div>
+ </div>
+</th:block>
 <!-- 쉘 메뉴 -->

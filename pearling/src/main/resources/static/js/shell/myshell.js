@@ -1,23 +1,23 @@
 // 셸 메뉴 삽입
-document.addEventListener("DOMContentLoaded", function() {
-fetch("/html/shell/myshell-menu.html")
-  .then((response) => response.text())
-  .then((data) => {
-    const parser = new DOMParser();
-    const htmlDocument = parser.parseFromString(data, "text/html");
-    const monthlyLink = htmlDocument.querySelector(".monthly");
-    const diaryLink = htmlDocument.querySelector(".diary");
-    const guestbookLink = htmlDocument.querySelector(".guestbook");
+// document.addEventListener("DOMContentLoaded", function() {
+// fetch("/shell/myshell")
+//   .then((response) => response.text())
+//   .then((data) => {
+//     const parser = new DOMParser();
+//     const htmlDocument = parser.parseFromString(data, "text/html");
+//     const monthlyLink = htmlDocument.querySelector(".monthly");
+//     const diaryLink = htmlDocument.querySelector(".diary");
+//     const guestbookLink = htmlDocument.querySelector(".guestbook");
 
-    monthlyLink.classList.remove("notselected")
-    guestbookLink.classList.remove("guestbook")
-    diaryLink.classList.remove("diary");
-    document.getElementById("myshell-menu").innerHTML = htmlDocument.documentElement.innerHTML;
+//     monthlyLink.classList.remove("notselected")
+//     guestbookLink.classList.remove("guestbook")
+//     diaryLink.classList.remove("diary");
+//     document.getElementById("myshell-menu").innerHTML = htmlDocument.documentElement.innerHTML;
 
 
-})
-  .catch((error) => console.error(error));
-});
+// })
+//   .catch((error) => console.error(error));
+// });
 
 
 //캘린더
@@ -115,19 +115,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-   
-
-
-    //모달로 잘못 했슈...
-    // let dayDetail = document.getElementById('dayDetail');
-    // calendar.on('dateClick', function(info) {
-    //     dayDetail.classList.remove('hidden');
-    //     console.log('clicked on ' + info.dateStr);
-    // });
- 
 
   });
-
 
   window.addEventListener("load", function () {
     let plus1 = document.querySelector('.plus');
@@ -136,14 +125,11 @@ document.addEventListener('DOMContentLoaded', function() {
     let plusSchedule = this.document.querySelector('.plus-schedule');
     let isOpen = false; 
 
-    plus1.addEventListener('click',() => {
-        plusDetail.classList.toggle('act');
-    })
-
-
+        plus1.addEventListener('click',() => {
+            plusDetail.classList.toggle('act');
+        })
     
-    // );
-});
+    });
 
 
 

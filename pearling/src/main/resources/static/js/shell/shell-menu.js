@@ -18,23 +18,21 @@ function fetchAndInjectHTML(url, targetId) {
 }
 
 function applyCSS(targetId) {
-  var currentURL = window.location.href;
+  let currentURL = window.location.href;
 
   if (targetId === "shell-menu") {
-    var ourShell = document.querySelector("#shell-menu .ourShell");
-    var myShell = document.querySelector("#shell-menu .myShell");
-    if (currentURL.includes("/html/shell/main-ourshell.html")) {
+    const ourShell = document.querySelector("#shell-menu .ourShell");
+    const myShell = document.querySelector("#shell-menu .myShell");
+    if (currentURL.includes("/shell/ourshell")) {
       ourShell.classList.remove("notseleted");
       myShell.classList.remove("myShell")
-    } else if (currentURL.includes("/html/shell/main-myshell.html")) {
+    } else if (currentURL.includes("shell/main-myshell")) {
       ourShell.classList.remove("ourShell");
       myShell.classList.remove("notselected");
-
-
     }
   }
 }
 
 // 쉘 메뉴 HTML 가져오기
-fetchAndInjectHTML("/html/shell/shell-menu.html", "shell-menu");
+fetchAndInjectHTML("/shell/shell-menu", "shell-menu");
 

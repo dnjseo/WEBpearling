@@ -112,7 +112,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-    
+        
         gap: 40px;
     
         flex: none;
@@ -121,7 +121,9 @@
     
         letter-spacing: 0.02em;
     
-        padding: 15px;
+        /* padding: 15px; */
+        padding-top: 25px;
+        padding-bottom: 30px;
     }
     
     
@@ -144,4 +146,6 @@
         font-family: 'Pretendard-SemiBold';
         color : rgba(165, 135, 224, 1);
     }
+
+
     

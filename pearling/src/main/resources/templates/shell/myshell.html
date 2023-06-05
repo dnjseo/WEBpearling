@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorate="~{inc/layout}">
 <head>
     <link href="/css/shell/myshell.css" type="text/css" rel="stylesheet" >
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
-    <script src="/js/shell/shell-menu.js"></script>
+    <!-- <script src="/js/shell/shell-menu.js"></script> -->
     <script src="/js/shell/myshell.js"></script>
     <title>my shell</title>
 </head>
@@ -12,10 +13,7 @@ layout:decorate="~{inc/layout}">
     <!-- wrap -->
     <main layout:fragment="content" class="wrap">
 
-        <section id="myshell-menu">
-        </section>
-
-        <section id = ms3>
+            <section id = ms3>
             <h1 class="d-none">캘린더</h1>
             <div id='calendar'></div>
         </section>

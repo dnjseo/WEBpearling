@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
+
+<head>
+    <link href="/css/setting/setting-calendar.css" type="text/css" rel="stylesheet">
+    <title>setting-calendar</title>
+</head>
+
+<body>
+
+     <!-- header -->
+     <header>
+        <!--header-wrap-->
+        <div class="header-wrap">
+            <!--header-->
+            <div class="header2">
+                <h1 class="d-none">펄링</h1>
+                <a class="back"><img src="/images/back.png" alt="logo"/></a>
+                <h2 class="title">캘린더 설정</h2>
+            </div>  
+            <p class="gray_border"></p>
+        <!-- header-->
+        </div>
+        <!--header-wrap-->
+    </header>
+
+    <!-- wrap -->
+    <main layout:fragment="content" class="wrap">
+        <section class="setting-calendar">
+            <h1 class="d-none">캘린더 상세설정</h1>
+            <ul>
+                <li>캘린더 표시
+                    <select>
+                        <option value="option1">montly</option>
+                        <option value="option2">weekly</option>
+                        <option value="option3">daily</option>
+                    </select>
+                </li>
+                <li>주 시작 요일
+                    <select>
+                        <option value="option1">월요일</option>
+                        <option value="option2">일요일</option>
+                    </select>
+                </li>
+                <li><a href="calendar-category">카테고리 수정</a></li>
+            </ul>
+        </section>
+
+    </main>
+    <!-- /wrap -->
+</body>
+
+</html>

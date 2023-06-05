@@ -1,8 +1,8 @@
 window.addEventListener("load", function(e) {
-  var header = document.getElementById('header');
-  var menu = header.querySelector(".menu");
-  var subMenu = document.getElementById('sub-menu');
-  var close = subMenu.querySelector('.sub-close');
+  let header = document.getElementById('header');
+  let menu = header.querySelector(".menu");
+  let subMenu = document.getElementById('sub-menu');
+  let close = subMenu.querySelector('.sub-close');
   
   menu.addEventListener('click', function() {
     subMenu.style.right = "0";

@@ -1,6 +1,0 @@
-spring:
-  datasource: 
-      url: jdbc:mariadb://db.newlecture.com:3306/admira2db
-      username: admira2
-      password: admira2
-      driver-class-name: org.mariadb.jdbc.Driver

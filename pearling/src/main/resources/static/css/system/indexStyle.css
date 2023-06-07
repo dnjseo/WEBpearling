@@ -1,5 +1,6 @@
 body{
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04)), #FFFFFF;
+  width: 100%;
   height: 100%;
 }
 
@@ -53,7 +54,7 @@ body{
 
 
 .shape{
-  width: 150%;
+  width: 100%;
 }
 
 .login{
@@ -95,7 +96,7 @@ body{
 
 .canvas {
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   /* background-image: url(/sea.jpg); */
   /* background-size: cover; */
   /* background:  #A19F9F;  */

@@ -27,14 +27,14 @@ layout:decorate="~{inc/layout}">
             <li><img src="/images/guestbook/clam_1.png"></li>
         </ul>
 
-        <section id="s1">
+        <section id="s1" class="guestbook" th:each="g : ${list}">
             <h1 class="d-none">방명록</h1>
             <div class="book">
                 <div class="pearl">
-                    <p>나 오늘 마라탕 먹으러 감 ㅋ</p>
+                    <p th:text="${g.content}">나 오늘 마라탕 먹으러 감 ㅋ</p>
                 </div>
                 <div class="underline">
-                    <p class="date">2023/12/21</p>
+                    <p class="date" th:text="${g.regdate}">2023/12/21</p>
                     <p class="add-delete">삭제</p>
                 </div>
             </div>

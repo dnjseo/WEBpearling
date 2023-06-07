@@ -1,5 +1,6 @@
 body{
     position: relative;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04)), #FFFFFF;
     height: 100%;
 }
 

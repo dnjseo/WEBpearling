@@ -30,6 +30,11 @@ public class HomeController extends BaseController {
 		return "signup";
 	}
 
+	@GetMapping("/find-password")
+	public String findPassword(Model model){
+		return "find-password";
+	}
+
 	// @GetMapping("layout")
 	// public void layout(Model model) {
 	// 	model.addAttribute("headerShow", headerShow());

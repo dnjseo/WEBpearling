@@ -15,7 +15,9 @@
   <body>
     <!-- ----------------------헤더---------------------------- -->
 	<!-- header 부분 -->
-		<div th:replace="~{inc/header}"></div>
+    <th:block th:if="${headerShow}" th:include="~{inc/header}"></th:block>
+    <th:block th:unless="${headerShow}" th:include="~{inc/header2}"></th:block>
+    <!-- <p th:text="${headerShow}"></p> -->
 	<!-- aside 부분 -->
 		<div th:replace="~{inc/aside}"></div>
 	<!-- main 부분 -->

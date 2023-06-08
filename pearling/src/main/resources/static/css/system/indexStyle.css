@@ -51,6 +51,7 @@ body{
 
 .logoimg {
   width: 180px;
+  transition: all 0.5s ease-in-out;
 }
 
 .logoimg:hover{
@@ -59,11 +60,7 @@ body{
 }
 
 .shape{
-<<<<<<< Updated upstream
-  width: 100%;
-=======
   width: 300px;
->>>>>>> Stashed changes
 }
 
 

@@ -20,13 +20,10 @@ public class GuestbookController extends BaseController {
 
 	@GetMapping("list")
 	public String list(Model model) {
-<<<<<<< Updated upstream
 		model.addAttribute("headerShow", true);
-=======
 		List<Guestbook> list = service.getList();
 		model.addAttribute("list", list);
 
->>>>>>> Stashed changes
 		return "guestbook/list";
 	}
 

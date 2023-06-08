@@ -1,30 +1,20 @@
-// 셸 메뉴 삽입
-// document.addEventListener("DOMContentLoaded", function() {
-// fetch("/shell/myshell")
-//   .then((response) => response.text())
-//   .then((data) => {
-//     const parser = new DOMParser();
-//     const htmlDocument = parser.parseFromString(data, "text/html");
-//     const monthlyLink = htmlDocument.querySelector(".monthly");
-//     const diaryLink = htmlDocument.querySelector(".diary");
-//     const guestbookLink = htmlDocument.querySelector(".guestbook");
-
-//     monthlyLink.classList.remove("notselected")
-//     guestbookLink.classList.remove("guestbook")
-//     diaryLink.classList.remove("diary");
-//     document.getElementById("myshell-menu").innerHTML = htmlDocument.documentElement.innerHTML;
-
-
-// })
-//   .catch((error) => console.error(error));
-// });
-
+import dayGridPlugin from '@fullcalendar/daygrid'
+import iCalendarPlugin from '@fullcalendar/icalendar'
 
 //캘린더
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
+        googleCalendarApiKey: 'AIzaSyC7DwkG7gzH6oNfouokyqXiKisgP13t8wM',
+        eventSource: [
+        {
+            googleCalendarId:'ko.south_korea#holiday@group.v.calendar.google.com',
+            className : '대한민국공휴일',
+            color: '#A587E0',
+            textcolor:'red'
+        }
+      ]
         
     });
 

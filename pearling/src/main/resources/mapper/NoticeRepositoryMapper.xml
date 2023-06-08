@@ -7,4 +7,5 @@
       select *
       from notice
    </select>
+
 </mapper>

@@ -15,7 +15,6 @@ public class HomeController extends BaseController {
 	public String index(Model model){
 
 		model.addAttribute("headerShow", false);
-
 		return "index";
 	}
 	

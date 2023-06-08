@@ -21,10 +21,22 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 15px;
+    /* padding: 0 15px; */
+    /* padding: 20px; */
+    padding-left: 30px;
+    padding-right: 30px;
     box-sizing: border-box;
 
     margin-bottom: 20px;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.logo > img{
+    width: 200px;
 }
 
 .header2{
@@ -54,7 +66,14 @@
 
 .left{
     display: flex;
+    align-items: center;
 }
+
+.hb{
+    width: 25px;
+    padding: 3px;
+}
+
 
 .find{
     padding-right: 15%;
@@ -177,7 +196,6 @@
     box-shadow: inset 0px 0px 55px #FFFFFF, inset 0px 32px 16px rgba(199, 192, 196, 0.09), inset 0px 16px 8px rgba(199, 192, 196, 0.09), inset 0px -79px 40px rgba(199, 192, 196, 0.1), inset 0px -36px 30px rgba(199, 192, 196, 0.15), inset 0px -23px 25px rgba(199, 192, 196, 0.17);
     border-radius: 10px;
 }
-
 
 
 /* back */

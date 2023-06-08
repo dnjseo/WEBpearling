@@ -8,26 +8,17 @@ layout:decorate="~{inc/layout}">
     <title>방명록(내버전)</title>
 </head>
 <body>
-    <main layout:fragment="content" id="wrap" class="wrap">
+    <main layout:fragment="content" id="wrap" class="wrap guestbook">
 
-        <ul class="clam">
-            <li><img src="/images/guestbook/clam_1.png"></li>
-            <li><img src="/images/guestbook/clam_2.png"></li>
-            <li><img src="/images/guestbook/clam_3.png"></li>
-            <li><img src="/images/guestbook/clam_1.png"></li>
-            <li><img src="/images/guestbook/clam_2.png"></li>
-            <li><img src="/images/guestbook/clam_1.png"></li>
-            <li><img src="/images/guestbook/clam_3.png"></li>
-            <li><img src="/images/guestbook/clam_1.png"></li>
-            <li><img src="/images/guestbook/clam_2.png"></li>
-            <li><img src="/images/guestbook/clam_3.png"></li>
-            <li><img src="/images/guestbook/clam_3.png"></li>
-            <li><img src="/images/guestbook/clam_2.png"></li>
-            <li><img src="/images/guestbook/clam_2.png"></li>
-            <li><img src="/images/guestbook/clam_1.png"></li>
+        <ul class="clam" id="clam-list" th:each="g, i : ${list}">
+            <li>
+                <a href="" th:text="${g.id}">
+                    <img th:src="@{/images/guestbook/clam_1.png}" alt="Clam Image" />
+                </a>
+            </li>
         </ul>
 
-        <section id="s1" class="guestbook" th:each="g : ${list}">
+        <!-- <section id="s1" th:each="g : ${list}">
             <h1 class="d-none">방명록</h1>
             <div class="book">
                 <div class="pearl">
@@ -39,7 +30,7 @@ layout:decorate="~{inc/layout}">
                 </div>
             </div>
             <p class="guestbook-close">x</p>
-        </section>
+        </section> -->
 
         <!-- 뒤에 배경 어둡게 하기 -->
         <div class="black"></div>

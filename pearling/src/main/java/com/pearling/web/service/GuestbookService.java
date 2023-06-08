@@ -6,4 +6,5 @@ import com.pearling.web.entity.Guestbook;
 
 public interface GuestbookService {
     List<Guestbook> getList();
+    int count();
 }

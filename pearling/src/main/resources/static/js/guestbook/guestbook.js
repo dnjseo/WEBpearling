@@ -1,21 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
-    fetch("/html/shell/myshell-menu.html")
-      .then((response) => response.text())
-      .then((data) => {
-        const parser = new DOMParser();
-        const htmlDocument = parser.parseFromString(data, "text/html");
-        const monthlyLink = htmlDocument.querySelector(".monthly");
-        const diaryLink = htmlDocument.querySelector(".diary");
-        const guestbookLink = htmlDocument.querySelector(".guestbook");
-        
-        monthlyLink.classList.remove("monthly")
-        guestbookLink.classList.remove("notselected")
-        diaryLink.classList.remove("diary");
-        document.getElementById("myshell-menu").innerHTML = htmlDocument.documentElement.innerHTML;
-      })
-      .catch((error) => console.error(error));
-    });
-
 window.addEventListener("load", function () {
     var wrap = document.getElementById("wrap");
     var liElements = wrap.querySelectorAll('li');

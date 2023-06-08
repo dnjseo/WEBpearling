@@ -21,5 +21,10 @@ public class GuestbookServiceImp implements GuestbookService{
         return list;
     }
 
+    @Override
+    public int count() {
+        return repository.count();
+    }
+
     
 }

@@ -40,22 +40,32 @@ body{
   justify-self: center;
   align-items: center;
 
+  width: 100%;
   gap: 60px;
   position: absolute;
-  top: 50%;
+  top: 45%;
   transform: translateY(-90%);
   animation: fadeIn 4s ease-in-out;
   z-index: 1;
 }
 
-.indexlogo > img{
-  width: 60%;
+.logoimg {
+  width: 180px;
 }
 
+.logoimg:hover{
+  width: 230px;
+  transition: all 0.5s ease-in-out;
+}
 
 .shape{
+<<<<<<< Updated upstream
   width: 100%;
+=======
+  width: 300px;
+>>>>>>> Stashed changes
 }
+
 
 .login{
   width: 400px;

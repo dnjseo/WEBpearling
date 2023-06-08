@@ -1,3 +1,7 @@
+hr{
+    background-color: #A587E0;
+}
+
 #l1 {
     display: flex;
     flex-direction: column;
@@ -55,8 +59,8 @@
 
 .l1-btns {
     display: flex;
-    flex-direction: row;
-    gap: 30px;
+    flex-direction: column;
+    gap: 20px;
 
     justify-content: center;
     align-items: center;
@@ -82,4 +86,46 @@
     background: rgba(252, 251, 251, 0.75);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05), inset 0px 3px 5px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
+}
+
+.submenu{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.findpsw:hover{
+    color: #A587E0;
+}
+
+.signup:hover{
+    color: #A587E0;
+}
+
+.login-api{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 50px;
+    gap: 10px;
+
+    color: #A587E0;
+}
+
+.login-api > div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    gap: 30px;
+
+}
+
+.login-api > div > a > img{
+    width: 50px;
 }

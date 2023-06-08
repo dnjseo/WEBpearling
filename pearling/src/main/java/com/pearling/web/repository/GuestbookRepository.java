@@ -9,9 +9,11 @@ import com.pearling.web.entity.Guestbook;
 @Mapper
 public interface GuestbookRepository {
     List<Guestbook> findAll();
-
-    Guestbook findById(int id);
+    
+    // List<Guestbook> findById(int id);
     int save(Guestbook guestbook);
     int update(Guestbook guestbook);
     int delete(Guestbook guestbook);
+
+    int count();
 }

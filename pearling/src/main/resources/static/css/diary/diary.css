@@ -1,41 +1,6 @@
 @import url("/css/diary/diary-calendar.css");
 
 
-/* =========마이셸 하부 메뉴======================= */
-
-#ms2{
-    font-size: 12px;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-    gap: 40px;
-
-    flex: none;
-    order: 2;
-    flex-grow: 0;
-
-    letter-spacing: 0.02em;
-
-    padding: 15px;
-}
-
-
-#ms2 > .ms2diary {
-    font-family: 'Pretendard-SemiBold';
-    color : rgba(165, 135, 224, 1);
-}
-
-
-#ms2 > .ms2menu {
-    font-family: 'Pretendard-Regular';
-    color: #797979
-}
-
-/* =========마이쉘 하부 메뉴 (end)======================= */
-
 
 .diary-calendar {
     /* Auto layout */

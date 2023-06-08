@@ -43,7 +43,7 @@ body{
   width: 100%;
   gap: 60px;
   position: absolute;
-  top: 45%;
+  top: 60%;
   transform: translateY(-90%);
   animation: fadeIn 4s ease-in-out;
   z-index: 1;
@@ -63,7 +63,6 @@ body{
   width: 300px;
 }
 
-
 .login{
   width: 400px;
   height: 100px;
@@ -73,7 +72,6 @@ body{
 
   /* background: rgba(0, 0, 0, 0.04);  */
   /* box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), inset 2px 2px 4px rgba(0, 0, 0, 0.2); */
-
 
   border-radius: 20%;
   

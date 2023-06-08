@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{inc/layout}">
+    layout:decorate="~{inc/layout}">
+
 <head>
-    <link href="/css/guestbook/guestbook-plus.css" type="text/css" rel="stylesheet" >
+    <link href="/css/guestbook/guestbook-plus.css" type="text/css" rel="stylesheet">
     <script src="/js/system/confirm-modal.js"></script>
     <title>방명록 추가</title>
 </head>
+
 <body>
-     <!-- wrap ---------------------------------->
-     <main layout:fragment="content" id="wrap" class="wrap">
-        <section id="d1">
+    <!-- wrap ---------------------------------->
+    <main layout:fragment="content" th:switch="${editShow}" id="wrap" class="wrap">
+        <section th:case="true" id="d1">
             <h1 class="guestbook-title">방명록 추가</h1>
 
             <section class="guestbook-plus">
@@ -25,6 +27,24 @@ layout:decorate="~{inc/layout}">
             </section>
         </section>
 
+        <!-- 방명록 수정 -->
+
+        <section th:case="false" id="d1">
+            <h1 class="guestbook-title">방명록 수정</h1>
+
+            <section class="guestbook-plus">
+                <h1 class="d-none">방명록 입력</h1>
+                <div class="guestbook-write">
+                    <textarea>하 지존 짱난다 코로나 걸림 ㅋ</textarea>
+                </div>
+            </section>
+
+            <section class="guestbook-btns">
+                <h1 class="d-none">방명록 수정</h1>
+                <button class="add-btn">등록</button>
+            </section>
+        </section>
+
         <!-- alert창 ------------------------------->
 
         <div id="confirm-modal" class="modal">
@@ -35,9 +55,10 @@ layout:decorate="~{inc/layout}">
             </div>
         </div>
 
-    <!-- alert창 ------------------------------->
+        <!-- alert창 ------------------------------->
 
     </main>
-     <!-- /wrap ------------------------------->
+    <!-- /wrap ------------------------------->
 </body>
+
 </html>

@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" 
-	xmlns:th="http://www.thymeleaf.org" 
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{inc/layout}"
->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,9 +9,11 @@
     <title>qa_write</title>
     <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/qa/setting-qa-write.css" type="text/css" rel="stylesheet">
-    <script src="/js/header/header.js"></script>
-    
+    <link href="/css/qa/setting-qa-edit.css" type="text/css" rel="stylesheet">
+    <!-- <script src="/js/header/header.js"></script> -->
+
 </head>
+
 <body>
     <!-- header -->
     <header>
@@ -22,11 +22,11 @@
             <!--header-->
             <div class="header2">
                 <h1 class="d-none">펄링</h1>
-                <a class="back"><img src="/images/back.png" alt="logo"/></a>
+                <a class="back"><img src="/images/back.png" alt="logo" /></a>
                 <p class="title">문의하기</p>
-            </div>  
+            </div>
             <p class="gray_border"></p>
-        <!-- header-->
+            <!-- header-->
         </div>
         <!--header-wrap-->
         </div>
@@ -45,7 +45,7 @@
                 <form class="qa-lock">
                     <label for="checkbox">비밀글</label>
                     <input type="checkbox" name="lock">
-                  </form>
+                </form>
             </div>
             <div class="qa-context">
                 <ul>
@@ -55,13 +55,31 @@
                 </ul>
             </div>
         </div>
-        <div>
-            <h2 class="d-none">등록</h2>
-            <button class="write-btn">
-                <a href="#" class="defense">등록</a>
-            </button>
+
+            <!-- 등록 -->
+
+        <div th:switch="${editShow}">
+            <div th:case="true">
+                <h2 class="d-none">등록</h2>
+                <button class="write-btn">
+                    <a href="#" class="defense">등록</a>
+                </button>
+            </div>
+
+            <!-- 수정 -->
+            <div th:cae="false" class="qa-btn">
+                <h2 class="d-none">삭제 및 수정</h2>
+                <button class="edit-btn">
+                    <a href="#" class="defense">삭제</a>
+                </button>
+                <button class="write-btn">
+                    <a href="#" class="defense">등록</a>
+                </button>
+            </div>
         </div>
+
     </main>
     <!-- /wrap -->
 </body>
+
 </html>

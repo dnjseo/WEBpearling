@@ -20,7 +20,8 @@ public class DiaryController extends BaseController {
 	@GetMapping("post")
 	public String post(Model model) {
 
-		model.addAttribute("headerShow", true);
+		model.addAttribute("headerShow", false);
+		model.addAttribute("editShow", false); 
 
 		return "diary/post";
 	}

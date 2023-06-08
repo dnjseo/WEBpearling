@@ -9,5 +9,12 @@ public class BaseController {
 		return true;
 	}
 
+	public boolean editShow() {
+		return true;
+	}
 
+	public boolean friendShow() {
+		return true;
+	}
+	
 }

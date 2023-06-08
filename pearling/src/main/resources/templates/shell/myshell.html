@@ -26,19 +26,18 @@ layout:decorate="~{inc/layout}">
             </div>
             
                 <div class="schedule">
-                    <p1>to do.</p1>
-                    <ul>
-
+                    <p>to do.</p>
+                    <ul th:each="t : ${todoList}">
                         <li>
                             <div class="content">
                                 <input type="checkbox">
-                                <p>소금빵 사러가기🥐</p> 
+                                <p th:text="${t.content}">소금빵 사러가기🥐</p> 
                             </div>
                             <div class="tag">
                                 <button>@채원</button>
                             </div>
                         </li>
-                        <li>
+                        <!-- <li>
                             <div class="content">
                                 <input type="checkbox">
                                 <p class="task">마라탕 먹기</p> 
@@ -55,15 +54,15 @@ layout:decorate="~{inc/layout}">
                                 <p>http강의 듣기👩🏻‍💻</p> 
                             </div>
                             <div class="tag">
-                                <!-- <button></button> -->
+                                <button></button>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
 
                 <div class="schedule" >
                     <p><br><br></p>
-                    <p1>일정.</p1>
+                    <p>일정.</p>
                     <ul>
                         <li class="scheduleList" th:each="s : ${list}">
                             <div class="content" >

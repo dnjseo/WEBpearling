@@ -8,8 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/diary/diary-add.css" type="text/css" rel="stylesheet">
-    <script src="/js/header/header.js"></script>
+    <link href="/css/diary/diary-edit.css" type="text/css" rel="stylesheet">
+    <link href="/css/system/delete-modal.css" type="text/css" rel="stylesheet">
     <script src="/js/system/confirm-modal.js"></script>
+    <script src="/js/system/delete-modal.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
     <script src="/js/diary/diary.js"></script>
     <title>diary-add</title>
@@ -20,7 +22,7 @@
     <main layout:fragment="content" class="wrap">
 
         <!-- 달력 ------------------------------->
-        <section id = d2>
+        <section id=d2>
             <h1 class="d-none">달력(오늘 날짜)</h1>
             <div id='calendar'></div>
         </section>
@@ -43,15 +45,24 @@
         <!-- 본문 ------------------------------->
 
         <!-- 보안, 삭제, 등록 ------------------------------->
-        <section id="d1">
+        <section id="d1" th:switch="${editShow}">
             <h1 class="d-none">공개설정</h1>
-            <div class="diary-btns">
+            <div th:case="true" class="diary-btns">
                 <select>
                     <option value="option1">전체공개</option>
                     <option value="option2">친구공개</option>
                     <option value="option3">그룹공개</option>
                 </select>
                 <!-- <button class="del-btn">삭제</button> -->
+                <button class="add-btn">등록</button>
+            </div>
+            <div th:case="false" class="diary-btns">
+                <select>
+                    <option value="option1">전체공개</option>
+                    <option value="option2">친구공개</option>
+                    <option value="option3">그룹공개</option>
+                </select>
+                <button class="del-btn">삭제</button>
                 <button class="add-btn">등록</button>
             </div>
         </section>
@@ -67,7 +78,23 @@
 
         <!-- alert창 ------------------------------->
 
+        <!-- 삭제 모달창 ------------------------------->
+
+        <div id="delete-modal" class="modal">
+            <div class="del-modal-content">
+                <p>🫧 Message</p>
+                <p>다이어리를 삭제하시겠습니까?</p>
+                <div class="del-modal-btns">
+                    <button class="del-confirm-yes">예</button>
+                    <button class="del-confirm-no">아니오</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 삭제 모달창 ------------------------------->
+
     </main>
     <!-- /wrap ------------------------------->
 </body>
+
 </html>

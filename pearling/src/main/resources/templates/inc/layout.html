@@ -23,7 +23,8 @@
 	<!-- main 부분 -->
 		<div layout:fragment="content"></div>
     <!-- footer 부분 -->
-    <div th:replace="~{inc/footer}"></div>
+    <th:block th:if="${headerShow}" th:include="~{inc/footer}"></th:block>
+    <!-- <div th:replace="~{inc/footer}"></div> -->
   </body>
   
 </html>

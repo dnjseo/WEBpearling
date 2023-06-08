@@ -23,13 +23,11 @@
 
             <!----------------------- 다이어리 내용 --------------------->
 
-            <div class="diary-list">
+            <div class="diary-list" >
                 <form>
-                    <ul>
-                        <li>나 지금 와이어프레임 짜다가 디자인을 하고 있어요</li>
-                        <div>2023/05/10</div>
-                        <li>이것만 하고 자야지,, 월요일에 봐요,,</li>
-                        <div>2023/05/10</div>
+                    <ul th:each="d : ${list}">
+                        <li th:text="${d.content}">나 지금 와이어프레임 짜다가 디자인을 하고 있어요</li>
+                        <div th:text="${#dates.format(d.regdate, 'yyyy-MM-dd')}">2023/05/10</div>
                     </ul>
                 </form>
 

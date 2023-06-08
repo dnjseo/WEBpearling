@@ -26,12 +26,6 @@ public class NoticeController extends BaseController {
 		List<Notice> list = service.getList();
 		model.addAttribute("list", list);
 		
-		LocalDate currentDate = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		String formattedDate = currentDate.format(formatter);
-		model.addAttribute("regdate", formattedDate);
-
-		System.out.println(formattedDate);
 		return "notice/list";
 	}
 	

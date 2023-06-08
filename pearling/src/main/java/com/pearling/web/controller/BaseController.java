@@ -8,5 +8,13 @@ public class BaseController {
     public boolean headerShow() {
 		return true;
 	}
+
+	public boolean editShow() {
+		return true;
+	}
+
+	public boolean friendShow() {
+		return true;
+	}
 	
 }

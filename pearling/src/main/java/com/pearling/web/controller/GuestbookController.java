@@ -30,6 +30,7 @@ public class GuestbookController extends BaseController {
 	@GetMapping("post")
 	public String post(Model model) {
 		model.addAttribute("headerShow", false);
+		model.addAttribute("editShow", true);
 		return "guestbook/post";
 	}
 	

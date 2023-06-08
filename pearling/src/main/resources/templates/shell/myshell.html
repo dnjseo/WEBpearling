@@ -4,7 +4,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorate="~{inc/layout}">
 <head>
     <link href="/css/shell/myshell.css" type="text/css" rel="stylesheet" >
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
     <!-- <script src="/js/shell/shell-menu.js"></script> -->
     <script src="/js/shell/myshell.js"></script>
     <title>my shell</title>
@@ -13,12 +13,12 @@ layout:decorate="~{inc/layout}">
     <!-- wrap -->
     <main layout:fragment="content" class="wrap">
 
-            <section id = ms3>
+            <section id = "ms3">
             <h1 class="d-none">캘린더</h1>
             <div id='calendar'></div>
         </section>
 
-        <section id = ms4>
+        <section id = "ms4">
             <h1 class="d-none">일정 리스트</h1>
             <div class = "today">
                 <img src="/images/profile/circle.png">
@@ -26,19 +26,18 @@ layout:decorate="~{inc/layout}">
             </div>
             
                 <div class="schedule">
-                    <p1>to do.</p1>
-                    <ul>
-
+                    <p>to do.</p>
+                    <ul th:each="t : ${todoList}">
                         <li>
                             <div class="content">
                                 <input type="checkbox">
-                                <p>소금빵 사러가기🥐</p> 
+                                <p th:text="${t.content}">소금빵 사러가기🥐</p> 
                             </div>
                             <div class="tag">
                                 <button>@채원</button>
                             </div>
                         </li>
-                        <li>
+                        <!-- <li>
                             <div class="content">
                                 <input type="checkbox">
                                 <p class="task">마라탕 먹기</p> 
@@ -55,19 +54,19 @@ layout:decorate="~{inc/layout}">
                                 <p>http강의 듣기👩🏻‍💻</p> 
                             </div>
                             <div class="tag">
-                                <!-- <button></button> -->
+                                <button></button>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
 
-                <div class="schedule">
+                <div class="schedule" >
                     <p><br><br></p>
-                    <p1>일정.</p1>
+                    <p>일정.</p>
                     <ul>
-                        <li>
-                            <div class="content">
-                                <p>🎥 비색의 탄환 </p> 
+                        <li class="scheduleList" th:each="s : ${list}">
+                            <div class="content" >
+                                <p th:text="${s.title}">🎥 비색의 탄환 </p> 
                             </div>
                             <div class="tag">
                                 <button>@예린</button>

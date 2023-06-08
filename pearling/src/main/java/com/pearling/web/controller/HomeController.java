@@ -15,7 +15,6 @@ public class HomeController extends BaseController {
 	public String index(Model model){
 
 		model.addAttribute("headerShow", false);
-
 		return "index";
 	}
 	
@@ -28,6 +27,11 @@ public class HomeController extends BaseController {
 	@GetMapping("/signup")
 	public String signup(Model model){
 		return "signup";
+	}
+
+	@GetMapping("/find-password")
+	public String findPassword(Model model){
+		return "find-password";
 	}
 
 	// @GetMapping("layout")

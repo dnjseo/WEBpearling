@@ -15,25 +15,33 @@
         gap: 10px;
     }
 
-
+    #myshell-menu{
+        display: none;
+    }
 
 
 /* ===================== 쉘 메뉴 선택 섹션 ===================== */
 
 
-        #shell-menu > .our-shell > a > p{
-            font-family: 'Pretendard-SemiBold';
-            font-size: 14px;
+        .osfont{
+            font-family: 'Pretendard-Bold';
+            font-size: 16px;
             color : rgba(165, 135, 224, 1);
-            letter-spacing: 0.02em;
+            /* letter-spacing: 0.1em; */
         }
 
 
-        #shell-menu > .my-shell > a > p{
-            font-family: 'Pretendard-SemiBold';
-            font-size: 14px;
+        .msfont{
+            font-family: 'Pretendard-Bold';
+            font-size: 16px;
             color: #797979;
-            letter-spacing: 0.02em;
+            transition: all 0.4s step-start;
+            /* letter-spacing: 0.1em; */
+        }
+
+        .msfont:hover{
+            color:rgba(165, 135, 224, 1);
+            transition: all 0.4s step-start;
         }
 
 

@@ -21,6 +21,7 @@ public class QaController extends BaseController {
 	public String post(Model model) {
 
 		model.addAttribute("headerShow", false);
+		model.addAttribute("headerShow", false);
 
 		return "qa/post";
 	}

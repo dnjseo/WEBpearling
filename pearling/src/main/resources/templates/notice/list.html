@@ -32,31 +32,13 @@
     <!-- wrap -->
     <main class="wrap" layout:fragment="content">
         <div class="notice-icon"></div>
-        <div class="notice-list">
+        <div class="notice-list notice" th:each="n : ${list}">
             <h2 class="d-none">공지사항 목록</h2>
             <div class="notice-box">
-                <div class="notice-content"><a href="detail">
+                <div class="notice-content" th:text="${n.title}"><a href="detail">
                         다이어리 공개범위 설정 변경의 건
                     </a></div>
-                <p class="notice-date">2023/04/22</p>
-            </div>
-            <div class="notice-box">
-                <div class="notice-content">
-                    친구 초대 이벤트 당첨자 발표의 건
-                </div>
-                <p class="notice-date">2023/04/15</p>
-            </div>
-            <div class="notice-box">
-                <div class="notice-content">
-                    친구 초대 이벤트 공지의 건
-                </div>
-                <p class="notice-date">2023/04/11</p>
-            </div>
-            <div class="notice-box">
-                <div class="notice-content">
-                    펄링 베타 서비스 오픈의 건
-                </div>
-                <p class="notice-date">2023/04/10</p>
+                <p class="notice-date" th:text="${#dates.format(n.regdate, 'yyyy-MM-dd')}">2023/04/22</p>
             </div>
         </div>
     </main>

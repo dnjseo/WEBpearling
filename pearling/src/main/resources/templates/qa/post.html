@@ -59,21 +59,21 @@
             <!-- 등록 -->
 
         <div th:switch="${editShow}">
-            <div th:case="true">
+            <div th:case="1">
                 <h2 class="d-none">등록</h2>
                 <button class="write-btn">
-                    <a href="#" class="defense">등록</a>
+                    <a href="./list" class="defense">등록</a>
                 </button>
             </div>
 
             <!-- 수정 -->
-            <div th:cae="false" class="qa-btn">
+            <div th:case="2" class="qa-btn">
                 <h2 class="d-none">삭제 및 수정</h2>
                 <button class="edit-btn">
-                    <a href="#" class="defense">삭제</a>
+                    <a href="" class="defense">삭제</a>
                 </button>
                 <button class="write-btn">
-                    <a href="#" class="defense">등록</a>
+                    <a href="" class="defense">등록</a>
                 </button>
             </div>
         </div>

@@ -11,7 +11,7 @@
 <body>
     <!-- wrap ---------------------------------->
     <main layout:fragment="content" th:switch="${editShow}" id="wrap" class="wrap">
-        <section th:case="true" id="d1">
+        <section th:case="1" id="d1">
             <h1 class="guestbook-title">방명록 추가</h1>
 
             <section class="guestbook-plus">
@@ -29,7 +29,7 @@
 
         <!-- 방명록 수정 -->
 
-        <section th:case="false" id="d1">
+        <section th:case="2" id="d1">
             <h1 class="guestbook-title">방명록 수정</h1>
 
             <section class="guestbook-plus">

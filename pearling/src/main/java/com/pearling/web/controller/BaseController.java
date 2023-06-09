@@ -5,15 +5,13 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class BaseController {
 	
-    public boolean headerShow() {
+    private boolean headerShow() {
 		return true;
 	}
 
-	public boolean editShow() {
-		return true;
-	}
+	private int editShow = 1;
 
-	public boolean friendShow() {
+	private boolean friendShow() {
 		return true;
 	}
 	

@@ -12,11 +12,12 @@ body{
     background: none;
 }
 
-.clam li{
+.clam li img{
     cursor: pointer;
+    width: 100px;
 }
 
-#s1{
+section.guestbook {
     display: none;
 }
 

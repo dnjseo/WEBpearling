@@ -1,6 +1,7 @@
 package com.pearling.web.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -16,6 +17,7 @@ import com.pearling.web.service.GuestbookService;
 @Controller
 @RequestMapping("guestbook")
 public class GuestbookController extends BaseController {
+	Random random = new Random();
 
 	@Autowired
 	private GuestbookService service;
@@ -25,23 +27,28 @@ public class GuestbookController extends BaseController {
 		model.addAttribute("headerShow", true);
 
 		List<Guestbook> list = service.getList();
-		model.addAttribute("list", list);
 
-		String[] imagePaths = {"/images/guestbook/clam_1.png", 
-			"/images/guestbook/clam_2.png", 
-			"/images/guestbook/clam_3.png"};
-		Random random = new Random();
+		List<String> imageUrls = Arrays.asList(
+			"/images/guestbook/clam1.png", 
+			"/images/guestbook/clam2.png", 
+			"/images/guestbook/clam3.png" 
+		);
+		List<Guestbook> guestbooks = new ArrayList<>();
 
-		List<String> randomImages = new ArrayList<>();
 		for (Guestbook guestbook : list) {
-			int randomIndex = random.nextInt(imagePaths.length);
-			randomImages.add(imagePaths[randomIndex]);
+			guestbooks.add(new Guestbook(
+				guestbook.getId(),
+				guestbook.getContent(),
+				guestbook.getRegdate(),
+				guestbook.getUserId(),
+				imageUrls.get(random.nextInt(imageUrls.size()))
+			));
 		}
-		model.addAttribute("randomImages", randomImages); 
+
+		model.addAttribute("list", guestbooks);
 
 		return "guestbook/list";
 	}
-
 
 	@GetMapping("post")
 	public String post(Model model) {

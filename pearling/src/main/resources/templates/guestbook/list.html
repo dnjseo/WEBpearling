@@ -4,21 +4,20 @@ layout:decorate="~{inc/layout}">
 <head>
     <link href="/css/guestbook/guestbook.css" type="text/css" rel="stylesheet" >
     <script src="/js/guestbook/guestbook.js"></script>
-    <script src="/js/guestbook/guestbook-modal.js"></script>
     <title>방명록(내버전)</title>
 </head>
 <body>
     <main layout:fragment="content" id="wrap" class="wrap guestbook">
 
-        <ul class="clam" id="clam-list" th:each="g, i : ${list}">
-            <li>
-                <a href="" th:text="${g.id}">
-                    <img th:src="@{/images/guestbook/clam_1.png}" alt="Clam Image" />
-                </a>
+        <ul class="clam" id="clam-list">
+            <li th:each="g, stat : ${list}" th:data-index="${stat.index}">
+              <a href="#">
+                <img th:src="${g.imageUrl}" alt="Clam Image" />
+              </a>
             </li>
-        </ul>
+          </ul>
 
-        <!-- <section id="s1" th:each="g : ${list}">
+        <section th:each="g, stat : ${list}" th:id="'s' + ${stat.index}" th:class="'guestbook guestbook-' + ${stat.index}">
             <h1 class="d-none">방명록</h1>
             <div class="book">
                 <div class="pearl">
@@ -30,7 +29,7 @@ layout:decorate="~{inc/layout}">
                 </div>
             </div>
             <p class="guestbook-close">x</p>
-        </section> -->
+        </section>
 
         <!-- 뒤에 배경 어둡게 하기 -->
         <div class="black"></div>

@@ -21,10 +21,12 @@
 	<!-- aside 부분 -->
 		<div th:replace="~{inc/aside}"></div>
 	<!-- main 부분 -->
+  <div id="dmf">
 		<div layout:fragment="content"></div>
     <!-- footer 부분 -->
     <th:block th:if="${headerShow}" th:include="~{inc/footer}"></th:block>
     <!-- <div th:replace="~{inc/footer}"></div> -->
+  </div>
   </body>
   
 </html>

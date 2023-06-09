@@ -35,9 +35,9 @@ body{
 /* ==========(ms1) 쉘 메뉴 선택 섹션 ===================== */
 
 .msfont{
-    font-family: 'Pretendard-Bold';
-    font-size: 16px;
-    color : rgba(165, 135, 224, 1);
+    font-family: 'Pretendard-Bold'!important;
+    font-size: 16px !important;
+    color : rgba(165, 135, 224, 1) !important;
     /* letter-spacing: 0.1em; */
 }
 
@@ -74,10 +74,9 @@ body{
     padding: 15px;
 }
 
-
-.monthly {
-    font-family: 'Pretendard-SemiBold';
-    color : rgba(165, 135, 224, 1);
+.monthly  {
+    font-family: 'Pretendard-SemiBold'!important;
+    color : rgba(165, 135, 224, 1)!important;
 }
 
 

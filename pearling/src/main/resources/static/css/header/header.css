@@ -1,5 +1,35 @@
 @import url("/css/shell/shell-menu.css");
 
+@keyframes rotate{
+    from{
+        transform : rotate( 0 deg );
+    }
+
+    to{
+        transform: rotate( 360deg );
+    }
+}
+
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+@keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+
 .header-wrap{
     display: flex;
     flex-direction: column;
@@ -69,6 +99,25 @@
     align-items: center;
 }
 
+
+.menu{
+    transition: opacity 0.4s cubic-bezier(0.8, 0, 0.8, 1);
+}
+
+.menu:active{
+    animation: fadeOut 1s ease-in-out;
+}
+
+
+.sub-close{
+    display: none;
+    transition: all 1s ease-in-out;
+}
+
+.sub-close:hover{
+    animation: rotate 1s ease-in-out;
+}
+
 .hb{
     width: 25px;
     padding: 3px;
@@ -79,10 +128,14 @@
     padding-right: 15%;
 }
 
-/* sub menu */
+
+/* ======================= aside =======================*/
+
+
 #sub-menu{
+    overflow: scroll;
     position: fixed;
-    top: 0;
+    top: 65px;
     right: -100%;
     width: 100%;
     height: 100%;
@@ -101,9 +154,9 @@
     right: 0;
 }
 
-.sub-menu-wrap{
+/* .sub-menu-wrap{
     margin: 20px;
-}
+} */
 
 .menu-header{
     /* item layout */
@@ -112,49 +165,56 @@
     box-sizing: border-box;
 }
 
-.menu-header .sub-close{
+/* .menu-header .sub-close{
     font-size: 30px;
     cursor: pointer;
     transition: right 0.4s ease-in-out;
+} */
+
+.paragraph{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    flex-direction: column; 
+    padding: 10px;
+
+ 
+}
+.paragraph > div{
+
+    padding: 20px;
+    width: 60%;
+    height: 150px;
+    background: #FFFFFF;
+    border-radius: 40px;
+
+    /* 폰트 레이아웃 */
+    text-align: center;
+    font-size: 16px;
 }
 
 .profile{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;   
+    flex-direction: row; 
+
     width: 100%;
-    height: 180px;
+    height: 120px;
 }
 
 .profile-setting{
-    height: 120px;
-
-    display: grid;
-    grid-template-columns: minmax(100px, 60px);
-    grid-template-rows: repeat(2, 50px);
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    row-gap: 10px;
-}
+    justify-content: center;
+    margin-right: 30px;
 
-.p-img{
-    grid-column: 1;
-    grid-row: 1 / span 2;
 }
 
 .nickname{
-    grid-column: 2;
-    grid-row: 1;
-    align-self: flex-end;
-    font-weight: bold;
-}
-
-.name-setting{
-    grid-column: 2;
-    grid-row: 2;
-    align-self: flex-start;
-
-    display: flex;
-}
-
-.name{
-    padding-right: 3%;
+    text-align: center;
 }
 
 .setting a{
@@ -169,32 +229,33 @@
 .follow{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 0px 15px;
+    margin-bottom: 35px;
+    /* margin-left: 2%; */
+}
 
-    margin-left: 2%;
+.follow > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    width: 158px;
+    height: 86px;
+    
+    background: #FFFFFF;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    
     text-decoration: underline;
+    text-align: center;
 }
 
 .follow p:nth-child(1){
     margin-right: 5%;
-}
-
-.menu-list ul li a{ 
-    box-sizing: border-box;
-    /* Auto layout */
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-    margin-bottom: 5px;
-
-    width: 100%;
-    height: 42px;
-
-    background: #EBEBEB;
-    border: 1px solid #C4C4C4;
-    box-shadow: inset 0px 0px 55px #FFFFFF, inset 0px 32px 16px rgba(199, 192, 196, 0.09), inset 0px 16px 8px rgba(199, 192, 196, 0.09), inset 0px -79px 40px rgba(199, 192, 196, 0.1), inset 0px -36px 30px rgba(199, 192, 196, 0.15), inset 0px -23px 25px rgba(199, 192, 196, 0.17);
-    border-radius: 10px;
 }
 
 
@@ -203,4 +264,59 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.aside-menu{
+    height: 100%;
+    padding-bottom: 70px;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+.aside-menu > div > ul > p {
+    font-size: 24px;
+    padding: 15px;
+}
+.aside-menu >div > ul > li > a{ 
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    /* box-sizing: border-box; */
+    /* Auto layout */
+    /* display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; */
+
+    margin-bottom: 5px;
+
+    width: 100%;
+    height: 42px;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+
+    /* 가로 정렬 */
+    justify-content: left;
+
+    /* 세로 정렬 */
+    align-items: center;
+    
+    width: 100%;
+    border-bottom: 1px solid #D9D9D9;
+}
+
+.logout{
+    padding: 30px;
+}
+
+.logoutBtn{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 200px;
+    height: 50px;
 }

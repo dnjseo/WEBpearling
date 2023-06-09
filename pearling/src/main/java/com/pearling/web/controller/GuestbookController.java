@@ -32,20 +32,18 @@ public class GuestbookController extends BaseController {
 		List<Guestbook> list = service.getList();
 
 		List<String> imageUrls = Arrays.asList(
-			"/images/guestbook/clam1.png", 
-			"/images/guestbook/clam2.png", 
-			"/images/guestbook/clam3.png" 
-		);
+				"/images/guestbook/clam1.png",
+				"/images/guestbook/clam2.png",
+				"/images/guestbook/clam3.png");
 		List<Guestbook> guestbooks = new ArrayList<>();
 
 		for (Guestbook guestbook : list) {
 			guestbooks.add(new Guestbook(
-				guestbook.getId(),
-				guestbook.getContent(),
-				guestbook.getRegdate(),
-				guestbook.getUserId(),
-				imageUrls.get(random.nextInt(imageUrls.size()))
-			));
+					guestbook.getId(),
+					guestbook.getContent(),
+					guestbook.getRegdate(),
+					guestbook.getUserId(),
+					imageUrls.get(random.nextInt(imageUrls.size()))));
 		}
 
 		model.addAttribute("list", guestbooks);
@@ -57,6 +55,12 @@ public class GuestbookController extends BaseController {
 	public String post(
 			@RequestParam(name = "s", required = false) boolean editShow,
 			Model model) {
+
+		String pageTitle = getPageTitle();
+		pageTitle = "";
+
+		model.addAttribute("pageTitle", pageTitle);
+
 		model.addAttribute("headerShow", false);
 		if (editShow)
 			model.addAttribute("editShow", 1);

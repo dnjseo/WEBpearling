@@ -14,5 +14,15 @@ public class BaseController {
 	private boolean friendShow() {
 		return true;
 	}
+
+	private String pageTitle;
+
+	public String getPageTitle() {
+		return this.pageTitle;
+	}
+
+	public void setPageTitle(String pageTitle) {
+		this.pageTitle = pageTitle;
+	}
 	
 }

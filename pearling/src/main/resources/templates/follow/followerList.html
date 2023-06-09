@@ -1,68 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>follower</title>
-    <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/follow/follower.css" type="text/css" rel="stylesheet">
     <script src="/js/follow/follow.js"></script>
 </head>
+
 <body>
     <!-- header -->
-    <header>
-        <!--header-wrap-->
-        <div class="header-wrap">
-            <!--header-->
-            <div class="header2">
-                <h1 class="d-none">펄링</h1>
-                <a class="back"><img src="/images/back.png" alt="logo"/></a>
-                <h2 class="title">팔로워</h2>
-            </div>  
-            <p class="gray_border"></p>
-        <!-- header-->
-        </div>
-        <!--header-wrap-->
-    </header>
-
     <!-- wrap -->
     <main class="follower-wrap" layout:fragment="content">
         <div class="follower-following">
             <h2 class="d-none">메뉴</h2>
             <div class="follower-selection">
                 <p class="following"><a href="followingList">팔로잉</a></p>
-                <p>|</p> 
+                <p>|</p>
                 <p class="follower">팔로워</p>
             </div>
         </div>
-        
+
         <div class="follower-list">
             <h2 class="d-none">목록</h2>
             <ul class="followers">
                 <li>
-                    <img src = "/images/profile/profile_yj.png">
+                    <img src="/images/profile/profile_yj.png">
                     <p>연주</p>
                     <p class="following-statement">팔로잉</p>
                 </li>
                 <li>
-                    <img src = "/images/profile/profile_d.png">
+                    <img src="/images/profile/profile_d.png">
                     <p>채원</p>
                     <p class="following-statement">팔로잉</p>
                 </li>
                 <li>
-                    <img src = "/images/profile/profile_c.png">
+                    <img src="/images/profile/profile_c.png">
                     <p>도원</p>
                     <p class="following-statement">팔로잉</p>
                 </li>
                 <li>
-                    <img src = "/images/profile/profile_yr.png">
+                    <img src="/images/profile/profile_yr.png">
                     <p>예린</p>
                     <p class="following-statement">팔로잉</p>
                 </li>
             </ul>
-        </div>     
+        </div>
     </main>
     <!-- wrap -->
 </body>
+
 </html>

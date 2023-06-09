@@ -1,35 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/notice/notice-detail.css" type="text/css" rel="stylesheet">
-    <script src="/js/header/header.js"></script>
+    <!-- <script src="/js/header/header.js"></script> -->
 </head>
 <body>
     <!-- header -->
-    <header>
-        <!--header-wrap-->
-        <div class="header-wrap">
-            <!--header-->
-            <div class="header2">
-                <h1 class="d-none">펄링</h1>
-                <a class="back"><img src="/images/back.png" alt="logo"/></a>
-                <h2 class="title">공지사항</h2>
-            <div class="header">
-                <h1 class="d-none">펄링</h1>
-                <a class="back"><img src="/images/back.png" alt="logo"/></a>
-                <p class="title">공지사항</p>
-            </div>  
-            <p class="gray_border"></p>
-        <!-- header-->
-        </div>
-        <!--header-wrap-->
-    </header>
-
     <!-- wrap -->
     <main class="wrap" layout:fragment="content">
         <div class="notice-icon"></div>

@@ -41,13 +41,18 @@ public class QaController extends BaseController {
 			@RequestParam(name = "s", required = false) boolean editShow,
 			Model model) {
 
-		model.addAttribute("headerShow", false);
+		String pageTitle = getPageTitle();
+		pageTitle = "문의하기";
 
-		if (editShow)
+		model.addAttribute("pageTitle", pageTitle);
+
+		if(editShow) {
+			model.addAttribute("headerShow", false);
 			model.addAttribute("editShow", 1);
-		else
-			model.addAttribute("headerShow", 2);
-
+		} else {
+			model.addAttribute("headerShow", false);
+			model.addAttribute("editShow", 2);
+		}
 		return "qa/post";
 	}
 

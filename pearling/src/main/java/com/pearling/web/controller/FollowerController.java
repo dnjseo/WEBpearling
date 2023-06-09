@@ -12,6 +12,10 @@ public class FollowerController extends BaseController {
     @GetMapping("followerList")
 	public String followerList(Model model) {
 
+		String pageTitle = getPageTitle();
+		pageTitle = "팔로워";
+		
+		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("headerShow", false);
 
 		return "follow/followerList";
@@ -20,6 +24,10 @@ public class FollowerController extends BaseController {
 	@GetMapping("followingList")
 	public String followingList(Model model) {
 
+		String pageTitle = getPageTitle();
+		pageTitle = "팔로잉";
+		
+		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("headerShow", false);
 
 		return "follow/followingList";

@@ -40,6 +40,10 @@ public class DiaryController extends BaseController {
 			@RequestParam(name = "s", required = false) boolean editShow,
 			Model model) {
 
+		String pageTitle = getPageTitle();
+		pageTitle = "";
+		
+		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("headerShow", false);
 
 		if (editShow)

@@ -1,21 +1,28 @@
-import dayGridPlugin from '@fullcalendar/daygrid'
-import iCalendarPlugin from '@fullcalendar/icalendar'
-
 //캘린더
 document.addEventListener('DOMContentLoaded', function() {
+
     var calendarEl = document.getElementById('calendar');
+    
     var calendar = new FullCalendar.Calendar(calendarEl, {
+        // plugins: [ googleCalendarPlugin ],
+        editable: true,
         initialView: 'dayGridMonth',
         googleCalendarApiKey: 'AIzaSyC7DwkG7gzH6oNfouokyqXiKisgP13t8wM',
-        eventSource: [
+        EventSource: [
         {
             googleCalendarId:'ko.south_korea#holiday@group.v.calendar.google.com',
             className : '대한민국공휴일',
             color: '#A587E0',
             textcolor:'red'
         }
-      ]
-        
+    ],
+        events:[
+            {
+            title: 'start',
+            start: '2023-06-09',
+            color:'white'
+        }
+        ]
     });
 
     calendar.render();

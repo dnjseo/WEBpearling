@@ -2,6 +2,20 @@ input[type=checkbox] {
     accent-color: rgba(165, 135, 224, 1)
   }
 
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+
+body{
+    animation: fadeIn 0.5s ease-in-out;
+}
+
 
 .wrap{
     display: flex;
@@ -20,83 +34,26 @@ input[type=checkbox] {
 
 /* ==========(ms1) 쉘 메뉴 선택 섹션 ===================== */
 
-#ms1{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 15%;
-    
-    width: 90%;
-    height: 50px;
-    
-    background: rgba(255, 255, 255, 0.7);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15), 
-    inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
-    
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-    
-    color: rgba(199, 192, 196, 1);
+.msfont{
+    font-family: 'Pretendard-Bold';
+    font-size: 16px;
+    color : rgba(165, 135, 224, 1);
+    /* letter-spacing: 0.1em; */
 }
 
-    #ms1 > .menuOurShell{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
 
-        width: 165px;
-        height: 106px;
+.osfont{
+    font-family: 'Pretendard-Bold';
+    font-size: 16px;
+    color: #797979;
+    transition: all 0.4s step-start;
+    /* letter-spacing: 0.1em; */
+}
 
-        border-radius: 20px;
-
-        flex: none;
-        order: 0;
-        flex-grow: 0;
-    }
-
-    #ms1 > .our-shell > a{
-        width: 100px;
-    }
-
-    #ms1 > .our-shell > a > img{
-        width: 50px;
-    }
-
-    #ms1 > .our-shell > a > p{
-        font-family: 'Pretendard-SemiBold';
-        font-size: 14px;
-        color : #797979;
-        letter-spacing: 0.02em;
-    }
-
-
-    #ms1 > .menuMyShell{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        width: 165px;
-        height: 106px;
-
-        border-radius: 20px;
-
-        /* Inside auto layout */
-
-        flex: none;
-        order: 0;
-        flex-grow: 0;
-    }
-
-
-    #ms1 > .my-shell > a > img{
-        width: 50px;
-    }
-  
+.osfont:hover{
+    color:rgba(165, 135, 224, 1);
+    transition: all 0.4s step-start;
+}
 
 /* ==============(ms2) 마이셸 하부 메뉴 섹션 ===================== */
 #ms2{
@@ -118,17 +75,26 @@ input[type=checkbox] {
 }
 
 
-#ms2 > .monthly {
+.monthly {
     font-family: 'Pretendard-SemiBold';
     color : rgba(165, 135, 224, 1);
 }
 
 
-#ms2 > .ms2menu {
+#ms2 > a {
     font-family: 'Pretendard-Regular';
     color: #797979
 }
 
+.diary:hover {
+    font-family: 'Pretendard-SemiBold';
+    color : rgba(165, 135, 224, 1);
+}
+
+.guestbook:hover {
+    font-family: 'Pretendard-SemiBold';
+    color : rgba(165, 135, 224, 1);
+}
 
 /* ==============(ms3) 캘린더 섹션 ===================== */
 #ms3{

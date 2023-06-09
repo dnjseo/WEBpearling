@@ -2,6 +2,20 @@ hr{
     background-color: #A587E0;
 }
 
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+
+body{
+    animation: fadeIn 2s ease-in-out;
+}
+
 #l1 {
     display: flex;
     flex-direction: column;

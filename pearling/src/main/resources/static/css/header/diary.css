@@ -1,0 +1,62 @@
+/* ==========(ms1) 쉘 메뉴 선택 섹션 ===================== */
+
+.msfont{
+    font-family: 'Pretendard-Bold';
+    font-size: 16px;
+    color : rgba(165, 135, 224, 1);
+    /* letter-spacing: 0.1em; */
+}
+
+
+.osfont{
+    font-family: 'Pretendard-Bold';
+    font-size: 16px;
+    color: #797979;
+    transition: all 0.4s step-start;
+    /* letter-spacing: 0.1em; */
+}
+
+.osfont:hover{
+    color:rgba(165, 135, 224, 1);
+    transition: all 0.4s step-start;
+}
+/* ==============(ms2) 마이셸 하부 메뉴 섹션 ===================== */
+#ms2{
+    font-size: 12px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 40px;
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+
+    letter-spacing: 0.02em;
+
+    padding: 15px;
+}
+
+
+.diary {
+    font-family: 'Pretendard-SemiBold';
+    color : rgba(165, 135, 224, 1);
+}
+
+
+#ms2 > a {
+    font-family: 'Pretendard-Regular';
+    color: #797979
+}
+
+.monthly:hover {
+    font-family: 'Pretendard-SemiBold';
+    color : rgba(165, 135, 224, 1);
+}
+
+.guestbook:hover {
+    font-family: 'Pretendard-SemiBold';
+    color : rgba(165, 135, 224, 1);
+}

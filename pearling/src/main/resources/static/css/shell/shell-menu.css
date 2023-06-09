@@ -38,21 +38,18 @@
         flex-grow: 0;
     }
 
-    #shell-menu  > .our-shell > a{
-        width: 100px;
-        /* data-transition: "fade"; */
+    #shell-menu > div > a >  p {
+        font-family: 'Pretendard-Bold';
+        font-size: 16px;
+        color: #797979;
+        transition: all 0.4s step-start;   
+     }
+
+     #shell-menu > div > a >  p:hover {
+        color:rgba(165, 135, 224, 1);
+        transition: all 0.4s step-start;
     }
 
-    #shell-menu  > .our-shell > a > img{
-        width: 50px;
-    }
-
-    #shell-menu  > .our-shell > a > p{
-        font-family: 'Pretendard-SemiBold';
-        font-size: 14px;
-        color : #797979;
-        letter-spacing: 0.02em;
-    }
 
 
     #shell-menu > .menuMyShell{
@@ -78,31 +75,7 @@
         width: 50px;
     }
 
-/* 
-    #shell-menu > .my-shell > a > .our-shell{
-        font-family: 'Pretendard-SemiBold';
-        font-size: 14px;
-        color : rgba(165, 135, 224, 1);
-        letter-spacing: 0.02em;
-    }
-
-
-    #shell-menu > .my-shell > a > .my-shell{
-        font-family: 'Pretendard-SemiBold';
-        font-size: 14px;
-        color : rgba(165, 135, 224, 1);
-        letter-spacing: 0.02em;
-    }
-
-    #shell-menu > .my-shell > a > .notselected{
-        font-family: 'Pretendard-SemiBold';
-        font-size: 14px;
-        color: #797979;
-        letter-spacing: 0.02em;
-    } */
-
-
-    
+   
 
     /* ============== 마이셸 하부 메뉴 섹션 ===================== */
     #myshell-menu{
@@ -127,26 +100,13 @@
         padding-bottom: 30px;
     }
     
-    
-    /* #myshell-menu > .notselected {
-        font-family: 'Pretendard-Regular';
+
+
+    #myshell-menu > a {
         color: #797979
     }
-    
-    #myshell-menu > .monthly {
+
+    #myshell-menu > a:hover {
         font-family: 'Pretendard-SemiBold';
         color : rgba(165, 135, 224, 1);
     }
-
-    #myshell-menu > .diary {
-        font-family: 'Pretendard-SemiBold';
-        color : rgba(165, 135, 224, 1);
-    }
-    
-    #myshell-menu > .guestbook {
-        font-family: 'Pretendard-SemiBold';
-        color : rgba(165, 135, 224, 1);
-    } */
-
-
-    

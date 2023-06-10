@@ -1,8 +1,8 @@
 //캘린더
+
 document.addEventListener('DOMContentLoaded', function() {
 
     var calendarEl = document.getElementById('calendar');
-    
     var calendar = new FullCalendar.Calendar(calendarEl, {
         // plugins: [ googleCalendarPlugin ],
         editable: true,
@@ -24,6 +24,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         ]
     });
+
+    let scheduleElements = document.getElementsByClassName('scheduleList');
+    for (var i = 0; i < scheduleElements.length; i++) {
+        let scheduleTitle = scheduleElements[i].querySelector('p').dataset.schedule;
+        let scheduleStartDate = scheduleElements[i].querySelector('.scheduledate').dataset.schedule;
+
+        let event = {
+            title: scheduleTitle,
+            start: scheduleStartDate,
+            color: 'pink',
+        };
+        calendar.addEvent(event);
+    }
 
     calendar.render();
     calendar.setOption('contentHeight', 350);
@@ -100,6 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
      
         let mstoday = document.querySelector("#ms4");
         mstoday.querySelector('.today-day').innerText = month + "." + day + " " + date;
+   
     });
 
 

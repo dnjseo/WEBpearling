@@ -1,44 +1,45 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" 
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{inc/layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
+
 <head>
-    <link href="/css/shell/myshell.css" type="text/css" rel="stylesheet" >
+    <link href="/css/shell/myshell.css" type="text/css" rel="stylesheet">
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
     <!-- <script src="/js/shell/shell-menu.js"></script> -->
-   <script src='/fullcalendar/dist/index.global.js'></script>
-   <script  th:inline="javascript" type="module" src="/js/shell/myshell.js"></script>
+    <script src='/fullcalendar/dist/index.global.js'></script>
+    <script th:inline="javascript" type="module" src="/js/shell/myshell.js"></script>
     <title>my shell</title>
 </head>
+
 <body>
     <!-- wrap -->
     <main layout:fragment="content" class="wrap">
 
-            <section id = "ms3">
+        <section id="ms3">
             <h1 class="d-none">캘린더</h1>
             <div id='calendar'></div>
         </section>
 
-        <section id = "ms4">
+        <section id="ms4">
             <h1 class="d-none">일정 리스트</h1>
-            <div class = "today">
+            <div class="today">
                 <img src="/images/profile/circle.png">
                 <span class="today-day"></span>
-            </div>
-            
-                <div class="schedule">
-                    <p>to do.</p>
-                    <ul th:each="t : ${todoList}">
-                        <li>
-                            <div class="content">
-                                <input type="checkbox">
-                                <p th:text="${t.content}">소금빵 사러가기🥐</p> 
-                            </div>
-                            <div class="tag">
-                                <button>@채원</button>
-                            </div>
-                        </li>
-                        <!-- <li>
+        </div>
+
+            <div class="schedule">
+                <p>to do.</p>
+                <ul th:each="t : ${todoList}">
+                    <li>
+                        <div class="content">
+                            <input type="checkbox">
+                            <p th:text="${t.content}">소금빵 사러가기🥐</p>
+                        </div>
+                        <div class="tag">
+                            <button>@채원</button>
+                        </div>
+                    </li>
+                    <!-- <li>
                             <div class="content">
                                 <input type="checkbox">
                                 <p class="task">마라탕 먹기</p> 
@@ -58,39 +59,44 @@ layout:decorate="~{inc/layout}">
                                 <button></button>
                             </div>
                         </li> -->
-                    </ul>
-                </div>
+                </ul>
+            </div>
 
-                <div class="schedule" >
-                    <p><br><br></p>
-                    <p>일정.</p>
-                    <ul>
-                        <li class="scheduleList" th:each="s : ${list}">
-                            <div class="content" >
-                                <p th:text="${s.title}">🎥 비색의 탄환 </p> 
+            <div class="schedule">
+                <p><br><br></p>
+                <p>일정.</p>
+                <ul>
+                    <li class="scheduleList" th:each="s : ${list}">
+                        <div class="content">
+                            <div id="mydata" class="content">
+                                <p th:text="${s.title}" th:attr="data-schedule=${s.title}">🎥 비색의 탄환</p>
+                                <p class="d-none scheduledate" th:attr="data-schedule=${#dates.format(s.startDate, 'yyyy-MM-dd')}"></div>
+                                </p>
                             </div>
-                            <div class="tag">
-                                <button>@예린</button>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="content">
-                                <p>🎂 누군가의 생일</p> 
-                            </div>
-                            <div class="tag">
-                                <!-- <button></button> -->
-                            </div>
-                        </li>
-                        <li>
-                            <div class="content">
-                                <p>📝 시험</p> 
-                            </div>
-                            <div class="tag">
-                                <!-- <button></button> -->
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                        </div>
+                        <div class="tag">
+                            <!-- <button></button> -->
+                        </div>
+                    </li>
+                    
+                    <!-- <li>
+                         <div class="content">
+                            <p>🎂 누군가의 생일</p>
+                        </div>
+                        <div class="tag">
+                             <button></button> 
+                        </div>
+                    </li>
+                    <li>
+                        <div class="content">
+                            <p>📝 시험</p>
+                        </div>
+                        <div class="tag">
+                           <button></button> 
+                        </div>
+                    </li> -->
+                </ul>
+            </div>
             </div>
         </section>
 
@@ -102,17 +108,18 @@ layout:decorate="~{inc/layout}">
             </div>
         </section>
 
-    <section class="plusbox">
-        <h1 class="d-none">작성</h1>
-         <div class="plus">+</div>
-         <div class="plusDetail">
-            <div class="plus-todo"><a  href="">할 일</a></div>
-            <div class="plus-schedule"><a href="/schedule/post">일정</a></div>
-         </div>
-    </section>
+        <section class="plusbox">
+            <h1 class="d-none">작성</h1>
+            <div class="plus">+</div>
+            <div class="plusDetail">
+                <div class="plus-todo"><a href="">할 일</a></div>
+                <div class="plus-schedule"><a href="/schedule/post">일정</a></div>
+            </div>
+        </section>
 
 
     </main>
     <!-- /wrap -->
 </body>
+
 </html>

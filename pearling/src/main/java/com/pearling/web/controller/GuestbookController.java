@@ -29,23 +29,21 @@ public class GuestbookController extends BaseController {
 		List<Guestbook> list = service.getList();
 
 		List<String> imageUrls = Arrays.asList(
-			"/images/guestbook/clam1.png", 
-			"/images/guestbook/clam2.png", 
-			"/images/guestbook/clam3.png" 
+			"/images/guestbook/clam1.png",
+			"/images/guestbook/clam2.png",
+			"/images/guestbook/clam3.png"
 		);
-		List<Guestbook> guestbooks = new ArrayList<>();
 
-		for (Guestbook guestbook : list) {
-			guestbooks.add(new Guestbook(
-				guestbook.getId(),
-				guestbook.getContent(),
-				guestbook.getRegdate(),
-				guestbook.getUserId(),
-				imageUrls.get(random.nextInt(imageUrls.size()))
-			));
+		List<String> imgs = new ArrayList<>();
+		Random random = new Random();
+
+		for (int i = 0; i < list.size(); i++) {
+			int randomIndex = random.nextInt(imageUrls.size());
+			imgs.add(imageUrls.get(randomIndex));
 		}
 
-		model.addAttribute("list", guestbooks);
+		model.addAttribute("list", list);
+		model.addAttribute("imgs", imgs);
 
 		return "guestbook/list";
 	}

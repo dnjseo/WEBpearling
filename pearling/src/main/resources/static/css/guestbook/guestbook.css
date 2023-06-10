@@ -17,13 +17,13 @@ body{
     width: 100px;
 }
 
-section.guestbook {
+#s1 {
     display: none;
 }
 
 .book{
     position: fixed;
-    top: 10%;
+    top: 15%;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -40,6 +40,7 @@ section.guestbook {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color:  black;
 }
 
 .date{
@@ -104,7 +105,7 @@ section.guestbook {
     gap: 20px;
 }
 
-.add-delete{
+.deleteBtn{
     /* Auto layout */
     display: flex;
     flex-direction: row;
@@ -122,4 +123,37 @@ section.guestbook {
     color: red;
 
     cursor: pointer;
+}
+
+/* -----컨펌 모달--------------------------------------------------- */
+.dmodal {
+    display: none;
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.dmodal-content {
+    display: flex;
+    flex-direction: column;
+    margin: 15% auto;
+    padding: 0 10px;
+    border: 1px solid #888;
+    width: 60%;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    background: #FFFFFF;
+    /* REAL 그림자 */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 40px;
+  }
+
+.dmodal-content>p {
+    margin-bottom: 30px;
 }

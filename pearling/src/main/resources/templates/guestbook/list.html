@@ -9,41 +9,42 @@ layout:decorate="~{inc/layout}">
 </head>
 <body>
     <main layout:fragment="content" id="wrap" class="wrap guestbook">
-
-        <ul class="clam" id="clam-list">
-            <li th:each="g, stat : ${list}" th:data-index="${stat.index}">
-              <a href="#">
-                <img th:src="${g.imageUrl}" alt="Clam Image" />
-              </a>
-            </li>
-          </ul>
-
-        <section th:each="g, stat : ${list}" th:id="'s' + ${stat.index}" th:class="'guestbook guestbook-' + ${stat.index}">
+        <section>
             <h1 class="d-none">방명록</h1>
-            <div class="book">
-                <div class="pearl">
-                    <p th:text="${g.content}">나 오늘 마라탕 먹으러 감 ㅋ</p>
+            <ul class="clam" id="clam-list">
+                <li th:each="i, guestbook : ${imgs}" data-guestbook-id="${guestbook.id}">
+                    <a href="#">
+                        <img th:src="${i}" alt="Clam Image" />
+                    </a>
+                </li>
+            </ul>
+    
+            <div id="s1">
+                <div class="book" th:each="g : ${list}" data-guestbook-id="${g.id}">
+                    <div class="pearl">
+                        <p th:text="${g.content}">나 오늘 마라탕 먹으러 감 ㅋ</p>
+                    </div>
+                    <div class="underline">
+                        <p class="date" th:text="${#dates.format(g.regdate, 'yyyy-MM-dd')}">2023/12/21</p>
+                        <p class="deleteBtn">삭제</p>
+                    </div>
                 </div>
-                <div class="underline">
-                    <p class="date" th:text="${g.regdate}">2023/12/21</p>
-                    <p class="add-delete">삭제</p>
-                </div>
+                <p class="guestbook-close">x</p>
             </div>
-            <p class="guestbook-close">x</p>
         </section>
-
+    
         <!-- 뒤에 배경 어둡게 하기 -->
         <div class="black"></div>
-
+    
         <!-- alert창 ------------------------------->
-        <div id="confirm-modal" class="modal">
-            <div class="modal-content">
+        <div id="delete-modal" class="dmodal">
+            <div class="dmodal-content">
                 <p>🫧 Message</p>
                 <p>방명록 삭제가 완료되었습니다.</p>
-                <button class="confirm-yes">확인</button>
+                <button class="delete-yes">확인</button>
             </div>
         </div>
         <!-- alert창 ------------------------------->
-    </main>
+    </main>    
 </body>
 </html>

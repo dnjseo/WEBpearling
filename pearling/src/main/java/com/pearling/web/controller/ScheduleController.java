@@ -22,6 +22,10 @@ public class ScheduleController extends BaseController {
 	@GetMapping("detail")
 	public String detail(Model model) {
 
+		String pageTitle = getPageTitle();
+		pageTitle = "";
+
+		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("headerShow", false);
 		
 		List<Schedule> list = service.getList();
@@ -33,6 +37,10 @@ public class ScheduleController extends BaseController {
 	@GetMapping("post")
 	public String post(Model model) {
 
+		String pageTitle = getPageTitle();
+		pageTitle = "일정 추가";
+
+		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("headerShow", false);
 
 		return "schedule/post";

@@ -31,23 +31,21 @@
         <!-- 본문 ------------------------------->
         <section class="diary-detail">
             <h1 class="d-none">다이어리 내용</h1>
-            <div class="diary-detail-span">
-                <span>
-                    이것만 하고 자야지...
-                    월요일에 봐요...
-                </span>
+            <div class="diary-detail-span" th:switch="${editShow}">
+                <textarea th:case="1" class="diary-detail-input" rows="20"></textarea>
+                <span th:case="2">테스트입니다.</span>
             </div>
             <div class="btns">
-                <button>🔒</button>
-                <button>📷</button>
-            </div>
+                <!-- <button>🔒</button> -->
+                <button></button>
+            </div> 
         </section>
         <!-- 본문 ------------------------------->
 
         <!-- 보안, 삭제, 등록 ------------------------------->
         <section id="d1" th:switch="${editShow}">
             <h1 class="d-none">공개설정</h1>
-            <div th:case="true" class="diary-btns">
+            <div th:case="1" class="diary-btns">
                 <select>
                     <option value="option1">전체공개</option>
                     <option value="option2">친구공개</option>
@@ -56,7 +54,7 @@
                 <!-- <button class="del-btn">삭제</button> -->
                 <button class="add-btn">등록</button>
             </div>
-            <div th:case="false" class="diary-btns">
+            <div th:case="2" class="diary-btns">
                 <select>
                     <option value="option1">전체공개</option>
                     <option value="option2">친구공개</option>
@@ -72,7 +70,7 @@
             <div class="modal-content">
                 <p>🫧 Message</p>
                 <p>다이어리 등록이 완료되었습니다.</p>
-                <button class="confirm-yes">확인</button>
+                <button class="confirm-yes"><a href="./list">확인</a></button>
             </div>
         </div>
 
@@ -85,8 +83,8 @@
                 <p>🫧 Message</p>
                 <p>다이어리를 삭제하시겠습니까?</p>
                 <div class="del-modal-btns">
-                    <button class="del-confirm-yes">예</button>
-                    <button class="del-confirm-no">아니오</button>
+                    <button class="del-confirm-yes"><a href="./list">예</a></button>
+                    <button class="del-confirm-no"><a href="./list">아니오</a></button>
                 </div>
             </div>
         </div>

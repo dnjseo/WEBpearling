@@ -5,16 +5,24 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class BaseController {
 	
-    public boolean headerShow() {
+    private boolean headerShow() {
 		return true;
 	}
 
-	public boolean editShow() {
+	private int editShow = 1;
+
+	private boolean friendShow() {
 		return true;
 	}
 
-	public boolean friendShow() {
-		return true;
+	private String pageTitle;
+
+	public String getPageTitle() {
+		return this.pageTitle;
+	}
+
+	public void setPageTitle(String pageTitle) {
+		this.pageTitle = pageTitle;
 	}
 	
 }

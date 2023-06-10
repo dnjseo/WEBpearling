@@ -1,27 +1,36 @@
 <aside id="sub-menu">
     <div class="sub-menu-wrap">
         <div class="menu-header">
-            <p class="sub-close">x</p>
         </div>
 
+        <div class="paragraph">
+            <div>
+            <span class="today-day"></span><br>
+            <span class="today-date"></span><br>
+            <p>오늘의 일정을 확인해보세요</p>
+            </div>
+        </div>
+
+        
         <div class="profile">
             <div class="profile-setting">
-                <p class="p-img"><img src="/images/header/profile.png" alt="프로필"/></p>
                 <p class="nickname">미스터 포테이토</p>
-                <ul class="name-setting">
+                <p class="p-img"><img src="/images/header/profile.png" alt="프로필"/></p>
+                <!-- <ul class="name-setting">
                     <li class="name">김도원</li>
                     <li class="setting"><a href="/setting/profile">프로필 설정</a></li>
-                </ul>
-            </div>
-
-            <div class="follow">
-                <p><a href="/follow/followerList">팔로워 <span>13</span></a></p>
-                <p><a href="/follow/followingList">팔로잉 <span>89</span></a></p>
+                </ul> -->
             </div>
         </div>
+        <div class="follow">
+            <div><a href="/follow/followerList">팔로워 </a> <span>13</span> </div>
+            <div><a href="/follow/followingList">팔로잉</a>  <span>89</span> </div>
+        </div>
 
+        <section class="aside-menu">
         <div class="myshell-list">
             <ul>
+                <p>my shell</p>
                 <li><a href="/shell/myshell">캘린더</a></li>
                 <li><a href="/diary/list">다이어리</a></li>
                 <li><a href="/guestbook/list">방명록</a></li>
@@ -30,11 +39,18 @@
 
         <div class="menu-list">
             <ul>
+                <p>my account</p>
                 <li><a href="/setting/profile">프로필 관리</a></li>
                 <li><a href="/setting/follow-group">친구 관리</a></li>
                 <li><a href="/setting/accountmanage">계정 관리</a></li>
                 <li><a href="/setting/calander">캘린더 설정</a></li>
             </ul>
+        </div> 
+
+        <div class="logout">
+        <button class="logoutBtn">logout</button>
         </div>
-    </div>
+    </section>
+    
+</div>
 </aside>

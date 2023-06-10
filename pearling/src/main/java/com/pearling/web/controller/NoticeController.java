@@ -21,6 +21,11 @@ public class NoticeController extends BaseController {
 
 	@GetMapping("list")
 	public String list(Model model) {
+
+		String pageTitle = getPageTitle();
+		pageTitle = "공지사항";
+		
+		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("headerShow", false);
 		List<Notice> list = service.getList();
 		model.addAttribute("list", list);
@@ -30,6 +35,11 @@ public class NoticeController extends BaseController {
 	
 	@GetMapping("detail")
 	public String detail(Model model) {
+
+		String pageTitle = getPageTitle();
+		pageTitle = "공지사항";
+		
+		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("headerShow", false);
 		model.addAttribute("currentDate", LocalDate.now());
 		return "notice/detail";

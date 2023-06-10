@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pearling.web.entity.Guestbook;
 import com.pearling.web.service.GuestbookService;
@@ -23,7 +24,9 @@ public class GuestbookController extends BaseController {
 	private GuestbookService service;
 
 	@GetMapping("list")
-	public String list(Model model) {
+	public String list(
+			@RequestParam(name = "s", required = false) boolean editShow,
+			Model model) {
 		model.addAttribute("headerShow", true);
 
 		List<Guestbook> list = service.getList();
@@ -49,9 +52,21 @@ public class GuestbookController extends BaseController {
 	}
 
 	@GetMapping("post")
-	public String post(Model model) {
+	public String post(
+			@RequestParam(name = "s", required = false) boolean editShow,
+			Model model) {
+
+		String pageTitle = getPageTitle();
+		pageTitle = "";
+
+		model.addAttribute("pageTitle", pageTitle);
+
 		model.addAttribute("headerShow", false);
-		model.addAttribute("editShow", true);
+		if (editShow)
+			model.addAttribute("editShow", 1);
+		else
+			model.addAttribute("editShow", 2);
 		return "guestbook/post";
 	}
+
 }

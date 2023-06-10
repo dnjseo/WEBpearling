@@ -26,21 +26,26 @@
             <form method="post" action="/login">
                 <div class="id-pwd-box">
                     <label for="l1-email">아이디 (e-mail)</label>
-                    <input id="l1-email" name="email" type="text" value="">
+                    <input id="l1-email" name="username" type="text">
                     <label for="l1-pwd">비밀번호</label>
-                    <input id="l1-pwd" name="pwd" type="password" value="">
-                </div>
+                    <input id="l1-pwd" name="password" type="password">
+                </div>                   
+                <button type="submit">
+                    로그인
+                </button>
             </form>
-                   
+            
             <!--이메일, 비밀번호 입력---------------------------------- -->
             <div class="l1-btns">
-                <button type="submit"><a class="defence" href="/shell/ourshell">로그인</a></button>
+                    <!-- <a class="defence" href="/shell/ourshell">로그인</a> -->
                 <div class="submenu">
                     <a class="defence findpsw" href="/find-password">비밀번호 찾기</a>
                     <p>|</p>
                     <a class="defence signup" href="/signup">회원가입</a>
                 </div>
             </div>
+
+
 
             <div class="login-api">
                 <hr>

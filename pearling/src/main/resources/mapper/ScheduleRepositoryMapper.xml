@@ -5,6 +5,8 @@
 <mapper namespace="com.pearling.web.repository.ScheduleRepository">
    <select id="findAll" resultType="com.pearling.web.entity.Schedule">
       select *
-      from schedule
+      from schedule 
+      left join friend_tag 
+      on schedule.id = friend_tag.schedule_id
    </select>
 </mapper>

@@ -14,34 +14,24 @@ window.addEventListener("load", function () {
   for (let i = 0; i < liElements.length; i++) {
     liElements[i].addEventListener("click", function (event) {
       event.preventDefault(); // 기본 동작(새로고침) 방지
-      if (books) {
-        const guestbookId = liElements[i].getAttribute("data-guestbook-id");
-        const guestbookDiv = books.querySelector(`[data-guestbook-id="${guestbookId}"]`);
-        if (guestbookDiv) {
-          guestbookDiv.style.display = "block";
-        }
+        books.style.display = "block";
         black.style.display = "block";
-      }
     });
   }
 
   // 닫기 버튼
   for (let i = 0; i < gclose.length; i++) {
     gclose[i].addEventListener("click", function () {
-      if (books) {
         books.style.display = "none";
         black.style.display = "none";
-      }
     });
   }
 
   // 각 방명록에 대해 삭제 버튼 이벤트 처리
   for (let i = 0; i < deleteBtn.length; i++) {
     deleteBtn[i].addEventListener("click", function () {
-      if (books) {
         books.style.display = "none";
         deleteModal.style.display = "block";
-      }
     });
   }
 

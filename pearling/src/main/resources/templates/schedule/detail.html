@@ -12,31 +12,16 @@
 </head>
 
 <body>
-    <!-- header -->
-    <header>
-        <!--header-wrap-->
-        <div class="header-wrap">
-            <!--header-->
-            <div class="header2">
-                <h1 class="d-none">펄링</h1>
-                <a class="back"><img src="/images/back.png" alt="logo" /></a>
-                <a class="trash del-btn"><img src="/images/trash.png" alt="trash"></a>
-            </div>
-            <p class="gray_border"></p>
-            <!-- header-->
-        </div>
-        <!--header-wrap-->
-    </header>
 
     <main layout:fragment="content" class="wrap">
         <h1 class="d-none">일정 상세확인창</h1>
-        <section id="d1">
+        <section id="d1" th:each="s : ${list}">
             <h1 class="d-none">상세내용</h1>
 
             <!-- 일정 제목 ------------------------------------------------------------------------------------------------------------------ -->
 
             <div class="schdule-add-title">
-                <span>🎬가비지타임</span>
+                <span th:text="${s.title}">🎬가비지타임</span>
             </div>
             <!-- 날짜 선택 ------------------------------------------------------------------------------------------------------------------ -->
 
@@ -44,11 +29,11 @@
             <div class="schedule-add-date">
                 <div class="start-date">
                     <sapn>시작일: </sapn>
-                    <span>2023-05-17 17:00</span>
+                    <span th:text="${#dates.format(s.startDate, 'yyyy-MM-dd')}">2023-05-17 17:00</span>
                 </div>
                 <div class="end-date">
                     <sapn>종료일: </sapn>
-                    <span>2023-05-17 20:00</span>
+                    <span th:text="${#dates.format(s.endDate, 'yyyy-MM-dd')}">2023-05-17 20:00</span>
                 </div>
             </div>
 

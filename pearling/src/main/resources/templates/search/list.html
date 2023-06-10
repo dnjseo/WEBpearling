@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" 
-xmlns:th="http://www.thymeleaf.org" 
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{inc/layout}"
->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,18 +10,20 @@ layout:decorate="~{inc/layout}"
     <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/search/search-main.css" type="text/css" rel="stylesheet">
     <script src="/js/header/header.js"></script>
-    <script src="/js/search/search-main.js"></script>    
+    <script src="/js/search/search-main.js"></script>
 </head>
+
 <body>
     <!-- wrap -->
     <main class="wrap" id="dropdown" layout:fragment="content">
         <h2 class="d-none">검색창</h2>
-        <button class="drop-search">
+        <form action="/search/list" method="get" class="drop-search">
             <p class="icon"></p>
-            <input type="text" name="search-result" placeholder="검색">
+            <input type="text" name="q" placeholder="검색">
+            <button type="submit" class="submit-btn"></button>
             <p class="dropdown-btn"></p>
-        </button>
-        
+        </form>
+
         <div class="dropdown-submenu">
             <div class="menu1">
                 <p>최근 검색 기록</p>
@@ -37,7 +37,8 @@ layout:decorate="~{inc/layout}"
                             <p><a href="#">신림에서 홍대까지 가는 법</a></p>
                             <p></p>
                         </button>
-                    </a></li>
+                        </a>
+                    </li>
                     <li class="search-items">
                         <button type="button" value="2" class="drop-option">
                             <p></p>
@@ -61,8 +62,94 @@ layout:decorate="~{inc/layout}"
                     </li>
                 </ul>
             </div>
-        </div>   
+        </div>
+        <div class="detail-part">
+            <section id="click-menu">
+                <h3 class="d-none">쉘 구분</h3>
+                <button class="account-click"></button>
+                <button class="myshell-click"></button>
+            </section>
+            <div class="account">
+                <section class="account-list">
+                    <h3 class="d-none">검색 결과</h3>
+                    <ul>
+                        <li class="account-box" th:each="u : ${userList}">
+                            <img src = "/images/profile/profile_yj.png">
+                            <p class="account-name" th:text="${u.nickname}">연주의 점심</p>
+                        </li>
+                        <!-- <li class="account-box">
+                            <img src = "/images/profile/profile_c.png">
+                            <p>채원이의 점심</p>
+                        </li>
+                        <li class="account-box">
+                            <img src = "/images/profile/profile_d.png">
+                            <p>도원이의 점심</p>
+                        </li>
+                        <li class="account-box">
+                            <img src = "/images/profile/profile_yr.png">
+                            <p>예린이의 점심</p>
+                        </li> -->
+                    </ul>
+                </section>
+            </div>
+            <div class="d-none myshell">
+                <div class="myshell-list">
+                    <h3 class="d-none">검색 결과</h3>
+                    <div class="todo-box">
+                        <div class="todo-list"></div>
+                        <div class="lists">
+                            <div class="todo-statement">
+                                <img src="/images/profile/profile_yj.png">
+                                <p>연주</p>
+                                <p>18시간 전</p>
+                            </div>
+                            <div class="todo-content">
+                                <input type="checkbox">
+                                <p>점심 : 이수역 애플하우스</p>
+                            </div>
+                        </div>
+                        <div class="lists">
+                            <div class="todo-statement">
+                                <img src="/images/profile/profile_yj.png">
+                                <p>연주</p>
+                                <p>2일 전</p>
+                            </div>
+                            <div class="todo-content">
+                                <input type="checkbox">
+                                <p>점심 : 서브웨이</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="schedule-box">
+                        <div class="schedule-list"></div>
+                        <div class="lists">
+                            <div class="schedule-statement">
+                                <img src="/images/profile/profile_yj.png">
+                                <p>연주</p>
+                                <p>10분 전</p>
+                            </div>
+                            <div class="schedule-content">
+                                <p>🎥 영화 제목 어쩌고저쩌고</p><br>
+                                <p>🍴홍대 하이디라오(점심)</p>
+                            </div>
+                        </div>
+                        <div class="lists">
+                            <div class="schedule-statement">
+                                <img src="/images/profile/profile_yj.png">
+                                <p>연주</p>
+                                <p>21시간 전</p>
+                            </div>
+                            <div class="schedule-content">
+                                <p>📝︎ 정처기 필기</p><br>
+                                <p>🛍 잠실 롯데월드몰(점심 + 쇼핑)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <!-- wrap -->
 </body>
+
 </html>

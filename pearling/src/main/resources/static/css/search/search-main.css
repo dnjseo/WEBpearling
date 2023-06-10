@@ -1,4 +1,3 @@
-
 .drop-search{
     box-sizing: border-box;
     
@@ -31,7 +30,7 @@
 }
 
 
-input{
+.drop-search > input{
     border: none;
     width: 100%;
     height: 80%;
@@ -39,6 +38,10 @@ input{
 
 input[type="text"]:focus {
     outline: none;
+}
+
+button.submit-btn {
+    display: none;
 }
 
 .dropdown-btn{
@@ -152,3 +155,206 @@ input[type="text"]:focus {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.02), 
     rgba(0, 0, 0, 0.02)), #FFFFFF;
 }
+
+
+/* ----------------- account ---------------- */
+
+.account-click{
+    border: none;
+    background: url(/images/search/account-color.png) no-repeat -1px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0px 0px;
+    gap: 10px;
+
+    width: 56px;
+    height: 74px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    
+}
+
+.myshell-click{
+    border: none;
+    background: url(/images/search/my-shell.png) no-repeat -1px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0px 0px;
+    gap: 10px;
+    
+    width: 51px;
+    height: 73px;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.account-list{
+    padding-left: 20%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px;
+    gap: 30px;
+    width: 90%;
+    height: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    margin: auto;
+    margin-top: 5px;
+}
+
+.account-list li:first-child{
+    margin-top: 25px;
+}
+
+.account-box{
+    display: flex;
+    flex-direction: row;
+    place-items: center;
+    width: 100%;
+    margin-left: 20px;
+    margin-bottom: 25px;
+}
+
+.account-box > * {
+    margin-left: 10px; 
+}
+
+
+/* ----------------- shell ---------------- */
+.detail-part{
+    margin-top: 50px;
+}
+
+#click-menu{
+    display: flex;
+    width: 91.5%;
+    height: 100%;
+    gap: 720px;
+    justify-content: center;
+    place-items: center;
+
+    background: #FFFFFF;
+
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: auto;
+    
+}
+
+.myshell-list{
+    display: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px;
+    gap: 30px;
+
+    width: 90%;
+    height: 100%;
+ 
+    background: #FFFFFF;
+
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+
+    margin: auto;
+    margin-top: 5px;
+}
+
+.todo-box{
+    margin-left: 20px;
+}
+
+.todo-list{
+    margin-top: 15px;
+    background: url(/images/search/todo.png);
+    width: 298px;
+    height: 23px;
+    margin-bottom: 15px;
+}
+
+.lists{
+    margin-bottom: 35px;
+}
+
+.todo-statement{
+    display: flex;
+    flex-direction: row;
+    place-items: center;
+}
+
+.todo-statement > * {
+    margin-left: 10px; 
+}
+
+.todo-content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 12px;
+    
+    font-weight: 515;
+    letter-spacing: 0.15em;
+
+    color: #615E5E;
+}
+
+.todo-content > input{
+    margin-right: 5px;
+}
+
+.schedule-box{
+    margin-left: 20px;
+}
+
+.schedule-list{
+    margin-top: 15px;
+    background: url(/images/search/schedule.png);
+    width: 298px;
+    height: 23px;
+    margin-bottom: 15px;
+}
+
+.schedule-statement{
+    display: flex;
+    flex-direction: row;
+    place-items: center;
+}
+
+.schedule-statement > * {
+    margin-left: 10px; 
+}
+
+.schedule-content{
+    margin: 12px;
+    font-weight: 515;
+    letter-spacing: 0.15em;
+    color: #615E5E;
+}
+
+.schedule-box>content>p{
+    margin-bottom: 12px;
+}
+
+

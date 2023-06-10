@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -23,35 +23,25 @@
             </div>
             <!--이메일, 비밀번호 입력---------------------------------- -->
 
-            <div class="id-pwd-box">
-                <label for="l1-email">아이디 (e-mail)</label>
-                <input id="l1-email" type="text" value="">
-                <label for="l1-pwd">비밀번호</label>
-                <input id="l1-pwd" type="password" value="">
-            </div>
-
-            <form method="post" action="/login">
+            <form method="post" action="/shell/ourshell">
                 <div class="id-pwd-box">
                     <label for="l1-email">아이디 (e-mail)</label>
-                    <input id="l1-email" name="username" type="text">
+                    <input id="l1-email" name="email" type="text">
                     <label for="l1-pwd">비밀번호</label>
                     <input id="l1-pwd" name="password" type="password">
-                </div>                   
-                <button type="submit">
-                    로그인
-                </button>
-            </form>
-            
-            <!--이메일, 비밀번호 입력---------------------------------- -->
-            <div class="l1-btns">
-                <button><a class="defence" href="/shell/ourshell">로그인</a></button>
-                    <!-- <a class="defence" href="/shell/ourshell">로그인</a> -->
-                <div class="submenu">
-                    <a class="defence findpsw" href="/find-password">비밀번호 찾기</a>
-                    <p>|</p>
-                    <a class="defence signup" href="/signup">회원가입</a>
                 </div>
-            </div>
+
+                <!--이메일, 비밀번호 입력---------------------------------- -->
+                <div class="l1-btns">
+                    <button><a class="defence" href="/shell/ourshell">로그인</a></button>
+                    <!-- <a class="defence" href="/shell/ourshell">로그인</a> -->
+                    <div class="submenu">
+                        <a class="defence findpsw" href="/find-password">비밀번호 찾기</a>
+                        <p>|</p>
+                        <a class="defence signup" href="/signup">회원가입</a>
+                    </div>
+                </div>
+            </form>
 
 
 
@@ -60,13 +50,13 @@
                 <h2>간편 로그인</h2>
                 <div class="apiImg">
                     <a class="naverlogin" href="">
-                        <img src="/images/login/naver_square.png"> 
+                        <img src="/images/login/naver_square.png">
                     </a>
                     <a class="naverlogin" href="">
-                        <img src="/images/login/naver_square.png"> 
+                        <img src="/images/login/naver_square.png">
                     </a>
                     <a class="naverlogin" href="">
-                        <img   src="/images/login/naver_square.png"> 
+                        <img src="/images/login/naver_square.png">
                     </a>
                 </div>
             </div>

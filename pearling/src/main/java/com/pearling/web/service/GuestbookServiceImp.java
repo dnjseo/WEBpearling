@@ -26,5 +26,22 @@ public class GuestbookServiceImp implements GuestbookService{
         return repository.count();
     }
 
+    @Override
+    public Guestbook findById(int id) {
+        return null;
+    }
+
+    @Override
+    public void addGuestbook(Guestbook guestbook) {
+    }
+
+    @Override
+    public void updateGuestbook(Guestbook guestbook) {
+    }
+
+    @Override
+    public void deleteGuestbook(Guestbook guestbook) {
+    }
+
     
 }

@@ -21,4 +21,27 @@ public class NoticeServiceImp implements NoticeService{
         return list;
     }
 
+    @Override
+    public int count() {
+        return 0;
+    }
+
+    @Override
+    public Notice findById(int id) {
+       return null;
+    }
+
+    @Override
+    public void addNotice(Notice notice) {
+       
+    }
+
+    @Override
+    public void updateNotice(Notice notice) {
+       }
+
+    @Override
+    public void deleteNotice(Notice notice) {
+    }
+
 }

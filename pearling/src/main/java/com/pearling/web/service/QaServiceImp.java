@@ -20,5 +20,30 @@ public class QaServiceImp implements QaService{
 
         return list;
     }
+
+    @Override
+    public int count() {
+        return 0;    
+    }
+
+    @Override
+    public Qa findById(int id) {
+        return null;
+    }
+
+    @Override
+    public void addQa(Qa qa) {
+       
+    }
+
+    @Override
+    public void updateQa(Qa qa) {
+    
+    }
+
+    @Override
+    public void deleteQa(Qa qa) {
+    
+    }
     
 }

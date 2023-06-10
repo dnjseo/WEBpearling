@@ -1,5 +1,6 @@
 package com.pearling.web.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,28 @@ public class DiaryServiceImp implements DiaryService {
         List<Diary> list = repository.findAll();
         
         return list;
+    }
+
+    @Override
+    public List<Diary> getListByDate(Date date) {
+        return null;
+    }
+
+    @Override
+    public Diary findById(int id) {
+        return null;
+    }
+
+    @Override
+    public void addDiary(Diary diary) {
+    }
+
+    @Override
+    public void updateDiary(Diary diary) {
+    }
+
+    @Override
+    public void deleteDiary(Diary diary) {
     }
 
 }

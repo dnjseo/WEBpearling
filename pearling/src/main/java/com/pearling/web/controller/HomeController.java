@@ -21,19 +21,17 @@ public class HomeController extends BaseController {
 		return "index";
 	}
 	
-	@GetMapping("/login")
+	@RequestMapping("/login")
 	public String login(){
 		
 		return "login";
 	}
 
-	@PostMapping("/login")
-	public String login(String email, String pwd){
-		System.out.println(email+pwd);
-		return "redirect:/";
-	}
-
-	
+	// @PostMapping("/login")
+	// public String login(String email, String pwd){
+	// 	System.out.println(email+pwd);
+	// 	return "redirect:/";
+	// }
 	
 	@GetMapping("/signup")
 	public String signup(Model model){

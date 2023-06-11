@@ -1,5 +1,6 @@
 window.addEventListener("load", function(e) {
   let header = document.getElementById('header');
+  let headerclass = header.querySelector('.bgshow');
   let dmf = document.getElementById('dmf');
   let menu = header.querySelector(".menu");
   let close = header.querySelector('.sub-close')
@@ -10,6 +11,8 @@ window.addEventListener("load", function(e) {
     menu.style.display = "none";
     close.style.display = "block";
     dmf.style.display="none";
+    header.classList.remove('bgnone');
+    header.classList.add('bgshow');
     console.log("클릭");
   });
   
@@ -18,7 +21,11 @@ window.addEventListener("load", function(e) {
     menu.style.display = "block"
     close.style.display = "none";
     dmf.style.display="block";
+    header.classList.remove('bgshow');
+    header.classList.add('bgnone');
 
+
+  
   });
 
 

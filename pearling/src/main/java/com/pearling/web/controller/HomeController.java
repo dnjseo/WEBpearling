@@ -27,11 +27,11 @@ public class HomeController extends BaseController {
 		return "login";
 	}
 
-	@PostMapping("/login")
-	public String login(String email, String pwd){
-		System.out.println(email+pwd);
-		return "redirect:/shell/outshell";
-	}
+	// @PostMapping("/login")
+	// public String login(String email, String pwd){
+	// 	System.out.println(email+pwd);
+	// 	return "redirect:/shell/outshell";
+	// }
 	
 	@GetMapping("/signup")
 	public String signup(Model model){

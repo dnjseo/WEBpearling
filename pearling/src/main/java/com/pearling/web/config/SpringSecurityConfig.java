@@ -1,4 +1,4 @@
-
+/* 세큐리티 주석
 package com.pearling.web.config;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -35,4 +35,4 @@ public class SpringSecurityConfig {
 
         return http.build();
     }
-}
+} */

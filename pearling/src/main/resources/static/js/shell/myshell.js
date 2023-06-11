@@ -1,3 +1,4 @@
+
 //캘린더
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let event = {
             title: scheduleTitle,
             start: scheduleStartDate,
-            color: 'pink',
+            color: '#E6E6FA'
         };
         calendar.addEvent(event);
     }

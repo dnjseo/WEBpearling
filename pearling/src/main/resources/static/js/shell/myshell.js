@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
             case 6 : day = "sat"; break;
         }
 
-        mstoday.querySelector('.today-day').innerText = month+"."+date+" "+day;    
+        mstoday.querySelector('.ms-today-day').innerText = month+"."+date+" "+day;    
 
     }
 
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let date = clickedDate.toLocaleString('en-US', { weekday: 'short' }).toLowerCase();
      
         let mstoday = document.querySelector("#ms4");
-        mstoday.querySelector('.today-day').innerText = month + "." + day + " " + date;
+        mstoday.querySelector(".ms-today-day").innerText = month + "." + day + " " + date;
    
     });
 

@@ -2,23 +2,18 @@
     <div class="sub-menu-wrap">
         <div class="menu-header">
         </div>
-
-        <div class="paragraph">
-            <img src="/images/profile/circle.png">
-            <div>
-            <span class="todayAside"></span><br>
-            <p>오늘의 일정을 확인해보세요</p>
-            </div>
+        
+        <div class="asideImg">
+        <img src="/images/profile/circle.png">
         </div>
 
-        
         <div class="profile">
             <div class="profile-setting">
+                <p class="p-img"><img src="/images/header/profile.png" alt="프로필"/></p>
                 <div class="names">
                 <p class="nickname">미스터 포테이토</p>
                 <p class="name">김도원</p>
                 </div>
-                <p class="p-img"><img src="/images/header/profile.png" alt="프로필"/></p>
                 <!-- <ul class="name-setting">
                     <li class="name">김도원</li>
                     <li class="setting"><a href="/setting/profile">프로필 설정</a></li>
@@ -30,9 +25,30 @@
             <div><a href="/follow/followingList">팔로잉</a>  <span>89</span> </div>
         </div>
 
+        <section class="paragraph">
+            <div class="paragraphBox">
+                <div class = "dateBox">
+                        <div class = "month">
+                            <p class = "month-font"><span class="today-m"></span></p>
+                        </div>
+                        <div class= "day">
+                            <p class = "day-font">
+                                <span class="today-day"></span>
+                                <br>
+                                <span class="today-date"></span>
+                            </p>
+                        </div>
+                </div>
+                <div class="textBox">
+                    <span class="todayAside"></span><br>
+                   <p>오늘의 일정을 확인해보세요</p>
+                </div>
+            </div>
+        </section>
+
         <section class="aside-menu">
 
-            <div class="myshell-list">
+            <div class="aside-myshell-list">
             <ul>
                 <p>my shell</p>
                 <li><a href="/shell/myshell">캘린더</a></li>
@@ -41,7 +57,7 @@
             </ul>
         </div>
 
-        <div class="menu-list">
+        <div class="aside-menu-list">
             <ul>
                 <p>my account</p>
                 <li><a href="/setting/profile">프로필 관리</a></li>

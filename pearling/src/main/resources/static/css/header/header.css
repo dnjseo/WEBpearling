@@ -66,9 +66,18 @@
     display: flex;
     align-items: center;
     height: 100%;
+    transition: visibility 1s ease-in-out;
+
 }
 .logo > img{
     width: 200px;
+}
+
+
+.headerLogoimgNone{
+    visibility: hidden;
+    width: 1px;
+    transition: visibility 1s ease-in-out;
 }
 
 .header2{
@@ -123,12 +132,41 @@
 .hb{
     width: 25px;
     padding: 3px;
+    padding-left: 5px;
 }
 
 
 .find{
-    padding-right: 15%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    /* padding-right: 5%; */
 }
+
+.search-close{
+    display: none;
+}
+
+.searchInput{
+    visibility: hidden;
+    width: 0;
+    transition: all 1s ease-in-out;
+    height: 100%;
+
+}
+
+.searchInputShow{
+    visibility: visible;
+    padding-left: 10px;
+    width: 200px;
+    height: 100%;
+    border-radius: 20px;
+    border-style: none;
+    transition: all 1s ease-in-out;
+}
+
 
 
 /* ======================= aside =======================*/
@@ -391,7 +429,8 @@
 
 
     background: #ffffff;
-    border: 1px solid #C4C4C4;
+    /* border: 1px solid #C4C4C4; */
+    border: none;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
     border-radius: 15px;
 
@@ -401,4 +440,8 @@
 
     width: 300px;
     height: 50px;
+}
+
+.logoutBtn:active{
+    box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }

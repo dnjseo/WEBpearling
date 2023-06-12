@@ -2,9 +2,13 @@ window.addEventListener("load", function(e) {
   let header = document.getElementById('header');
   let dmf = document.getElementById('dmf');
   let menu = header.querySelector(".menu");
+  let searchIcon = header.querySelector(".searchIcon")
+  let searchInput = header.querySelector(".searchInput")
   let close = header.querySelector('.sub-close')
   let subMenu = document.getElementById('sub-menu');
-  
+  let logo = header.querySelector('.logo')
+  let searchClose = header.querySelector('.search-close');
+
   menu.addEventListener('click', function() {
     subMenu.style.right = "0";
     menu.style.display = "none";
@@ -14,6 +18,7 @@ window.addEventListener("load", function(e) {
     header.classList.add('bgshow');
     console.log("클릭");
   });
+
   
   close.addEventListener('click', function(){
     subMenu.style.right = "-100%";
@@ -22,9 +27,26 @@ window.addEventListener("load", function(e) {
     dmf.style.display="block";
     header.classList.remove('bgshow');
     header.classList.add('bgnone');
+
   
   });
+  
+  searchIcon.addEventListener('click', function(){
+    searchInput.classList.toggle('searchInputShow');
+    // logo.classList.toggle('headerLogoimgNone');
+    // logo.style.display="none";
+    //searchClose.style.display="block";
+  });
 
+  searchClose.addEventListener('click', function(){
+    // logo.style.display="block";
+    // searchInput.classList.toggle('searchInputShow');
+    //searchClose.style.display="none";
+  });
+
+
+
+  
 
   // 오늘 날짜 업데이트
    

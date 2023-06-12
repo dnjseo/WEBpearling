@@ -1,77 +1,136 @@
 @import url("/css/diary/diary-calendar.css");
 
-.diary-calendar {
-    /* Auto layout */
+@font-face {
+    font-family: 'ghanachoco';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ghanachoco.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
+.diary-list>form>ul {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
-    padding: 0px;
-    gap: 40px;
+}
+
+.diary-list>form>ul>li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
 
     width: 100%;
-    height: 64px;
+    height: 100px;
 
-    /* REAL 그림자 */
-
-    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-    z-index: 1;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
 }
 
-.diary-list>form>ul>li:nth-child(1n) {
+.diary-date {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    margin-top: 30px;
-    gap: 20px;
-
-    width: 95%;
-    height: 62px;
-
-
-    /* REAL 양감그림자(그레이) */
-
-    box-shadow: inset 0px 0px 55px #FFFFFF, inset 0px 32px 16px rgba(199, 192, 196, 0.09), inset 0px 16px 8px rgba(199, 192, 196, 0.09), inset 0px -79px 40px rgba(199, 192, 196, 0.1), inset 0px -36px 30px rgba(199, 192, 196, 0.15), inset 0px -23px 25px rgba(199, 192, 196, 0.17);
-    border-radius: 15px;
+    gap: 5px;
+    padding-left: 5%;
 }
 
-.diary-list>form>ul>:nth-child(2n) {
+.diary-date>span:nth-child(1) {
+    font-family: 'ghanachoco';
+    color: #FFFFFF;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.diary-date>span:nth-child(2) {
+    font-family: 'ghanachoco';
+    color: #FFFFFF;
+    font-style: italic;
+    font-size: 12px;
+}
+
+.diary-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+
+    width: 60%;
+}
+
+.diary-content>span:nth-child(1) {
+    font-weight: 700;
+    font-size: 26px;
+    align-self: flex-start;
+}
+
+.diary-emog {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    margin-top: 8px;
-    margin-right: 50px;
-    color: #908e8e;
+    padding-right: 5%;
+    margin-bottom: 40px;
 }
 
-.diary-list > .add-btn {
+/* .diary-list > .add-btn {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     padding-top: 100px;
+} */
+
+.add-btn{
+    position: fixed;
+
+    width: 150px;
+    height: 100px;
+    right: 3%;
+    bottom: 2%;
+    /* border: solid red 1px; */
 }
 
-.add-btn > button {
-    background: rgba(185, 185, 185, 0.2);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+.add-btn > button{
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+
+    color: white;
+    font-weight: semi-bold;
+    font-size: 25px;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 55px;
+    height: 55px;
+
+    background: linear-gradient(0deg,
+        rgba(165, 135, 224, 0.2), rgba(165, 135, 224, 0.2)),
+        rgba(0, 0, 0, 0.04);
+    box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25), 
+        inset 0px 4px 2px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
     border: none;
-
-    width: 60px;
-    height: 30px;
-
-    font-size: 16px;
 }
+
+/* .add-btn > button {
+
+    width: 55px;
+    height: 55px;
+
+    background: linear-gradient(0deg,
+        rgba(165, 135, 224, 0.2), rgba(165, 135, 224, 0.2)),
+        rgba(0, 0, 0, 0.04);
+    box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25), 
+        inset 0px 4px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    border: none;
+} */
 
 .add-btn > button:active {
     opacity: 0.8;

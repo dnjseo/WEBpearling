@@ -31,7 +31,7 @@ public class SpringSecurityConfig {
 //		.authorizeHttpRequests().requestMatchers("").hasAnyRole("");
 		.authorizeHttpRequests(
 				auth->auth
-					.requestMatchers("/member/**").hasAnyRole("ADMIN", "MEMBER")
+					.requestMatchers("/shell/**").hasAnyRole("ADMIN", "MEMBER")
 					.requestMatchers("/admin/**").hasAnyRole("ADMIN")
 					.anyRequest().permitAll()
 				)
@@ -71,11 +71,11 @@ public class SpringSecurityConfig {
                 JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource);
                 // manager.setUsersByUsernameQuery("select email, pwd, 1 enable from member
                 // where username=?"); // username, password, enable
-                manager.setUsersByUsernameQuery("select email, pwd pwd, 1 enable from member where email=?"); // username,
+                manager.setUsersByUsernameQuery("select email username, pwd password, 1 enabled from member where email=?"); // username,
                                                                                                             // password,
                                                                                                             // enable
                 manager.setAuthoritiesByUsernameQuery(
-                                "select email, r.name authority from role r join member u on r.id=u.roleId where email=?"); // username,
+                                "select email username, r.name authority from role r join member m on r.id=m.roleId where email=?"); // username,
                                                                                                                           // authority
                 // username이 newlec 이라면
                 // username, password enable

@@ -36,7 +36,7 @@ public class HomeController extends BaseController {
 		return "login";
 	}
 
-	@PostMapping("/login")
+	// @PostMapping("/login")
 	public String login(String email, String pwd, String returnURL, HttpSession session) {
 	System.out.println(email + pwd + returnURL);
 	

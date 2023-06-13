@@ -1,7 +1,7 @@
 
 //캘린더
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -10,19 +10,19 @@ document.addEventListener('DOMContentLoaded', function() {
         initialView: 'dayGridMonth',
         googleCalendarApiKey: 'AIzaSyC7DwkG7gzH6oNfouokyqXiKisgP13t8wM',
         EventSource: [
-        {
-            googleCalendarId:'ko.south_korea#holiday@group.v.calendar.google.com',
-            className : '대한민국공휴일',
-            color: '#A587E0',
-            textcolor:'red'
-        }
-    ],
-        events:[
             {
-            title: 'start',
-            start: '2023-06-09',
-            color:'white'
-        }
+                googleCalendarId: 'ko.south_korea#holiday@group.v.calendar.google.com',
+                className: '대한민국공휴일',
+                color: '#A587E0',
+                textcolor: 'red'
+            }
+        ],
+        events: [
+            {
+                title: 'start',
+                start: '2023-06-09',
+                color: 'white'
+            }
         ]
     });
 
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.render();
     calendar.setOption('contentHeight', 350);
 
-    let mstoday = document.querySelector("#ms4")        
+    let mstoday = document.querySelector("#ms4")
     let dayIndex = 0;
     updateDate(dayIndex);
 
@@ -53,9 +53,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let month = today.getMonth();
         let day = today.getDay();
         let date = today.getDate();
-        
-        switch (month) 
-        {
+
+        switch (month) {
             case 0: month = "01"; break;
             case 1: month = "02"; break;
             case 2: month = "03"; break;
@@ -69,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
             case 10: month = "11"; break;
             case 11: month = "12"; break;
         }
-        
+
         switch (date) {
             case 1: date = "01"; break;
             case 2: date = "02"; break;
@@ -82,66 +81,92 @@ document.addEventListener('DOMContentLoaded', function() {
             case 9: date = "09"; break;
         }
 
-    
-        switch(day)
-        {
-            case 0 : day = "sun"; break; 
-            case 1 : day = "mon"; break;
-            case 2 : day = "tue"; break;
-            case 3 : day = "wed"; break;
-            case 4 : day = "thu"; break;
-            case 5 : day = "fri"; break;
-            case 6 : day = "sat"; break;
+
+        switch (day) {
+            case 0: day = "sun"; break;
+            case 1: day = "mon"; break;
+            case 2: day = "tue"; break;
+            case 3: day = "wed"; break;
+            case 4: day = "thu"; break;
+            case 5: day = "fri"; break;
+            case 6: day = "sat"; break;
         }
 
-        mstoday.querySelector('.ms-today-day').innerText = month+"."+date+" "+day;    
+        mstoday.querySelector('.ms-today-day').innerText = month + "." + date + " " + day;
 
     }
 
 
     let dayDetail = document.getElementById('dayDetail');
-        calendar.on('dateClick', function(info) {
+    calendar.on('dateClick', function (info) {
         console.log('clicked on ' + info.dateStr);
-        
+
     });
 
 
-    calendar.on('dateClick', function(info) {
+    calendar.on('dateClick', function (info) {
         let clickedDate = new Date(info.dateStr);
         let month = (clickedDate.getMonth() + 1).toString().padStart(2, '0');
         let day = clickedDate.getDate().toString().padStart(2, '0');
         let date = clickedDate.toLocaleString('en-US', { weekday: 'short' }).toLowerCase();
-     
+
         let mstoday = document.querySelector("#ms4");
         mstoday.querySelector(".ms-today-day").innerText = month + "." + day + " " + date;
-   
+
+        let selectedDateStr = clickedDate.toISOString().substr(0, 10); // 선택된 날짜의 문자열(YYYY-MM-DD)로 변환
+
+        let scheduleElements = document.getElementsByClassName('scheduleList');
+        let todoElements = document.getElementsByClassName('todoList');
+
+
+        // 일정 비교
+        for (let i = 0; i < scheduleElements.length; i++) {
+            let scheduleTitle = scheduleElements[i].querySelector('p').dataset.schedule;
+            let scheduleStartDate = scheduleElements[i].querySelector('.scheduledate').dataset.schedule;
+
+            if (scheduleStartDate === selectedDateStr) {
+                let scheduleItem = document.getElementById('scheduleItem');
+                scheduleItem.innerText = scheduleTitle;
+            }
+        }
+
+        //TO DO 비교
+        for (let i = 0; i < todoElements.length; i++) {
+            let todoTitle = todoElements[i].querySelector('p').dataset.todo;
+            let todoStartDate = todoElements[i].querySelector('.todoDate').dataset.todo;
+
+            if (todoStartDate === selectedDateStr) {
+                let todoItem = document.getElementById('todoItem');
+                todoItem.innerText = todoTitle;
+            }
+        }
     });
 
 
-    function toggleTextDecoration(checkbox) {
-        var taskElement = mstoday.querySelector(".task");
-        if (checkbox.checked) {
-            taskElement.style.textDecoration = 'line-through';
-        } else {
-            taskElement.style.textDecoration = 'none';
-        }
-    }
+    // function toggleTextDecoration(checkbox) {
+    //     var taskElement = mstoday.querySelector(".task");
+    //     if (checkbox.checked) {
+    //         taskElement.style.textDecoration = 'line-through';
+    //     } else {
+    //         taskElement.style.textDecoration = 'none';
+    //     }
+    // }
 
 
-  });
+});
 
-  window.addEventListener("load", function () {
+window.addEventListener("load", function () {
     let plus1 = document.querySelector('.plus');
     let plusDetail = document.querySelector('.plusDetail');
     let plusTodo = document.querySelector('.plus-todo');
     let plusSchedule = this.document.querySelector('.plus-schedule');
-    let isOpen = false; 
+    let isOpen = false;
 
-        plus1.addEventListener('click',() => {
-            plusDetail.classList.toggle('act');
-        })
-    
-    });
+    plus1.addEventListener('click', () => {
+        plusDetail.classList.toggle('act');
+    })
+
+});
 
 
 

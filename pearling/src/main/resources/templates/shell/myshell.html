@@ -29,14 +29,17 @@
 
             <div class="schedule">
                 <p>to do.</p>
-                <ul th:each="t : ${todoList}">
-                    <li>
+                <ul>
+                    <li class="todoList" th:each="t : ${todoList}">
                         <div class="content">
                             <input type="checkbox">
-                            <p th:text="${t.content}">소금빵 사러가기🥐</p>
+                            <span id="todoItem"></span>
+                            <!-- <p th:text="${t.content}">소금빵 사러가기🥐</p> -->
+                            <!-- <p class="d-none" th:attr="data-todo=${t.title}"></p>
+                            <p class="d-none todoDate" th:attr="data-todo=${#dates.format(t.date, 'yyyy-MM-dd')}"></p> -->
                         </div>
                         <div class="tag">
-                            <button>@채원</button>
+                            <!-- <button>@채원</button> -->
                         </div>
                     </li>
                     <!-- <li>
@@ -69,7 +72,9 @@
                     <li class="scheduleList" th:each="s : ${list}">
                         <div class="content">
                             <div id="mydata" class="content">
-                                <p th:text="${s.title}" th:attr="data-schedule=${s.title}">🎥 비색의 탄환</p>
+                                <span id="scheduleItem"></span>
+                                <!-- <p class="d-none" th:text="${s.title}" th:attr="data-schedule=${s.title}">🎥 비색의 탄환</p> -->
+                                <p class="d-none" th:attr="data-schedule=${s.title}"></p>
                                 <p class="d-none scheduledate" th:attr="data-schedule=${#dates.format(s.startDate, 'yyyy-MM-dd')}"></div>
                                 </p>
                             </div>

@@ -1,6 +1,5 @@
 package com.pearling.web.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pearling.web.entity.Notice;
 import com.pearling.web.service.NoticeService;
@@ -34,14 +34,15 @@ public class NoticeController extends BaseController {
 	}
 	
 	@GetMapping("detail")
-	public String detail(Model model) {
-
+	public String detail(Model model, @RequestParam int id) {
 		String pageTitle = getPageTitle();
 		pageTitle = "공지사항";
-		
 		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("headerShow", false);
-		model.addAttribute("currentDate", LocalDate.now());
+		
+		Notice notice = service.findById(id);
+		model.addAttribute("notice", notice);
+
 		return "notice/detail";
 	}
 }

@@ -12,8 +12,8 @@ public class Qa {
     private String title;
     private String content;
     private Date regdate;
-    private int pwd;
     private String answer;
-    private int useIid;
+    private int userId;
     private int qaCategoryId;
+    private int newId;
 }

@@ -4,7 +4,8 @@
 
 <mapper namespace="com.pearling.web.repository.QaRepository">
    <select id="findAll" resultType="com.pearling.web.entity.Qa">
-      select *
-      from qa
+      SELECT qa.*, ROW_NUMBER() OVER (ORDER BY regdate ASC) AS new_id
+      FROM qa
+      ORDER BY regdate ASC;
    </select>
 </mapper>

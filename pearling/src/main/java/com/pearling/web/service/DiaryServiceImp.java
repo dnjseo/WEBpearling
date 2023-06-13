@@ -29,7 +29,7 @@ public class DiaryServiceImp implements DiaryService {
 
     @Override
     public Diary findById(int id) {
-        return null;
+        return repository.findById(id);
     }
 
     @Override

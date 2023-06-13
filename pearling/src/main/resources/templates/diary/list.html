@@ -30,26 +30,27 @@
                 <form>
                     <ul th:each="d : ${list}">
                         <li>
+                            <!-- <a href="post?s=2" th:href="@{../diary/post(id=${d.id})}"> -->
                                 <div class="diary-date">
                                     <span th:text="${#dates.format(d.regdate, 'd')}"></span>
                                     <span th:text="${#dates.format(d.regdate, 'MMM')}"></span>
                                 </div>
                                 <div class="diary-content">
-                                    <span>t i t l e</span>
+                                    <span th:text="${d.title}">title</span>
                                     <span th:text="${d.content}">다이어리 내용</span>
                                 </div>
                                 <div class="diary-emog">
                                     <span>🫧</span>
                                 </div>
+                            <!-- </a> -->
                         </li>
-                        <!-- <div class="diary-date" th:text="${#dates.format(d.regdate, 'yyyy-MM-dd')}">2023/05/10</div> -->
                     </ul>
                 </form>
 
                 <!----------------------- 다이어리 내용 --------------------->
 
                 <div class="add-btn">
-                    <button><a class="defence" href="./post?s=1">+</a></button>
+                    <button><a class="defence" href="post?s=1">+</a></button>
                 </div>
             </div>
         </section>

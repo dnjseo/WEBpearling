@@ -16,4 +16,5 @@ public class Diary {
     private int view;
     private int userID;
     private int diaryScopeId;
+    private String title;
 }

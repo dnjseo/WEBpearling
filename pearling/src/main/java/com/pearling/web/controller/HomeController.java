@@ -1,13 +1,22 @@
 package com.pearling.web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.pearling.web.entity.Member;
+import com.pearling.web.service.MemberService;
+
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class HomeController extends BaseController {
+
+	@Autowired
+	MemberService userService;
 
 	// public boolean headerShow() {
 	// 	return true;
@@ -21,17 +30,41 @@ public class HomeController extends BaseController {
 		return "index";
 	}
 	
-	@RequestMapping("/login")
+	// 로그인 매핑
+	@GetMapping("/login")
 	public String login(){
-		
 		return "login";
 	}
 
-	// @PostMapping("/login")
-	// public String login(String email, String pwd){
-	// 	System.out.println(email+pwd);
-	// 	return "redirect:/shell/outshell";
-	// }
+	@PostMapping("/login")
+	public String login(String email, String pwd, String returnURL, HttpSession session) {
+	System.out.println(email + pwd + returnURL);
+	
+	// if(!userService.isValid(email, pwd))
+	// 	return "redirect:/sign-in?error";
+	// post는 늘 안내페이지를 주어야 한다. 같은 페이지더라도 redirect 해주어야 한다. 
+	
+	Member user = userService.getByEmail(email);
+	// uid=username이 동일한 member 객체를 불러온다. 
+	
+	// 유효한 사용자로 입증되었다. 
+	// session 저장소에 멤버의 아이디, 패스워드, 역할을 저장해준다. 
+	session.setAttribute("email", user.getEmail());
+	session.setAttribute("pwd", user.getPwd());
+	
+	// returnURL이 빈 문자열이 아니면, returnURL로 가고, 빈 문자열일 시 index 페이지로 간다. 
+	// if(!returnURL.equals(""))
+	// 	return "redirect:" + returnURL;
+	// else
+	// 	return "redirect:/index";
+		return "/shell/ourshell";
+	}
+
+	// 로그아웃 매핑
+	@PostMapping("/")
+	public String logout(){
+		return null;
+	}
 	
 	@GetMapping("/signup")
 	public String signup(Model model){
@@ -42,11 +75,5 @@ public class HomeController extends BaseController {
 	public String findPassword(Model model){
 		return "find-password";
 	}
-
-	// @GetMapping("layout")
-	// public void layout(Model model) {
-	// 	model.addAttribute("headerShow", headerShow());
-	// }
-
 
 }

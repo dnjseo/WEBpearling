@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pearling.web.entity.Guestbook;
 import com.pearling.web.service.GuestbookService;
@@ -18,55 +17,42 @@ import com.pearling.web.service.GuestbookService;
 @Controller
 @RequestMapping("guestbook")
 public class GuestbookController extends BaseController {
-	Random random = new Random();
+   Random random = new Random();
 
-	@Autowired
-	private GuestbookService service;
+   @Autowired
+   private GuestbookService service;
 
-	@GetMapping("list")
-	public String list(
-			@RequestParam(name = "s", required = false) boolean editShow,
-			Model model) {
-		model.addAttribute("headerShow", true);
+   @GetMapping("list")
+   public String list(Model model) {
+      model.addAttribute("headerShow", true);
+      List<Guestbook> list = service.getList();
 
-		List<Guestbook> list = service.getList();
+      List<String> imageUrls = Arrays.asList(
+            "/images/guestbook/clam1.png",
+            "/images/guestbook/clam2.png",
+            "/images/guestbook/clam3.png");
 
-		List<String> imageUrls = Arrays.asList(
-			"/images/guestbook/clam1.png",
-			"/images/guestbook/clam2.png",
-			"/images/guestbook/clam3.png"
-		);
+      List<Guestbook> guestbooks = new ArrayList<>();
 
-		List<String> imgs = new ArrayList<>();
-		Random random = new Random();
+      for (Guestbook guestbook : list) {
+         guestbooks.add(new Guestbook(
+               guestbook.getId(),
+               guestbook.getContent(),
+               guestbook.getRegdate(),
+               guestbook.getUserId(),
+               imageUrls.get(random.nextInt(imageUrls.size())) // 이미지 URL 인덱스 수정
+         ));
+      }
 
-		for (int i = 0; i < list.size(); i++) {
-			int randomIndex = random.nextInt(imageUrls.size());
-			imgs.add(imageUrls.get(randomIndex));
-		}
+      model.addAttribute("list", guestbooks);
 
-		model.addAttribute("list", list);
-		model.addAttribute("imgs", imgs);
+      return "guestbook/list";
+   }
 
-		return "guestbook/list";
-	}
-
-	@GetMapping("post")
-	public String post(
-			@RequestParam(name = "s", required = false) boolean editShow,
-			Model model) {
-
-		String pageTitle = getPageTitle();
-		pageTitle = "";
-
-		model.addAttribute("pageTitle", pageTitle);
-
-		model.addAttribute("headerShow", false);
-		if (editShow)
-			model.addAttribute("editShow", 1);
-		else
-			model.addAttribute("editShow", 2);
-		return "guestbook/post";
-	}
-
+   @GetMapping("post")
+   public String post(Model model) {
+      model.addAttribute("headerShow", false);
+      model.addAttribute("editShow", true);
+      return "guestbook/post";
+   }
 }

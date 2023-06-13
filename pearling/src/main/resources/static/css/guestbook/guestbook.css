@@ -17,7 +17,7 @@ body{
     width: 100px;
 }
 
-#s1 {
+section.guestbook {
     display: none;
 }
 

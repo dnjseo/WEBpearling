@@ -1,38 +1,90 @@
-/* 세큐리티 주석
 package com.pearling.web.config;
 
-import static org.springframework.security.config.Customizer.withDefaults;
+import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity
 public class SpringSecurityConfig {
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/login", "/signup").permitAll()
-                        .requestMatchers("/images/**", "/js/**", "/css/**").permitAll()
-                        .anyRequest().authenticated());
-        http
-                .formLogin(login -> login
-                        .loginPage("/login") // GET 요청 (login form을 보여줌)
-                        .loginProcessingUrl("/shell/ourshell") // POST 요청 (login 창에 입력한 데이터를 처리)
-                        .usernameParameter("email") // login에 필요한 id 값을 email로 설정 (default는 username)
-                        .passwordParameter("pwd") // login에 필요한 password 값을 password(default)로 설정
-                        .defaultSuccessUrl("/shell/ourshell", true).permitAll());
-        http
-                .logout(withDefaults());
-                        // .logoutUrl("/logout")
-                        // .logoutSuccessUrl("/")); // logout에 성공하면 /로 redirect
+        @Autowired
+        private DataSource dataSource;
 
-        return http.build();
-    }
-} */
+        // 권한을 위한 필터 객체
+        @Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		
+		http
+//		.cors(cors->cors.disable())
+		.csrf(csrf->csrf.disable())
+//		.authorizeHttpRequests().requestMatchers("").hasAnyRole("");
+		.authorizeHttpRequests(
+				auth->auth
+					.requestMatchers("/member/**").hasAnyRole("ADMIN", "MEMBER")
+					.requestMatchers("/admin/**").hasAnyRole("ADMIN")
+					.anyRequest().permitAll()
+				)
+				.formLogin(
+						form->form
+							.loginPage("/login")
+							.loginProcessingUrl("/login")
+                                                        .defaultSuccessUrl("/shell/ourshell")
+                                )
+                                // .logout(logout->logout.logoutUrl("/logout")
+                                // )                       
+                                ;
+		
+		return http.build();
+	}
+
+        // 사용자 정보를 위한 서비스 객체
+        // 1. 인 메모리 사용자 정보
+        @Bean
+        public PasswordEncoder passwordEncoder() {
+                return new BCryptPasswordEncoder();
+        }
+
+        // @Bean
+        public UserDetailsService userDetailsService() {
+
+                UserDetails newlec = User.builder()
+                                .username("hahaha@naver.com")
+                                .password(passwordEncoder().encode("1234"))
+                                .build();
+
+                return new InMemoryUserDetailsManager(newlec);
+        }
+
+        @Bean
+        public UserDetailsService jdbcUserDetailService() {
+                JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource);
+                // manager.setUsersByUsernameQuery("select email, pwd, 1 enable from member
+                // where username=?"); // username, password, enable
+                manager.setUsersByUsernameQuery("select email, pwd pwd, 1 enable from member where email=?"); // username,
+                                                                                                            // password,
+                                                                                                            // enable
+                manager.setAuthoritiesByUsernameQuery(
+                                "select email, r.name authority from role r join member u on r.id=u.roleId where email=?"); // username,
+                                                                                                                          // authority
+                // username이 newlec 이라면
+                // username, password enable
+                // newlec | 111
+                System.out.println(passwordEncoder().encode("1234"));
+                // username, autority
+                // newlec | ROLE_MEMBER
+                // dragon | ROLE_MEMBER
+
+                return manager;
+        }
+}

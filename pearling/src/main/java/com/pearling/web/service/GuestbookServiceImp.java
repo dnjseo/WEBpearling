@@ -22,11 +22,6 @@ public class GuestbookServiceImp implements GuestbookService{
     }
 
     @Override
-    public int count() {
-        return repository.count();
-    }
-
-    @Override
     public Guestbook findById(int id) {
         return null;
     }

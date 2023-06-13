@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{inc/layout}">
+    layout:decorate="~{inc/layout}">
+
 <head>
-    <link href="/css/guestbook/guestbook.css" type="text/css" rel="stylesheet" >
-    <link href="/css/header/guestbook.css" type="text/css" rel="stylesheet" >
+    <link href="/css/guestbook/guestbook.css" type="text/css" rel="stylesheet">
+    <link href="/css/header/guestbook.css" type="text/css" rel="stylesheet">
     <script src="/js/guestbook/guestbook.js"></script>
     <title>방명록(내버전)</title>
 </head>
+
 <body>
     <main layout:fragment="content" id="wrap" class="wrap guestbook">
-        <section>
+        <ul class="clam" id="clam-list">
+            <li th:each="g, stat : ${list}" th:data-index="${stat.index}">
+                <img th:src="${g.imageUrl}" alt="Clam Image" />
+            </li>
+        </ul>
+
+        <section th:each="g, stat : ${list}" th:id="'s' + ${stat.index}"
+            th:class="'guestbook guestbook-' + ${stat.index}">
             <h1 class="d-none">방명록</h1>
-            <ul class="clam" id="clam-list">
-                <li th:each="i, guestbook : ${imgs}" data-guestbook-id="${guestbook.id}">
-                    <a href="#">
-                        <img th:src="${i}" alt="Clam Image" />
-                    </a>
-                </li>
-            </ul>
-    
-            <div id="s1">
-                <div class="book" th:each="g : ${list}" data-guestbook-id="${g.id}">
-                    <div class="pearl">
-                        <p th:text="${g.content}">나 오늘 마라탕 먹으러 감 ㅋ</p>
-                    </div>
-                    <div class="underline">
-                        <p class="date" th:text="${#dates.format(g.regdate, 'yyyy-MM-dd')}">2023/12/21</p>
-                        <p class="deleteBtn">삭제</p>
-                    </div>
+            <div class="book">
+                <div class="pearl">
+                    <p th:text="${g.content}">나 오늘 마라탕 먹으러 감 ㅋ</p>
                 </div>
-                <p class="guestbook-close">x</p>
+                <div class="underline">
+                    <p class="date" th:text="${#dates.format(g.regdate, 'yyyy-MM-dd')}">2023/12/21</p>
+                    <p class="deleteBtn">삭제</p>
+                </div>
+            </div>
+            <p class="guestbook-close">x</p>
             </div>
         </section>
-    
+
         <!-- 뒤에 배경 어둡게 하기 -->
         <div class="black"></div>
-    
+
         <!-- alert창 ------------------------------->
         <div id="delete-modal" class="dmodal">
             <div class="dmodal-content">
@@ -45,6 +45,7 @@ layout:decorate="~{inc/layout}">
             </div>
         </div>
         <!-- alert창 ------------------------------->
-    </main>    
+    </main>
 </body>
+
 </html>

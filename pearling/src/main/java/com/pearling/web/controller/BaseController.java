@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class BaseController {
 	
-    private boolean headerShow() {
+    protected boolean headerShow() {
 		return true;
 	}
 

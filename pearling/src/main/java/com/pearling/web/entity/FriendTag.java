@@ -8,7 +8,7 @@ import lombok.Data;
 
 public class FriendTag {
     private Integer id;
-    private User user;
+    private Member user;
 private Schedule schedule;
     // user_id, schedule_id
 }

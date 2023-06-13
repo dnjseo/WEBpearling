@@ -7,5 +7,10 @@
       select *
       from notice
    </select>
+   <select id="findById" resultType="com.pearling.web.entity.Notice" parameterType="int">
+      select *
+      from notice
+      where id=#{id}
+</select>
 
 </mapper>

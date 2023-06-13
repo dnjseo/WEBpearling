@@ -32,13 +32,23 @@
         <section class="diary-detail">
             <h1 class="d-none">다이어리 내용</h1>
             <div class="diary-detail-span" th:switch="${editShow}">
-                <textarea th:case="1" class="diary-detail-input" rows="20"></textarea>
-                <span th:case="2">테스트입니다.</span>
+                <div th:case="1">
+                    <input class="diary-detail-title" type="text" value="타이틀을 입력하세요.">
+                    <textarea class="diary-detail-input" rows="20"></textarea>
+                    <div class="btns">
+                        <!-- <button>🔒</button> -->
+                        <button></button>
+                    </div>
+                </div>
+                <div th:case="2">
+                    <input th:value="${diary.title}" class="diary-detail-title" type="text">
+                    <textarea th:text="${diary.content}" class="diary-detail-input" rows="20"></textarea>
+                    <div class="btns">
+                        <!-- <button>🔒</button> -->
+                        <button></button>
+                    </div>
+                </div>
             </div>
-            <div class="btns">
-                <!-- <button>🔒</button> -->
-                <button></button>
-            </div> 
         </section>
         <!-- 본문 ------------------------------->
 

@@ -3,14 +3,24 @@ body{
     background-size: cover;
 }
 
+
 .clam{
     display: flex;
     flex-wrap: wrap;
 }
 
-.header{
+
+.bgnone{
     background: none;
+    transition: all 1s ease-out;
 }
+
+.bgshow{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.04), 
+    rgba(0, 0, 0, 0.04)), #FFFFFF;
+    transition: all 1s ease-in;
+}
+
 
 .clam li img{
     cursor: pointer;

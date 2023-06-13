@@ -28,7 +28,7 @@ public class NoticeServiceImp implements NoticeService{
 
     @Override
     public Notice findById(int id) {
-       return null;
+       return repository.findById(id);
     }
 
     @Override

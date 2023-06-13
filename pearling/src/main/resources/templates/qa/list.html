@@ -10,6 +10,7 @@
     <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/qa/setting-qa.css" type="text/css" rel="stylesheet">
     <script src="/js/header/header.js"></script>
+    <script src="/js/qa/qa.js"></script>
 </head>
 
 <body>
@@ -23,13 +24,25 @@
                     <p th:text="'(' + ${#lists.size(list)} + ')'"></p>
                 </div>
             </div>
-            <div class="qa-list-body qa" th:each="q : ${list}">
+            <div class="qa-list-body qa" th:each="q, stat : ${list}">
                 <div class="item">
-                    <div class="num" th:text="${q.id}">150</div>
-                    <div class="answer" th:text="${q.qaCategoryId}">답변 예정</div>
+                    <div class="num" th:text="${q.newId}">150</div>
+                    <div class="answer" th:text="${q.qaCategoryName}">답변 예정</div>
                     <div class="secret"></div>
-                    <div class="titles" th:text="${q.title}"><a herf="#">저희 조장을 신고합니다</a></div>
+                    <div class="titles" th:text="${q.title}"><a th:href="@{./list(${q.id})}">저희 조장을 신고합니다</a></div>
                     <div class="date" th:text="${#dates.format(q.regdate, 'yyyy-MM-dd')}">23.05.03</div>
+                </div>
+                <div class="dropdown-answer" id="dropdown-answer-${stat.index}">
+                    <div class="member-q" th:text="${q.content}">금요일 발표 전까지 회원가입 끝낼 수 있을까요?? 저희 sql문 join도 할 수 있을까요??</div>
+                    <div class="q-logo">
+                        <div></div>
+                        <p>답변</p>
+                        <p>Pearling 관리자</p>
+                    </div>
+                    <div class="admin-a">
+                        안녕하세요, Pearling입니다. 금요일 전까지 저도 회원가입 끝내고 싶어요. 
+                        join으로 검색창도 하고 싶어요. 일단... 열심히 해 봅시다! 감사합니다.
+                    </div>
                 </div>
             </div>
         </div>

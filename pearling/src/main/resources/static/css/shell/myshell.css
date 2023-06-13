@@ -166,7 +166,7 @@ body{
     position: relative;
 }
 
-.today{
+.ms-today{
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -177,14 +177,14 @@ body{
     flex-grow: 0;
 }
 
-.today > img {
+.ms-today > img {
     flex: none;
     order: 0;
     align-self: stretch;
     flex-grow: 0;    
 }
 
-.today-day{
+.ms-today-day{
     font-family: 'Pretendard-SemiBold';
     font-size: 13px;
     letter-spacing: 0.1em;

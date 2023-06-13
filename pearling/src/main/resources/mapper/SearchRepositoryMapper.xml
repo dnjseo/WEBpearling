@@ -4,7 +4,7 @@
 
 <mapper namespace="com.pearling.web.repository.SearchRepository">
    <select id="findAll" resultType="com.pearling.web.entity.Search">
-       select nickname
-        from user;
+       select *
+        from member;
    </select>
 </mapper>

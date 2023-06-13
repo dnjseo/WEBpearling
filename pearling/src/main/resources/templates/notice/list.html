@@ -17,9 +17,11 @@
         <div class="notice-list notice" th:each="n : ${list}">
             <h2 class="d-none">공지사항 목록</h2>
             <div class="notice-box">
-                <div class="notice-content" th:text="${n.title}"><a href="detail">
-                        다이어리 공개범위 설정 변경의 건
-                    </a></div>
+                <div class="notice-content">
+                    <a href="detail" th:href="@{../notice/detail(id=${n.id})}">
+                        <p th:text="${n.title}">다이어리 공개범위 설정 변경의 건</p>
+                    </a>
+                </div>
                 <p class="notice-date" th:text="${#dates.format(n.regdate, 'yyyy-MM-dd')}">2023/04/22</p>
             </div>
         </div>

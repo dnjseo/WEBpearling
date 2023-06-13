@@ -5,7 +5,9 @@
 <head>
     <link href="/css/diary/diary.css" type="text/css" rel="stylesheet">
     <link href="/css/header/diary.css" type="text/css" rel="stylesheet">
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+    <script src='/fullcalendar/dist/index.global.js'></script>
+    <script th:inline="javascript" type="module" src="/js/shell/myshell.js"></script>
     <script src="/js/diary/diary.js"></script>
     <title>diary</title>
 </head>
@@ -24,22 +26,36 @@
 
             <!----------------------- 다이어리 내용 --------------------->
 
-            <div class="diary-list" >
+            <div class="diary-list">
                 <form>
                     <ul th:each="d : ${list}">
-                        <li th:text="${d.content}">나 지금 와이어프레임 짜다가 디자인을 하고 있어요</li>
-                        <div th:text="${#dates.format(d.regdate, 'yyyy-MM-dd')}">2023/05/10</div>
+                        <li>
+                            <a href="post?s=2" th:href="@{../diary/post(id=${d.id})}">
+                                <div class="diary-date">
+                                    <span th:text="${#dates.format(d.regdate, 'd')}"></span>
+                                    <span th:text="${#dates.format(d.regdate, 'MMM')}"></span>
+                                </div>
+                                <div class="diary-content">
+                                    <span th:text="${d.title}">title</span>
+                                    <span th:text="${d.content}">다이어리 내용</span>
+                                </div>
+                                <div class="diary-emog">
+                                    <span>🫧</span>
+                                </div>
+                            </a>
+                        </li>
                     </ul>
                 </form>
 
                 <!----------------------- 다이어리 내용 --------------------->
 
                 <div class="add-btn">
-                    <button><a class="defence" href="./post?s=1">+</a></button>
+                    <button><a class="defence" href="post?s=1">+</a></button>
                 </div>
             </div>
         </section>
     </main>
-        <!-- /wrap -->
+    <!-- /wrap -->
 </body>
+
 </html>

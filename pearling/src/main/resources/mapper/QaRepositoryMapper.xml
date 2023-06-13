@@ -4,7 +4,15 @@
 
 <mapper namespace="com.pearling.web.repository.QaRepository">
    <select id="findAll" resultType="com.pearling.web.entity.Qa">
-      select *
-      from qa
+   SELECT
+      qa.*,
+      ROW_NUMBER() OVER (ORDER BY qa.regdate ASC) AS new_id,
+      qc.name qa_category_name
+   FROM
+      qa
+   JOIN
+      qa_category qc ON qa.qa_category_id = qc.id
+   ORDER BY
+      qa.regdate ASC;
    </select>
 </mapper>

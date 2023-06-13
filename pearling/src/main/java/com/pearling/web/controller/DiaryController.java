@@ -17,16 +17,16 @@ import com.pearling.web.service.DiaryService;
 public class DiaryController extends BaseController {
 	@Autowired
 	private DiaryService service;
-	
+
 	@GetMapping("list")
 	public String list(
 			@RequestParam(name = "s", required = false) boolean editShow,
 			Model model) {
 
 		// if (editShow)
-		// 	model.addAttribute("editShow", 1);
+		// model.addAttribute("editShow", 1);
 		// else
-		// 	model.addAttribute("editShow", 2);
+		// model.addAttribute("editShow", 2);
 
 		model.addAttribute("headerShow", true);
 		List<Diary> list = service.getList();
@@ -38,11 +38,12 @@ public class DiaryController extends BaseController {
 	@GetMapping("post")
 	public String post(
 			@RequestParam(name = "s", required = false) boolean editShow,
+			@RequestParam(name = "id", required = false) int id,
 			Model model) {
 
 		String pageTitle = getPageTitle();
 		pageTitle = "";
-		
+
 		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("headerShow", false);
 
@@ -50,6 +51,13 @@ public class DiaryController extends BaseController {
 			model.addAttribute("editShow", 1);
 		else
 			model.addAttribute("editShow", 2);
+
+		List<Diary> list = service.getList();
+		
+		Diary diary = service.findById(id);
+
+		model.addAttribute("list", list);
+		model.addAttribute("diary", diary);
 
 		return "diary/post";
 	}

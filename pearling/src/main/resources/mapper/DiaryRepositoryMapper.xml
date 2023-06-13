@@ -7,5 +7,14 @@
       select *
       from diary
    </select>
+	<select id="findById" resultType="com.pearling.web.entity.Diary" parameterType="int">
+		select *
+		from diary
+		<trim prefix="where" prefixOverrides="AND|OR"> 
+			<if test="id != null">
+			id = #{id}
+			</if>
+		</trim>
+	</select>
    
 </mapper>

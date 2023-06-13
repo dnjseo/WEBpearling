@@ -1,15 +1,15 @@
 @import url("/css/shell/shell-menu.css");
 
+
+/* ========= keyframes ========= */
 @keyframes rotate{
     from{
         transform : rotate( 0 deg );
     }
-
     to{
         transform: rotate( 360deg );
     }
 }
-
 
 @keyframes fadeIn {
     from {
@@ -28,6 +28,8 @@
       opacity: 0;
     }
   }
+/* ========= keyframes ========= */
+
 
 
 .header-wrap{
@@ -64,9 +66,18 @@
     display: flex;
     align-items: center;
     height: 100%;
+    transition: visibility 1s ease-in-out;
+
 }
 .logo > img{
     width: 200px;
+}
+
+
+.headerLogoimgNone{
+    visibility: hidden;
+    width: 1px;
+    transition: visibility 1s ease-in-out;
 }
 
 .header2{
@@ -121,16 +132,55 @@
 .hb{
     width: 25px;
     padding: 3px;
+    padding-left: 5px;
 }
 
 
 .find{
-    padding-right: 15%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    /* padding-right: 5%; */
 }
+
+.search-close{
+    display: none;
+}
+
+.searchInput{
+    visibility: hidden;
+    width: 0;
+    transition: all 1s ease-in-out;
+    height: 100%;
+
+}
+
+.searchInputShow{
+    visibility: visible;
+    padding-left: 10px;
+    width: 200px;
+    height: 100%;
+    border-radius: 20px;
+    border-style: none;
+    transition: all 1s ease-in-out;
+}
+
 
 
 /* ======================= aside =======================*/
 
+.asideImg{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
 
 #sub-menu{
     overflow: scroll;
@@ -177,16 +227,21 @@
     justify-content: center;
     align-items: center;   
     flex-direction: column; 
-    padding: 10px;
-
- 
+    padding-top: 5px;
+    padding-bottom: 40px; 
+    gap: 10px;
 }
-.paragraph > div{
 
-    padding: 20px;
-    width: 60%;
-    height: 150px;
+.paragraphBox{
+    width: 70%;
+    display: flex;
+    flex-direction: row-reverse; 
+    justify-content: center;
+    align-items: center;   
+
+    padding: 40px;
     background: #FFFFFF;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
     border-radius: 40px;
 
     /* 폰트 레이아웃 */
@@ -194,9 +249,26 @@
     font-size: 16px;
 }
 
+
+.todayAside{
+    font-family: 'Pretendard-Bold';
+    padding-top: 15px;
+    font-size: 24px;
+}
+
+
+.textBox{
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    padding-left: 20px;
+    height: 100%;
+}
+
+
 .profile{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;   
     flex-direction: row; 
 
@@ -204,17 +276,36 @@
     height: 120px;
 }
 
+
+
 .profile-setting{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    margin-right: 30px;
+    justify-content: space-between;
+    width: 70%;
+    padding-bottom: 30px;
+    border-bottom: 1.8px solid lightgrey;
 
+}
+.names{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 10px;
+    /* padding-right: 30px; */
 }
 
 .nickname{
     text-align: center;
+
+    font-family: 'Pretendard-Bold';
+    font-size: 30px;
+}
+
+.name{
+    font-size: 18px;
 }
 
 .setting a{
@@ -231,31 +322,43 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     padding: 0px 15px;
-    margin-bottom: 35px;
+    margin-bottom: 20px;
     /* margin-left: 2%; */
 }
 
 .follow > div{
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
     
-    width: 158px;
-    height: 86px;
+    width: 200px;
+    height: 100px;
     
-    background: #FFFFFF;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
+    /* background: #FFFFFF; */
+    /* box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);  */
+    /* border-radius: 30px; */
     
-    text-decoration: underline;
+    /* text-decoration: underline; */
     text-align: center;
+
+    gap: 15px;
+    font-size: 16px;
+    font-family: 'Pretendar-SemiBold';
+}
+.follow > div > a{
+    font-size: 16px;
+}
+
+.follow > div > span{
+    font-family: 'Pretendard-Bold';
+    font-size: 24px
 }
 
 .follow p:nth-child(1){
-    margin-right: 5%;
+    margin-right: 10%;
 }
 
 
@@ -268,20 +371,25 @@
 
 .aside-menu{
     height: 100%;
+    padding-top: 20px;
     padding-bottom: 70px;
     width: 100%;
     background-color: #FFFFFF;
 }
 
 .aside-menu > div > ul > p {
-    font-size: 24px;
-    padding: 15px;
+    font-family: 'Pretendard-Bold';
+    font-size: 26px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
 }
 .aside-menu >div > ul > li > a{ 
+    font-size: 16px;
 
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-left: 30px;
+    padding-left: 40px;
     /* box-sizing: border-box; */
     /* Auto layout */
     /* display: flex;
@@ -309,14 +417,31 @@
 }
 
 .logout{
-    padding: 30px;
+    padding-top:  80px;
+    padding-bottom: 50px;
 }
 
 .logoutBtn{
+    font-family: 'Pretendard-SemiBold';
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    color: #797979;
+
+
+    background: #ffffff;
+    /* border: 1px solid #C4C4C4; */
+    border: none;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+
     position: relative;
     left: 50%;
     transform: translateX(-50%);
 
-    width: 200px;
+    width: 300px;
     height: 50px;
+}
+
+.logoutBtn:active{
+    box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }

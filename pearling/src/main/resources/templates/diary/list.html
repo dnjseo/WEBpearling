@@ -30,7 +30,7 @@
                 <form>
                     <ul th:each="d : ${list}">
                         <li>
-                            <!-- <a href="post?s=2" th:href="@{../diary/post(id=${d.id})}"> -->
+                            <a href="post?s=2" th:href="@{../diary/post(id=${d.id})}">
                                 <div class="diary-date">
                                     <span th:text="${#dates.format(d.regdate, 'd')}"></span>
                                     <span th:text="${#dates.format(d.regdate, 'MMM')}"></span>
@@ -42,7 +42,7 @@
                                 <div class="diary-emog">
                                     <span>🫧</span>
                                 </div>
-                            <!-- </a> -->
+                            </a>
                         </li>
                     </ul>
                 </form>

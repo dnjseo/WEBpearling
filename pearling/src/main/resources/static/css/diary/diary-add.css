@@ -19,11 +19,14 @@
     font-weight: 400px;
     font-size: 18px;
     letter-spacing: 0.1em;
+    font-family: 'Pretendard-Regular';
 
+    margin-bottom: 10px;
     width: 100%;
 }
 
 .diary-detail-input {
+    font-family: 'Pretendard-Regular';
     width: 100%;
     height: 100%;
     border: none;

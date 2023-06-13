@@ -73,11 +73,11 @@
                 <section class="account-list">
                     <h3 class="d-none">검색 결과</h3>
                     <ul>
-                        <li class="account-box" th:each="u : ${userList}">
+                        <li class="account-box">
                             <img src = "/images/profile/profile_yj.png">
-                            <p class="account-name" th:text="${u.nickname}">연주의 점심</p>
+                            <p class="account-name">연주의 점심</p>
                         </li>
-                        <!-- <li class="account-box">
+                        <li class="account-box">
                             <img src = "/images/profile/profile_c.png">
                             <p>채원이의 점심</p>
                         </li>
@@ -88,7 +88,7 @@
                         <li class="account-box">
                             <img src = "/images/profile/profile_yr.png">
                             <p>예린이의 점심</p>
-                        </li> -->
+                        </li>
                     </ul>
                 </section>
             </div>

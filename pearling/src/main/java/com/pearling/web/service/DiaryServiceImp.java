@@ -28,7 +28,7 @@ public class DiaryServiceImp implements DiaryService {
     }
 
     @Override
-    public Diary findById(int id) {
+    public Diary findById(Integer id) {
         return repository.findById(id);
     }
 

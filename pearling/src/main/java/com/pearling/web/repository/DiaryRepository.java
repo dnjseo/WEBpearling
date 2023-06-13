@@ -10,7 +10,7 @@ import com.pearling.web.entity.Diary;
 public interface DiaryRepository {
     List<Diary> findAll();
 
-    Diary findById(int id);
+    Diary findById(Integer id);
     int save(Diary diary);
     int update(Diary diary);
     int delete(Diary diary);

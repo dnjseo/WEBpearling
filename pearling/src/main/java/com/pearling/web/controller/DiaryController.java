@@ -38,7 +38,7 @@ public class DiaryController extends BaseController {
 	@GetMapping("post")
 	public String post(
 			@RequestParam(name = "s", required = false) boolean editShow,
-			@RequestParam(name = "id", required = false) int id,
+			@RequestParam(name = "id", required = false) Integer id,
 			Model model) {
 
 		String pageTitle = getPageTitle();

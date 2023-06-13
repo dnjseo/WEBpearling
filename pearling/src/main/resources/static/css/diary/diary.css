@@ -72,9 +72,9 @@
 
 .diary-content>span:nth-child(1) {
     font-weight: 700;
-    font-size: 26px;
+    font-size: 20px;
     align-self: flex-start;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.2em;
 }
 
 .diary-emog {

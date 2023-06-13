@@ -14,7 +14,7 @@
     <script src="/js/system/delete-modal.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
     <script src="/js/diary/diary.js"></script>
-    <title>diary-add</title>
+    <title>diary-post</title>
 </head>
 
 <body>
@@ -34,7 +34,7 @@
             <div class="diary-detail-span" th:switch="${editShow}">
                 <div th:case="1">
                     <input class="diary-detail-title" type="text" value="타이틀을 입력하세요.">
-                    <textarea class="diary-detail-input" rows="20"></textarea>
+                    <textarea class="diary-detail-input" rows="15"></textarea>
                     <div class="btns">
                         <!-- <button>🔒</button> -->
                         <button></button>
@@ -42,7 +42,7 @@
                 </div>
                 <div th:case="2">
                     <input th:value="${diary.title}" class="diary-detail-title" type="text">
-                    <textarea th:text="${diary.content}" class="diary-detail-input" rows="20"></textarea>
+                    <textarea th:text="${diary.content}" class="diary-detail-input" rows="15"></textarea>
                     <div class="btns">
                         <!-- <button>🔒</button> -->
                         <button></button>

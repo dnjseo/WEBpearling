@@ -8,13 +8,13 @@ import lombok.Data;
 @Data
 @Builder
 public class Diary {
-    private int id;
+    private Integer id;
     private Date date;
     private String content;
     private String image;
     private Date regdate;
-    private int view;
-    private int userID;
-    private int diaryScopeId;
+    private Integer view;
+    private Integer userID;
+    private Integer diaryScopeId;
     private String title;
 }

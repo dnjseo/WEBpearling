@@ -7,7 +7,7 @@
       select *
       from diary
    </select>
-	<select id="findById" resultType="com.pearling.web.entity.Diary" parameterType="int">
+	<select id="findById" resultType="com.pearling.web.entity.Diary" parameterType="Integer">
 		select *
 		from diary
 		<trim prefix="where" prefixOverrides="AND|OR"> 

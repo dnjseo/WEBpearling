@@ -9,7 +9,7 @@ public interface DiaryService {
     List<Diary> getList();
     List<Diary> getListByDate(Date date);
 
-    Diary findById(int id);
+    Diary findById(Integer id);
     void addDiary(Diary diary);
     void updateDiary(Diary diary);
     void deleteDiary(Diary diary);

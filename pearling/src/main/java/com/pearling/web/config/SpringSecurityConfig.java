@@ -56,22 +56,22 @@ public class SpringSecurityConfig {
         }
 
         // @Bean
-        public UserDetailsService userDetailsService() {
+        // public UserDetailsService userDetailsService() {
 
-                UserDetails newlec = User.builder()
-                                .username("hahaha@naver.com")
-                                .password(passwordEncoder().encode("1234"))
-                                .build();
+        //         UserDetails newlec = User.builder()
+        //                         .username("hahaha@naver.com")
+        //                         .password(passwordEncoder().encode("1234"))
+        //                         .build();
 
-                return new InMemoryUserDetailsManager(newlec);
-        }
+        //         return new InMemoryUserDetailsManager(newlec);
+        // }
 
         @Bean
         public UserDetailsService jdbcUserDetailService() {
                 JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource);
                 // manager.setUsersByUsernameQuery("select email, pwd, 1 enable from member
                 // where username=?"); // username, password, enable
-                manager.setUsersByUsernameQuery("select email username, pwd password, 1 enabled from member where email=?"); // username,
+                manager.setUsersByUsernameQuery("select email username, pwd password, 2 enabled from member where email=?"); // username,
                                                                                                             // password,
                                                                                                             // enable
                 manager.setAuthoritiesByUsernameQuery(
@@ -80,7 +80,7 @@ public class SpringSecurityConfig {
                 // username이 newlec 이라면
                 // username, password enable
                 // newlec | 111
-                System.out.println(passwordEncoder().encode("1234"));
+
                 // username, autority
                 // newlec | ROLE_MEMBER
                 // dragon | ROLE_MEMBER

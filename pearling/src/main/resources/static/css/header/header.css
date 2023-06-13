@@ -66,9 +66,18 @@
     display: flex;
     align-items: center;
     height: 100%;
+    transition: visibility 1s ease-in-out;
+
 }
 .logo > img{
     width: 200px;
+}
+
+
+.headerLogoimgNone{
+    visibility: hidden;
+    width: 1px;
+    transition: visibility 1s ease-in-out;
 }
 
 .header2{
@@ -123,16 +132,55 @@
 .hb{
     width: 25px;
     padding: 3px;
+    padding-left: 5px;
 }
 
 
 .find{
-    padding-right: 15%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    /* padding-right: 5%; */
 }
+
+.search-close{
+    display: none;
+}
+
+.searchInput{
+    visibility: hidden;
+    width: 0;
+    transition: all 1s ease-in-out;
+    height: 100%;
+
+}
+
+.searchInputShow{
+    visibility: visible;
+    padding-left: 10px;
+    width: 200px;
+    height: 100%;
+    border-radius: 20px;
+    border-style: none;
+    transition: all 1s ease-in-out;
+}
+
 
 
 /* ======================= aside =======================*/
 
+.asideImg{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
 
 #sub-menu{
     overflow: scroll;
@@ -179,20 +227,19 @@
     justify-content: center;
     align-items: center;   
     flex-direction: column; 
-    padding: 10px; 
+    padding-top: 5px;
+    padding-bottom: 40px; 
     gap: 10px;
 }
 
-.paragraph > div{
-    width: 100%;
+.paragraphBox{
+    width: 70%;
     display: flex;
-    justify-content: flex-start;
+    flex-direction: row-reverse; 
+    justify-content: center;
     align-items: center;   
-    flex-direction: column; 
 
-    padding: 20px;
-    width: 60%;
-    height: 150px;
+    padding: 40px;
     background: #FFFFFF;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
     border-radius: 40px;
@@ -202,11 +249,21 @@
     font-size: 16px;
 }
 
+
 .todayAside{
+    font-family: 'Pretendard-Bold';
     padding-top: 15px;
     font-size: 24px;
 }
 
+
+.textBox{
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    padding-left: 20px;
+    height: 100%;
+}
 
 
 .profile{
@@ -225,7 +282,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    width: 70%;
+    padding-bottom: 30px;
+    border-bottom: 1.8px solid lightgrey;
 
 }
 .names{
@@ -233,15 +293,19 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
-
-    padding-right: 50px;
+    gap: 10px;
+    /* padding-right: 30px; */
 }
 
 .nickname{
     text-align: center;
 
-    font-family: 'Prentendard-Bold';
-    font-size: 26px;
+    font-family: 'Pretendard-Bold';
+    font-size: 30px;
+}
+
+.name{
+    font-size: 18px;
 }
 
 .setting a{
@@ -258,31 +322,39 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     padding: 0px 15px;
-    margin-bottom: 35px;
+    margin-bottom: 20px;
     /* margin-left: 2%; */
 }
 
 .follow > div{
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
     
-    width: 150px;
+    width: 200px;
     height: 100px;
     
-    background: #FFFFFF;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
+    /* background: #FFFFFF; */
+    /* box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);  */
+    /* border-radius: 30px; */
     
-    text-decoration: underline;
+    /* text-decoration: underline; */
     text-align: center;
 
-    gap: 10px;
-    font-size: 14px;
+    gap: 15px;
+    font-size: 16px;
     font-family: 'Pretendar-SemiBold';
+}
+.follow > div > a{
+    font-size: 16px;
+}
+
+.follow > div > span{
+    font-family: 'Pretendard-Bold';
+    font-size: 24px
 }
 
 .follow p:nth-child(1){
@@ -298,7 +370,6 @@
 }
 
 .aside-menu{
-
     height: 100%;
     padding-top: 20px;
     padding-bottom: 70px;
@@ -311,10 +382,10 @@
     font-size: 26px;
     padding-top: 20px;
     padding-bottom: 10px;
-    padding-left: 8px;
+    padding-left: 20px;
 }
 .aside-menu >div > ul > li > a{ 
-    font-size: 14px;
+    font-size: 16px;
 
     padding-top: 10px;
     padding-bottom: 10px;
@@ -346,14 +417,21 @@
 }
 
 .logout{
-    padding: 30px;
+    padding-top:  80px;
+    padding-bottom: 50px;
 }
 
 .logoutBtn{
+    font-family: 'Pretendard-SemiBold';
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    color: #797979;
 
-    background: #EBEBEB;
-    border: 1px solid #C4C4C4;
-    box-shadow: inset 0px 0px 55px #FFFFFF, inset 0px 32px 16px rgba(199, 192, 196, 0.09), inset 0px 16px 8px rgba(199, 192, 196, 0.09), inset 0px -79px 40px rgba(199, 192, 196, 0.1), inset 0px -36px 30px rgba(199, 192, 196, 0.15), inset 0px -23px 25px rgba(199, 192, 196, 0.17);
+
+    background: #ffffff;
+    /* border: 1px solid #C4C4C4; */
+    border: none;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
     border-radius: 15px;
 
     position: relative;
@@ -362,4 +440,8 @@
 
     width: 300px;
     height: 50px;
+}
+
+.logoutBtn:active{
+    box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }

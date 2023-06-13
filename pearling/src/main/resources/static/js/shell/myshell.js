@@ -115,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let selectedDateStr = clickedDate.toISOString().substr(0, 10); // 선택된 날짜의 문자열(YYYY-MM-DD)로 변환
 
+        
         let scheduleElements = document.getElementsByClassName('scheduleList');
         let todoElements = document.getElementsByClassName('todoList');
 
@@ -130,17 +131,77 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
+         
+
         //TO DO 비교
+        
+        let mstodoList = document.getElementById('mstodoList');
+        // while (mstodoList.firstChild) {
+        //     mstodoList.removeChild(mstodoList.firstChild);
+        // }
+        
+
+        let todoTitles = [];
         for (let i = 0; i < todoElements.length; i++) {
             let todoTitle = todoElements[i].querySelector('p').dataset.todo;
             let todoStartDate = todoElements[i].querySelector('.todoDate').dataset.todo;
+            let childtodoList = document.createElement('li')
+            let childtodoContentdiv = document.createElement('div')
+            let childTodoContent = document.createElement('span');
+            let todoItemCheckbox = document.createElement('input');
 
+                        
             if (todoStartDate === selectedDateStr) {
-                let todoItem = document.getElementById('todoItem');
-                todoItem.innerText = todoTitle;
+                // let todoItem = document.getElementById('todoItem');
+                // todoItem.innerText = todoTitle;
+           
+                todoItemCheckbox.type = 'checkbox';
+                childTodoContent.innerText = todoTitle;
+                childtodoList.classList.add('todoList');
+                childtodoContentdiv.classList.add('content')
+                
+                childtodoList.appendChild(childtodoContentdiv);
+                childtodoContentdiv.appendChild(todoItemCheckbox);
+                childtodoContentdiv.appendChild(childTodoContent);
+                
+                mstodoList.appendChild(childtodoList);
+
             }
+            
+            
         }
+
+        // TO DO 비교
+        // let todoItems = []; // todoItem을 담을 배열
+
+        // for (let i = 0; i < todoElements.length; i++) {
+        //     let todoTitle = todoElements[i].querySelector('span').id; // span 요소의 id를 가져옴
+        //     let todoStartDate = todoElements[i].querySelector('.todoDate').dataset.todo;
+
+        //     if (todoStartDate === selectedDateStr) {
+        //         let todoItem = document.createElement('li');
+        //         let todoItemContent = document.createElement('span');
+        //         todoItemContent.innerText = todoTitle;
+        //         todoItem.appendChild(todoItemContent);
+        //         todoItems.push(todoItem); // todoItem을 배열에 추가
+        //     }
+        // }
+
+        // let todoList = document.querySelector('.schedule ul'); // todoList의 ul 요소 선택
+        // todoList.innerHTML = ''; // 기존 목록 초기화
+
+        // if (todoItems.length > 0) {
+        //     for (let i = 0; i < todoItems.length; i++) {
+        //         todoList.appendChild(todoItems[i]); // 목록에 각각의 todoItem을 추가
+        //     }
+        // } else {
+        //     todoList.innerHTML = '<li>No todos for selected date.</li>'; // 선택된 날짜에 대한 할 일이 없는 경우 메시지 표시
+        // }
+
+
+
     });
+
 
 
     // function toggleTextDecoration(checkbox) {

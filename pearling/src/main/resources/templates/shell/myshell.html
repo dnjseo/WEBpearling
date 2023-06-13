@@ -29,15 +29,15 @@
 
             <div class="schedule">
                 <p>to do.</p>
-                <ul>
+                <ul id="mstodoList">
                     <li class="todoList" th:each="t : ${todoList}">
-                        <div class="content">
-                            <input type="checkbox">
-                            <span id="todoItem"></span>
-                            <!-- <p th:text="${t.content}">소금빵 사러가기🥐</p> -->
-                            <!-- <p class="d-none" th:attr="data-todo=${t.title}"></p>
-                            <p class="d-none todoDate" th:attr="data-todo=${#dates.format(t.date, 'yyyy-MM-dd')}"></p> -->
-                        </div>
+                        <p class="d-none" th:attr="data-todo=${t.content}"></p>
+                        <p class="d-none todoDate" th:attr="data-todo=${#dates.format(t.date, 'yyyy-MM-dd')}"></p>
+                        <!-- <div class="content"> -->
+                            <!-- <input type="checkbox"> -->
+                            <!-- <span id="todoItem"></span> -->
+                            <!-- <p class="d-none" id="todoContentShow" th:text="${t.content}">소금빵 사러가기🥐</p> -->
+                        <!-- </div> -->
                         <div class="tag">
                             <!-- <button>@채원</button> -->
                         </div>

@@ -27,7 +27,7 @@
             <div class="qa-list-body qa" th:each="q, stat : ${list}">
                 <div class="item">
                     <div class="num" th:text="${q.newId}">150</div>
-                    <div class="answer" th:text="${q.qaCategoryId}">답변 예정</div>
+                    <div class="answer" th:text="${q.qaCategoryName}">답변 예정</div>
                     <div class="secret"></div>
                     <div class="titles" th:text="${q.title}"><a th:href="@{./list(${q.id})}">저희 조장을 신고합니다</a></div>
                     <div class="date" th:text="${#dates.format(q.regdate, 'yyyy-MM-dd')}">23.05.03</div>

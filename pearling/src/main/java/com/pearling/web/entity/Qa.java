@@ -16,4 +16,5 @@ public class Qa {
     private int userId;
     private int qaCategoryId;
     private int newId;
+    private String qaCategoryName;
 }

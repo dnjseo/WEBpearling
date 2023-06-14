@@ -20,20 +20,28 @@
 
             <!----------------------- 달력 --------------------->
             <section id=d2>
-                <div id='calendar'></div>
+                <div id='calendarDiary'></div>
             </section>
             <!----------------------- 달력 --------------------->
+
+            <div class="d-month-title">
+                <p>🫧<span></span>6월의 pearling</p>
+            </div>
+
 
             <!----------------------- 다이어리 내용 --------------------->
 
             <div class="diary-list">
                 <form>
-                    <ul th:each="d : ${list}">
+                    <ul th:each="d : ${list}" data-aos="flip-down"
+                        data-aos-duration="2000"
+                    >
                         <li>
                             <a href="post?s=2" th:href="@{../diary/post(id=${d.id})}">
                                 <div class="diary-date">
                                     <span th:text="${#dates.format(d.regdate, 'd')}"></span>
                                     <span th:text="${#dates.format(d.regdate, 'MMM')}"></span>
+                                    
                                 </div>
                                 <div class="diary-content">
                                     <span th:text="${d.title}">title</span>

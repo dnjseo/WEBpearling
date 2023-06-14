@@ -5,7 +5,8 @@ window.addEventListener("DOMContentLoaded", function() {
   
   let todayIndex = 0;
   const todaySection = document.querySelector("#m2-today");
-  
+
+
   updateDate(todayIndex); // 현재 날짜로 업데이트
 
 function updateDate(offset) {
@@ -58,4 +59,17 @@ todaySection.querySelector(".todayRight").addEventListener("click", function() {
     updateDate(todayIndex);
   });
 
+
+ 
+
   });
+
+  function isElementInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }

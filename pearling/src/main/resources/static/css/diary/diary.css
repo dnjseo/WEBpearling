@@ -7,6 +7,18 @@
     font-style: normal;
 }
 
+.d-month-title{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 90%;
+    padding-top: 20px;
+    font-size: 22px;
+    font-family: 'Pretendard-SemiBold';
+}
+
+
 .diary-list>form>ul {
     display: flex;
     flex-direction: column;

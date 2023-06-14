@@ -1,14 +1,14 @@
 @import url("/css/diary/diary-calendar.css");
 
-.diary-detail {
+.diary-add-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* padding: 20px 20px 20px 20px; */
 }
 
 .diary-detail-span {
     display: flex;
+    flex-direction: column;
     width: 80%;
 
     background: #FFFFFF;
@@ -25,19 +25,16 @@
     font-size: 18px;
     letter-spacing: 0.1em;
     margin-bottom: 10px;
-
-    width: 100%;
 }
 
 .diary-detail-input {
     box-sizing: border-box;
     font-family: 'Pretendard-Regular';
-    width: 100%;
     border: none;
 }
 
 
-/* -----버튼 모음집--------------------------------------------------- */
+/* -----버튼(사진 첨부)--------------------------------------------------- */
 
 .btns>button {
     background-image: url("/images/diary/photo.svg");
@@ -57,12 +54,19 @@
     opacity: 0.8;
 }
 
+/* -----버튼(등록 버튼)--------------------------------------------------- */
+
 .diary-btns {
-    padding-right: 7.5%;
-    padding-top: 20px;
+    box-sizing: content-box;
+
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+
+    width: 80%;
+
+    padding-left: 50px;
+    padding-top: 20px; 
     margin-bottom: 150px;
 }
 
@@ -84,7 +88,7 @@
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
     border: none;
-    margin-left: 6px;
+    margin-left: 10px;
     width: 90px;
     height: 30px;
 }

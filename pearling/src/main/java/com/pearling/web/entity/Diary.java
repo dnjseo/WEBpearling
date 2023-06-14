@@ -15,6 +15,6 @@ public class Diary {
     private String image;
     private Date regdate;
     private Integer view;
-    private Integer memberID;
+    private Integer memberId;
     private Integer diaryScopeId;
 }

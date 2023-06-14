@@ -11,14 +11,14 @@ import com.pearling.web.repository.DiaryRepository;
 
 @Service
 public class DiaryServiceImp implements DiaryService {
-    
+
     @Autowired
     private DiaryRepository repository;
 
     @Override
     public List<Diary> getList() {
         List<Diary> list = repository.findAll();
-        
+
         return list;
     }
 
@@ -34,6 +34,8 @@ public class DiaryServiceImp implements DiaryService {
 
     @Override
     public void addDiary(Diary diary) {
+
+        repository.save(diary);
     }
 
     @Override

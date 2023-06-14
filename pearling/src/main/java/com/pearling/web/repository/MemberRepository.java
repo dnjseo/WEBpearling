@@ -8,8 +8,9 @@ import com.pearling.web.entity.Member;
 
 @Mapper
 public interface MemberRepository {
-    List<Member> findAll();
-
+    List<Member> findAll(String query);
     Member findById(int id);
-    Member findByEamil(String email);
+    Member findByEmail(String email);
+    List<Member> findByQuery(String query);
+    List<Member> findAll();
 }

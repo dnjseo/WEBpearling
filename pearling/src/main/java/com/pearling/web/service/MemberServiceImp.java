@@ -28,12 +28,12 @@ public class MemberServiceImp implements MemberService{
 
     @Override
     public Member getByEmail(String email) {
-        return repository.findByEamil(email);
+        return repository.findByEmail(email);
     }
 
     @Override
     public boolean isValid(String email, String pwd) {
-        Member user = repository.findByEamil(email);
+        Member user = repository.findByEmail(email);
       
       if(user == null)
          return false;
@@ -42,6 +42,13 @@ public class MemberServiceImp implements MemberService{
       
       return true;
     }
+
+    @Override
+    public List<Member> getListByQuery(String query) {
+        return repository.findAll(query);
+    }
+
+   
 
 
 

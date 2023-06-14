@@ -5,14 +5,12 @@
         <h1 class="d-none">펄링</h1>
         <a class="logo" href="/shell/ourshell"><img class=headerLogoimg src="/images/logo/realLogo.svg" alt="logo"/></a>
         <div class="left">
-            <div class="find">
-                <!-- <a href="/search/list"> -->
-                    <img class="hb searchIcon" src="/images/header/search.svg" alt="logo"/>
-                    <input class="searchInput" type="text">
-                    <img class="search-close" src="/images/header/close.svg"></img>
-
-                <!-- </a> -->
-            </div>   
+            <form action="/search/list" method="get" class="find">
+                <img class="hb searchIcon" src="/images/header/search.svg" alt="logo"/>
+                <input class="searchInput" type="text" name="q">
+                <img class="search-close" src="/images/header/close.svg"></img>
+                <input type="submit">
+            </form>   
             <img class="sub-close hb" src="/images/header/close.svg"></img>
             <div class="menu"><img class="hb" src="/images/header/hamburger.svg" alt="logo"/></div>
         </div>    

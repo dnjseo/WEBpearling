@@ -145,7 +145,15 @@
     /* padding-right: 5%; */
 }
 
+.find input[type="submit"] {
+    display: none;
+}
+
 .search-close{
+    display: none;
+}
+
+input.submit-btn {
     display: none;
 }
 

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +11,6 @@
     <link href="/css/system/login.css" type="text/css" rel="stylesheet">
     <title>login</title>
 </head>
-
 <body>
     <!-- wrap -->
     <div class="wrap">
@@ -22,32 +23,36 @@
                 <img src="/images/logo/realLogo.svg" alt="메인로고">
             </div>
             <!--이메일, 비밀번호 입력---------------------------------- -->
-
             <form method="post" action="login">
+                <!-- d-pwd-box -->
                 <div class="id-pwd-box">
                     <label for="l1-email">아이디 (e-mail)</label>
                     <input id="l1-email" name="username" type="text">
                     <label for="l1-pwd">비밀번호</label>
                     <input id="l1-pwd" name="password" type="password">
                 </div>
-
-                <!--이메일, 비밀번호 입력---------------------------------- -->
+                <!-- match-check -->
+                <div th:if="${param.error}" class="match-check">
+                    아이디 또는 비밀번호가 일치하지 않습니다. 
+                </div>
+                <!-- l1-btns -->
                 <div class="l1-btns">
+                    <input type="hidden" name="returnURL" th:value="${param.returnURL}" /> 
                     <button type="submit">로그인</button>
-                    <!-- <a class="defence" href="/shell/ourshell">로그인</a> -->
                     <div class="submenu">
                         <a class="defence findpsw" href="/find-password">비밀번호 찾기</a>
                         <p>|</p>
-                        <a class="defence signup" href="/signup">회원가입</a>
+                        <a 
+                        class="defence signup" 
+                        href="/signup">회원가입</a>
                     </div>
                 </div>
             </form>
-
-
-
+            <!-- login-api -->
             <div class="login-api">
                 <hr>
                 <h2>간편 로그인</h2>
+                <!-- apiImg -->
                 <div class="apiImg">
                     <a class="naverlogin" href="">
                         <img src="/images/login/naver_square.png">
@@ -60,12 +65,8 @@
                     </a>
                 </div>
             </div>
-
         </section>
-
     </div>
     <!-- /wrap -->
-
 </body>
-
 </html>

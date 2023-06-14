@@ -13,7 +13,7 @@ hr{
   
 
 body{
-    animation: fadeIn 2s ease-in-out;
+    animation: fadeIn 1.3s ease-in-out;
 }
 
 #l1 {
@@ -60,7 +60,6 @@ body{
     padding-left: 2%;
     color: #A587E0;
     letter-spacing: 0.1em;
-
 }
 
 .id-pwd-box>input {
@@ -76,6 +75,11 @@ body{
     height: 40px;
 }
 
+.match-check{
+    color: red;
+    text-align: center;
+}
+
 .l1-btns {
     display: flex;
     flex-direction: column;
@@ -84,7 +88,7 @@ body{
     justify-content: center;
     align-items: center;
 
-    margin-top: 80px;
+    margin-top: 40px;
 }
 
 .l1-btns>button {
@@ -97,7 +101,7 @@ body{
     height: 35px;
 }
 
-.l1-btns>button>a {
+.l1-btns>button {
     font-family: 'Pretendard-SemiBold';
     font-size: 14px;
     color: #A587E0;
@@ -139,7 +143,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     
     padding: 50px;
     gap: 10px;

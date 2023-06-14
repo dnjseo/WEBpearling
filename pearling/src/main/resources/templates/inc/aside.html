@@ -1,76 +1,84 @@
-<aside id="sub-menu">
-    <div class="sub-menu-wrap">
-        <div class="menu-header">
-        </div>
-        
-        <div class="asideImg">
-        <img src="/images/profile/circle.png">
-        </div>
-
-        <div class="profile">
-            <div class="profile-setting">
-                <p class="p-img"><img src="/images/header/profile.png" alt="프로필"/></p>
-                <div class="names">
-                <p class="nickname">미스터 포테이토</p>
-                <p class="name">김도원</p>
-                </div>
-                <!-- <ul class="name-setting">
-                    <li class="name">김도원</li>
-                    <li class="setting"><a href="/setting/profile">프로필 설정</a></li>
-                </ul> -->
+<html 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+>
+    <aside id="sub-menu">
+        <div class="sub-menu-wrap">
+            <div class="menu-header">
             </div>
-        </div>
-        <div class="follow">
-            <div><a href="/follow/followerList">팔로워 </a> <span>13</span> </div>
-            <div><a href="/follow/followingList">팔로잉</a>  <span>89</span> </div>
-        </div>
 
-        <section class="paragraph">
-            <div class="paragraphBox">
-                <div class = "dateBox">
-                        <div class = "month">
-                            <p class = "month-font"><span class="today-m"></span></p>
+            <div class="asideImg">
+                <img src="/images/profile/circle.png">
+            </div>
+
+            <div class="profile">
+                <div th:each="m : ${member}" class="profile-setting">
+                    <p th:each="${member}"></p>
+                    <p class="p-img" th:text="${m.profileImage}"><img src="/images/header/profile.png" alt="프로필" /></p>
+                    <div class="names">
+                        <p class="nickname" th:text="${m.nickname}">미스터 포테이토</p>
+                        <p class="name" th:text="${m.name}">김도원</p>
+                    </div>
+                </div>
+            </div>
+            <div class="follow">
+                <div><a href="/follow/followerList">팔로워 </a> <span>13</span> </div>
+                <div><a href="/follow/followingList">팔로잉</a> <span>89</span> </div>
+            </div>
+
+            <section class="paragraph">
+                <div class="paragraphBox">
+                    <div class="dateBox">
+                        <div class="month">
+                            <p class="month-font"><span class="today-m"></span></p>
                         </div>
-                        <div class= "day">
-                            <p class = "day-font">
+                        <div class="day">
+                            <p class="day-font">
                                 <span class="today-day"></span>
                                 <br>
                                 <span class="today-date"></span>
                             </p>
                         </div>
+                    </div>
+                    <div class="textBox">
+                        <span class="todayAside"></span><br>
+                        <p>오늘의 일정을 확인해보세요</p>
+                    </div>
                 </div>
-                <div class="textBox">
-                    <span class="todayAside"></span><br>
-                   <p>오늘의 일정을 확인해보세요</p>
+            </section>
+
+            <section class="aside-menu">
+
+                <div class="aside-myshell-list">
+                    <ul>
+                        <p>my shell</p>
+                        <li><a href="/shell/myshell">캘린더</a></li>
+                        <li><a href="/diary/list">다이어리</a></li>
+                        <li><a href="/guestbook/list">방명록</a></li>
+                    </ul>
                 </div>
-            </div>
-        </section>
 
-        <section class="aside-menu">
+                <div class="aside-menu-list">
+                    <ul>
+                        <p>my account</p>
+                        <li><a href="/setting/profile">프로필 관리</a></li>
+                        <li><a href="/setting/follow-group">친구 관리</a></li>
+                        <li><a href="/setting/accountmanage">계정 관리</a></li>
+                        <li><a href="/setting/calander">캘린더 설정</a></li>
+                    </ul>
+                </div>
 
-            <div class="aside-myshell-list">
-            <ul>
-                <p>my shell</p>
-                <li><a href="/shell/myshell">캘린더</a></li>
-                <li><a href="/diary/list">다이어리</a></li>
-                <li><a href="/guestbook/list">방명록</a></li>
-            </ul>
+                <div class="logout">
+                    <button class="logoutBtn">
+                        <a
+                        sec:authorize="isAuthenticated()"
+                        href="/logout" 
+                        class="icon-sign-out" 
+                        title="로그인 페이지로 이동합니다.">
+                        로그아웃</a></button>
+                </div>
+            </section>
+
         </div>
-
-        <div class="aside-menu-list">
-            <ul>
-                <p>my account</p>
-                <li><a href="/setting/profile">프로필 관리</a></li>
-                <li><a href="/setting/follow-group">친구 관리</a></li>
-                <li><a href="/setting/accountmanage">계정 관리</a></li>
-                <li><a href="/setting/calander">캘린더 설정</a></li>
-            </ul>
-        </div> 
-
-        <div class="logout">
-        <button class="logoutBtn">logout</button>
-        </div>
-    </section>
-    
-</div>
-</aside>
+    </aside>
+</html>

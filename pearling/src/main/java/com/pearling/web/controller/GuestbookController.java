@@ -8,8 +8,12 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pearling.web.entity.Guestbook;
 import com.pearling.web.service.GuestbookService;
@@ -54,5 +58,12 @@ public class GuestbookController extends BaseController {
       model.addAttribute("headerShow", false);
       model.addAttribute("editShow", true);
       return "guestbook/post";
+   }
+
+   @PostMapping("delete/{id}") // 삭제 기능 추가
+   public String delete(@PathVariable("id") int id) {
+      service.deleteGuestbook(id);
+      System.out.println("삭제되었습니다!!");
+      return "redirect:/guestbook/list";
    }
 }

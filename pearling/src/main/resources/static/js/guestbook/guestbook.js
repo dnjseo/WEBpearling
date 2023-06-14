@@ -29,7 +29,6 @@ window.addEventListener("load", function () {
   // 닫기 버튼을 누르면 방명록이 닫히는 함수
   gcloseElements.forEach(function (gclose) {
     gclose.addEventListener("click", function () {
-      console.log("닫아져라!!!!!!!!!!!!!!");
       bookElements.forEach(function (book) {
         book.style.display = "none";
       });
@@ -44,6 +43,12 @@ window.addEventListener("load", function () {
       if (book) {
         book.style.display = "none";
         deleteModal.style.display = "block";
+
+        // 추가된 코드: 삭제 확인 버튼을 누르면 AJAX 요청을 서버로 보냄
+        deleteYes.addEventListener("click", function () {
+          const guestbookId = book.getAttribute("data-id"); // 방명록 ID 추출
+          deleteGuestbook(guestbookId);
+        });
       }
     });
   });
@@ -52,4 +57,23 @@ window.addEventListener("load", function () {
     deleteModal.style.display = "none";
     black.style.display = "none";
   });
+
+  // 방명록 삭제 요청을 서버로 보내는 함수
+  function deleteGuestbook(guestbookId) {
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/guestbook/delete/" + guestbookId, true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          console.log(xhr.responseText);
+          console.log("방명록 삭제에 성공했습니다");
+          location.reload(); // 페이지 새로고침
+        } else {
+          console.error("방명록 삭제에 실패했습니다.");
+        }
+      }
+    };
+    xhr.send();
+  }
 });

@@ -11,14 +11,15 @@
 
 <body>
     <main layout:fragment="content" id="wrap" class="wrap guestbook">
+        <h1>방명록은 총 <span th:text="${#lists.size(list)}"></span>개입니다.</h1>
         <ul class="clam" id="clam-list">
-            <li th:each="g, stat : ${list}" th:data-index="${stat.index}">
+            <li th:each="g, stat : ${list}" th:data-index="${stat.index}" th:data-id="${g.id}">
                 <img th:src="${g.imageUrl}" alt="Clam Image" />
             </li>
         </ul>
 
         <section th:each="g, stat : ${list}" th:id="'s' + ${stat.index}"
-            th:class="'guestbook guestbook-' + ${stat.index}">
+            th:class="'guestbook guestbook-' + ${stat.index}" th:data-id="${g.id}">
             <h1 class="d-none">방명록</h1>
             <div class="book">
                 <div class="pearl">
@@ -30,7 +31,6 @@
                 </div>
             </div>
             <p class="guestbook-close">x</p>
-            </div>
         </section>
 
         <!-- 뒤에 배경 어둡게 하기 -->

@@ -34,8 +34,10 @@ public class GuestbookServiceImp implements GuestbookService{
     public void updateGuestbook(Guestbook guestbook) {
     }
 
+    // 삭제 기능
     @Override
-    public void deleteGuestbook(Guestbook guestbook) {
+    public void deleteGuestbook(int id) {
+        repository.delete(id);
     }
 
     

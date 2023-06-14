@@ -4,11 +4,14 @@
 
 <mapper namespace="com.pearling.web.repository.GuestbookRepository">
    <select id="findAll" resultType="com.pearling.web.entity.Guestbook">
-      select *
-      from guestbook
+      select * from guestbook order by regdate desc
    </select>
    <select id="count" resultType="int">
       select count(id)
       from guestbook
    </select>
+   <delete id="delete" parameterType="int">
+      delete from guestbook
+      where id = #{id}
+   </delete>
 </mapper>

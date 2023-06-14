@@ -13,7 +13,7 @@ public interface GuestbookRepository {
     // List<Guestbook> findById(int id);
     int save(Guestbook guestbook);
     int update(Guestbook guestbook);
-    int delete(Guestbook guestbook);
+    int delete(int id);
 
     int count();
 }

@@ -12,9 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Guestbook {
-    private int id;
+    private Integer id;
     private String content;
     private Date regdate;
-    private int userId;
+    private Integer fromId;
     private String imageUrl; // 이미지 URL 속성 추가
+    private Integer toId;
 }

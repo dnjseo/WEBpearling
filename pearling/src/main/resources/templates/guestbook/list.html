@@ -13,7 +13,8 @@
     <main layout:fragment="content" id="wrap" class="wrap guestbook">
         <ul class="clam" id="clam-list">
             <li th:each="g, stat : ${list}" th:data-index="${stat.index}">
-                <img th:src="${g.imageUrl}" alt="Clam Image" />
+                <img th:src="${g.imageUrl}" alt="Clam Image" 
+                data-aos="zoom-in" data-aos-duration="1500"/>
             </li>
         </ul>
 

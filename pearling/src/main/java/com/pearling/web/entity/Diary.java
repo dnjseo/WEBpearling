@@ -10,11 +10,11 @@ import lombok.Data;
 public class Diary {
     private Integer id;
     private Date date;
+    private String title;
     private String content;
     private String image;
     private Date regdate;
     private Integer view;
     private Integer userID;
     private Integer diaryScopeId;
-    private String title;
 }

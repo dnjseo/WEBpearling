@@ -8,6 +8,9 @@
 	<select id="findByEmail" resultType="Member">
 		select * from member where email=#{email}
 	</select>
+	<select id="findByUsername" resultType="Member">
+		select * from member where email=#{email}
+	</select>
 	<select id="findAll" resultType="Member">
 		select *
 		from member

@@ -48,6 +48,12 @@ public class MemberServiceImp implements MemberService{
         return repository.findAll(query);
     }
 
+    @Override
+    public Member getByUsername(String username) {
+        
+        return repository.findByUsername(username);
+    }
+
    
 
 

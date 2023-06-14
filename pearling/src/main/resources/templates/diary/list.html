@@ -20,7 +20,7 @@
 
             <!----------------------- 달력 --------------------->
             <section id=d2>
-                <div id='calendar'></div>
+                <div id='calendarDiary'></div>
             </section>
             <!----------------------- 달력 --------------------->
 
@@ -34,6 +34,7 @@
                                 <div class="diary-date">
                                     <span th:text="${#dates.format(d.regdate, 'd')}"></span>
                                     <span th:text="${#dates.format(d.regdate, 'MMM')}"></span>
+                                    
                                 </div>
                                 <div class="diary-content">
                                     <span th:text="${d.title}">title</span>

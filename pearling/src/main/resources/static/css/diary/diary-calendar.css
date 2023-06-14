@@ -1,5 +1,5 @@
 /* ==============(ms3) 캘린더 섹션 ===================== */
-#ms3{
+j.d2{
     flex: none;
     order: 3;
     flex-grow: 0;
@@ -7,7 +7,7 @@
     width: 90%
 }
 
-#calendar {
+#calendarDiary {
     width: 85%;
     height: 100%;
     max-width: 1200px;

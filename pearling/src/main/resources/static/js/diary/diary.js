@@ -20,12 +20,16 @@
 
 //달력 
 document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
+
+    let calendarEl = document.getElementById('calendarDiary');
+    let diaryCalendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
       
     });
     
-    calendar.render();
-    calendar.setOption('contentHeight', 150);        
+    diaryCalendar.render();
+    diaryCalendar.setOption('contentHeight', 350);        
     });
+
+
+

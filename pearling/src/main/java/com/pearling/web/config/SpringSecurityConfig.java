@@ -41,8 +41,8 @@ public class SpringSecurityConfig {
 							.loginProcessingUrl("/login")
                                                         .defaultSuccessUrl("/shell/ourshell")
                                 )
-                                // .logout(logout->logout.logoutUrl("/logout")
-                                // )                       
+                                .logout(logout->logout.logoutUrl("/logout")
+                                )                       
                                 ;
 		
 		return http.build();

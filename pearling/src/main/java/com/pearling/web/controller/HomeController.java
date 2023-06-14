@@ -1,5 +1,7 @@
 package com.pearling.web.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,17 +16,12 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class HomeController extends BaseController {
-
-	@Autowired
-	MemberService userService;
-
 	// public boolean headerShow() {
 	// 	return true;
 	// }
 	
-	@RequestMapping("/")
-	public String index(
-		Model model){
+	//@RequestMapping("/")
+	public String index(Model model){
 
 		model.addAttribute("headerShow", false);
 		return "index";

@@ -10,5 +10,6 @@ public interface GuestbookService {
     Guestbook findById(int id);
     void addGuestbook(Guestbook guestbook);
     void updateGuestbook(Guestbook guestbook);
-    void deleteGuestbook(Guestbook guestbook);
+    // 삭제 기능
+    void deleteGuestbook(int id);
 }

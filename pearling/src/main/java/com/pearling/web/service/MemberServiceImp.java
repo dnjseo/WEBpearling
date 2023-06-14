@@ -16,7 +16,9 @@ public class MemberServiceImp implements MemberService{
 
     @Override
     public List<Member> getList() {
-        return null;
+        List<Member> list = repository.findAll();
+
+        return list;
     }
 
     @Override

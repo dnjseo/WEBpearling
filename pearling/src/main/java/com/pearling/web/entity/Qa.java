@@ -8,13 +8,13 @@ import lombok.Data;
 @Data
 @Builder
 public class Qa {
-    private int id;
+    private Integer id;
     private String title;
     private String content;
     private Date regdate;
     private String answer;
-    private int userId;
-    private int qaCategoryId;
-    private int newId;
+    private Integer userId;
+    private Integer qaCategoryId;
+    private Integer newId;
     private String qaCategoryName;
 }

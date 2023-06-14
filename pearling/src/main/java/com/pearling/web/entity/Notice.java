@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 @Builder
 public class Notice {
-    private int id;
+    private Integer id;
     private String title;
     private String content;
     private Date regdate;

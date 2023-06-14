@@ -43,8 +43,9 @@ public class GuestbookController extends BaseController {
                guestbook.getId(),
                guestbook.getContent(),
                guestbook.getRegdate(),
-               guestbook.getUserId(),
-               imageUrls.get(random.nextInt(imageUrls.size())) // 이미지 URL 인덱스 수정
+               guestbook.getFromId(),
+               imageUrls.get(random.nextInt(imageUrls.size())), // 이미지 URL 인덱스 수정
+               guestbook.getToId()
          ));
       }
 

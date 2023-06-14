@@ -1,6 +1,5 @@
 /* ==============(ms3) 캘린더 섹션 ===================== */
 #ms3{
-      
     flex: none;
     order: 3;
     flex-grow: 0;
@@ -9,8 +8,10 @@
 }
 
 #calendar {
+    width: 85%;
+    height: 100%;
     max-width: 1200px;
-    min-height: 300px;
+    max-height: 500px;
     margin: 0 auto;
   }
 

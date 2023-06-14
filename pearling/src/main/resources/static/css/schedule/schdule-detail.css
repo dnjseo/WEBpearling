@@ -1,5 +1,11 @@
 @import url(/css/system/delete-modal.css);
 
+#d1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .schdule-add-title {
     display: flex;
     flex-direction: row;
@@ -17,6 +23,18 @@
     border-radius: 20px;
 
     font-weight: bold;
+}
+
+.schdule-add-title > .schedule-add-title-input {
+    font-family: 'Pretendard-Regular';
+    font-size: 14px;
+    font-weight: bold;
+    color: #797979;
+    border: none;
+}
+
+.schedule-add-date-title {
+    width: 90%;
 }
 
 .schedule-add-date {
@@ -37,11 +55,6 @@
     background: #FFFFFF;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
     border-radius: 14px;
-}
-
-.schedule-add-date> div > :nth-child(1) {
-    margin-left: 20px;
-    margin-right: 10px;
 }
 
 .schedule-add-location {
@@ -101,8 +114,8 @@
     transform: rotate(0.28deg);
 }
 
-.schedule-add-color-wrap {
-    display: flex;
+/* .schedule-add-color-wrap { */
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
@@ -110,12 +123,12 @@
     margin-bottom: 20px;
     gap: 15px;
 
-    height: 130px;
+    height: 130px; */
 
     /* background: #FFFFFF;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
     border-radius: 14px; */
-}
+/* } */
 
 /* ----<색상 팔레트>------------------------------------------------------- */
 
@@ -150,10 +163,12 @@
 .category-wrap {
     display: flex;
     flex-direction: column;
+
+    width: 90%;
 }
 
 .category-wrap > span {
-    padding: 5px 20px;
+    padding-top: 20px;
 }
 
 .category-wrap > .col-box {

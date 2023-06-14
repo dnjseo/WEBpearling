@@ -5,7 +5,7 @@
 <head>
     <link href="/css/schedule/schdule-detail.css" type="text/css" rel="stylesheet">
     <script src="/js/schedule/schedule-add.js"></script>
-    <script src="/js/system/confirm-modal.js"></script>
+    <!-- <script src="/js/system/confirm-modal.js"></script> -->
     <script src="/js/schedule/schedule-delete-modal.js"></script>
     <script src="/js/schedule/schedule-add-category.js"></script>
     <title>schedule-detail</title>
@@ -21,11 +21,11 @@
             <!-- 일정 제목 ------------------------------------------------------------------------------------------------------------------ -->
 
             <div class="schdule-add-title">
-                <span th:text="${s.title}">🎬가비지타임</span>
+                <input class="schedule-add-title-input" type="text" th:value="${s.title}">
             </div>
             <!-- 날짜 선택 ------------------------------------------------------------------------------------------------------------------ -->
 
-            <span>일정일</span>
+            <span class="schedule-add-date-title">일정일</span>
             <div class="schedule-add-date">
                 <div class="start-date">
                     <sapn>시작일: </sapn>
@@ -76,6 +76,11 @@
                     <div class="col-ball"></div>
                     <div class="col-ball"></div>
                 </div>
+            </div>
+
+            <div class="schedule-btns">
+                <button class=".del-btn">삭제</button>
+                <button class=".add-btn">등록</button>
             </div>
 
         </section>

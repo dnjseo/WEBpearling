@@ -24,11 +24,18 @@
             </section>
             <!----------------------- 달력 --------------------->
 
+            <div class="d-month-title">
+                <p>🫧<span></span>6월의 pearling</p>
+            </div>
+
+
             <!----------------------- 다이어리 내용 --------------------->
 
             <div class="diary-list">
                 <form>
-                    <ul th:each="d : ${list}">
+                    <ul th:each="d : ${list}" data-aos="flip-down"
+                        data-aos-duration="2000"
+                    >
                         <li>
                             <a href="post?s=2" th:href="@{../diary/post(id=${d.id})}">
                                 <div class="diary-date">

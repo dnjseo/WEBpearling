@@ -5,7 +5,7 @@
 <head>
     <link href="/css/schedule/schdule-detail.css" type="text/css" rel="stylesheet">
     <script src="/js/schedule/schedule-add.js"></script>
-    <!-- <script src="/js/system/confirm-modal.js"></script> -->
+    <script src="/js/system/confirm-modal.js"></script>
     <script src="/js/schedule/schedule-delete-modal.js"></script>
     <script src="/js/schedule/schedule-add-category.js"></script>
     <title>schedule-detail</title>
@@ -13,15 +13,15 @@
 
 <body>
 
-    <main layout:fragment="content" class="wrap">
+    <main layout:fragment="content" class="wrap" id="wrap">
         <h1 class="d-none">일정 상세확인창</h1>
-        <section id="d1" th:each="s : ${list}">
+        <section id="d1">
             <h1 class="d-none">상세내용</h1>
 
             <!-- 일정 제목 ------------------------------------------------------------------------------------------------------------------ -->
 
             <div class="schdule-add-title">
-                <input class="schedule-add-title-input" type="text" th:value="${s.title}">
+                <input class="schedule-add-title-input" type="text" th:value="${schedule.title}">
             </div>
             <!-- 날짜 선택 ------------------------------------------------------------------------------------------------------------------ -->
 
@@ -29,17 +29,20 @@
             <div class="schedule-add-date">
                 <div class="start-date">
                     <sapn>시작일: </sapn>
-                    <span th:text="${#dates.format(s.startDate, 'yyyy-MM-dd')}">2023-05-17 17:00</span>
+                    <input type="date" th:value="${#dates.format(schedule.startDate, 'yyyy-MM-dd')}">
+                    <input type="time">
                 </div>
                 <div class="end-date">
                     <sapn>종료일: </sapn>
-                    <span th:text="${#dates.format(s.endDate, 'yyyy-MM-dd')}">2023-05-17 20:00</span>
+                    <input type="date" th:value="${#dates.format(schedule.endDate, 'yyyy-MM-dd')}">
+                    <input type="time">
                 </div>
             </div>
 
             <!-- 장소 선택 ------------------------------------------ -->
             <div class="schedule-add-location">
                 <span>장소</span>
+                <input type="text" th:value="${schedule.location}">
             </div>
 
             <!-- 친구 태그 선택 ------------------------------------------ -->
@@ -78,9 +81,9 @@
                 </div>
             </div>
 
-            <div class="schedule-btns">
-                <button class=".del-btn">삭제</button>
-                <button class=".add-btn">등록</button>
+            <div class="schedule-summit-btns">
+                <button type="submit" class="del-btn">삭제</button>
+                <button type="submit" class="add-btn">등록</button>
             </div>
 
         </section>
@@ -99,6 +102,18 @@
         </div>
 
         <!-- 삭제 모달창 ------------------------------->
+
+        <!-- alert창 ------------------------------->
+
+        <div id="confirm-modal" class="modal">
+            <div class="modal-content">
+                <p>🫧 Message</p>
+                <p>일정 등록이 완료되었습니다.</p>
+                <button class="confirm-yes">확인</button>
+            </div>
+        </div>
+
+        <!-- alert창 ------------------------------->
 
     </main>
 

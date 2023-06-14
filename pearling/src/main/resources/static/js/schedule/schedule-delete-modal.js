@@ -1,7 +1,7 @@
 window.addEventListener("load", function () {
     let wrap = document.getElementById("wrap")
-    let btns = wrap.querySelector(".schedule-btns");
-    let delBtn = btns[0].querySelector(".del-btn");
+    // let btns = wrap.querySelector(".schedule-btns");
+    let delBtn = wrap.querySelector(".del-btn");
 
     let deleteModal = document.getElementById("delete-modal");
     let confirmYes = deleteModal.querySelector(".del-confirm-yes");

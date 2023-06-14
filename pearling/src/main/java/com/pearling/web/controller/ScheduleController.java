@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pearling.web.entity.Schedule;
 import com.pearling.web.service.ScheduleService;
@@ -20,7 +21,9 @@ public class ScheduleController extends BaseController {
 
 
 	@GetMapping("detail")
-	public String detail(Model model) {
+	public String detail(
+		@RequestParam(name = "id", required = false) Integer id,
+		Model model) {
 
 		String pageTitle = getPageTitle();
 		pageTitle = "";
@@ -29,7 +32,10 @@ public class ScheduleController extends BaseController {
 		model.addAttribute("headerShow", false);
 		
 		List<Schedule> list = service.getList();
+		Schedule schedule = service.findById(id);
+
 		model.addAttribute("list", list);
+		model.addAttribute("schedule", schedule);
 		
 		return "schedule/detail";
 	}

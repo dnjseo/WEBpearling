@@ -30,7 +30,7 @@ public class ScheduleServiceImp implements ScheduleService {
 
     @Override
     public Schedule findById(int id) {
-        return null;
+        return repository.findById(id);
     }
 
     @Override

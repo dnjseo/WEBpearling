@@ -9,4 +9,13 @@
       left join friend_tag 
       on schedule.id = friend_tag.schedule_id
    </select>
+   	<select id="findById" resultType="com.pearling.web.entity.Schedule" parameterType="Integer">
+		select *
+		from schedule
+		<trim prefix="where" prefixOverrides="AND|OR"> 
+			<if test="id != null">
+			id = #{id}
+			</if>
+		</trim>
+	</select>
 </mapper>

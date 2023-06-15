@@ -198,13 +198,29 @@ button.submit-btn {
     flex-grow: 0;
 }
 
+.non-result{
+    display: flex;
+    flex-direction: row;
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    font-size: 10pt;
+    font-weight: 620;
+    text-align: center;
+}
+
+.non-result p:first-child{
+    color: rgba(165, 135, 224, 1) !important;
+}
+
 .account-list{
     padding-left: 20%;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: start;
     padding: 10px;
     gap: 30px;
     width: 90%;
@@ -247,9 +263,9 @@ button.submit-btn {
     justify-content: space-around;
     place-items: center;
 
-    background: #FFFFFF;
+    /* background: #FFFFFF;
 
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25); */
     border-radius: 15px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -321,6 +337,22 @@ button.submit-btn {
 
 .todo-content > input{
     margin-right: 5px;
+}
+
+.non-result1{
+    display: flex;
+    flex-direction: row;
+
+    margin-top: 30px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    font-size: 10pt;
+    font-weight: 620;
+    text-align: center;
+}
+
+.non-result1 p:first-child{
+    color: rgba(165, 135, 224, 1) !important;
 }
 
 .schedule-box{

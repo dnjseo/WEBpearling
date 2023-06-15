@@ -26,9 +26,13 @@
                 <section class="account-list">
                     <h3 class="d-none">검색 결과</h3>
                     <div>
-                        <div class="account-box" th:each="m : ${memList}">
+                        <div th:each="m : ${memList}" th:if="${searchResultsFlag}" class="account-box">
                             <img src="/images/profile/profile_yj.png" th:src="@{/images/profile/{img}(img=${m.profileImage})}">
                             <p class="account-name" th:text="${m.nickname}">연주의 점심</p>
+                        </div>
+                        <div th:unless="${searchResultsFlag}" class="non-result">
+                            <p th:text="${searchResults}"></p>
+                            <p> 에 대한 검색 결과가 없음</p>
                         </div>
                     </div>
                 </section>
@@ -36,31 +40,38 @@
             <div class="d-none myshell">
                 <div class="myshell-list">
                     <h3 class="d-none">검색 결과</h3>
-                    <div class="todo-box">
+                    <div class="todo-box" th:each="t : ${tdList}">
                         <div class="todo-list"></div>
                         <div class="lists">
-                            <div class="todo-statement">
-                                <img src="/images/profile/profile_yj.png">
-                                <p>연주</p>
-                                <p>18시간 전</p>
+                            <div th:if="${searchResultsFlag2}">
+                                <div class="todo-statement">
+                                    <img src="/images/profile/profile_yj.png">
+                                    <p><span sec:authentication="principal.nickname"></span></p>
+                                    <p>18시간 전</p>
+                                </div>
+                                <div class="todo-content" th:if="${t.userId == #authentication.principal.id}">
+                                    <input type="checkbox">
+                                    <p th:text="${t.content}">점심 : 이수역 애플하우스</p>
+                                </div>
                             </div>
-                            <div class="todo-content">
-                                <input type="checkbox">
-                                <p>점심 : 이수역 애플하우스</p>
+                            <div th:if="${t.userId == #authentication.principal.id}">
+                               <div th:unless="${t.content != searchResultsFlag2}" class="non-result1">
+                                    <p th:text="${searchResults}"></p>
+                                    <p> 에 대한 검색 결과가 없음</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="schedule-box">
+                    <div class="schedule-box" th:each="s : ${scList}">
                         <div class="schedule-list"></div>
                         <div class="lists">
                             <div class="schedule-statement">
                                 <img src="/images/profile/profile_yj.png">
-                                <p>연주</p>
+                                <p><span sec:authentication="principal.nickname"></span></p>
                                 <p>10분 전</p>
                             </div>
-                            <div class="schedule-content">
-                                <p>🎥 영화 제목 어쩌고저쩌고</p><br>
-                                <p>🍴홍대 하이디라오(점심)</p>
+                            <div class="schedule-content" th:if="${s.userId == #authentication.principal.id}">
+                                <p th:text="${s.title}">🎥 영화 제목 어쩌고저쩌고</p><br>
                             </div>
                         </div>
                     </div>

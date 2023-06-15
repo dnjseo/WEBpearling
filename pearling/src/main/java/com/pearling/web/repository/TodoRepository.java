@@ -9,9 +9,11 @@ import com.pearling.web.entity.Todo;
 @Mapper
 public interface TodoRepository {
     List<Todo> findAll();
+    List<Todo> findAll(String query);
 
     Todo findById(int id);
     int save(Todo todo);
     int update(Todo todo);
     int delete(Todo todo);
+
 }

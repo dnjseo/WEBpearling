@@ -44,5 +44,10 @@ public class ScheduleServiceImp implements ScheduleService {
     @Override
     public void deleteSchedule(Schedule schedule) {
     }
+
+    @Override
+    public List<Schedule> getListByQuery(String query) {
+        return repository.findAllSch(query);
+    }
     
 }

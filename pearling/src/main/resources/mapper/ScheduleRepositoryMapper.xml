@@ -18,4 +18,13 @@
 			</if>
 		</trim>
 	</select>
+	<select id="findAllSch" resultType="Schedule">
+		select *
+		from schedule
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="query != null">
+				title like '%${query}%'
+			</if>			
+		</trim>
+	</select>
 </mapper>

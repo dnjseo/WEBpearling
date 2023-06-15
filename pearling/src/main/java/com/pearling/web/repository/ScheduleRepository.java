@@ -9,9 +9,11 @@ import com.pearling.web.entity.Schedule;
 @Mapper
 public interface ScheduleRepository {
     List<Schedule> findAll();
+    List<Schedule> findAllSch(String query);
 
     Schedule findById(int id);
     int save(Schedule schedule);
     int update(Schedule schedule);
     int delete(Schedule schedule);
+
 }

@@ -38,5 +38,10 @@ public class TodoServiceImp implements TodoService{
     public void deleteTodo(Todo todo) {
     }
 
+    @Override
+    public List<Todo> getListByQuery(String query) {
+       return repository.findAll(query);
+    }
+
     
 }

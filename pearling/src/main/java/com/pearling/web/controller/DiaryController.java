@@ -106,7 +106,31 @@ public class DiaryController extends BaseController {
 				service.deleteDiary(diary);
 			}
 		}
-	
+
+		return "redirect:list";
+	}
+
+	@PostMapping("update")
+	public String update(
+			@RequestParam(name = "id", required = false) Integer id,
+			@RequestParam(name = "date", required = false) LocalDate date,
+			@RequestParam(name = "title", required = false) String title,
+			@RequestParam(name = "content", required = false) String content,
+			@RequestParam(name = "diaryScopeId", required = false) Integer diaryScopeId,
+			Model model, MyUserDetails user) {
+
+		Diary diary = Diary.builder()
+				.date(date)
+				.title(title)
+				.content(content)
+				.diaryScopeId(diaryScopeId)
+				.build();
+
+		if (id != null) {
+			diary.setId(id);
+			service.updateDiary(diary);
+		}
+
 		return "redirect:list";
 	}
 }

@@ -31,7 +31,10 @@ document.addEventListener('DOMContentLoaded', function() {
     diaryCalendar.setOption('contentHeight', 350);        
     });
 
-
+function setFormAction(action) {
+  let form = document.getElementById("formId");
+  form.action = action;
+}
 
 
 

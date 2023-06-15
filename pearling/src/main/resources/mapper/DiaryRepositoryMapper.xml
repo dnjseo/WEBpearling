@@ -21,6 +21,17 @@
 		diary(date, title, content, view, member_id, diary_scope_id) 
 		values(#{date},#{title},#{content},#{view},#{memberId},#{diaryScopeId}) 
 	</insert>
+	<update id="update">
+	UPDATE diary
+	<set>
+		<if test="date != null">date = #{date},</if>
+		<if test="title != null">title = #{title},</if>
+		<if test="content != null">content = #{content},</if>
+		<if test="diaryScopeId != null">diary_scope_id = #{diaryScopeId},</if>
+	</set>
+	WHERE id = #{id}
+	<!-- <if test="id == null">AND id IS NULL</if> -->
+	</update>
 	<delete id="delete">
 		delete from diary where id=#{id}
 	</delete>

@@ -40,6 +40,8 @@ public class DiaryServiceImp implements DiaryService {
 
     @Override
     public void updateDiary(Diary diary) {
+
+        repository.update(diary);
     }
 
     @Override

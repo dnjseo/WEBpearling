@@ -14,6 +14,7 @@ public class MyUserDetails implements UserDetails{
 	private String name;
 	private String password;
 	private String nickname;
+	private String profileImage;
 	private List<GrantedAuthority> authorities;
 	
 	// 아이디 getter setter
@@ -62,6 +63,15 @@ public class MyUserDetails implements UserDetails{
 		this.nickname = nickname;
 	}
 
+	// 이미지 getter setter
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
+
 	// 권한 getter setter
 	public void setAuthorities(List<GrantedAuthority> authorities) {
 		this.authorities = authorities;
@@ -101,5 +111,6 @@ public class MyUserDetails implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
+
     
 }

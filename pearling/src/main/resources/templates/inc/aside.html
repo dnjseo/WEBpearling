@@ -13,7 +13,7 @@
 
             <div class="profile">
                 <div class="profile-setting">
-                    <p class="p-img"><img src="/images/header/profile.png" alt="프로필" /></p>
+                    <p class="p-img"><img src="/images/header/profile.png" th:src="@{'/images/profile/' + ${#authentication.principal.profileImage}}" alt="프로필" /></p>
                     <div class="names">
                         <p class="nickname"><span sec:authentication="principal.nickname"></span></p>
                         <p class="name"><span sec:authentication="principal.name"></span>님</p>

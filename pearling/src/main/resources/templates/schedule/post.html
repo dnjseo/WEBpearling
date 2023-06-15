@@ -7,6 +7,8 @@
     <script src="/js/schedule/schedule-add.js"></script>
     <script src="/js/system/confirm-modal.js"></script>
     <script src="/js/schedule/schedule-add-category.js"></script>
+    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=e8b4720d8d04d4b49b4db3390eb3547b"></script>
+    <script src="/js/schedule/map.js"></script>
     <title>schedule-add</title>
 </head>
 
@@ -42,8 +44,11 @@
 
             <!-- 장소 선택 ------------------------------------------ -->
             <div class="schedule-add-location">
-                <label for="location-add">장소 추가</label>
-                <button>카카오맵 추가</button>
+                <div>
+                    <label for="location-add">장소 추가</label>
+                    <button id>카카오맵 추가</button>
+                </div>
+                <div id="kakaoMap"></div>
             </div>
 
             <!-- 친구 태그 선택 ------------------------------------------ -->

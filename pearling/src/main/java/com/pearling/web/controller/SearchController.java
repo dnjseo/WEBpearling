@@ -37,47 +37,28 @@ public class SearchController extends BaseController {
         model.addAttribute("headerShow", true);
        
         List<Member> memList = null;
+        List<Todo> tdList = null;
+        List<Schedule> scList = null;
         String searchResults = "";
-        boolean searchResultsFlag = false;
+
 
         if (query == null) {
             memList = memberService.getList();
-        } else {
-            memList = memberService.getListByQuery(query);
-            searchResultsFlag = !memList.isEmpty();
-            searchResults = query;
-        }
-
-        model.addAttribute("memList", memList);
-        model.addAttribute("searchResultsFlag", searchResultsFlag);
-        model.addAttribute("searchResults", searchResults);
-
-        List<Todo> tdList = null;
-        boolean searchResultsFlag2 = false;
-        if (query == null) {
             tdList = todoService.getList();
-        } else {
-            tdList = todoService.getListByQuery(query);
-            searchResultsFlag2 = !tdList.isEmpty();
-            searchResults = query;
-        }
-
-        model.addAttribute("tdList", tdList);
-        model.addAttribute("searchResultsFlag2", searchResultsFlag2);
-        model.addAttribute("searchResults", searchResults);
-
-        List<Schedule> scList = null;
-        boolean searchResultsFlag3 = false;
-        if (query == null) {
             scList = scheduleService.getList();
         } else {
+            memList = memberService.getListByQuery(query);
+            tdList = todoService.getListByQuery(query);
             scList = scheduleService.getListByQuery(query);
-            searchResultsFlag3 = !scList.isEmpty();
+            
             searchResults = query;
         }
         
+
+        model.addAttribute("memList", memList);
+        model.addAttribute("tdList", tdList);
         model.addAttribute("scList", scList);
-        model.addAttribute("searchResultsFlag3", searchResultsFlag3);
+        model.addAttribute("searchResults", searchResults);
 
         return "search/list";
         

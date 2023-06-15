@@ -6,7 +6,8 @@ window.addEventListener("load", function () {
     let confirmYes = deleteModal.querySelector(".del-confirm-yes");
     let confirmNo = deleteModal.querySelector(".del-confirm-no");
 
-    delBtn.addEventListener("click", function () {
+    delBtn.addEventListener("click", function (e) {
+        e.preventDefault();
         deleteModal.style.display = "block";
     });
 

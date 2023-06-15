@@ -1,5 +1,6 @@
 package com.pearling.web.controller;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class DiaryController extends BaseController {
 			model.addAttribute("editShow", 2);
 
 		List<Diary> list = service.getList();
-		
+
 		Diary diary = service.findById(id);
 
 		model.addAttribute("list", list);
@@ -67,30 +68,45 @@ public class DiaryController extends BaseController {
 
 	@PostMapping("post")
 	public String post(
-		@RequestParam(name="title", required = false) String title,
-		@RequestParam(name="view", required = false) Integer view,
-		@RequestParam(name="content", required = false) String content,
-		@RequestParam(name="memberId", required = false) Integer memberId,
-		@RequestParam(name="diaryScopeId", required = false) Integer diaryScopeId,
-		Model model, MyUserDetails user) {
+			@RequestParam(name = "date", required = false) LocalDate date,
+			@RequestParam(name = "title", required = false) String title,
+			@RequestParam(name = "view", required = false) Integer view,
+			@RequestParam(name = "content", required = false) String content,
+			@RequestParam(name = "memberId", required = false) Integer memberId,
+			@RequestParam(name = "diaryScopeId", required = false) Integer diaryScopeId,
+			Model model, MyUserDetails user) {
 
-			System.out.println("여러분 userId는 이것입니다! ::::: " + user.getId());
+		System.out.println("여러분 userId는 이것입니다! ::::: " + user.getId());
 
-		
+		user.getId();
 		Diary diary = Diary.builder()
-			.title(title)
-			.view(0)
-			.content(content)
-			.memberId(4)
-			.diaryScopeId(1)
-			.build();
+				.date(date)
+				.title(title)
+				.view(0)
+				.content(content)
+				.memberId(4)
+				.diaryScopeId(diaryScopeId)
+				.build();
 
-			service.addDiary(diary);
+		service.addDiary(diary);
 
-			System.out.println("diary 확인 : " + diary);
+		System.out.println("diary 확인 : " + diary);
 
-		
 		return "redirect:list";
+	}
 
+	@PostMapping("delete")
+	public String post(
+			@RequestParam(name = "id", required = false) Integer id,
+			Model model) {
+
+		if (id != null) {
+			Diary diary = service.findById(id);
+			if (diary != null) {
+				service.deleteDiary(diary);
+			}
+		}
+	
+		return "redirect:list";
 	}
 }

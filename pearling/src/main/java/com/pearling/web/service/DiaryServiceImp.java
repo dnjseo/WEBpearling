@@ -44,6 +44,8 @@ public class DiaryServiceImp implements DiaryService {
 
     @Override
     public void deleteDiary(Diary diary) {
+        
+        repository.delete(diary);
     }
 
 }

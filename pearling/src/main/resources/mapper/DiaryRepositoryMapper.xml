@@ -18,8 +18,11 @@
 	</select>
 	<insert id="save">
 		insert into 
-		diary(title, content, view, member_id, diary_scope_id) 
-		values(#{title},#{content},#{view},#{memberId},#{diaryScopeId}) 
+		diary(date, title, content, view, member_id, diary_scope_id) 
+		values(#{date},#{title},#{content},#{view},#{memberId},#{diaryScopeId}) 
 	</insert>
+	<delete id="delete">
+		delete from diary where id=#{id}
+	</delete>
    
 </mapper>

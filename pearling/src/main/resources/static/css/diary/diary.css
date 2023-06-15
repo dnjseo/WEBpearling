@@ -78,8 +78,15 @@
     justify-content: flex-start;
     align-items: flex-start;
     gap: 16px;
+    overflow: hidden;
 
     width: 60%;
+}
+
+.diary-content > span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .diary-content>span:nth-child(1) {

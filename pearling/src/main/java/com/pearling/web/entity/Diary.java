@@ -1,5 +1,6 @@
 package com.pearling.web.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import lombok.Builder;
@@ -9,7 +10,7 @@ import lombok.Data;
 @Builder
 public class Diary {
     private Integer id;
-    private Date date;
+    private LocalDate date;
     private String title;
     private String content;
     private String image;

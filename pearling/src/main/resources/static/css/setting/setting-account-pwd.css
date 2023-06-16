@@ -1,7 +1,6 @@
 #d1{
     display: flex;
     flex-direction: column;
-    width: 100%;
 }
 
 .img-box {
@@ -18,15 +17,16 @@
 }
 
 .pwd-change-box {
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 100%;
+    align-items: center;
 }
 .pwd1-box, .pwd2-box, .pwd3-box{
     display: flex;
     flex-direction: column;
+    width: 80%;
 }
 
 .pwd-change-box>div>input {
@@ -36,7 +36,7 @@
     height: 37px;
 
     background: rgba(255, 255, 255, 0.7);
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25), inset 0px 1px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25), inset 0px 1px 2px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
     border: none;
 
@@ -44,18 +44,15 @@
 }
 
 .add-btn-box {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    position: relative;;
+    width: 80%;
     margin-top: 35px;
-    margin-right: 20px;
+    align-self: center;
 }
 
 .add-btn {
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    border: none;
-
+    position: absolute;
+    right: 0%;
     width: 85px;
     height: 30px;
 
@@ -64,6 +61,7 @@
     background: rgba(255, 255, 255, 0.7);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05), inset 0px 3px 5px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
+    border: none;
 }
 
 .add-btn:active {

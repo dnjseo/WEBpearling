@@ -19,12 +19,13 @@ import com.pearling.web.service.DiaryService;
 @Controller
 @RequestMapping("diary")
 public class DiaryController extends BaseController {
+
 	@Autowired
 	private DiaryService service;
 
 	@GetMapping("list")
 	public String list(
-			@RequestParam(name = "s", required = false) boolean editShow,
+			// @RequestParam(name = "s", required = false) boolean editShow,
 			Model model) {
 
 		// if (editShow)
@@ -39,8 +40,8 @@ public class DiaryController extends BaseController {
 		return "diary/list";
 	}
 
-	@GetMapping("post")
-	public String post(
+	@GetMapping("detail")
+	public String detail(
 			@RequestParam(name = "s", required = false) boolean editShow,
 			@RequestParam(name = "id", required = false) Integer id,
 			Model model) {
@@ -96,7 +97,7 @@ public class DiaryController extends BaseController {
 	}
 
 	@PostMapping("delete")
-	public String post(
+	public String delelte(
 			@RequestParam(name = "id", required = false) Integer id,
 			Model model) {
 

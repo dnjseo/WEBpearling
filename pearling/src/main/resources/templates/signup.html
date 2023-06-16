@@ -7,8 +7,6 @@
     <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/system/signup.css" type="text/css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/js/system/confirm-modal.js"></script>
-    <script src="/js/system/sighup-confirm-modal.js"></script>
     <script src="/js/system/email.js"></script>
     <title>sign-up</title>
 </head>
@@ -24,30 +22,36 @@
         <form method="post">
             <section id="d1">
                 <div class="email-box">
-                    <label for="email" id="mailTxt">이메일을 입력해주세요</label>
-                    <input type="text" class="form-control text" id="memail">
+                    <label for="email" id="mailTxt">이메일</label>
+                    <input type="text" class="form-control text" id="memail" placeholder="아이디를 입력하세요">
+                    <span>@</span>
+                    <select class="form-control" id="memail-domain">
+                        <option value="">메일 선택</option>
+                        <option value="naver.com">naver.com</option>
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="kakao.com">kakao.com</option>
+                    </select>
                     <button type="button" class="add-btn defence" id="checkEmail">전송</button>
                 </div>
-                <!-- <span>이메일 인증번호</span> -->
                 <div class="check-num-box">
-                    <label for="memailconfirm" id="memailconfirmTxt">인증번호를 입력해주세요</label>
-                    <input type="text" class="form-control text" id="memailconfirm">
+                    <label for="memailconfirm" id="memailconfirmTxt">인증번호</label>
+                    <input type="text" class="form-control text" id="memailconfirm" placeholder="인증번호를 입력하세요">
                     <button type="button" class="add-btn defence">확인</button>
                 </div>
 
                 <div class="pwd-box">
                     <label for="pwd">비밀번호</label>
-                    <input type="text" id="pwd">
+                    <input type="text" id="pwd" placeholder="비밀번호를 입력하세요">
                 </div>
 
                 <div class="pwd-check-box">
                     <label for="pwd-check">비밀번호 확인</label>
-                    <input type="text" id="pwd-check">
+                    <input type="text" id="pwd-check" placeholder="비밀번호를 입력하세요">
                 </div>
 
                 <div class="name-box">
                     <label for="name">이름</label>
-                    <input type="text" id="name">
+                    <input type="text" id="name" placeholder="이름을 입력하세요">
                 </div>
 
                 <div class="birth-box">
@@ -57,7 +61,7 @@
 
                 <div class="nickname-box">
                     <label for="nickname">닉네임(중복 불가)</label>
-                    <input type="text" id="nickname">
+                    <input type="text" id="nickname" placeholder="닉네임을 입력하세요">
                 </div>
 
                 <div class="btns">
@@ -67,6 +71,14 @@
             </section>
         </form>
         <!-- alert창 ------------------------------->
+        <div id="send-modal" class="modal">
+            <div class="modal-content">
+                <p>🫧 Message</p>
+                <p>인증번호가 전송되었습니다.</p>
+                <button class="send-yes">확인</button>
+            </div>
+        </div>
+
         <div id="confirm-modal" class="modal">
             <div class="modal-content">
                 <p>🫧 Message</p>
@@ -79,7 +91,7 @@
             <div class="modal-content">
                 <p>🫧 Message</p>
                 <p>회원가입이 완료되었습니다.</p>
-                <button class="confirm-yes">확인</button>
+                <button class="signup-confirm-yes">확인</button>
             </div>
         </div>
         <!-- alert창 ------------------------------->

@@ -66,6 +66,14 @@
     color: #A587E0;
 }
 
+#d1>.email-box>input{
+    width: 180px;
+}
+
+#d1>.email-box>select{
+    height: 30px;
+}
+
 #d1>.pwd-box>input, #d1>.pwd-check-box>input, #d1>.name-box>input, #d1>.birth-box>input, #d1>.nickname-box>input{
     width: 380px;
 }

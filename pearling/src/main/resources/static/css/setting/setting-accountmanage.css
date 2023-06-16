@@ -19,7 +19,8 @@
 }
 
 .setting{
-    width: 90%;
+    justify-self: center;
+    margin-right: 390px;
 }
 
 .account-setting>ul {
@@ -38,7 +39,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    
+    width: 450px;
+    height: 45px;
 }
 
 .account-setting>ul>li>a {

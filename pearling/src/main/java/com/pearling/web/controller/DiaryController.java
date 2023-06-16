@@ -1,10 +1,11 @@
 package com.pearling.web.controller;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,19 +20,13 @@ import com.pearling.web.service.DiaryService;
 @Controller
 @RequestMapping("diary")
 public class DiaryController extends BaseController {
-
 	@Autowired
 	private DiaryService service;
 
 	@GetMapping("list")
 	public String list(
-			// @RequestParam(name = "s", required = false) boolean editShow,
+			@RequestParam(name = "s", required = false) boolean editShow,
 			Model model) {
-
-		// if (editShow)
-		// model.addAttribute("editShow", 1);
-		// else
-		// model.addAttribute("editShow", 2);
 
 		model.addAttribute("headerShow", true);
 		List<Diary> list = service.getList();
@@ -40,8 +35,8 @@ public class DiaryController extends BaseController {
 		return "diary/list";
 	}
 
-	@GetMapping("detail")
-	public String detail(
+	@GetMapping("post")
+	public String post(
 			@RequestParam(name = "s", required = false) boolean editShow,
 			@RequestParam(name = "id", required = false) Integer id,
 			Model model) {
@@ -75,17 +70,21 @@ public class DiaryController extends BaseController {
 			@RequestParam(name = "content", required = false) String content,
 			@RequestParam(name = "memberId", required = false) Integer memberId,
 			@RequestParam(name = "diaryScopeId", required = false) Integer diaryScopeId,
-			Model model, MyUserDetails user) {
+			Model model) {
+
+		// user.getId();
+
+		SecurityContext context = SecurityContextHolder.getContext();
+		MyUserDetails user = (MyUserDetails) context.getAuthentication().getPrincipal();
 
 		System.out.println("여러분 userId는 이것입니다! ::::: " + user.getId());
 
-		user.getId();
 		Diary diary = Diary.builder()
 				.date(date)
 				.title(title)
 				.view(0)
 				.content(content)
-				.memberId(4)
+				.memberId(user.getId())
 				.diaryScopeId(diaryScopeId)
 				.build();
 
@@ -97,7 +96,7 @@ public class DiaryController extends BaseController {
 	}
 
 	@PostMapping("delete")
-	public String delelte(
+	public String post(
 			@RequestParam(name = "id", required = false) Integer id,
 			Model model) {
 

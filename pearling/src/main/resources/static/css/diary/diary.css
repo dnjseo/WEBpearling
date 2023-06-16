@@ -1,6 +1,13 @@
 @import url("/css/diary/diary-calendar.css");
 
 @font-face {
+    font-family: 'TAEBAEKmilkyway';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/TAEBAEKmilkyway.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'ghanachoco';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ghanachoco.woff') format('woff');
     font-weight: normal;
@@ -166,6 +173,13 @@
 
 .add-btn > button > a {
     color: #797979;
+}
+
+.d-month-title {
+    font-family: 'TAEBAEKmilkyway';
+    padding-left: 25px;
+    margin-top: 10px;
+    font-weight: bold;
 }
 
 

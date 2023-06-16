@@ -28,11 +28,7 @@ public class DiaryController {
 
 	@GetMapping("list")
 	public List<Diary> list(
-        @RequestParam(name = "s", required = false) boolean editShow,
-        @RequestParam(name = "headerShow", required = false) String headerShow) {
-
-            boolean headerValue = Boolean.parseBoolean(headerShow); 
-            System.out.println("header 출력 테스트:" + headerValue);
+        @RequestParam(name = "s", required = false) boolean editShow) {
 
 		return service.getList();
 	}

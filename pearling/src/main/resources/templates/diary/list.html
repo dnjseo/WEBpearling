@@ -26,7 +26,7 @@
             <!----------------------- 달력 --------------------->
 
             <div class="d-month-title">
-                <p>🫧<span></span>6월의 pearling</p>
+                <p><span></span>6월의 이야기들</p>
             </div>
 
 
@@ -37,7 +37,7 @@
                     <ul th:each="d : ${list}" data-aos="flip-down"
                         data-aos-duration="2000">
                         <li>
-                            <a href="detail?s=2" th:href="@{../diary/detail(id=${d.id})}">
+                            <a href="post?s=2" th:href="@{../diary/post(id=${d.id})}">
                                 <div class="diary-date">
                                     <span th:text="${#dates.format(d.regdate, 'd')}"></span>
                                     <span th:text="${#dates.format(d.regdate, 'MMM')}"></span>

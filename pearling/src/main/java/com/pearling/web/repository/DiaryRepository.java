@@ -11,6 +11,7 @@ public interface DiaryRepository {
     List<Diary> findAll();
 
     Diary findById(Integer id);
+    List<Diary> findByDate(String date);
     int save(Diary diary);
     int update(Diary diary);
     int delete(Diary diary);

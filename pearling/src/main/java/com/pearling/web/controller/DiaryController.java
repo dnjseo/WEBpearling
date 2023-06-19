@@ -22,18 +22,26 @@ import com.pearling.web.service.DiaryService;
 public class DiaryController extends BaseController {
 	@Autowired
 	private DiaryService service;
-
-	@GetMapping("list")
-	public String list(
-			@RequestParam(name = "s", required = false) boolean editShow,
-			Model model) {
-
-		model.addAttribute("headerShow", true);
-		List<Diary> list = service.getList();
-		model.addAttribute("list", list);
-
-		return "diary/list";
-	}
+		
+		@GetMapping("/list")
+		public String getDiaryList(
+				@RequestParam(name = "s", required = false) boolean editShow,
+				@RequestParam(name = "d", required = false) String date,
+				Model model) {
+	
+			model.addAttribute("headerShow", true);
+	
+			if (date == null) {
+				// date 매개변수가 null인 경우, 오늘 날짜로 초기화
+				date = LocalDate.now().toString();
+			}
+	
+			List<Diary> list = service.getListByDate(date);
+			model.addAttribute("list", list);
+	
+			return "diary/list";
+		}
+	
 
 	@GetMapping("post")
 	public String post(
@@ -93,6 +101,7 @@ public class DiaryController extends BaseController {
 		System.out.println("diary 확인 : " + diary);
 
 		return "redirect:list";
+		
 	}
 
 	@PostMapping("delete")

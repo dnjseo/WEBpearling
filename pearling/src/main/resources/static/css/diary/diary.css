@@ -1,4 +1,4 @@
-@import url("/css/diary/diary-calendar.css");
+@import url("/css/calendar/calendar.css");
 
 @font-face {
     font-family: 'TAEBAEKmilkyway';
@@ -26,14 +26,14 @@
 }
 
 
-.diary-list>form>ul {
+.diary-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.diary-list>form>ul>li {
+.diary-detail {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,7 +47,7 @@
     border-radius: 14px;
 }
 
-.diary-list > form > ul > li > a {
+.diary-href {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -110,13 +110,6 @@
     margin-bottom: 40px;
 }
 
-/* .diary-list > .add-btn {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    padding-top: 100px;
-} */
-
 .add-btn{
     position: fixed;
 
@@ -152,20 +145,6 @@
     border-radius: 30px;
     border: none;
 }
-
-/* .add-btn > button {
-
-    width: 55px;
-    height: 55px;
-
-    background: linear-gradient(0deg,
-        rgba(165, 135, 224, 0.2), rgba(165, 135, 224, 0.2)),
-        rgba(0, 0, 0, 0.04);
-    box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25), 
-        inset 0px 4px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
-    border: none;
-} */
 
 .add-btn > button:active {
     opacity: 0.8;

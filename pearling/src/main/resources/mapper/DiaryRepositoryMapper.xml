@@ -5,7 +5,7 @@
 <mapper namespace="com.pearling.web.repository.DiaryRepository">
    <select id="findAll" resultType="com.pearling.web.entity.Diary">
       select *
-      from diary
+      from diary order by date
    </select>
 	<select id="findById" resultType="com.pearling.web.entity.Diary" parameterType="Integer">
 		select *
@@ -15,6 +15,15 @@
 			id = #{id}
 			</if>
 		</trim>
+	</select>
+	<select id="findByDate" resultType="com.pearling.web.entity.Diary" parameterType="Integer">
+		select *
+		from diary
+	<trim prefix="where" prefixOverrides="AND|OR"> 
+		<if test="date != null">
+		date = #{date}
+		</if>
+	</trim>
 	</select>
 	<insert id="save">
 		insert into 

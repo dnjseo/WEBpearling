@@ -6,10 +6,8 @@
     <link href="/css/diary/diary.css" type="text/css" rel="stylesheet">
     <link href="/css/header/diary.css" type="text/css" rel="stylesheet">
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
-    <script src='/fullcalendar/dist/index.global.js'></script>
-    <script th:inline="javascript" type="module" src="/js/shell/myshell.js"></script>
-    <script src="/js/diary/diary.js"></script>
-    <script src="/js/diary/diary-ajax.js"></script>
+    <script src="/js/diary/diary-calendar.js"></script>
+    <script src="/js/diary/list.js"></script>
     <title>diary</title>
 </head>
 
@@ -20,8 +18,9 @@
             <h1 class="d-none">다이어리 전체 조회</h1>
 
             <!----------------------- 달력 --------------------->
-            <section id=d2>
-                <div id='calendarDiary'></div>
+            <section id="ms3">
+                <h1 class="d-none">캘린더</h1>
+                <div id='calendar'></div>
             </section>
             <!----------------------- 달력 --------------------->
 
@@ -32,28 +31,28 @@
 
             <!----------------------- 다이어리 내용 --------------------->
 
-            <div class="diary-list">
-                <form>
-                    <ul th:each="d : ${list}" data-aos="flip-down"
-                        data-aos-duration="2000">
-                        <li>
-                            <a href="post?s=2" th:href="@{../diary/post(id=${d.id})}">
-                                <div class="diary-date">
-                                    <span th:text="${#dates.format(d.regdate, 'd')}"></span>
-                                    <span th:text="${#dates.format(d.regdate, 'MMM')}"></span>
-                                    
-                                </div>
-                                <div class="diary-content">
-                                    <span th:text="${d.title}">title</span>
-                                    <span th:text="${d.content}">다이어리 내용</span>
-                                </div>
-                                <div class="diary-emog">
-                                    <span>🫧</span>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </form>
+            <section>
+                <div class="diary-list-box">
+                    <form>
+                        <ul class="diary-list" th:each="d : ${list}">
+                            <li class="diary-detail" data-aos="flip-down" data-aos-duration="2000">
+                                <a class="diary-href" th:href="@{../diary/post(id=${d.id})}">
+                                    <div class="diary-date">
+                                        <span th:text="${#temporals.format(d.date, 'd')}"></span>
+                                        <span th:text="${#temporals.format(d.date, 'MMM')}"></span>
+                                    </div>
+                                    <div class="diary-content">
+                                        <span th:text="${d.title}">title</span>
+                                        <span th:text="${d.content}">다이어리 내용</span>
+                                    </div>
+                                    <div class="diary-emog">
+                                        <span>🫧</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
 
                 <!----------------------- 다이어리 내용 --------------------->
 

@@ -4,13 +4,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,55 +28,65 @@ public class DiaryController {
 
 	@GetMapping("list")
 	public List<Diary> list(
-        @RequestParam(name = "s", required = false) boolean editShow) {
+			@RequestParam(name = "s", required = false) boolean editShow) {
 
 		return service.getList();
+	}
+	
+	@GetMapping("/list/{date}/{memberId}")
+	public List<Diary> datelist(
+			@RequestParam(name = "s", required = false) boolean editShow,
+			@PathVariable("date") String date) {
+
+		return service.getListByDate(date);
 	}
 
 	@GetMapping("detail/{id}")
 	public Diary getDiary(@PathVariable("id") Integer id,
 			@RequestParam(name = "s", required = false) boolean editShow) {
 
-		return service.findById(id);
+		Diary diary = service.findById(id);
+
+		return diary;
 	}
 
-	// @PostMapping("post")
-	// public void addDiary(@RequestBody DiaryRequest diaryRequest, MyUserDetails user) {
-	// 	Diary diary = Diary.builder()
-	// 			.date(diaryRequest.getDate())
-	// 			.title(diaryRequest.getTitle())
-	// 			.view(0)
-	// 			.content(diaryRequest.getContent())
-	// 			.memberId(4)
-	// 			.diaryScopeId(diaryRequest.getDiaryScopeId())
-	// 			.build();
-	// 	service.addDiary(diary);
-	// }
+	@PostMapping("post")
+	public void addDiary(@RequestBody DiaryRequest diaryRequest, @AuthenticationPrincipal MyUserDetails user) {
+		Diary diary = Diary.builder()
+				.date(diaryRequest.getDate())
+				.title(diaryRequest.getTitle())
+				.view(0)
+				.content(diaryRequest.getContent())
+				.memberId(user.getId()) // MyUserDetails 객체에서 id 값을 가져옵니다.
+				.diaryScopeId(diaryRequest.getDiaryScopeId())
+				.build();
+		service.addDiary(diary);
+	}
 
 	// @DeleteMapping("delete/{id}")
 	// public void deleteDiary(@PathVariable("id") Integer id) {
-	// 	Diary diary = service.findById(id);
-	// 	if (diary != null) {
-	// 		service.deleteDiary(diary);
-	// 	}
+	// Diary diary = service.findById(id);
+	// if (diary != null) {
+	// service.deleteDiary(diary);
+	// }
 	// }
 
 	// @PutMapping("update/{id}")
-	// public void updateDiary(@PathVariable("id") Integer id, 
-    //     @RequestBody DiaryRequest diaryRequest) {
-	// 	Diary diary = Diary.builder()
-	// 			.id(id)
-	// 			.date(diaryRequest.getDate())
-	// 			.title(diaryRequest.getTitle())
-	// 			.content(diaryRequest.getContent())
-	// 			.diaryScopeId(diaryRequest.getDiaryScopeId())
-	// 			.build();
-	// 	service.updateDiary(diary);
+	// public void updateDiary(@PathVariable("id") Integer id,
+	// @RequestBody DiaryRequest diaryRequest) {
+	// Diary diary = Diary.builder()
+	// .id(id)
+	// .date(diaryRequest.getDate())
+	// .title(diaryRequest.getTitle())
+	// .content(diaryRequest.getContent())
+	// .diaryScopeId(diaryRequest.getDiaryScopeId())
+	// .build();
+	// service.updateDiary(diary);
 	// }
 
-    // getter, setter
+	// getter, setter
 
-    public static class DiaryRequest {
+	public static class DiaryRequest {
 		private LocalDate date;
 		private String title;
 		private String content;

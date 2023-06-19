@@ -44,7 +44,7 @@ public class ShellController extends BaseController {
 
 		model.addAttribute("headerShow", true);
 		
-		List<Todo> todoList = service.getList();
+		List<Todo> todoList = service.getListByDate(userId, todayDate);
 		List<Schedule> scheduleList = scheduleService.getListByDate(userId, todayDate);
 		
 		model.addAttribute("todoList", todoList);

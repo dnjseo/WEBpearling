@@ -40,7 +40,7 @@ public class ScheduleController{
         List<Schedule> scheduleList = new ArrayList<>();
 
         scheduleList = service.getListByUserId(userId);
-        System.out.println(scheduleList);
+        //System.out.println(scheduleList);
 
         return scheduleList;
     }

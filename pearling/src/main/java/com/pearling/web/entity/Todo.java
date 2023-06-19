@@ -1,5 +1,6 @@
 package com.pearling.web.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import lombok.Builder;
@@ -9,10 +10,10 @@ import lombok.Data;
 @Builder
 public class Todo {
     private Integer id;
-    private Date date;
+    private LocalDate date;
     private Date regDate;
     private boolean statement;
-    private Integer userId;
+    private Integer memberId;
     private String content;
     
 }

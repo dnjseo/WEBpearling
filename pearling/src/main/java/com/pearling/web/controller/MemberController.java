@@ -1,7 +1,9 @@
 package com.pearling.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.pearling.web.entity.Member;
+import com.pearling.web.security.MyUserDetails;
 import com.pearling.web.service.MemberService;
 
 @Controller
@@ -31,30 +34,34 @@ public class MemberController {
     }
 
     @GetMapping("/profile")
-    public String profileForm(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        Member member = service.getByUsername(username);
-        model.addAttribute("member", member);
-        return "profile";
+    public String profileForm(Model model,
+        @AuthenticationPrincipal MyUserDetails user) {
+        Member pmember = service.getByUsername(user.getUsername());
+        model.addAttribute("pmember", pmember);
+        System.out.println("이걸 봐봐라라아아아아아아아앙앙아아아아" + pmember);
+        
+        return "setting/profile";
     }
 
     @PostMapping("/profile")
-    public String profileSubmit(@ModelAttribute Member member) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        Member existingMember = service.getByUsername(username);
+    public String profileSubmit(@ModelAttribute Member member,
+                @AuthenticationPrincipal MyUserDetails user, Model model) {
+
+        Member existingMember = service.getByUsername(user.getUsername());
 
         if (existingMember != null) {
             existingMember.setName(member.getName());
             existingMember.setNickname(member.getNickname());
+            service.updateMember(existingMember);
 
-            service.updateMember(existingMember); // 회원 정보 업데이트
+            // 수정된 pmember 객체를 다시 모델에 추가합니다.
+            model.addAttribute("pmember", existingMember);
         } else {
-            throw new RuntimeException("Member not found with username: " + username);
+            throw new RuntimeException("Member not found with username: " + user.getUsername());
         }
 
         return "redirect:/profile";
     }
+
 
 }

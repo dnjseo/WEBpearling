@@ -32,6 +32,11 @@ public class MemberServiceImp implements MemberService{
         return repository.findAll(query);
     }
 
+    @Override
+	public List<Member> getListByUserId(int userId) {
+        return repository.findByUserId(userId);
+	}
+
     // 아이디 
     @Override
     public Member getById(int id) {

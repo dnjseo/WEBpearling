@@ -11,6 +11,11 @@
 	<select id="findByUsername" resultType="Member">
 		select * from member where email=#{email}
 	</select>
+	<select id="findByUserId" resultType="Member">
+		select * 
+		from member 
+		WHERE id=#{id}
+	</select>
 	<select id="findAll" resultType="Member">
 		select *
 		from member

@@ -6,7 +6,6 @@
     <link href="/css/diary/diary.css" type="text/css" rel="stylesheet">
     <link href="/css/header/diary.css" type="text/css" rel="stylesheet">
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
-    <script src="/js/diary/diary-calendar.js"></script>
     <script src="/js/diary/list.js"></script>
     <title>diary</title>
 </head>
@@ -34,8 +33,8 @@
             <section>
                 <div class="diary-list-box">
                     <form>
-                        <ul class="diary-list" th:each="d : ${list}">
-                            <li class="diary-detail" data-aos="flip-down" data-aos-duration="2000">
+                        <ul class="diary-list">
+                            <li th:each="d : ${list}" class="diary-detail" data-aos="flip-down" data-aos-duration="2000">
                                 <a class="diary-href" th:href="@{../diary/post(id=${d.id})}">
                                     <div class="diary-date">
                                         <span th:text="${#temporals.format(d.date, 'd')}"></span>

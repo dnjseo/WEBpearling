@@ -45,7 +45,6 @@ public class DiaryController {
 					memberId = user.getId();
 				} 
 
-
 		return service.getListByDate(date, memberId);
 	}
 

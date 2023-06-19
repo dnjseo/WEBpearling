@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/diary/diary-add.css" type="text/css" rel="stylesheet">
-    <link href="/css/diary/diary-edit.css" type="text/css" rel="stylesheet">
     <link href="/css/system/delete-modal.css" type="text/css" rel="stylesheet">
     <script src="/js/system/confirm-modal.js"></script>
     <script src="/js/system/delete-modal.js"></script>
@@ -74,10 +73,11 @@
                         <div class="diary-detail-span">
                             <input class="diary-detail-date" type="date" th:value="${diary.date}" name="date">
                             <input th:value="${diary.title}" class="diary-detail-title" type="text" name="title">
+                            <input type="image">
                             <textarea th:text="${diary.content}" class="diary-detail-input" rows="15" name="content"></textarea>
                             <div class="btns">
                                 <!-- <button>🔒</button> -->
-                                <button></button>
+                                <input class="file-btn" name="image" type="file">
                             </div>
                         </div>
                         <div class="diary-btns">

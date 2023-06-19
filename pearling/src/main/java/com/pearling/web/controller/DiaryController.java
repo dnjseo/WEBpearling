@@ -32,11 +32,6 @@ public class DiaryController extends BaseController {
 				Model model) {
 	
 			model.addAttribute("headerShow", true);
-	
-			if (date == null) {
-				// date 매개변수가 null인 경우, 오늘 날짜로 초기화
-				date = LocalDate.now().toString();
-			}
 
 			Integer memberId = null;
 

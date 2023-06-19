@@ -27,6 +27,7 @@
 		AND member_id = #{memberId}
 		</if>
 	</trim>
+		order by date
 	</select>
 	<insert id="save">
 		insert into 

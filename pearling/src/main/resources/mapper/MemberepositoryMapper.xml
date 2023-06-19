@@ -20,7 +20,22 @@
 			</if>			
 		</trim>
 	</select>
-	<!-- <select id="findByQuery" resultType="Member">
-		select * from member where name like '%${query}%'
-	</select> -->
+	<insert id="insertMember" parameterType="Member">
+        insert into member
+		(id, name, pwd, nickname, email, birth)
+        values 
+		(#{id}, #{name}, #{pwd}, #{nickname}, #{email}, #{birth})
+    </insert>
+	<update id="updateMember" parameterType="Member">
+        update member
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="nickname != null">
+                nickname = #{nickname},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>

@@ -14,4 +14,7 @@ public interface MemberRepository {
     Member findByEmail(String email);
     List<Member> findByQuery(String query);
     List<Member> findAll();
+
+    void insertMember(Member member); // insertMember 메서드 추가
+    void updateMember(Member existingMember); // 업데이트하기
 }

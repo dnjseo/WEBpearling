@@ -13,16 +13,24 @@
     <main layout:fragment="content" class="wrap p_wrap">
         <p class="button"></p>
         <h1 class="logo"><img src="/images/logo/realLogo.svg" ></h1>
-        <div class="p_img">
-            <img class="img">
-            <img class="edit" src="/images/profile/edit_profile.png" >
-        </div>
-        <ul class="change">
-            <li>🫧 닉네임</li>
-            <li><input placeholder="입력하세요"></li>
-            <li>🫧 생년월일</li>
-            <li><input placeholder="입력하세요"></li>
-        </ul>
+        <!-- form -->
+        <form method="post" action="/profile">
+            <div class="p_img">
+                <img class="profile_img" src="/images/header/profile.png" 
+                    th:src="@{${#authentication.principal.profileImage} != null ? '/images/profile/' + ${#authentication.principal.profileImage} : '/images/profile/basic.png'}" 
+                    alt="프로필" />
+                <img class="edit" src="/images/profile/edit_profile.png" >
+            </div>
+            <ul class="change">
+                <li>🫧 이름</li>
+                <li><input type="text" placeholder="입력하세요" th:value="${#authentication.principal.name}" name="name" /></li>
+                <li>🫧 닉네임</li>
+                <li><input type="text" placeholder="입력하세요" th:value="${#authentication.principal.nickname}" name="nickname" /></li>
+            </ul>
+
+            <button class="cancel" type="submit" value="취소">취소</button>
+            <button class="modify" type="submit" value="수정하기">수정하기</button>
+        </form>
     </main>
     <!-- /wrap -->
 </body>

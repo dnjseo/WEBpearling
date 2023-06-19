@@ -12,7 +12,8 @@ import com.pearling.web.security.MyUserDetailsService;
 
 @Configuration
 public class SpringSecurityConfig {
-        @Bean
+	
+    @Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
 		http
@@ -35,14 +36,13 @@ public class SpringSecurityConfig {
 		return http.build();
 	}
 
-        @Bean
-        public PasswordEncoder passwordEncoder() {
-                return new BCryptPasswordEncoder();
-        }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+			return new BCryptPasswordEncoder();
+	}
 
-        @Bean
+	@Bean
 	public UserDetailsService myUserDetailService(){
-		
 		return new MyUserDetailsService();
 	}
 }

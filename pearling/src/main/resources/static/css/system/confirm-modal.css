@@ -40,7 +40,9 @@
     margin-bottom: 30px;
 }
 
-.confirm-yes, .send-yes, .signup-confirm-yes{
+.confirm-yes, .send-yes, 
+.signup-confirm-yes, .check-yes,
+.nocorrect-yes{
     display: flex;
     flex-direction: row;
     justify-content: center;

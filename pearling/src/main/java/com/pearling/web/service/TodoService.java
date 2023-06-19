@@ -14,7 +14,7 @@ public interface TodoService {
 
     Todo findById(int id);
     void addTodo(Todo todo);
-    void updateTodo(Todo todo);
+    int updateTodo(Todo todo);
     void deleteTodo(Todo todo);
 
 }

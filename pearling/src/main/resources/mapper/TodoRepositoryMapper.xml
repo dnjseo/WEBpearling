@@ -18,8 +18,24 @@
 		WHERE member_id = #{memberId};
 	</select>
 	<select id="findByDate" resultType="Todo">
-		select * 
-		from to_do
-		WHERE member_id = #{memberId} and date = '${date.toString()}';
+		SELECT *
+		FROM to_do
+		WHERE member_id = #{memberId} AND date = '${date.toString()}'
+		ORDER BY CASE WHEN statement = 'Y' THEN 0 ELSE 1 END;
 	</select>
+	<update id="update">
+	update schedule
+	<set> 
+		<if test="start_date != null">start_date = #{start_date},</if>
+		<if test="start_time != null">start_time = #{start_time},</if>
+		<if test="end_date != null">end_date = #{end_date},</if>
+		<if test="end_time != null">end_time = #{end_time},</if>
+		<if test="regdate != null">regdate = #{regdate},</if>
+		<if test="title != null">title = #{title},</if>
+		<if test="member_id != null">member_id = #{member_id},</if>
+		<if test="background_color != null">background_color = #{background_color}</if>
+	</set>
+	where id = #{id};
+	</update>
+
 </mapper>

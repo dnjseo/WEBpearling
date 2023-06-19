@@ -15,5 +15,4 @@ public class Todo {
     private boolean statement;
     private Integer memberId;
     private String content;
-    
 }

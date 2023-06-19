@@ -44,14 +44,14 @@ public class TodoController {
     }
 
 
-//       @PostMapping("/updateCheckbox")
-//   public ResponseEntity<String> updateCheckbox(@RequestBody Map<String, Object> requestData) {
+//     @PostMapping("/updateCheckbox")
+//     public ResponseEntity<String> updateCheckbox(@RequestBody Map<String, Object> requestData) {
 //     boolean isChecked = (boolean) requestData.get("isChecked");
     
 //     // TODO: 데이터베이스에서 해당 todo를 찾아서 체크 상태 업데이트
 //     // 예시로 todoId를 이용하여 업데이트하는 로직을 작성하였습니다.
-//     Long todoId = 1L; // 업데이트할 todo의 ID
-//     Todo todo = todoService.findById(todoId);
+//     int todoId = 1; // 업데이트할 todo의 ID
+//     Todo todo = service.findById(todoId)
 //     if (todo != null) {
 //       todo.setChecked(isChecked);
 //       service.save(todo);

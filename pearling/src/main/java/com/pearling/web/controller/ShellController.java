@@ -49,7 +49,8 @@ public class ShellController extends BaseController {
 		
 		model.addAttribute("todoList", todoList);
 		model.addAttribute("scheduleList", scheduleList);
-	
+		System.out.println(todoList);
+
 		return "shell/myshell";
 	}
 

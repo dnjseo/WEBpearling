@@ -17,8 +17,8 @@ public interface TodoRepository {
 
 
     Todo findById(int id);
-    int save(Todo todo);
+    void save(Todo todo);
     int update(Todo todo);
-    int delete(Todo todo);
+    void delete(Todo todo);
 
 }

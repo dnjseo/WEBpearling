@@ -185,6 +185,10 @@ body{
     flex-grow: 0;    
 }
 
+input[type="checkbox"]:checked + p {
+    text-decoration: line-through;
+  }
+
 .ms-today-day{
     font-family: 'Pretendard-SemiBold';
     font-size: 13px;

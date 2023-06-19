@@ -18,7 +18,6 @@ public class Schedule {
     private LocalDate endDate;
     private Time endTime;
     private Date regDate;
-    private String location;
     private String title;
     private Integer memberId;
     private String backgroundColor; 

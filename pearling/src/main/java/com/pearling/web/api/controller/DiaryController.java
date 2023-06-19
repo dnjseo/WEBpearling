@@ -33,12 +33,20 @@ public class DiaryController {
 		return service.getList();
 	}
 	
-	@GetMapping("/list/{date}/{memberId}")
+	@GetMapping("{date}")
 	public List<Diary> datelist(
 			@RequestParam(name = "s", required = false) boolean editShow,
-			@PathVariable("date") String date) {
+			@PathVariable("date") String date,
+			@AuthenticationPrincipal MyUserDetails user) {
 
-		return service.getListByDate(date);
+				Integer memberId = null;
+
+				if(user != null) {
+					memberId = user.getId();
+				} 
+
+
+		return service.getListByDate(date, memberId);
 	}
 
 	@GetMapping("detail/{id}")

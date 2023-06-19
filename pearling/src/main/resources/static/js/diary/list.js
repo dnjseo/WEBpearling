@@ -12,7 +12,7 @@ function diaryListLoad(url) {
 
                 let dateObject = new Date(diary.date);
                 let day = dateObject.getDate(); // 일자
-                let month = dateObject.toLocaleString('default', { month: 'long' }); // 월 (예: "8월")
+                let month = dateObject.toLocaleString('default', { month: 'long' }); // 월 (예: "8월")             
 
                 let itemTemplate = `<li class="diary-detail" data-aos="flip-down" data-aos-duration="2000">
                     <a class="diary-href" href="post/id=${diary.id}">
@@ -49,6 +49,6 @@ window.addEventListener('DOMContentLoaded', function(e) {
 
     calendar.on('dateClick', function(info) {
         let clickedDate = info.dateStr; // 클릭한 날짜 정보 가져오기
-        diaryListLoad(`http://localhost:8080/api/diary/list/${clickedDate}/{id}`);
+        diaryListLoad(`http://localhost:8080/api/diary/${clickedDate}`);
     });
 });

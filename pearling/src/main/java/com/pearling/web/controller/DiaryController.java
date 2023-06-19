@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ public class DiaryController extends BaseController {
 		public String getDiaryList(
 				@RequestParam(name = "s", required = false) boolean editShow,
 				@RequestParam(name = "d", required = false) String date,
+				@AuthenticationPrincipal MyUserDetails user,
 				Model model) {
 	
 			model.addAttribute("headerShow", true);
@@ -35,8 +37,13 @@ public class DiaryController extends BaseController {
 				// date 매개변수가 null인 경우, 오늘 날짜로 초기화
 				date = LocalDate.now().toString();
 			}
+
+			Integer memberId = null;
+
+			if(user != null) 
+				memberId = user.getId();
 	
-			List<Diary> list = service.getListByDate(date);
+			List<Diary> list = service.getListByDate(date, memberId);
 			model.addAttribute("list", list);
 	
 			return "diary/list";

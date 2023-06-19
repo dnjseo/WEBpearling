@@ -1,6 +1,10 @@
 package com.pearling.web.entity;
 
+import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
+
+import org.springframework.cglib.core.Local;
 
 import lombok.Builder;
 import lombok.Data;
@@ -9,11 +13,13 @@ import lombok.Data;
 @Builder
 public class Schedule {
     private Integer id;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private Time startTime;
+    private LocalDate endDate;
+    private Time endTime;
     private Date regDate;
     private String location;
     private String title;
-    private Integer userId;
+    private Integer memberId;
     private String backgroundColor; 
 }

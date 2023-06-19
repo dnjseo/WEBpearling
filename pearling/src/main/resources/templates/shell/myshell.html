@@ -6,7 +6,7 @@
     <link href="/css/shell/myshell.css" type="text/css" rel="stylesheet">
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
     <!-- <script src="/js/shell/shell-menu.js"></script> -->
-    <script src='/fullcalendar/dist/index.global.js'></script>
+    <!-- <script src='/fullcalendar/dist/index.global.js'></script> -->
     <script th:inline="javascript" type="module" src="/js/shell/myshell.js"></script>
     <title>my shell</title>
 </head>
@@ -29,77 +29,36 @@
 
             <div class="schedule">
                 <p>to do.</p>
-                <ul id="mstodoList">
+                <ul class=todoListSection id="mstodoList">
                     <li class="todoList" th:each="t : ${todoList}">
-                        <p class="d-none" th:attr="data-todo=${t.content}"></p>
-                        <p class="d-none todoDate" th:attr="data-todo=${#dates.format(t.date, 'yyyy-MM-dd')}"></p>
-                        <!-- <div class="content"> -->
-                            <!-- <input type="checkbox"> -->
+                        <div class="content">
+                            <input type="checkbox">
                             <!-- <span id="todoItem"></span> -->
-                            <!-- <p class="d-none" id="todoContentShow" th:text="${t.content}">소금빵 사러가기🥐</p> -->
-                        <!-- </div> -->
+                            <p th:text="${t.content}">소금빵 사러가기🥐</p>
+                        </div>
                         <div class="tag">
                             <!-- <button>@채원</button> -->
                         </div>
                     </li>
-                    <!-- <li>
-                            <div class="content">
-                                <input type="checkbox">
-                                <p class="task">마라탕 먹기</p> 
-                            </div>
-                            <div class="tag">
-                                <button>@도원</button>
-                                <button>@예린</button>
-                                <button>@채원</button>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="content">
-                                <input type="checkbox">
-                                <p>http강의 듣기👩🏻‍💻</p> 
-                            </div>
-                            <div class="tag">
-                                <button></button>
-                            </div>
-                        </li> -->
                 </ul>
             </div>
 
             <div class="schedule">
                 <p><br><br></p>
                 <p>일정.</p>
-                <ul>
-                    <li class="scheduleList" th:each="s : ${list}">
+                <ul class = scheduleListSection>
+                    <li class="scheduleList" th:each="s : ${scheduleList}">
                         <div class="content">
-                            <div id="mydata" class="content">
-                                <span id="scheduleItem"></span>
-                                <!-- <p class="d-none" th:text="${s.title}" th:attr="data-schedule=${s.title}">🎥 비색의 탄환</p> -->
-                                <p class="d-none" th:attr="data-schedule=${s.title}"></p>
-                                <p class="d-none scheduledate" th:attr="data-schedule=${#dates.format(s.startDate, 'yyyy-MM-dd')}"></div>
+                                <!-- <span id="scheduleItem"></span> -->
+                                <p class="d-none" th:text="${s.title}">🎥 비색의 탄환</p>
+                                <!-- <p class="d-none" th:attr="data-schedule=${s.title}"></p> -->
+                                <!-- <p class="d-none scheduledate" th:attr="data-schedule=${#dates.format(s.startDate, 'yyyy-MM-dd')}"></div> -->
                                 </p>
                             </div>
-                        </div>
                         <div class="tag">
                             <!-- <button></button> -->
                         </div>
                     </li>
-                    
-                    <!-- <li>
-                         <div class="content">
-                            <p>🎂 누군가의 생일</p>
-                        </div>
-                        <div class="tag">
-                             <button></button> 
-                        </div>
-                    </li>
-                    <li>
-                        <div class="content">
-                            <p>📝 시험</p>
-                        </div>
-                        <div class="tag">
-                           <button></button> 
-                        </div>
-                    </li> -->
                 </ul>
             </div>
             </div>

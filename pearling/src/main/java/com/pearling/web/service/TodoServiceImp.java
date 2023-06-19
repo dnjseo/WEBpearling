@@ -1,5 +1,6 @@
 package com.pearling.web.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,20 @@ public class TodoServiceImp implements TodoService{
 
     @Override
     public Todo findById(int id) {
+
         return null;
+    }
+
+    @Override
+    public List<Todo> getListByUserId(int userId) {
+
+        return repository.findByUserId(userId);
+    }
+
+    @Override
+    public List<Todo> getListByDate(int userId, LocalDate date) {
+        
+        return repository.findByDate(userId, date);
     }
 
     @Override

@@ -9,6 +9,7 @@ import com.pearling.web.entity.Member;
 @Mapper
 public interface MemberRepository {
     List<Member> findAll(String query);
+    List<Member> findByUserId(int memberId);
     Member findByUsername(String username);
     Member findById(int id);
     Member findByEmail(String email);

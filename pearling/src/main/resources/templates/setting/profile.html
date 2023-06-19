@@ -1,36 +1,75 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{inc/layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+layout:decorate="~{inc/layout}">
 
 <head>
     <link href="/css/system/profile.css" type="text/css" rel="stylesheet">
+    <script src="/js/setting/setting-profile.js"></script>
+    <script th:inline="javascript">
+        function enterEditMode() {
+            document.getElementById('profile-form').setAttribute('action', '/profile');
+            document.getElementById('profile-form').setAttribute('method', 'post');
+            document.getElementById('profile-form').submit();
+        }
+    
+        function cancelEditMode() {
+            window.location.reload();
+        }
+    </script>
     <title>Profile</title>
 </head>
 <body>
     <!-- header -->
 
     <!-- wrap -->
-    <main layout:fragment="content" class="wrap p_wrap">
+    <main layout:fragment="content" id="wrap" class="wrap p_wrap">
         <h1 class="logo"><img src="/images/logo/realLogo.svg" ></h1>
         <!-- form -->
         <form method="post" action="/profile">
             <div class="p_img">
-                <img class="profile_img" src="/images/header/profile.png" 
+                <!-- <img class="profile_img" src="/images/header/profile.png" 
                     th:src="@{${#authentication.principal.profileImage} != null ? '/images/profile/' + ${#authentication.principal.profileImage} : '/images/profile/basic.png'}" 
-                    alt="프로필" />
+                    alt="프로필" /> -->
                 <img class="edit" src="/images/profile/edit_profile.png" >
             </div>
             <ul class="change">
                 <li>🫧 이름</li>
-                <li><input type="text" placeholder="입력하세요" th:value="${#authentication.principal.name}" name="name" /></li>
+                <li>
+                    <input type="text" placeholder="입력하세요" 
+                           th:value="${#authentication.principal.name}" 
+                           th:if="${!isEditMode}" name="name" />
+                    <input type="text" placeholder="입력하세요" 
+                           th:value="${pmember.name}" 
+                           th:if="${isEditMode}" name="name" />
+                </li>
                 <li>🫧 닉네임</li>
-                <li><input type="text" placeholder="입력하세요" th:value="${#authentication.principal.nickname}" name="nickname" /></li>
+                <li>
+                    <input type="text" placeholder="입력하세요" 
+                           th:value="${#authentication.principal.nickname}" 
+                           th:if="${!isEditMode}" name="nickname" />
+                    <input type="text" placeholder="입력하세요" 
+                           th:value="${pmember.nickname}" 
+                           th:if="${isEditMode}" name="nickname" />
+                </li>
             </ul>
 
-            <button class="cancel" type="submit" value="취소">취소</button>
-            <button class="modify" type="submit" value="수정하기">수정하기</button>
+            <button class="cancel" type="button" value="취소" th:onclick="cancelEditMode()">취소</button>
+            <button class="modify" type="button" value="수정하기" th:onclick="enterEditMode()">수정하기</button>
         </form>
+
+        
     </main>
     <!-- /wrap -->
+    
+    <!-- 수정완료 창 -->
+    <div id="modify-modal" class="modal">
+        <div class="modal-content">
+            <p>🫧 Message</p>
+            <p>수정이 완료되었습니다.</p>
+            <button class="modify-yes">확인</button>
+        </div>
+    </div>
 </body>
 </html> 

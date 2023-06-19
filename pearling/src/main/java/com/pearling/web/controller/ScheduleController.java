@@ -32,7 +32,7 @@ public class ScheduleController extends BaseController {
 		model.addAttribute("headerShow", false);
 		
 		List<Schedule> list = service.getList();
-		Schedule schedule = service.findById(id);
+		Schedule schedule = service.get(id);
 
 		model.addAttribute("list", list);
 		model.addAttribute("schedule", schedule);

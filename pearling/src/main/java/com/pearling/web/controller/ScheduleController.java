@@ -48,7 +48,7 @@ public class ScheduleController extends BaseController {
 		return "schedule/detail";
 	}
 	
-	@GetMapping("post")
+	@GetMapping("reg")
 	public String post(Model model) {
 
 		String pageTitle = getPageTitle();
@@ -57,10 +57,10 @@ public class ScheduleController extends BaseController {
 		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("headerShow", false);
 
-		return "schedule/post";
+		return "schedule/reg";
 	}
 	
-	@PostMapping("post")
+	@PostMapping("reg")
 	public String post(
 			@RequestParam(name = "startDate", required = false) LocalDate startDate,
 			@RequestParam(name = "startTime", required = false) LocalTime startTime,

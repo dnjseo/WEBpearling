@@ -39,5 +39,6 @@ build/
 application-no.yml
 application-secret.yml
 
-/schedule/post.html
 kakao-secret.js
+key.html
+reg.html

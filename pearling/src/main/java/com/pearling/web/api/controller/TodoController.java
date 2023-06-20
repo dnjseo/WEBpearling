@@ -13,19 +13,19 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pearling.web.entity.Schedule;
 import com.pearling.web.entity.Todo;
 import com.pearling.web.security.MyUserDetails;
 import com.pearling.web.service.TodoService;
 
 @RestController("apiTodoController")
-@RequestMapping("/api/todos")
+@RequestMapping("api/todos")
 public class TodoController {
     
     @Autowired
@@ -47,6 +47,15 @@ public class TodoController {
         return todoList;
     }
 
+     @GetMapping("{id}")
+     public Todo detail(
+        @PathVariable("id") int id){
+
+            Todo todo = service.findById(id);
+
+            return todo;
+        }
+
 
 //     @PostMapping("/updateCheckbox")
 //     public ResponseEntity<String> updateCheckbox(@RequestBody Map<String, Object> requestData) {
@@ -66,24 +75,28 @@ public class TodoController {
 //   }
 
     @PostMapping
-     public ResponseEntity<String> addTodo(@RequestBody Todo todo,
+     public ResponseEntity<List<Todo>> addTodo(@RequestBody Todo todoData,
         @RequestParam(value = "clickedDate", required = false) String clickedDate,
-        @AuthenticationPrincipal MyUserDetails user) {
+        @AuthenticationPrincipal MyUserDetails user, 
+        Authentication authentication) {
             
     try {
-                LocalDate date = LocalDate.parse(clickedDate);
+       MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
+        int userId = userDetails.getId();
 
                 Todo newTodo = Todo.builder()
-                        .date(date)
-                        .content(todo.getContent())
-                        .memberId(user.getId())
+                        .date(todoData.getDate())
+                        .content(todoData.getContent())
+                        .memberId(userId)
                         .build();
                 service.addTodo(newTodo);
-                   
-      // todoService를 사용하여 todo를 저장하는 로직 작성
-      return ResponseEntity.ok("Todo 추가 성공");
+
+      // Todo 추가 후 업데이트된 목록을 다시 조회
+        List<Todo> updatedTodoList = service.getListByUserId(userId);
+        return ResponseEntity.ok(updatedTodoList);
+        
     } catch (Exception e) {
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Todo 추가 실패");
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
   }
 

@@ -12,10 +12,10 @@ import com.pearling.web.entity.Schedule;
 public interface ScheduleRepository {
     List<Schedule> findAll();
     List<Schedule> findAllSch(String query);
-    List<Schedule> findByUserId(int memberId);
-    List<Schedule> findByDate(int memberId, LocalDate date);
+    List<Schedule> findByUserId(Integer memberId);
+    List<Schedule> findByDate(Integer memberId, LocalDate date);
 
-    Schedule findById(int id);
+    Schedule findById(Integer id);
     int save(Schedule schedule);
     int update(Schedule schedule);
     int delete(Schedule schedule);

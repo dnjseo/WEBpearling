@@ -11,8 +11,8 @@ import com.pearling.web.entity.Todo;
 public interface TodoRepository {
     List<Todo> findAll();
     List<Todo> findAll(String query);
-    List<Todo> findByUserId(int memberId);
-    List<Todo> findByDate(int memberId, LocalDate date);
+    List<Todo> findByUserId(Integer memberId);
+    List<Todo> findByDate(Integer memberId, LocalDate date);
 
 
     Todo findById(int id);

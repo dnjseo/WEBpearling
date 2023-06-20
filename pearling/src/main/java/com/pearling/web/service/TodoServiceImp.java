@@ -23,19 +23,19 @@ public class TodoServiceImp implements TodoService{
     }
 
     @Override
-    public Todo findById(int id) {
+    public Todo findById(Integer id) {
 
-        return null;
+        return repository.findById(id);
     }
 
     @Override
-    public List<Todo> getListByUserId(int userId) {
+    public List<Todo> getListByUserId(Integer userId) {
 
         return repository.findByUserId(userId);
     }
 
     @Override
-    public List<Todo> getListByDate(int userId, LocalDate date) {
+    public List<Todo> getListByDate(Integer userId, LocalDate date) {
         
         return repository.findByDate(userId, date);
     }

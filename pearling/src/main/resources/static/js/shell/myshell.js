@@ -1,22 +1,7 @@
-//캘린더
 document.addEventListener('DOMContentLoaded', function () {
 
     let calendarEl = document.getElementById('calendar');
     let calendar = new FullCalendar.Calendar(calendarEl, {
-      
-        //plugins: [ googleCalendarPlugin ],
-        // editable: true,
-        // initialView: 'dayGridMonth',
-      
-
-
-        // events: [
-        //     {
-        //         title: 'start',
-        //         start: '2023-06-09',
-        //         color: 'white'
-        //     }
-        // ]
 
     });
 
@@ -47,161 +32,32 @@ document.addEventListener('DOMContentLoaded', function () {
     calendar.render();
     calendar.setOption('contentHeight', 350);
 
-
     
-    let mstoday = document.querySelector("#ms4")
+    //캘린더 하단 리스트 날짜 업데이트 
+    let currentDay = document.querySelector("#ms4")
     let dayIndex = 0;
-    updateDate(dayIndex);
+    updateDate(dayIndex, currentDay);
 
 
-    function updateDate(offset) {
-        let today = new Date();
-        today.setDate(today.getDate() + offset);
-        let month = today.getMonth();
-        let day = today.getDay();
-        let date = today.getDate();
-
-        switch (month) {
-            case 0: month = "01"; break;
-            case 1: month = "02"; break;
-            case 2: month = "03"; break;
-            case 3: month = "04"; break;
-            case 4: month = "05"; break;
-            case 5: month = "06"; break;
-            case 6: month = "07"; break;
-            case 7: month = "08"; break;
-            case 8: month = "09"; break;
-            case 9: month = "10"; break;
-            case 10: month = "11"; break;
-            case 11: month = "12"; break;
-        }
-
-        switch (date) {
-            case 1: date = "01"; break;
-            case 2: date = "02"; break;
-            case 3: date = "03"; break;
-            case 4: date = "04"; break;
-            case 5: date = "05"; break;
-            case 6: date = "06"; break;
-            case 7: date = "07"; break;
-            case 8: date = "08"; break;
-            case 9: date = "09"; break;
-        }
-
-        switch (day) {
-            case 0: day = "sun"; break;
-            case 1: day = "mon"; break;
-            case 2: day = "tue"; break;
-            case 3: day = "wed"; break;
-            case 4: day = "thu"; break;
-            case 5: day = "fri"; break;
-            case 6: day = "sat"; break;
-        }
-
-        mstoday.querySelector('.ms-today-day').innerText = month + "." + date + " " + day;
-    }
-    
     // 캘린더에서 선택한 날짜 (스코프)
     let clickedDate = null;
     let cleckedMonth = null; let cleckedDay = null; let cleckedDate = null;
 
-    //캘린더 상의 날짜 클릭할 때
+    //캘린더에서 날짜 클릭
     calendar.on('dateClick', (info) => {
       console.log('clicked on ' + info.dateStr);
-
         clickedDate = new Date(info.dateStr);
         cleckedMonth = (clickedDate.getMonth() + 1).toString().padStart(2, '0');
         cleckedDay = clickedDate.getDate().toString().padStart(2, '0');
         cleckedDate = clickedDate.toLocaleString('en-US', { weekday: 'short' }).toLowerCase();
 
         //캘린더 아래에 클릭한 날짜 출력
-        let mstoday = document.querySelector("#ms4");
-        mstoday.querySelector(".ms-today-day").innerText = cleckedMonth + "." + cleckedDay + " " + cleckedDate;
+        let currentDay = document.querySelector("#ms4");
+        currentDay.querySelector(".ms-today-day").innerText = cleckedMonth + "." + cleckedDay + " " + cleckedDate;
         
-        let scheduleElements = document.querySelector('.scheduleListSection');
-        let todoElements = document.querySelector('.todoListSection');
-
-           //클릭한 투두 비교 및 출력하기.
-           fetch(`http://localhost:8080/api/todos?`)
-           .then(response => response.json())
-           .then(list => {
-               
-               // 기존에 출력된 투두 리스트 지우기
-               todoElements.innerHTML = '';
-         
-             for (let todo of list) {
-               let tododate = new Date(todo.date);
-
-               // 클릭한 날짜와 Todo 날짜 비교
-               if (
-                 clickedDate.getFullYear() === tododate.getFullYear() &&
-                 clickedDate.getMonth() === tododate.getMonth() &&
-                 clickedDate.getDate() === tododate.getDate()
-               ) {
-  
-               //투두 출력하기  
-               if (tododate != null) {
-                  let todoTemplate = `
-                     <li class="todoList">
-                        <div class="content">
-                            <input type="checkbox" ${todo.statement ? 'checked' : ''}>
-                            <p>${todo.content}</p>
-                        </div>
-                    </li>
-                `;         
-                todoElements.insertAdjacentHTML("beforeend", todoTemplate);
-               } else {
-                    let noTodoTemplate = `
-                    <li class="todoList">
-                        <div class="content">
-                            <p>일정이 없습니다.</p>
-                        </div>
-                    </li>
-                    `;
-              todoElements.insertAdjacentHTML("beforeend", noTodoTemplate);
-               }//else end
-              }//if end
-            }//for end
-           })//fetch end
-           .catch(error => {
-             console.error("Error fetching todo:", error);
-           });
-
-
-        //클릭한 스케쥴 비교 및 출력하기.
-        fetch(`http://localhost:8080/api/schedules?`)
-        .then(response => response.json())
-        .then(list => {
-            
-            // 기존에 출력된 스케줄 지우기
-            scheduleElements.innerHTML = '';
-      
-          for (let schedule of list) {
-            let scheduleStartDate = new Date(schedule.startDate);
-
-            // 날짜 비교를 위해 clickedDate와 scheduleStartDate의 년, 월, 일을 비교
-            if (
-              clickedDate.getFullYear() === scheduleStartDate.getFullYear() &&
-              clickedDate.getMonth() === scheduleStartDate.getMonth() &&
-              clickedDate.getDate() === scheduleStartDate.getDate()
-            ) {
-
-            //스케쥴 출력하기     
-              let itemTemplate = `
-              <li class="scheduleList">
-                <div class="content">
-                  <p>${schedule.title}</p>
-                </div>
-            </li>`;
-
-              scheduleElements.insertAdjacentHTML("beforeend", itemTemplate);
-            }
-          }
-        })
-        .catch(error => {
-          console.error("Error fetching schedules:", error);
-        });
-     
+        // 업데이트된 Todo List & Schedule List 조회
+        updateTodoList(clickedDate);
+        updateScheduleList(clickedDate);
      
     }); // onclick calendar end
 
@@ -257,8 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
     
-    
-    
     //하단 픽스드 버튼 이벤트
     window.addEventListener("load", function () {
         let plus1 = document.querySelector('.plus');
@@ -303,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.addEventListener('keydown', handleFormSubmit);
       
             // 호출된 위치에서 handleFormSubmit 호출
-            handleFormSubmit(new KeyboardEvent('keydown', { key: 'Enter' }));
+            // handleFormSubmit(new KeyboardEvent('keydown', { key: 'Enter' }));
 
           } else {
             formContainer.removeChild(todoAddForm);
@@ -315,26 +169,19 @@ document.addEventListener('DOMContentLoaded', function () {
             
         })
     
-      // 엔터 키 이벤트 핸들러
+      // 투두(할일)추가용 엔터키 이벤트 핸들러
       function handleFormSubmit(e) {
         if (e.key === 'Enter' && todoAddForm && todoAddForm.contains(document.activeElement)) {
           e.preventDefault(); // 기본 동작인 새로운 줄 추가 방지
           
           const formData = new FormData(todoAddForm);
-          
-          // clickedDate 값을 formData에 추가
-          if (clickedDate) {
-            const formattedDate = clickedDate.toISOString().substring(0, 10);
-            formData.append('clickedDate', formattedDate);
-          }
-          
-            const todoData = {
-              content: formData.get('content'),
-              date: formattedDate
-            };
-            
 
-          fetch("/api/tods", {
+          const todoData = {
+              date: clickedDate.toISOString().substring(0, 10),
+              content: formData.get('content')
+          };
+            
+          fetch("/api/todos", {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -343,9 +190,10 @@ document.addEventListener('DOMContentLoaded', function () {
           })
             .then(response => {
               if (response.ok) {
-                todoAddForm.submit();
                 // 성공적으로 요청이 처리된 경우의 동작
                 console.log('폼 제출 성공');
+                updateTodoList(clickedDate)
+
               } else {
                 // 요청이 실패한 경우의 동작
                 console.error('폼 제출 실패');
@@ -358,15 +206,145 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }
       
-          
-    
     });
 
   });//DOM Load end
 
+  // 캘린더 하단 : 리스트 섹션 날짜 출력 및 설정
+  function updateDate(offset, currentDay) {
+    let today = new Date();
+    today.setDate(today.getDate() + offset);
+    let month = today.getMonth();
+    let day = today.getDay();
+    let date = today.getDate();
 
+    switch (month) {
+        case 0: month = "01"; break;
+        case 1: month = "02"; break;
+        case 2: month = "03"; break;
+        case 3: month = "04"; break;
+        case 4: month = "05"; break;
+        case 5: month = "06"; break;
+        case 6: month = "07"; break;
+        case 7: month = "08"; break;
+        case 8: month = "09"; break;
+        case 9: month = "10"; break;
+        case 10: month = "11"; break;
+        case 11: month = "12"; break;
+    }
 
+    switch (date) {
+        case 1: date = "01"; break;
+        case 2: date = "02"; break;
+        case 3: date = "03"; break;
+        case 4: date = "04"; break;
+        case 5: date = "05"; break;
+        case 6: date = "06"; break;
+        case 7: date = "07"; break;
+        case 8: date = "08"; break;
+        case 9: date = "09"; break;
+    }
 
+    switch (day) {
+        case 0: day = "sun"; break;
+        case 1: day = "mon"; break;
+        case 2: day = "tue"; break;
+        case 3: day = "wed"; break;
+        case 4: day = "thu"; break;
+        case 5: day = "fri"; break;
+        case 6: day = "sat"; break;
+    }
+    
+    return currentDay.querySelector('.ms-today-day').innerText = month + "." + date + " " + day;
+  }//updateDate end
+    
+  // 투두 리스트 업데이트 
+  function updateTodoList(clickedDate) {
+    let todoElements = document.querySelector('.todoListSection');
+  
+    // 클릭한 투두 비교 및 출력하기.
+    fetch(`http://localhost:8080/api/todos?`)
+      .then(response => response.json())
+      .then(list => {
+        // 기존에 출력된 투두 리스트 지우기
+        todoElements.innerHTML = '';
+  
+        for (let todo of list) {
+          let tododate = new Date(todo.date);
+  
+          // 클릭한 날짜와 Todo 날짜 비교
+          if (
+            clickedDate.getFullYear() === tododate.getFullYear() &&
+            clickedDate.getMonth() === tododate.getMonth() &&
+            clickedDate.getDate() === tododate.getDate()
+          ) {
+            // 투두 출력하기
+            if (tododate != null) {
+              let todoTemplate = `
+                <li class="todoList">
+                  <div class="content">
+                    <input type="checkbox" ${todo.statement ? 'checked' : ''}>
+                    <p>${todo.content}</p>
+                  </div>
+                </li>
+              `;
+              todoElements.insertAdjacentHTML("beforeend", todoTemplate);
+            } else {
+              let noTodoTemplate = `
+                <li class="todoList">
+                  <div class="content">
+                    <p>일정이 없습니다.</p>
+                  </div>
+                </li>
+              `;
+              todoElements.insertAdjacentHTML("beforeend", noTodoTemplate);
+            }
+          }
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching todo:", error);
+      });
+  }//updateTodoList end
+
+  // 스케쥴 리스트 업데이트
+  function updateScheduleList(clickedDate) {
+      let scheduleElements = document.querySelector('.scheduleListSection');
+
+     //클릭한 스케쥴 비교 및 출력하기.
+     fetch(`http://localhost:8080/api/schedules?`)
+     .then(response => response.json())
+     .then(list => {
+         
+         // 기존에 출력된 스케줄 지우기
+         scheduleElements.innerHTML = '';
+   
+       for (let schedule of list) {
+         let scheduleStartDate = new Date(schedule.startDate);
+
+         // 날짜 비교를 위해 clickedDate와 scheduleStartDate의 년, 월, 일을 비교
+         if (
+           clickedDate.getFullYear() === scheduleStartDate.getFullYear() &&
+           clickedDate.getMonth() === scheduleStartDate.getMonth() &&
+           clickedDate.getDate() === scheduleStartDate.getDate()
+         ) {
+
+         //스케쥴 출력하기     
+           let itemTemplate = `
+           <li class="scheduleList">
+             <div class="content">
+               <p>${schedule.title}</p>
+             </div>
+         </li>`;
+
+           scheduleElements.insertAdjacentHTML("beforeend", itemTemplate);
+         }
+       }
+     })
+     .catch(error => {
+       console.error("Error fetching schedules:", error);
+     });
+  }//updateScheduleList end
 
 
 

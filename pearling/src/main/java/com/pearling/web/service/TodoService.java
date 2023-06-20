@@ -9,10 +9,10 @@ public interface TodoService {
 
     List<Todo> getList();
     List<Todo> getListByQuery(String query);
-    List<Todo> getListByUserId(int userId);
-    List<Todo> getListByDate(int userId, LocalDate date);
-
-    Todo findById(int id);
+    List<Todo> getListByUserId(Integer userId);
+    List<Todo> getListByDate(Integer userId, LocalDate date);
+    
+    Todo findById(Integer id);
     int addTodo(Todo todo);
     int updateTodo(Todo todo);
     void deleteTodo(Todo todo);

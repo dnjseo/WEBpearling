@@ -146,11 +146,14 @@ document.addEventListener('DOMContentLoaded', function () {
                ) {
   
                //투두 출력하기  
+            
+               console.log('헤헤헤헤헤'+todo.statement)
+               
                if (tododate != null) {
                   let todoTemplate = `
                      <li class="todoList">
                         <div class="content">
-                            <input type="checkbox">
+                            <input type="checkbox" ${todo.statement ? 'checked' : ''}>
                             <p>${todo.content}</p>
                         </div>
                     </li>

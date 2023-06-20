@@ -1,11 +1,15 @@
 package com.pearling.web.api.controller;
 
 import java.io.Console;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -72,13 +76,20 @@ public class ScheduleController{
         return null;
     }
 
-    @PostMapping
-    public Schedule addSchedule(Schedule schedule){
-
-        int affected = service.addSchedule(schedule);
-        Schedule newSchedule = service.get(affected);
-
-        return newSchedule;
+    @PostMapping("post")
+    public void addSchedule(@RequestBody ScheduleRequest scheduleRequest, @AuthenticationPrincipal MyUserDetails user){
+        Schedule schedule = Schedule.builder()
+				.startDate(scheduleRequest.getStartDate())
+				.startTime(scheduleRequest.getStartTime())
+				.endDate(scheduleRequest.getEndDate())
+				.endTime(scheduleRequest.getEndTime())
+				.title(scheduleRequest.getTitle())
+				.memberId(user.getId())
+				.backgroundColor(scheduleRequest.getBackgroundColor())
+				.latitude(scheduleRequest.getLatitude())
+				.longitude(scheduleRequest.getLongitude())
+				.build();
+        service.addSchedule(schedule);
     }
 
     // @PostMapping(value="path")
@@ -88,5 +99,68 @@ public class ScheduleController{
     //     return entity;
     // }
     
+
+    public static class ScheduleRequest{
+        private LocalDate startDate;
+        private LocalTime startTime;
+        private LocalDate endDate;
+        private LocalTime endTime;
+        private String title;
+        private String backgroundColor; 
+        private Double latitude;
+        private Double longitude;
+    
+        
+        public LocalDate getStartDate() {
+            return startDate;
+        }
+        public void setStartDate(LocalDate startDate) {
+            this.startDate = startDate;
+        }
+        public LocalTime getStartTime() {
+            return startTime;
+        }
+        public void setStartTime(LocalTime startTime) {
+            this.startTime = startTime;
+        }
+        public LocalDate getEndDate() {
+            return endDate;
+        }
+        public void setEndDate(LocalDate endDate) {
+            this.endDate = endDate;
+        }
+        public LocalTime getEndTime() {
+            return endTime;
+        }
+        public void setEndTime(LocalTime endTime) {
+            this.endTime = endTime;
+        }
+        public String getTitle() {
+            return title;
+        }
+        public void setTitle(String title) {
+            this.title = title;
+        }
+        public String getBackgroundColor() {
+            return backgroundColor;
+        }
+        public void setBackgroundColor(String backgroundColor) {
+            this.backgroundColor = backgroundColor;
+        }
+        public Double getLatitude() {
+            return latitude;
+        }
+        public void setLatitude(Double latitude) {
+            this.latitude = latitude;
+        }
+        public Double getLongitude() {
+            return longitude;
+        }
+        public void setLongitude(Double longitude) {
+            this.longitude = longitude;
+        }
+    
+        
+    }
 
 }//class end

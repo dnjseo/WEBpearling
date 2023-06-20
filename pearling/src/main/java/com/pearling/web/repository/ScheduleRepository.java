@@ -18,6 +18,6 @@ public interface ScheduleRepository {
     Schedule findById(int id);
     int save(Schedule schedule);
     int update(Schedule schedule);
-    int delete(int id);
+    int delete(Schedule schedule);
 
 }

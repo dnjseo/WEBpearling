@@ -42,7 +42,7 @@
                     <h3 class="d-none">검색 결과</h3>
                     <div class="todo-box">
                         <div class="todo-list"></div>
-                        <div class="lists" th:each="t : ${tdList}">
+                        <div class="search-lists" th:each="t : ${tdList}">
                             <div>
                                 <div class="todo-statement">
                                     <img src="/images/profile/profile_yj.png"  th:src="@{'/images/profile/' + ${#authentication.principal.profileImage}}">
@@ -62,7 +62,7 @@
                     </div>
                     <div class="schedule-box">
                         <div class="schedule-list"></div>
-                        <div class="lists" th:each="s : ${scList}">
+                        <div class="search-lists" th:each="s : ${scList}">
                             <div>
                                 <div class="schedule-statement">
                                     <img src="/images/profile/profile_yj.png" th:src="@{'/images/profile/' + ${#authentication.principal.profileImage}}">

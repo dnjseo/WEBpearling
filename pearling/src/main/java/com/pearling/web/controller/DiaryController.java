@@ -105,7 +105,7 @@ public class DiaryController extends BaseController {
 	}
 
 	@PostMapping("delete")
-	public String post(
+	public String delete(
 			@RequestParam(name = "id", required = false) Integer id,
 			Model model) {
 

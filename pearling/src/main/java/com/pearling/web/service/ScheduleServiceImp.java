@@ -31,39 +31,45 @@ public class ScheduleServiceImp implements ScheduleService {
     }
 
     @Override
-    public List<Schedule> getListByUserId(int userId) {
+    public List<Schedule> getListByUserId(Integer memberId) {
 
-        return repository.findByUserId(userId);
+        return repository.findByUserId(memberId);
     }
 
     @Override
-    public List<Schedule> getListByDate(int userId, LocalDate date) {
+    public List<Schedule> getListByDate(Integer memberId, LocalDate date) {
  
-        return repository.findByDate(userId, date);
+        return repository.findByDate(memberId, date);
     }
 
     @Override
-    public Schedule get(int id){
+    public Schedule get(Integer id){
         return repository.findById(id);
 
     }
 
     @Override
-    public int addSchedule(Schedule schedule) {
+    public void addSchedule(Schedule schedule) {
 
-        return repository.save(schedule);
+        repository.save(schedule);
     }
 
     @Override
-    public int updateSchedule(Schedule schedule) {
+    public void updateSchedule(Schedule schedule) {
 
-        return repository.update(schedule);
+        repository.update(schedule);
+    }
+
+
+    @Override
+    public Schedule findById(Integer id) {
+        return repository.findById(id);
     }
 
     @Override
-    public int deleteSchedule(int id) {
-
-        return repository.delete(id);
+    public void deleteSchedule(Schedule schedule) {
+        
+        repository.delete(schedule);
     }
 
   

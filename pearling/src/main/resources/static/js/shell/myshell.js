@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let calendarEl = document.getElementById('calendar');
     let calendar = new FullCalendar.Calendar(calendarEl, {
-
-        // plugins: [ googleCalendarPlugin ],
-        editable: true,
-        initialView: 'dayGridMonth',
+      
+        //plugins: [ googleCalendarPlugin ],
+        // editable: true,
+        // initialView: 'dayGridMonth',
         googleCalendarApiKey: 'AIzaSyC7DwkG7gzH6oNfouokyqXiKisgP13t8wM',
         EventSource: [
             {
@@ -33,11 +33,18 @@ document.addEventListener('DOMContentLoaded', function () {
         for (let schedule of scheduleList) {
             let scheduleTitle = schedule.title;
             let scheduleStartDate = schedule.startDate;
+            let scheduleEndDate = schedule.endDate;
+            let scheduleColor = schedule.backgroundColor;
+            if (scheduleColor == null){
+              scheduleColor = '#E6E6FA'
+            }
 
+            console.log (scheduleColor)
             let event = {
                 title: scheduleTitle,
                 start: scheduleStartDate,
-                color: '#E6E6FA'
+                end:scheduleEndDate,
+                color: scheduleColor
             };
             calendar.addEvent(event);
         }
@@ -96,7 +103,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         mstoday.querySelector('.ms-today-day').innerText = month + "." + date + " " + day;
-
     }
 
     let dayDetail = document.getElementById('dayDetail');
@@ -106,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    //캘린더 상의 날짜 클릭할 때 함수
+    //캘린더 상의 날짜 클릭할 때
     calendar.on('dateClick', (info) => {
 
         let clickedDate = new Date(info.dateStr);
@@ -117,8 +123,6 @@ document.addEventListener('DOMContentLoaded', function () {
         //캘린더 아래에 클릭한 날짜 출력
         let mstoday = document.querySelector("#ms4");
         mstoday.querySelector(".ms-today-day").innerText = month + "." + day + " " + date;
-
-        let selectedDateStr = clickedDate.toISOString().substr(0, 10); // 선택된 날짜의 문자열(YYYY-MM-DD)로 변환
         
         let scheduleElements = document.querySelector('.scheduleListSection');
         let todoElements = document.querySelector('.todoListSection');
@@ -133,28 +137,38 @@ document.addEventListener('DOMContentLoaded', function () {
          
              for (let todo of list) {
                let tododate = new Date(todo.date);
-               
-               // 날짜 비교를 위해 clickedDate와 scheduleStartDate의 년, 월, 일을 비교
+
+               // 클릭한 날짜와 Todo 날짜 비교
                if (
                  clickedDate.getFullYear() === tododate.getFullYear() &&
                  clickedDate.getMonth() === tododate.getMonth() &&
                  clickedDate.getDate() === tododate.getDate()
                ) {
-   
-               //스케쥴 출력하기     
-                 let todoTemplate = `
+  
+               //투두 출력하기  
+               if (tododate != null) {
+                  let todoTemplate = `
                      <li class="todoList">
                         <div class="content">
                             <input type="checkbox">
                             <p>${todo.content}</p>
                         </div>
                     </li>
-                `;
-   
+                `;         
                 todoElements.insertAdjacentHTML("beforeend", todoTemplate);
-               }
-             }
-           })
+               } else {
+                    let noTodoTemplate = `
+                    <li class="todoList">
+                        <div class="content">
+                            <p>일정이 없습니다.</p>
+                        </div>
+                    </li>
+                    `;
+              todoElements.insertAdjacentHTML("beforeend", noTodoTemplate);
+               }//else end
+              }//if end
+            }//for end
+           })//fetch end
            .catch(error => {
              console.error("Error fetching todo:", error);
            });
@@ -199,35 +213,57 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });//calendar end
 
-// 체크박스 요소 선택
-let checkboxElement = document.querySelector('input[type="checkbox"]');
 
-// 체크 상태 변경 이벤트 리스너 추가
-checkboxElement.addEventListener('change', function() {
-  // 체크 상태 가져오기
-  let isChecked = checkboxElement.checked;
 
-  // 서버로 데이터 전송
-  fetch('http://localhost:8080/api/updateCheckbox', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ isChecked: isChecked }) // 체크 상태를 JSON 형식으로 전송
-  })
-  .then(response => {
-    // 서버 응답 처리
-    if (response.ok) {
-      console.log('체크 상태 업데이트 성공');
+// ========= 투두리스트 체크박스 기능 ==================
+
+let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+checkboxes.forEach(checkbox => {
+  // 체크 상태 변경 이벤트 리스너 추가
+  checkbox.addEventListener('change', function() {
+    // 체크 상태 가져오기
+    let isChecked = checkbox.checked;
+    let todoId = checkbox.getAttribute('data-todo-id'); // data-todo-id 속성에서 todoId 가져오기
+
+
+    // <p> 요소 폰트 스트일 변경 (줄 그어짐)
+    let pElement = checkbox.nextElementSibling;
+    if (isChecked) {
+      pElement.style.textDecoration = 'line-through';
     } else {
-      console.error('체크 상태 업데이트 실패');
+      pElement.style.textDecoration = 'none';
     }
-  })
-  .catch(error => {
-    console.error('오류 발생:', error);
+
+    // 서버로 데이터 전송
+    fetch('http://localhost:8080/api/updateCheckbox', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ todoId: todoId, isChecked: isChecked }) // 체크 상태를 JSON 형식으로 전송
+    })
+    .then(response => {
+
+      // 서버 응답 처리
+      if (response.ok) {
+        console.log(todoId +'체크 상태 업데이트 성공');
+      } else {
+        console.error(todoId+'체크 상태 업데이트 실패');
+      }
+    })
+    .catch(error => {
+      console.error('오류 발생:', error);
+    });
+
+      // <li> 요소 위치 변경
+    let liElement = checkbox.closest('li');
+    let ulElement = liElement.closest('ul');
+    if (isChecked) {
+      ulElement.appendChild(liElement); // 가장 하위로 이동
+    }
   });
 });
-
 
 window.addEventListener("load", function () {
     let plus1 = document.querySelector('.plus');

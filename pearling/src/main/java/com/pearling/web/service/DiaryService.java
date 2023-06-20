@@ -7,7 +7,7 @@ import com.pearling.web.entity.Diary;
 
 public interface DiaryService {
     List<Diary> getList();
-    List<Diary> getListByDate(String date);
+    List<Diary> getListByDate(String date, Integer memberId);
 
     Diary findById(Integer id);
     void addDiary(Diary diary);

@@ -43,7 +43,7 @@
 
 /* -----버튼(사진 첨부)--------------------------------------------------- */
 
-.btns>button {
+#file-upload-button {
     background-image: url("/images/diary/photo.svg");
     background-repeat: no-repeat;
     background-position-x: center;
@@ -57,7 +57,7 @@
     border: none;
 }
 
-.btns>button:active {
+.btns>input:active {
     opacity: 0.8;
 }
 

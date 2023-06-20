@@ -13,7 +13,11 @@
 
             <div class="profile">
                 <div class="profile-setting">
-                    <p class="p-img"><img src="/images/header/profile.png" th:src="@{'/images/profile/' + ${#authentication.principal.profileImage}}" alt="프로필" /></p>
+                    <p class="p-img">
+                        <img src="/images/header/profile.png" 
+                        th:src="@{${#authentication.principal.profileImage} != null ? '/images/profile/' + ${#authentication.principal.profileImage} : '/images/profile/basic.png'}" 
+                        alt="프로필" />
+                    </p>                    
                     <div class="names">
                         <p class="nickname"><span sec:authentication="principal.nickname"></span></p>
                         <p class="name"><span sec:authentication="principal.name"></span>님</p>
@@ -60,7 +64,7 @@
                 <div class="aside-menu-list">
                     <ul>
                         <p>my account</p>
-                        <li><a href="/setting/profile">프로필 관리</a></li>
+                        <li><a href="/setting/profile">프로필 수정</a></li>
                         <li><a href="/setting/follow-group">친구 관리</a></li>
                         <li><a href="/setting/accountmanage">계정 관리</a></li>
                         <li><a href="/setting/calendar">캘린더 설정</a></li>

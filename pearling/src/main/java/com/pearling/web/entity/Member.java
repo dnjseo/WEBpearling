@@ -1,7 +1,6 @@
 package com.pearling.web.entity;
 
-
-import java.util.Date;
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +17,9 @@ public class Member {
     private String pwd; 
     private String nickname; 
     private String email; 
-    private Date birth; 
+    private LocalDate birth; 
     private String profileImage;
     private Integer roleId;
+
+    private String domain;
 }

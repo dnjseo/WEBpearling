@@ -42,10 +42,13 @@ public class TodoServiceImp implements TodoService{
 
     @Override
     public void addTodo(Todo todo) {
+
     }
 
     @Override
-    public void updateTodo(Todo todo) {
+    public int updateTodo(Todo todo) {
+
+        return repository.update(todo);
     }
 
     @Override

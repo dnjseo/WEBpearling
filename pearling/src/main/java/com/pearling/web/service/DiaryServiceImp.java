@@ -23,8 +23,8 @@ public class DiaryServiceImp implements DiaryService {
     }
 
     @Override
-    public List<Diary> getListByDate(String date) {
-        return repository.findByDate(date);
+    public List<Diary> getListByDate(String date, Integer memberId) {
+        return repository.findByDate(date, memberId);
     }
 
     @Override

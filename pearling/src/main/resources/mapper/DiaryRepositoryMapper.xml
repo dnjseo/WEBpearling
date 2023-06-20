@@ -16,14 +16,18 @@
 			</if>
 		</trim>
 	</select>
-	<select id="findByDate" resultType="com.pearling.web.entity.Diary" parameterType="Integer">
+	<select id="findByDate" resultType="com.pearling.web.entity.Diary">
 		select *
 		from diary
 	<trim prefix="where" prefixOverrides="AND|OR"> 
 		<if test="date != null">
 		date = #{date}
 		</if>
+		<if test="memberId != null">
+		AND member_id = #{memberId}
+		</if>
 	</trim>
+		order by date
 	</select>
 	<insert id="save">
 		insert into 

@@ -32,7 +32,7 @@
                 <ul class=todoListSection id="mstodoList">
                     <li class="todoList" th:each="t : ${todoList}">
                         <div class="content">
-                            <input type="checkbox">
+                            <input type="checkbox" th:checked="${t.statement}">
                             <!-- <span id="todoItem"></span> -->
                             <p th:text="${t.content}">소금빵 사러가기🥐</p>
                         </div>

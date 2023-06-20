@@ -97,9 +97,7 @@ a{
     display: none;
 }
 
-
 /* 기본폰트 */
-
 @font-face {
     font-family: 'Pretendard-Regular';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -107,25 +105,9 @@ a{
     font-style: normal;
 }
 
-
 @font-face {
     font-family: 'Pretendard-SemiBold';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
     font-weight: 500;
     font-style: normal;
-
 }    
-
-
-/* 예시 
-#m1-shellmenu > .our-shell > a > p{
-    //폰트 굵기 (Regular은 보통)
-    font-family: 'Pretendard-SemiBold';
-
-    //폰트 사이즈
-    font-size: 14px;
-
-    
-    color : rgba(165, 135, 224, 1);
-    letter-spacing: 0.02em;
-} */

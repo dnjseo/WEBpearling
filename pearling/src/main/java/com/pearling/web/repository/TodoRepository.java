@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.pearling.web.entity.Schedule;
 import com.pearling.web.entity.Todo;
 
 @Mapper
@@ -17,7 +16,7 @@ public interface TodoRepository {
 
 
     Todo findById(int id);
-    void save(Todo todo);
+    int save(Todo todo);
     int update(Todo todo);
     void delete(Todo todo);
 

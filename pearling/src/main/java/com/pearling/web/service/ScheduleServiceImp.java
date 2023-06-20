@@ -31,19 +31,24 @@ public class ScheduleServiceImp implements ScheduleService {
     }
 
     @Override
-    public List<Schedule> getListByUserId(Integer memberId) {
+    public List<Schedule> getListByUserId(int memberId) {
 
         return repository.findByUserId(memberId);
     }
 
     @Override
-    public List<Schedule> getListByDate(Integer memberId, LocalDate date) {
+    public List<Schedule> getListByDate(int memberId, LocalDate date) {
  
         return repository.findByDate(memberId, date);
     }
 
     @Override
-    public Schedule get(Integer id){
+    public Schedule get(int id){
+        return repository.findById(id);
+    }
+
+    @Override
+    public Schedule findById(int id) {
         return repository.findById(id);
     }
 
@@ -59,11 +64,6 @@ public class ScheduleServiceImp implements ScheduleService {
         repository.update(schedule);
     }
 
-
-    @Override
-    public Schedule findById(Integer id) {
-        return repository.findById(id);
-    }
 
     @Override
     public void deleteSchedule(Schedule schedule) {

@@ -25,10 +25,13 @@
             <div class="ms-today">
                 <img src="/images/profile/circle.png">
                 <span class="ms-today-day"></span>
-        </div>
+           </div>
 
             <div class="schedule">
                 <p>to do.</p>
+                <!-- 투두 인풋폼 생성되는 자리 -->
+                <div id="todo-add-form-section"></div>
+
                 <ul class=todoListSection id="mstodoList">
                     <li class="todoList" th:each="t : ${todoList}">
                         <div class="content">

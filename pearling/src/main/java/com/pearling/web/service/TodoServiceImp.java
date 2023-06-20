@@ -41,8 +41,9 @@ public class TodoServiceImp implements TodoService{
     }
 
     @Override
-    public void addTodo(Todo todo) {
+    public int addTodo(Todo todo) {
 
+        return repository.save(todo);
     }
 
     @Override
@@ -53,6 +54,7 @@ public class TodoServiceImp implements TodoService{
 
     @Override
     public void deleteTodo(Todo todo) {
+
     }
 
     @Override

@@ -18,8 +18,8 @@
   <body>
     <!-- ----------------------헤더---------------------------- -->
 	<!-- header 부분 -->
-    <th:block th:if="${headerShow}" th:include="~{inc/header}"></th:block>
-    <th:block th:unless="${headerShow}" th:include="~{inc/header2}"></th:block>
+    <th:block th:if="${headerShow}" th:insert="~{inc/header}"></th:block>
+    <th:block th:unless="${headerShow}" th:insert="~{inc/header2}"></th:block>
     <!-- <p th:text="${headerShow}"></p> -->
 	<!-- aside 부분 -->
 		<div th:replace="~{inc/aside}"></div>
@@ -27,7 +27,7 @@
   <div id="dmf">
 		<div layout:fragment="content"></div>
     <!-- footer 부분 -->
-    <th:block th:if="${headerShow}" th:include="~{inc/footer}"></th:block>
+    <th:block th:if="${headerShow}" th:insert="~{inc/footer}"></th:block>
     <!-- <div th:replace="~{inc/footer}"></div> -->
   </div>
   </body>

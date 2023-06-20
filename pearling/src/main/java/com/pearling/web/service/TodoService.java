@@ -13,8 +13,7 @@ public interface TodoService {
     List<Todo> getListByDate(int userId, LocalDate date);
 
     Todo findById(int id);
-    void addTodo(Todo todo);
+    int addTodo(Todo todo);
     int updateTodo(Todo todo);
     void deleteTodo(Todo todo);
-
 }

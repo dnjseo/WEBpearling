@@ -1,18 +1,22 @@
 package com.pearling.web.api.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pearling.web.entity.Schedule;
@@ -21,7 +25,7 @@ import com.pearling.web.security.MyUserDetails;
 import com.pearling.web.service.TodoService;
 
 @RestController("apiTodoController")
-@RequestMapping("api/todos")
+@RequestMapping("/api/todos")
 public class TodoController {
     
     @Autowired
@@ -60,5 +64,27 @@ public class TodoController {
 //       return ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 todo를 찾을 수 없음");
 //     }
 //   }
+
+    @PostMapping
+     public ResponseEntity<String> addTodo(@RequestBody Todo todo,
+        @RequestParam(value = "clickedDate", required = false) String clickedDate,
+        @AuthenticationPrincipal MyUserDetails user) {
+            
+    try {
+                LocalDate date = LocalDate.parse(clickedDate);
+
+                Todo newTodo = Todo.builder()
+                        .date(date)
+                        .content(todo.getContent())
+                        .memberId(user.getId())
+                        .build();
+                service.addTodo(newTodo);
+                   
+      // todoService를 사용하여 todo를 저장하는 로직 작성
+      return ResponseEntity.ok("Todo 추가 성공");
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Todo 추가 실패");
+    }
+  }
 
 }// class end

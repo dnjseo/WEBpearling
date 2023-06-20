@@ -7,15 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
         //plugins: [ googleCalendarPlugin ],
         // editable: true,
         // initialView: 'dayGridMonth',
-        googleCalendarApiKey: 'AIzaSyC7DwkG7gzH6oNfouokyqXiKisgP13t8wM',
-        EventSource: [
-            {
-                googleCalendarId: 'ko.south_korea#holiday@group.v.calendar.google.com',
-                className: '대한민국공휴일',
-                color: '#A587E0',
-                textcolor: 'red'
-            }
-        ],
+      
+
+
         // events: [
         //     {
         //         title: 'start',
@@ -53,6 +47,8 @@ document.addEventListener('DOMContentLoaded', function () {
     calendar.render();
     calendar.setOption('contentHeight', 350);
 
+
+    
     let mstoday = document.querySelector("#ms4")
     let dayIndex = 0;
     updateDate(dayIndex);
@@ -104,25 +100,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
         mstoday.querySelector('.ms-today-day').innerText = month + "." + date + " " + day;
     }
-
-    let dayDetail = document.getElementById('dayDetail');
-    calendar.on('dateClick', function (info) {
-        console.log('clicked on ' + info.dateStr);
-
-    });
-
+    
+    // 캘린더에서 선택한 날짜 (스코프)
+    let clickedDate = null;
+    let cleckedMonth = null; let cleckedDay = null; let cleckedDate = null;
 
     //캘린더 상의 날짜 클릭할 때
     calendar.on('dateClick', (info) => {
+      console.log('clicked on ' + info.dateStr);
 
-        let clickedDate = new Date(info.dateStr);
-        let month = (clickedDate.getMonth() + 1).toString().padStart(2, '0');
-        let day = clickedDate.getDate().toString().padStart(2, '0');
-        let date = clickedDate.toLocaleString('en-US', { weekday: 'short' }).toLowerCase();
+        clickedDate = new Date(info.dateStr);
+        cleckedMonth = (clickedDate.getMonth() + 1).toString().padStart(2, '0');
+        cleckedDay = clickedDate.getDate().toString().padStart(2, '0');
+        cleckedDate = clickedDate.toLocaleString('en-US', { weekday: 'short' }).toLowerCase();
 
         //캘린더 아래에 클릭한 날짜 출력
         let mstoday = document.querySelector("#ms4");
-        mstoday.querySelector(".ms-today-day").innerText = month + "." + day + " " + date;
+        mstoday.querySelector(".ms-today-day").innerText = cleckedMonth + "." + cleckedDay + " " + cleckedDate;
         
         let scheduleElements = document.querySelector('.scheduleListSection');
         let todoElements = document.querySelector('.todoListSection');
@@ -146,9 +140,6 @@ document.addEventListener('DOMContentLoaded', function () {
                ) {
   
                //투두 출력하기  
-            
-               console.log('헤헤헤헤헤'+todo.statement)
-               
                if (tododate != null) {
                   let todoTemplate = `
                      <li class="todoList">
@@ -214,72 +205,168 @@ document.addEventListener('DOMContentLoaded', function () {
      
     }); // onclick calendar end
 
-});//calendar end
 
 
+    // ========= 투두리스트 체크박스 기능 ==================
 
-// ========= 투두리스트 체크박스 기능 ==================
+    let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    
+    checkboxes.forEach(checkbox => {
+      // 체크 상태 변경 이벤트 리스너 추가
+      checkbox.addEventListener('change', function() {
+        // 체크 상태 가져오기
+        let isChecked = checkbox.checked;
+        let todoId = checkbox.getAttribute('data-todo-id'); // data-todo-id 속성에서 todoId 가져오기
+    
+    
+        // <p> 요소 폰트 스트일 변경 (줄 그어짐)
+        let pElement = checkbox.nextElementSibling;
+        if (isChecked) {
+          pElement.style.textDecoration = 'line-through';
+        } else {
+          pElement.style.textDecoration = 'none';
+        }
+    
+        // 서버로 데이터 전송
+        fetch('http://localhost:8080/api/updateCheckbox', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ todoId: todoId, isChecked: isChecked }) // 체크 상태를 JSON 형식으로 전송
+        })
+        .then(response => {
+    
+          // 서버 응답 처리
+          if (response.ok) {
+            console.log(todoId +'체크 상태 업데이트 성공');
+          } else {
+            console.error(todoId+'체크 상태 업데이트 실패');
+          }
+        })
+        .catch(error => {
+          console.error('오류 발생:', error);
+        });
+    
+          // <li> 요소 위치 변경
+        let liElement = checkbox.closest('li');
+        let ulElement = liElement.closest('ul');
+        if (isChecked) {
+          ulElement.appendChild(liElement); // 가장 하위로 이동
+        }
+      });
+    });
+    
+    
+    
+    //하단 픽스드 버튼 이벤트
+    window.addEventListener("load", function () {
+        let plus1 = document.querySelector('.plus');
+        let plusDetail = document.querySelector('.plusDetail');
+        let plusTodo = document.querySelector('.plus-todo');
+        let plusSchedule = this.document.querySelector('.plus-schedule');
+        let isOpen = false;
+        const formContainer = document.getElementById('todo-add-form-section');
+        let todoAddForm = null;
+    
+    
+        // < + > 버튼 클릭
+        plus1.addEventListener('click', () => {
+            plusDetail.classList.toggle('act');
+        })
+    
+        //< 할 일 > 버튼 클릭
+        plusTodo.addEventListener('click',(e)=>{
+          e.preventDefault();
+          console.log('투두 버튼 클릭햇음다')
+    
+          if (!todoAddForm) {
+            todoAddForm = document.createElement('form');
+            todoAddForm.className = 'todo-add-form';
+            todoAddForm.method = 'post';
+            todoAddForm.action = 'post';
+        
+            const checkboxInput = document.createElement('input');
+            checkboxInput.type = 'checkbox';
+        
+            const contentInput = document.createElement('input');
+            contentInput.className = 'todo-content-input';
+            contentInput.type = 'text';
+            contentInput.name = 'content';
+        
+            todoAddForm.appendChild(checkboxInput);
+            todoAddForm.appendChild(contentInput);
+        
+            formContainer.appendChild(todoAddForm);
+    
+            // 폼이 생성될 때만 한 번 등록
+            document.addEventListener('keydown', handleFormSubmit);
+      
+            // 호출된 위치에서 handleFormSubmit 호출
+            handleFormSubmit(new KeyboardEvent('keydown', { key: 'Enter' }));
 
-let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+          } else {
+            formContainer.removeChild(todoAddForm);
+            todoAddForm = null;
+    
+            // 폼이 제거될 때 등록 해제
+            document.removeEventListener('keydown', handleFormSubmit);
+          }
+            
+        })
+    
+      // 엔터 키 이벤트 핸들러
+      function handleFormSubmit(e) {
+        if (e.key === 'Enter' && todoAddForm && todoAddForm.contains(document.activeElement)) {
+          e.preventDefault(); // 기본 동작인 새로운 줄 추가 방지
+          
+          const formData = new FormData(todoAddForm);
+          
+          // clickedDate 값을 formData에 추가
+          if (clickedDate) {
+            const formattedDate = clickedDate.toISOString().substring(0, 10);
+            formData.append('clickedDate', formattedDate);
+          }
+          
+            const todoData = {
+              content: formData.get('content'),
+              date: formattedDate
+            };
+            
 
-checkboxes.forEach(checkbox => {
-  // 체크 상태 변경 이벤트 리스너 추가
-  checkbox.addEventListener('change', function() {
-    // 체크 상태 가져오기
-    let isChecked = checkbox.checked;
-    let todoId = checkbox.getAttribute('data-todo-id'); // data-todo-id 속성에서 todoId 가져오기
-
-
-    // <p> 요소 폰트 스트일 변경 (줄 그어짐)
-    let pElement = checkbox.nextElementSibling;
-    if (isChecked) {
-      pElement.style.textDecoration = 'line-through';
-    } else {
-      pElement.style.textDecoration = 'none';
-    }
-
-    // 서버로 데이터 전송
-    fetch('http://localhost:8080/api/updateCheckbox', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ todoId: todoId, isChecked: isChecked }) // 체크 상태를 JSON 형식으로 전송
-    })
-    .then(response => {
-
-      // 서버 응답 처리
-      if (response.ok) {
-        console.log(todoId +'체크 상태 업데이트 성공');
-      } else {
-        console.error(todoId+'체크 상태 업데이트 실패');
+          fetch("/api/tods", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(todoData) // 폼 데이터를 URL 인코딩하여 전송
+          })
+            .then(response => {
+              if (response.ok) {
+                todoAddForm.submit();
+                // 성공적으로 요청이 처리된 경우의 동작
+                console.log('폼 제출 성공');
+              } else {
+                // 요청이 실패한 경우의 동작
+                console.error('폼 제출 실패');
+              }
+            })
+            .catch(error => {
+              // 네트워크 오류 등 예외 처리
+              console.error('폼 제출 오류:', error);
+            });
+        }
       }
-    })
-    .catch(error => {
-      console.error('오류 발생:', error);
+      
+          
+    
     });
 
-      // <li> 요소 위치 변경
-    let liElement = checkbox.closest('li');
-    let ulElement = liElement.closest('ul');
-    if (isChecked) {
-      ulElement.appendChild(liElement); // 가장 하위로 이동
-    }
-  });
-});
+  });//DOM Load end
 
-window.addEventListener("load", function () {
-    let plus1 = document.querySelector('.plus');
-    let plusDetail = document.querySelector('.plusDetail');
-    let plusTodo = document.querySelector('.plus-todo');
-    let plusSchedule = this.document.querySelector('.plus-schedule');
-    let isOpen = false;
 
-    plus1.addEventListener('click', () => {
-        plusDetail.classList.toggle('act');
-    })
 
-});
+
 
 
 

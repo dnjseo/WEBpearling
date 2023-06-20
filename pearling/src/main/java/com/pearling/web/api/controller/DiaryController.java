@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,24 +32,24 @@ public class DiaryController {
 
 		return service.getList();
 	}
-	
+
 	@GetMapping("{date}")
-	public List<Diary> datelist(
+	public List<Diary> list(
 			@RequestParam(name = "s", required = false) boolean editShow,
 			@PathVariable("date") String date,
 			@AuthenticationPrincipal MyUserDetails user) {
 
-				Integer memberId = null;
+		Integer memberId = null;
 
-				if(user != null) {
-					memberId = user.getId();
-				} 
+		if (user != null) {
+			memberId = user.getId();
+		}
 
 		return service.getListByDate(date, memberId);
 	}
 
 	@GetMapping("detail/{id}")
-	public Diary getDiary(@PathVariable("id") Integer id,
+	public Diary list(@PathVariable("id") Integer id,
 			@RequestParam(name = "s", required = false) boolean editShow) {
 
 		Diary diary = service.findById(id);
@@ -57,8 +57,8 @@ public class DiaryController {
 		return diary;
 	}
 
-	@PostMapping("post")
-	public void addDiary(@RequestBody DiaryRequest diaryRequest, @AuthenticationPrincipal MyUserDetails user) {
+	@PostMapping
+	public void post(@RequestBody DiaryRequest diaryRequest, @AuthenticationPrincipal MyUserDetails user) {
 		Diary diary = Diary.builder()
 				.date(diaryRequest.getDate())
 				.title(diaryRequest.getTitle())
@@ -68,28 +68,30 @@ public class DiaryController {
 				.diaryScopeId(diaryRequest.getDiaryScopeId())
 				.build();
 		service.addDiary(diary);
+
+		System.out.println("나는 레스트컨트롤러");
 	}
 
-	// @DeleteMapping("delete/{id}")
-	// public void deleteDiary(@PathVariable("id") Integer id) {
-	// Diary diary = service.findById(id);
-	// if (diary != null) {
-	// service.deleteDiary(diary);
-	// }
-	// }
+	@DeleteMapping("{id}")
+	public void delete(@PathVariable("id") Integer id) {
+		Diary diary = service.findById(id);
+		if (diary != null) {
+			service.deleteDiary(diary);
+		}
+	}
 
-	// @PutMapping("update/{id}")
-	// public void updateDiary(@PathVariable("id") Integer id,
-	// @RequestBody DiaryRequest diaryRequest) {
-	// Diary diary = Diary.builder()
-	// .id(id)
-	// .date(diaryRequest.getDate())
-	// .title(diaryRequest.getTitle())
-	// .content(diaryRequest.getContent())
-	// .diaryScopeId(diaryRequest.getDiaryScopeId())
-	// .build();
-	// service.updateDiary(diary);
-	// }
+	@PutMapping("{id}")
+	public void update(@PathVariable("id") Integer id,
+			@RequestBody DiaryRequest diaryRequest) {
+		Diary diary = Diary.builder()
+				.id(id)
+				.date(diaryRequest.getDate())
+				.title(diaryRequest.getTitle())
+				.content(diaryRequest.getContent())
+				.diaryScopeId(diaryRequest.getDiaryScopeId())
+				.build();
+		service.updateDiary(diary);
+	}
 
 	// getter, setter
 

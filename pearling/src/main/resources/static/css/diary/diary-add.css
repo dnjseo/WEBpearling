@@ -1,6 +1,7 @@
 @import url("/css/diary/diary-calendar.css");
 
-.diary-add-form {
+.diary-add-form,
+.diary-edit-form {
     display: flex;
     flex-direction: column;
     align-items: center;

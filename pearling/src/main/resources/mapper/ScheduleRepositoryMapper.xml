@@ -24,7 +24,7 @@
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			<if test="query != null">
 				title like '%${query}%'
-			</if>			
+			</if>			 
 		</trim>
 	</select>
 	<select id="findByUserId" resultType="Schedule">
@@ -38,9 +38,9 @@
 		WHERE member_id = #{memberId} and start_date = '${date.toString()}';
 	</select>
 	<insert id="save">
-		insert into schedule
-		schedule(startDate, startTime, endDate, endTime, location, title, memberId, backgroundColor)		
-		values(#{startDate},#{startTime},#{endDate},#{endTime},#{location}, #{title},#{memberId},#{backgroundColor});
+		insert into
+		schedule(start_date, start_time, end_date, end_time, title, member_id, background_color, latitude, longitude)		
+		values(#{startDate},#{startTime},#{endDate},#{endTime}, #{title},#{memberId},#{backgroundColor},#{latitude}, #{longitude});
 	</insert>
 	<update id="update">
 		update schedule
@@ -49,10 +49,10 @@
 			<if test="startTime != null">start_time = #{startTime},</if>
 			<if test="endDate != null">end_date = #{endDate},</if>
 			<if test="endTime != null">end_time = #{endTime},</if>
-			<if test="location != null">location = #{location},</if>
 			<if test="title != null">title = #{title},</if>
-			<if test="memberId != null">member_id = #{memberId},</if>
-			<if test="backgroundColor != null">background_color = #{backgroundColor}</if>
+			<if test="backgroundColor != null">background_color = #{backgroundColor},</if>
+			<if test="latitude != null">latitude = #{latitude},</if>
+			<if test="longitude != null">longitude = #{longitude}</if>
 		</set>
 		where id = #{id};
 	</update>

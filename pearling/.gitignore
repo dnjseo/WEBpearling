@@ -39,4 +39,5 @@ build/
 application-no.yml
 application-secret.yml
 
-pearling/src/main/resources/templates/schedule/post.html
+/schedule/post.html
+kakao-secret.js

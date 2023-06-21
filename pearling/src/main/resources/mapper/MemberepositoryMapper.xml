@@ -40,6 +40,9 @@
             <if test="nickname != null">
                 nickname = #{nickname},
             </if>
+			<if test="profileImage != null or profileImage == null">
+				profile_image = #{profileImage}
+			</if>
         </set>
         where id = #{id}
     </update>

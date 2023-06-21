@@ -16,6 +16,6 @@ public interface MemberRepository {
     List<Member> findByQuery(String query);
     List<Member> findAll();
 
+    int updateMember(Member existingMember); // 업데이트하기
     void insertMember(Member member); // insertMember 메서드 추가
-    void updateMember(Member existingMember); // 업데이트하기
 }

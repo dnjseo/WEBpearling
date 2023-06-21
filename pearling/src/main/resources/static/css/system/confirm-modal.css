@@ -42,7 +42,7 @@
 
 .confirm-yes, .send-yes, 
 .signup-confirm-yes, .check-yes,
-.nocorrect-yes{
+.nocorrect-yes, .modify-yes{
     display: flex;
     flex-direction: row;
     justify-content: center;

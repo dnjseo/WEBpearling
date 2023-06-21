@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,23 +59,32 @@ public class TodoController {
         }
 
 
-//     @PostMapping("/updateCheckbox")
-//     public ResponseEntity<String> updateCheckbox(@RequestBody Map<String, Object> requestData) {
-//     boolean isChecked = (boolean) requestData.get("isChecked");
-    
-//     // TODO: 데이터베이스에서 해당 todo를 찾아서 체크 상태 업데이트
-//     // 예시로 todoId를 이용하여 업데이트하는 로직을 작성하였습니다.
-//     int todoId = 1; // 업데이트할 todo의 ID
-//     Todo todo = service.findById(todoId)
-//     if (todo != null) {
-//       todo.setChecked(isChecked);
-//       service.save(todo);
-//       return ResponseEntity.ok("체크 상태 업데이트 성공");
-//     } else {
-//       return ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 todo를 찾을 수 없음");
-//     }
-//   }
+@PutMapping
+public ResponseEntity<String> updateTodo(@RequestBody Map<Integer, Boolean> requestData,
+        @AuthenticationPrincipal MyUserDetails user, Authentication authentication) {
 
+    MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
+    int userId = userDetails.getId();
+
+    for (Map.Entry<Integer, Boolean> entry : requestData.entrySet()) {
+        Integer todoId = entry.getKey();
+        boolean isChecked = entry.getValue();
+
+        // TODO: 데이터베이스에서 해당 todo를 찾아서 체크 상태 업데이트
+        Todo todo = service.findById(todoId);
+        if (todo != null) {
+            Todo updateTodo = Todo.builder()
+                        .statement(isChecked)
+                        .build();   
+            service.updateTodo(todo);
+            System.out.println("Todo 업데이트 성공 - todoId: " + todoId);
+        } else {
+            System.out.println("Todo를 찾을 수 없음 - todoId: " + todoId);
+        }
+    }
+
+    return ResponseEntity.ok("업데이트 완료");
+}
     @PostMapping
      public ResponseEntity <String> addTodo(@RequestBody Todo todoData,
         @RequestParam(value = "clickedDate", required = false) String clickedDate,

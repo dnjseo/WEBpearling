@@ -8,18 +8,33 @@ function printCalendarEvent(calendar) {
             let scheduleStartDate = schedule.startDate;
             let scheduleEndDate = schedule.endDate;
             let scheduleColor = schedule.backgroundColor;
+            let scheduleStartTime = schedule.startTime;
+            let scheduleEndTime = schedule.endTime;
+
             if (scheduleColor == null){
               scheduleColor = '#E6E6FA'
             }
 
             console.log (scheduleColor)
-            let event = {
+
+            let event=null;
+            if(!scheduleStartTime && !scheduleEndTime){
+              event = {
+                  title: scheduleTitle,
+                  start: scheduleStartDate,
+                  end:scheduleEndDate,
+                  color: scheduleColor               
+              };
+           }else{
+              event = {
                 title: scheduleTitle,
-                start: scheduleStartDate,
-                end:scheduleEndDate,
-                color: scheduleColor
-            };
-            calendar.addEvent(event);
+                start: scheduleStartDate+'T'+scheduleStartTime,
+                end:scheduleEndDate+'T'+scheduleEndTime,
+                color: scheduleColor               
+              };
+        }
+          calendar.addEvent(event);
+          
         }
     });
 
@@ -32,6 +47,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let calendarEl = document.getElementById('calendar');
     let calendar = new FullCalendar.Calendar(calendarEl, {
+      eventTimeFormat: {
+        hour: 'numeric',
+        minute: '2-digit',
+        meridiem: false
+      }
+      
     });
 
     //캘린더 출력
@@ -46,7 +67,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let clickedDate = null;
     let cMonth = null; let cDay = null; let cDate = null;
     let todoDeleteBtns = document.querySelectorAll('.todo-delete-button');
-    
+    let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
     //캘린더에서 날짜 클릭
     calendar.on('dateClick', (info) => {
       console.log('clicked on ' + info.dateStr);
@@ -69,16 +91,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ========= 투두리스트 체크박스 기능 ==================
 
-    let checkboxes = document.querySelectorAll('input[type="checkbox"]');
     
     checkboxes.forEach(checkbox => {
       // 체크 상태 변경 이벤트 리스너 추가
+
       checkbox.addEventListener('change', function() {
         // 체크 상태 가져오기
         let isChecked = checkbox.checked;
-        let todoId = checkbox.getAttribute('data-todo-id'); // data-todo-id 속성에서 todoId 가져오기
+        let todoId = checkbox.dataset.id; // data-todo-id 속성에서 todoId 가져오기
     
-    
+        let checkboxData  = {
+          statement : isChecked,
+          id : todoId
+        }
+
         // <p> 요소 폰트 스타일 변경 (줄 그어짐)
         let pElement = checkbox.nextElementSibling;
         if (isChecked) {
@@ -88,8 +114,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     
         // 서버로 데이터 전송
-        fetch('http://localhost:8080/api/updateCheckbox', {
-          method: 'POST',
+        fetch('/api/todos', {
+          method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -230,7 +256,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 // 성공적으로 요청이 처리된 경우의 동작
                 console.log('폼 제출 성공');
                 updateTodoList(clickedDate)
-
+              
+                
               } else {
                 // 요청이 실패한 경우의 동작
                 console.error('폼 제출 실패');
@@ -358,13 +385,17 @@ document.addEventListener('DOMContentLoaded', function () {
          scheduleElements.innerHTML = '';
    
        for (let schedule of list) {
-         let scheduleStartDate = new Date(schedule.startDate);
+        let scheduleStartDate = new Date(schedule.startDate);
+        let scheduleEndDate = new Date(schedule.endDate)
 
          // 날짜 비교를 위해 clickedDate와 scheduleStartDate의 년, 월, 일을 비교
          if (
-           clickedDate.getFullYear() === scheduleStartDate.getFullYear() &&
-           clickedDate.getMonth() === scheduleStartDate.getMonth() &&
-           clickedDate.getDate() === scheduleStartDate.getDate()
+            clickedDate.getFullYear() >= scheduleStartDate.getFullYear() &&
+            clickedDate.getMonth() >= scheduleStartDate.getMonth() &&
+            clickedDate.getDate() >= scheduleStartDate.getDate() &&
+            clickedDate.getFullYear() <= scheduleEndDate.getFullYear() &&
+            clickedDate.getMonth() <= scheduleEndDate.getMonth() &&
+            clickedDate.getDate() <= scheduleEndDate.getDate()
          ) {
 
          //스케쥴 출력하기     

@@ -31,11 +31,7 @@
 	<update id="update" >
 	update to_do
 	<set> 
-		<if test="date != null">date = #{date},</if>
-		<if test="start_time != null">regdate = #{regdate},</if>
 		<if test="end_date != null">statement = #{statement},</if>
-		<if test="member_id != null">member_id = #{memberId},</if>
-		<if test="background_color != null">content = #{content}</if>
 	</set>
 	where id = #{id};
 	</update>

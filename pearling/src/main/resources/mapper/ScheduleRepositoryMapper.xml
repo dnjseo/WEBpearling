@@ -32,10 +32,17 @@
 		from schedule 
 		WHERE member_id = #{memberId};
 	</select>
-	<select id="findByDate" resultType="Schedule">
+	<!-- <select id="findByDate" resultType="Schedule">
 		select * 
 		from schedule 
 		WHERE member_id = #{memberId} and start_date = '${date.toString()}';
+	</select> -->
+	<select id="findByDate" resultType="Schedule">
+		select *
+		FROM schedule
+		WHERE member_id = #{memberId} 
+			AND start_date &lt;= str_to_date(#{date}, '%Y-%m-%d')
+			AND end_date  &gt;= str_to_date(#{date}, '%Y-%m-%d');
 	</select>
 	<insert id="save">
 		insert into

@@ -1,10 +1,14 @@
 package com.pearling.web.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.pearling.web.entity.Member;
 import com.pearling.web.repository.MemberRepository;
@@ -25,8 +29,7 @@ public class MemberServiceImp implements MemberService{
 
         return list;
     }
-
-    // 
+    
     @Override
     public List<Member> getListByQuery(String query) {
         return repository.findAll(query);
@@ -77,21 +80,40 @@ public class MemberServiceImp implements MemberService{
 
     // 회원 수정
     @Override
-    public void updateMember(Member member) {
-       Member existingMember = repository.findById(member.getId());
+    public int updateMember(Member member) {
+        Member existingMember = repository.findById(member.getId());
 
-       if (existingMember != null) {
-        // 업데이트할 필드 설정
-        existingMember.setName(member.getName());
-        existingMember.setNickname(member.getNickname());
-        // 필요한 다른 필드 업데이트
-        
-        repository.updateMember(existingMember); // 회원 정보 업데이트
-    } else {
-        throw new RuntimeException("Member not found with id: " + member.getId());
+        if (existingMember != null) {
+            // 업데이트할 필드 설정
+            existingMember.setName(member.getName());
+            existingMember.setNickname(member.getNickname());
+            existingMember.setProfileImage(member.getProfileImage());
+
+            return repository.updateMember(existingMember); // 회원 정보 업데이트
+        } else {
+            throw new RuntimeException("ID가 " + member.getId() + "인 회원을 찾을 수 없습니다.");
+        }
     }
+
+    @Override
+    public String uploadProfileImage(MultipartFile file) throws IOException {
+        if (!file.isEmpty()) {
+            String uploadDir = "\\webapp\\static\\images";
+            String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+            File uploadPath = new File(uploadDir, fileName);
+
+            System.out.println("비어있지 않습니다 !! ");
+            System.out.println(uploadPath);
+
+            file.transferTo(uploadPath);
+            return fileName; // 프로필 이미지 경로 반환
+        }
+
+        System.out.println("안된단다...");
+
+        return null;
     }
-    
+
     // 비밀번호 찾기
     @Override
     public boolean isValid(String email, String pwd) {

@@ -53,8 +53,9 @@ public class TodoServiceImp implements TodoService{
     }
 
     @Override
-    public void deleteTodo(Todo todo) {
+    public int deleteTodo(Todo todo) {
 
+        return repository.delete(todo);
     }
 
     @Override

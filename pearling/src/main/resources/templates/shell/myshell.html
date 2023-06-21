@@ -38,6 +38,7 @@
                             <input type="checkbox" th:checked="${t.statement}">
                             <!-- <span id="todoItem"></span> -->
                             <p th:text="${t.content}">소금빵 사러가기🥐</p>
+                            <button  class="todo-delete-button" th:data-id="${t.id}">x</button>
                         </div>
                         <div class="tag">
                             <!-- <button>@채원</button> -->

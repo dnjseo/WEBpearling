@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -75,7 +76,7 @@ public class TodoController {
 //   }
 
     @PostMapping
-     public ResponseEntity<List<Todo>> addTodo(@RequestBody Todo todoData,
+     public ResponseEntity <String> addTodo(@RequestBody Todo todoData,
         @RequestParam(value = "clickedDate", required = false) String clickedDate,
         @AuthenticationPrincipal MyUserDetails user, 
         Authentication authentication) {
@@ -91,13 +92,30 @@ public class TodoController {
                         .build();
                 service.addTodo(newTodo);
 
+                System.out.println("테스트입니다~~~~");
+
       // Todo 추가 후 업데이트된 목록을 다시 조회
-        List<Todo> updatedTodoList = service.getListByUserId(userId);
-        return ResponseEntity.ok(updatedTodoList);
+        //List<Todo> updatedTodoList = service.getListByUserId(userId);
+        return ResponseEntity.ok("제출 완");
         
     } catch (Exception e) {
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
   }
+
+  @DeleteMapping("{id}")
+  public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
+      Todo todo = service.findById(id);
+
+      if (todo != null) {
+          int deletedRows = service.deleteTodo(todo);
+          if (deletedRows > 0) {
+              return ResponseEntity.ok().build(); // 성공적으로 삭제된 경우 200 OK 반환
+          }
+      }
+
+      return ResponseEntity.notFound().build(); // 실패한 경우 404 Not Found 반환
+  }
+
 
 }// class end

@@ -1,10 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
-
-    let calendarEl = document.getElementById('calendar');
-    let calendar = new FullCalendar.Calendar(calendarEl, {
-
-    });
-
+function printCalendarEvent(calendar) {
     //캘린더 이벤트에 스케쥴 db 추가 
     fetch(`http://localhost:8080/api/schedules?`)
     .then(response => response.json())
@@ -32,33 +26,43 @@ document.addEventListener('DOMContentLoaded', function () {
     calendar.render();
     calendar.setOption('contentHeight', 350);
 
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    let calendarEl = document.getElementById('calendar');
+    let calendar = new FullCalendar.Calendar(calendarEl, {
+    });
+
+    //캘린더 출력
+    printCalendarEvent(calendar);
     
     //캘린더 하단 리스트 날짜 업데이트 
     let currentDay = document.querySelector("#ms4")
     let dayIndex = 0;
     updateDate(dayIndex, currentDay);
 
-
     // 캘린더에서 선택한 날짜 (스코프)
     let clickedDate = null;
-    let cleckedMonth = null; let cleckedDay = null; let cleckedDate = null;
-
+    let cMonth = null; let cDay = null; let cDate = null;
+    let todoDeleteBtns = document.querySelectorAll('.todo-delete-button');
+    
     //캘린더에서 날짜 클릭
     calendar.on('dateClick', (info) => {
       console.log('clicked on ' + info.dateStr);
         clickedDate = new Date(info.dateStr);
-        cleckedMonth = (clickedDate.getMonth() + 1).toString().padStart(2, '0');
-        cleckedDay = clickedDate.getDate().toString().padStart(2, '0');
-        cleckedDate = clickedDate.toLocaleString('en-US', { weekday: 'short' }).toLowerCase();
+        cMonth = (clickedDate.getMonth() + 1).toString().padStart(2, '0');
+        cDay = clickedDate.getDate().toString().padStart(2, '0');
+        cDate = clickedDate.toLocaleString('en-US', { weekday: 'short' }).toLowerCase();
 
         //캘린더 아래에 클릭한 날짜 출력
         let currentDay = document.querySelector("#ms4");
-        currentDay.querySelector(".ms-today-day").innerText = cleckedMonth + "." + cleckedDay + " " + cleckedDate;
+        currentDay.querySelector(".ms-today-day").innerText = cMonth + "." + cDay + " " + cDate;
         
         // 업데이트된 Todo List & Schedule List 조회
         updateTodoList(clickedDate);
         updateScheduleList(clickedDate);
-     
+
     }); // onclick calendar end
 
 
@@ -75,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let todoId = checkbox.getAttribute('data-todo-id'); // data-todo-id 속성에서 todoId 가져오기
     
     
-        // <p> 요소 폰트 스트일 변경 (줄 그어짐)
+        // <p> 요소 폰트 스타일 변경 (줄 그어짐)
         let pElement = checkbox.nextElementSibling;
         if (isChecked) {
           pElement.style.textDecoration = 'line-through';
@@ -114,12 +118,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     
     //하단 픽스드 버튼 이벤트
-    window.addEventListener("load", function () {
+    //window.addEventListener("load", function () {
         let plus1 = document.querySelector('.plus');
         let plusDetail = document.querySelector('.plusDetail');
         let plusTodo = document.querySelector('.plus-todo');
-        let plusSchedule = this.document.querySelector('.plus-schedule');
-        let isOpen = false;
+        // let plusSchedule = this.document.querySelector('.plus-schedule');
+        // let isOpen = false;
         const formContainer = document.getElementById('todo-add-form-section');
         let todoAddForm = null;
     
@@ -127,47 +131,80 @@ document.addEventListener('DOMContentLoaded', function () {
         // < + > 버튼 클릭
         plus1.addEventListener('click', () => {
             plusDetail.classList.toggle('act');
-        })
-    
-        //< 할 일 > 버튼 클릭
-        plusTodo.addEventListener('click',(e)=>{
-          e.preventDefault();
-          console.log('투두 버튼 클릭햇음다')
-    
-          if (!todoAddForm) {
-            todoAddForm = document.createElement('form');
-            todoAddForm.className = 'todo-add-form';
-            todoAddForm.method = 'post';
-            todoAddForm.action = 'post';
-        
-            const checkboxInput = document.createElement('input');
-            checkboxInput.type = 'checkbox';
-        
-            const contentInput = document.createElement('input');
-            contentInput.className = 'todo-content-input';
-            contentInput.type = 'text';
-            contentInput.name = 'content';
-        
-            todoAddForm.appendChild(checkboxInput);
-            todoAddForm.appendChild(contentInput);
-        
-            formContainer.appendChild(todoAddForm);
-    
-            // 폼이 생성될 때만 한 번 등록
-            document.addEventListener('keydown', handleFormSubmit);
-      
-            // 호출된 위치에서 handleFormSubmit 호출
-            // handleFormSubmit(new KeyboardEvent('keydown', { key: 'Enter' }));
-
-          } else {
-            formContainer.removeChild(todoAddForm);
-            todoAddForm = null;
-    
-            // 폼이 제거될 때 등록 해제
-            document.removeEventListener('keydown', handleFormSubmit);
-          }
+          })
+          
+          //< 할 일 > 버튼 클릭
+          plusTodo.addEventListener('click',(e)=>{
+            e.preventDefault();
+            console.log('투두 버튼 클릭햇음다')
             
+            todoDeleteBtns = document.querySelectorAll(".todo-delete-button");
+            
+            todoDeleteBtns.forEach(delBtn=>{
+              delBtn.classList.toggle('act')
+              
+                delBtn.onclick=(e) => {
+                e.preventDefault();
+                console.log('투두 삭제 버튼 클릭')
+
+                const id = e.target.dataset.id;
+
+                fetch(`/api/todos/${id}`,{
+                  method: "DELETE"
+                   })  
+                   .then(response => {
+                    if (response.ok) {
+                      // 성공적으로 요청이 처리된 경우의 동작
+                      console.log('삭제 성공~!');
+                      if(!clickedDate)
+                      clickedDate = new Date().toISOString().substring(0, 10)
+                      updateTodoList(clickedDate)
+                    } else {
+                      // 요청이 실패한 경우의 동작
+                      console.error('삭제 실패');
+                    }
+                  })
+                  .catch(error => {
+                    // 네트워크 오류 등 예외 처리
+                    console.error('폼 제출 오류:', error);
+                  });         
+                }//deBtn onclick end
+
+             })
+
+          // 투두 Input 폼 생성
+            if (!todoAddForm) {
+              todoAddForm = document.createElement('form');
+              todoAddForm.className = 'todo-add-form';
+              todoAddForm.method = 'post';
+              todoAddForm.action = 'post';
+          
+              const checkboxInput = document.createElement('input');
+              checkboxInput.type = 'checkbox';
+          
+              const contentInput = document.createElement('input');
+              contentInput.className = 'todo-content-input';
+              contentInput.type = 'text';
+              contentInput.name = 'content';
+              contentInput.placeholder = '추가할 할 일을 입력하세요';
+
+              todoAddForm.appendChild(contentInput);
+          
+              formContainer.appendChild(todoAddForm);
+      
+              // 폼이 생성될 때만 한 번 등록
+              document.addEventListener('keydown', handleFormSubmit);
+        
+            } else {
+              formContainer.removeChild(todoAddForm);
+              todoAddForm = null;
+      
+              // 폼이 제거될 때 등록 해제
+              document.removeEventListener('keydown', handleFormSubmit);
+            }
+      
         })
+
     
       // 투두(할일)추가용 엔터키 이벤트 핸들러
       function handleFormSubmit(e) {
@@ -177,8 +214,8 @@ document.addEventListener('DOMContentLoaded', function () {
           const formData = new FormData(todoAddForm);
 
           const todoData = {
-              date: clickedDate.toISOString().substring(0, 10),
-              content: formData.get('content')
+            date: clickedDate ? clickedDate.toISOString().substring(0, 10) : new Date().toISOString().substring(0, 10),
+            content: formData.get('content')
           };
             
           fetch("/api/todos", {
@@ -204,9 +241,9 @@ document.addEventListener('DOMContentLoaded', function () {
               console.error('폼 제출 오류:', error);
             });
         }
-      }
+      }// 엔터키 핸들러 end
       
-    });
+    //});// 픽스드 버튼 이벤트 end
 
   });//DOM Load end
 
@@ -271,20 +308,21 @@ document.addEventListener('DOMContentLoaded', function () {
   
         for (let todo of list) {
           let tododate = new Date(todo.date);
-  
+
           // 클릭한 날짜와 Todo 날짜 비교
           if (
-            clickedDate.getFullYear() === tododate.getFullYear() &&
-            clickedDate.getMonth() === tododate.getMonth() &&
-            clickedDate.getDate() === tododate.getDate()
+            clickedDate.getFullYear() == tododate.getFullYear() &&
+            clickedDate.getMonth() == tododate.getMonth() &&
+            clickedDate.getDate() == tododate.getDate()
           ) {
             // 투두 출력하기
-            if (tododate != null) {
+            if (clickedDate) {
               let todoTemplate = `
                 <li class="todoList">
                   <div class="content">
                     <input type="checkbox" ${todo.statement ? 'checked' : ''}>
                     <p>${todo.content}</p>
+                    <button class="todo-delete-button" data-id="${todo.id}">x</button>
                   </div>
                 </li>
               `;

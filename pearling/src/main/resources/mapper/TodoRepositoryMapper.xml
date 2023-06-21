@@ -12,7 +12,12 @@
 			</if>			
 		</trim>
 	</select>
-		<select id="findByUserId" resultType="Todo">
+	<select id="findById" resultType="Todo">
+		select * 
+		from to_do
+		WHERE id = #{id};
+	</select>
+	<select id="findByUserId" resultType="Todo">
 		select * 
 		from to_do
 		WHERE member_id = #{memberId};
@@ -39,7 +44,9 @@
 		to_do(date, statement, member_id, content)
 		VALUES(#{date}, #{statement}, #{memberId}, #{content})
 	</insert>
-
+	<delete id="delete">
+		delete from to_do where id=#{id}
+	</delete>
 
 
 </mapper>

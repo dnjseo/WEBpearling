@@ -15,5 +15,5 @@ public interface TodoService {
     Todo findById(Integer id);
     int addTodo(Todo todo);
     int updateTodo(Todo todo);
-    void deleteTodo(Todo todo);
+    int deleteTodo(Todo todo);
 }

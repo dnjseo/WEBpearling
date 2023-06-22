@@ -20,10 +20,13 @@ layout:decorate="~{inc/layout}">
             <ul class="change">
                 <li>🫧 프로필 이미지</li>
                 <li>
-                    <img class="profile_img" src="/images/header/profile.png" 
-                    th:src="@{${#authentication.principal.profileImage} != null ? '/images/profile/' + ${#authentication.principal.profileImage} : '/images/profile/basic.png'}" 
-                    alt="프로필" /> 
-                    <input type="file" name="file" />
+                    <p class="p-img">
+                        <img class="profile_img"
+                        th:src="@{${#authentication.principal.profileImage} != null ? '/resources/img/' + ${#authentication.principal.profileImage} : '/images/profile/basic.png'}" 
+                        alt="프로필" />
+                    </p> 
+                    <input id="fileInput" type="file" name="file" />
+
                 </li>
                 <li>🫧 이름</li>
                 <li>
@@ -37,16 +40,16 @@ layout:decorate="~{inc/layout}">
 
             <div class="pbtn">
                 <button class="cancel" value="취소">취소</button>
-                <button class="modify" type="submit" value="수정하기">수정하기</button>
+                <button class="modify" value="수정하기">수정하기</button>
             </div>
             
             <!-- 수정완료 창 -->
-            <!-- <div id="modify-modal" class="modal">
+            <div id="modify-modal" class="modal">
                 <div class="modal-content">
                     <p>🫧 Message</p>
                     <p>수정이 완료되었습니다.</p>
                     <button type="submit" class="modify-yes">확인</button> 
-                </div> -->
+                </div>
             </div>
         </form>
     </main>

@@ -15,7 +15,7 @@
                 <div class="profile-setting">
                     <p class="p-img">
                         <img src="/images/header/profile.png" 
-                        th:src="@{${#authentication.principal.profileImage} != null ? '/images/profile/' + ${#authentication.principal.profileImage} : '/images/profile/basic.png'}" 
+                        th:src="@{${#authentication.principal.profileImage} != null ? '/resources/img/' + ${#authentication.principal.profileImage} : '/images/profile/basic.png'}" 
                         alt="프로필" />
                     </p>                    
                     <div class="names">

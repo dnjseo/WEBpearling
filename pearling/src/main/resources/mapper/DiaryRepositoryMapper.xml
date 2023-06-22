@@ -29,6 +29,41 @@
 	</trim>
 		order by date
 	</select>
+	<select id="findViewAll" resultType="DiaryView">
+   select dv.*
+   from (
+      SELECT 
+         d.id,
+         d.date,
+         d.title,
+         d.content,
+         d.image,
+         d.regdate,
+         d.view,
+		 d.member_id,
+		 d.diary_scope_id,
+         COUNT(dl.diary_id) AS like_count,
+         <if test="memberId == null">
+         0 `like`
+         </if>
+         <if test="memberId != null">
+         (select count(diary_id) from diary_like where member_id=#{memberId} and diary_id=d.id) AS `like`
+         </if>
+      FROM
+         (diary d
+         LEFT JOIN diary_like dl ON (d.id = dl.diary_id))
+      GROUP BY d.id, d.date, d.title, d.content, d.image, d.regdate, d.view, d.member_id, d.diary_scope_id
+   ) dv
+	<trim prefix="where" prefixOverrides="AND|OR"> 
+		<if test="date != null">
+		date = #{date}
+		</if>
+		<if test="memberId != null">
+		AND member_id = #{memberId}
+		</if>
+	</trim>
+		order by date
+</select>
 	<insert id="save">
 		insert into 
 		diary(date, title, content, view, member_id, diary_scope_id) 

@@ -1,12 +1,4 @@
 /* ==============(ms3) 캘린더 섹션 ===================== */
-#ms3{    
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* align-items: center; */
-    /* justify-content: center; */
-
-    /* width: 90% */
-}
 
 #calendar {
     display: flex;
@@ -41,6 +33,15 @@
 .fc-toolbar-chunk > .fc-toolbar-title{
     font-family: 'Pretendard-SemiBold';
     font-size: 16px;
+}
+
+.fc-daygrid-day-frame:hover {
+    cursor: pointer;
+    background-color:rgba(244, 180, 214, 0.609);
+}
+
+.fc-daygrid-day-frame:active {
+    opacity: 0.5;
 }
 
 

@@ -54,7 +54,7 @@
                     <li class="scheduleList" th:each="s : ${scheduleList}">
                         <div class="content">
                                 <!-- <span id="scheduleItem"></span> -->
-                                <p th:data-id="${s.id}" class="d-none" th:text="${s.title}">🎥 비색의 탄환</p>
+                                <a th:href="@{../schedule/detail(id=${s.id})}" th:data-id="${s.id}" th:text="${s.title}">🎥 비색의 탄환</a>
                                 <!-- <p class="d-none" th:attr="data-schedule=${s.title}"></p> -->
                                 <!-- <p class="d-none scheduledate" th:attr="data-schedule=${#dates.format(s.startDate, 'yyyy-MM-dd')}"></div> -->
                                 </p>

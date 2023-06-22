@@ -50,14 +50,14 @@ public class ScheduleController{
     }
 
 
-    @GetMapping("{id}")
+    @GetMapping("detail/{id}")
     public Schedule detail(
         @PathVariable("id") int id){
 
             Schedule schedule = service.get(id);
 
             return schedule;
-        }
+    }
 
     @PutMapping
     public Schedule editSchedule(Schedule schedule) {

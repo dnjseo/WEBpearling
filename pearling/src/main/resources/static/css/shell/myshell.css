@@ -1,3 +1,5 @@
+@import url(/css/calendar/calendar.css); 
+
 input[type=checkbox] {
     accent-color: rgba(165, 135, 224, 1)
   }
@@ -48,7 +50,8 @@ body{
     color : rgba(165, 135, 224, 1)!important;
 }
 
-/* ==============(ms3) 캘린더 섹션 ===================== */
+  /* ==========(ms3) 다이어리 섹션 ===================== */
+
 #ms3{
       
     flex: none;
@@ -57,40 +60,6 @@ body{
 
     width: 90%
 }
-
-#calendar {
-    max-width: 1200px;
-    min-height: 300px;
-    margin: 0 auto;
-  }
-
- :root {
-    --fc-border-color: rgba(165, 135, 224, 1);
-    --fc-daygrid-event-dot-width: 5px;
-    -webkit-text-fill-color: #797979;
-  
-    /* 캘린더 버튼 */
-    --fc-button-text-color:rgba(165, 135, 224, 1);
-    --fc-button-bg-color: none;
-    --fc-button-border-color: none;
-    --fc-button-hover-bg-color: none;
-    --fc-button-hover-border-color: #1a252f;
-    --fc-button-active-bg-color: #1a252f;
-    --fc-button-active-border-color: #151e27;
-}
-.fc-toolbar-chunk{
-    font-size: 12px;
-}
-
-.fc-toolbar-chunk > .fc-button-primary{
-    font-size: 12px;
-}
-
-.fc-toolbar-chunk > .fc-toolbar-title{
-    font-family: 'Pretendard-SemiBold';
-    font-size: 16px;
-}
-
 
   /* ==========(ms4) 스케쥴 섹션 ===================== */
 #ms4{

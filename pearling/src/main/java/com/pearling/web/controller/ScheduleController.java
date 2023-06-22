@@ -45,7 +45,7 @@ public class ScheduleController extends BaseController {
 		model.addAttribute("list", list);
 		model.addAttribute("schedule", schedule);
 		
-		return "schedule/detail";
+		return "schedule/scheduleDetail";
 	}
 	
 	@GetMapping("reg")

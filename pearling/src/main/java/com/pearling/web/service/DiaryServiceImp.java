@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pearling.web.entity.Diary;
+import com.pearling.web.entity.DiaryView;
 import com.pearling.web.repository.DiaryRepository;
 
 @Service
@@ -48,6 +49,16 @@ public class DiaryServiceImp implements DiaryService {
     public void deleteDiary(Diary diary) {
         
         repository.delete(diary);
+    }
+
+    @Override
+    public List<DiaryView> getViewList() {
+        return repository.findViewAll();
+    }
+
+    @Override
+    public List<DiaryView> getViewListByDate(String date, Integer memberId) {
+        return repository.findViewAll(date, memberId);
     }
 
 }

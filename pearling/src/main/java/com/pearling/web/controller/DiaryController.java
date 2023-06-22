@@ -1,6 +1,5 @@
 package com.pearling.web.controller;
 
-import java.io.Console;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -11,11 +10,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pearling.web.entity.Diary;
+import com.pearling.web.entity.DiaryView;
 import com.pearling.web.security.MyUserDetails;
 import com.pearling.web.service.DiaryService;
 
@@ -38,8 +37,11 @@ public class DiaryController extends BaseController {
 
 			if(user != null) 
 				memberId = user.getId();
-	
-			List<Diary> list = service.getListByDate(date, memberId);
+			
+			List<DiaryView> list = null; 
+			// null로 초기화하는 이유는 list 객체에 어떤 데이터가 담겨있는 것을 방지하고,
+			// 실제 데이터가 list에 담기게 하기 위함이다.
+			list = service.getViewListByDate(date, memberId);
 			model.addAttribute("list", list);
 	
 			return "diary/list";
@@ -110,7 +112,7 @@ public class DiaryController extends BaseController {
 		
 	}
 
-	@PostMapping("delete")
+	// @PostMapping("delete")
 	public String post(
 			@RequestParam(name = "id", required = false) Integer id,
 			Model model) {
@@ -125,7 +127,7 @@ public class DiaryController extends BaseController {
 		return "redirect:list";
 	}
 
-	@PostMapping("update")
+	// @PostMapping("update")
 	public String update(
 			@RequestParam(name = "id", required = false) Integer id,
 			@RequestParam(name = "date", required = false) LocalDate date,

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pearling.web.entity.Diary;
+import com.pearling.web.entity.DiaryView;
 import com.pearling.web.security.MyUserDetails;
 import com.pearling.web.service.DiaryService;
 
@@ -34,7 +35,7 @@ public class DiaryController {
 	}
 
 	@GetMapping("{date}")
-	public List<Diary> list(
+	public List<DiaryView> list(
 			@RequestParam(name = "s", required = false) boolean editShow,
 			@PathVariable("date") String date,
 			@AuthenticationPrincipal MyUserDetails user) {
@@ -45,7 +46,7 @@ public class DiaryController {
 			memberId = user.getId();
 		}
 
-		return service.getListByDate(date, memberId);
+		return service.getViewListByDate(date, memberId);
 	}
 
 	@GetMapping("detail/{id}")

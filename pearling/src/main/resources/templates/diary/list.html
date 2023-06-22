@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
     layout:decorate="~{inc/layout}">
 
 <head>
@@ -24,42 +25,54 @@
             <!----------------------- 달력 --------------------->
 
             <div class="d-month-title">
-                <p><span></span>6월의 이야기들</p>
+                <!-- <p><span></span>6월의 이야기들</p> -->
             </div>
-
 
             <!----------------------- 다이어리 내용 --------------------->
 
-            <section>
-                <div class="diary-list-box">
-                    <form>
-                        <ul class="diary-list">
-                            <li th:each="d : ${list}" class="diary-detail" data-aos="flip-down" data-aos-duration="2000">
-                                <a class="diary-href" th:href="@{../diary/post(id=${d.id})}">
-                                    <div class="diary-date">
-                                        <span th:text="${#temporals.format(d.date, 'd')}"></span>
-                                        <span th:text="${#temporals.format(d.date, 'MMM')}"></span>
-                                    </div>
-                                    <div class="diary-content">
+            <section class="diary-list-section">
+                <ul class="diary-list">
+                    <li class="diary-detail" th:each="d : ${list}" data-aos="flip-down" data-aos-duration="2000">
+                        <form>
+                            <div class="diary-date-content">
+                                <div class="diary-date">
+                                    <span th:text="${#temporals.format(d.date, 'd')}"></span>
+                                    <span th:text="${#temporals.format(d.date, 'MMM')}"></span>
+                                </div>
+                                <div class="diary-content">
+                                    <a class="diary-href" th:href="@{../diary/post(id=${d.id})}">
                                         <span th:text="${d.title}">title</span>
                                         <span th:text="${d.content}">다이어리 내용</span>
-                                    </div>
-                                    <div class="diary-emog">
-                                        <span>🫧</span>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </form>
-                </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="diary-heart-comment">
+                                <div class="diary-emog">
+                                    <svg
+                                    sec:authorize="isAuthenticated()" 
+                                    th:data-member-id="${#authentication.principal.id}"
+                                    th:data-diary-id="${d.id}" 
+                                    class="icon icon-heart" th:classappend="${d.like} ? 'icon-heart-fill' : ''">
+                                    </svg>
+                                    <span th:text="${d.likeCount}">1</span>
+                                </div>
+                                <div class="diary-comment">
+                                    <span>🦄</span>
+                                    <span>1</span>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+            </section>
 
-                <!----------------------- 다이어리 내용 --------------------->
-
+            <!----------------------- 다이어리 내용 --------------------->
+            <section>
                 <div class="add-btn">
                     <button><a class="defence" th:href="@{../diary/post(s=1, id=0)}">+</a></button>
                 </div>
-            </div>
-        </section>
+            </section>
+    <input id="input-member-id" type="hidden" th:value="${#authentication.principal.id}">
     </main>
     <!-- /wrap -->
 </body>

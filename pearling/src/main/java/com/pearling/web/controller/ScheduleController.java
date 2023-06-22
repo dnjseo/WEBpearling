@@ -71,6 +71,7 @@ public class ScheduleController extends BaseController {
 			@RequestParam(name = "backgroundColor", required = false) String backgroundColor,
 			@RequestParam(name = "latitude", required = false) Double latitude,
             @RequestParam(name = "longitude", required = false) Double longitude,
+			@RequestParam(name = "place", required = false) String place,
 			Model model, MyUserDetails user) {
 
 		System.out.println("여러분 userId는 이것입니다! ::::: " + user.getId());
@@ -88,6 +89,7 @@ public class ScheduleController extends BaseController {
 				.backgroundColor(backgroundColor)
 				.latitude(latitude)
 				.longitude(longitude)
+				.place(place)
 				.build();
 
 		service.addSchedule(schedule);
@@ -100,6 +102,7 @@ public class ScheduleController extends BaseController {
 		System.out.println("backgroundColor: " + backgroundColor);
 		System.out.println("latitude: " + latitude);
 		System.out.println("longitude: " + longitude);
+		System.out.println("place: " + place);
 
 		System.out.println("Schedule 확인 : " + schedule);
 
@@ -132,6 +135,7 @@ public class ScheduleController extends BaseController {
 			@RequestParam(name = "backgroundColor", required = false) String backgroundColor,
 			@RequestParam(name = "latitude", required = false) Double latitude,
             @RequestParam(name = "longitude", required = false) Double longitude,
+			@RequestParam(name = "place", required = false) String place,
 			Model model, MyUserDetails user){
 			
 			Schedule schedule = Schedule.builder()
@@ -143,6 +147,7 @@ public class ScheduleController extends BaseController {
 				.backgroundColor(backgroundColor)
 				.latitude(latitude)
 				.longitude(longitude)
+				.place(place)
 				.build();
 
 			if(id != null){

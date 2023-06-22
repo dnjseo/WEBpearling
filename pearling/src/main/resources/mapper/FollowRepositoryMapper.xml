@@ -1,0 +1,12 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pearling.web.repository.FollowRepository">
+   <select id="countFollowerId" resultType="int">
+        SELECT COUNT(*) FROM follow WHERE to_id = #{fromId}
+    </select>
+    <select id="countFollowingId" resultType="int">
+        SELECT COUNT(*) FROM follow WHERE from_id = #{fromId}
+    </select>
+</mapper>

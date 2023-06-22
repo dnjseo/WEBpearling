@@ -24,4 +24,5 @@ public class Schedule {
     private String backgroundColor; 
     private Double latitude;
     private Double longitude;
+    private String place;
 }

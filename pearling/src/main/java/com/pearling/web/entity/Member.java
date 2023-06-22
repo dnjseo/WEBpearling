@@ -22,4 +22,6 @@ public class Member {
     private Integer roleId;
 
     private String domain;
+
+    
 }

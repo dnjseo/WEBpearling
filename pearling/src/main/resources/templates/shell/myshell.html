@@ -35,7 +35,7 @@
                 <ul class=todoListSection id="mstodoList">
                     <li class="todoList" th:each="t : ${todoList}">
                         <div class="content">
-                            <input type="checkbox" th:checked="${t.statement}" th:data-id="${t.id}">
+                            <input class="todo-checkbox" type="checkbox" th:checked="${t.statement}" th:data-id="${t.id}">
                             <!-- <span id="todoItem"></span> -->
                             <p th:text="${t.content}">소금빵 사러가기🥐</p>
                             <button class="todo-delete-button" th:data-id="${t.id}">x</button>

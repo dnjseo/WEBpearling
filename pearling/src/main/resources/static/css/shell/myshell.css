@@ -151,6 +151,10 @@ input[type="checkbox"]:checked + p {
     gap: 5px;
 }
 
+.scheduleList:hover {
+    cursor: pointer;
+}
+
 #todo-add-form-section{
     display: flex;
     align-items: center;
@@ -171,7 +175,6 @@ input[type="text"]{
 }
 
 .todo-delete-button{
-    opacity: 0;
     border:0.5px solid #888888;
     outline:none;
     background-color:#f4f5f6;

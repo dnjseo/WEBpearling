@@ -15,7 +15,7 @@ public interface TodoRepository {
     List<Todo> findByDate(Integer memberId, LocalDate date);
 
 
-    Todo findById(int id);
+    Todo findById(Integer id);
     int save(Todo todo);
     int update(Todo todo);
     int delete(Todo todo);

@@ -7,6 +7,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.pearling.web.entity.Member;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 public interface MemberService {
     
     List<Member> getList(); // 멤버 리스트 
@@ -19,6 +21,6 @@ public interface MemberService {
     
     void registerMember(Member member); // 회원 등록을 위한 메서드 추가
     int updateMember(Member member); // 회원 수정을 위한 메서드 추가
-    String uploadProfileImage(MultipartFile file) throws IOException;
+    String uploadProfileImage(MultipartFile file, HttpServletRequest request) throws IOException;
 	boolean isValid(String email, String pwd); // 비밀번호 찾기
 }

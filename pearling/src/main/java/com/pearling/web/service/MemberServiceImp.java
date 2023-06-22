@@ -13,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.pearling.web.entity.Member;
 import com.pearling.web.repository.MemberRepository;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Service
 public class MemberServiceImp implements MemberService{
 
@@ -71,9 +73,9 @@ public class MemberServiceImp implements MemberService{
         member.setPwd(encryptedPassword);
 
         // 프로필 사진이 null인 경우 기본 이미지 경로로 설정
-        if (member.getProfileImage() == null) {
-            member.setProfileImage("/images/profile/basic.png");
-        }
+        // if (member.getProfileImage() == null) {
+        //     member.setProfileImage("/images/profile/basic.png");
+        // }
 
         repository.insertMember(member);
     }
@@ -95,17 +97,21 @@ public class MemberServiceImp implements MemberService{
         }
     }
 
+    // 다시 해보기
     @Override
-    public String uploadProfileImage(MultipartFile file) throws IOException {
+    public String uploadProfileImage(MultipartFile file,
+                                    HttpServletRequest request) throws IOException {
         if (!file.isEmpty()) {
-            String uploadDir = "\\webapp\\static\\images";
+
+            String uploadDir = request.getServletContext().getRealPath("/resources/img/");
             String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-            File uploadPath = new File(uploadDir, fileName);
+            String filePath = uploadDir + fileName;
+            File destination = new File(filePath);
 
             System.out.println("비어있지 않습니다 !! ");
-            System.out.println(uploadPath);
+            System.out.println(destination);
 
-            file.transferTo(uploadPath);
+            file.transferTo(destination);
             return fileName; // 프로필 이미지 경로 반환
         }
 
@@ -113,6 +119,27 @@ public class MemberServiceImp implements MemberService{
 
         return null;
     }
+
+    // 디드라이브 경로 ... ㅋㅋ
+    // @Override
+    // public String uploadProfileImage(MultipartFile file) throws IOException {
+    //     if (!file.isEmpty()) {
+    //         String uploadDir = "D:\\test";
+    //         // String uploadDir = "resources/img/";
+    //         String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+    //         File uploadPath = new File(uploadDir, fileName);
+
+    //         System.out.println("비어있지 않습니다 !! ");
+    //         System.out.println(uploadPath);
+
+    //         file.transferTo(uploadPath);
+    //         return fileName; // 프로필 이미지 경로 반환
+    //     }
+
+    //     System.out.println("안된단다...");
+
+    //     return null;
+    // }
 
     // 비밀번호 찾기
     @Override

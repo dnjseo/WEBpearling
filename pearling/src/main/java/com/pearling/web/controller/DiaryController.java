@@ -1,6 +1,7 @@
 package com.pearling.web.controller;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +38,23 @@ public class DiaryController extends BaseController {
 
 			if(user != null) 
 				memberId = user.getId();
-			
+
 			List<DiaryView> list = null; 
 			// null로 초기화하는 이유는 list 객체에 어떤 데이터가 담겨있는 것을 방지하고,
 			// 실제 데이터가 list에 담기게 하기 위함이다.
-			list = service.getViewListByDate(date, memberId);
-			model.addAttribute("list", list);
-	
+
+			if (date == null) {
+				// 오늘 날짜로 지정
+				LocalDate today = LocalDate.now();
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				date = today.format(formatter);
+				list = service.getViewListByDate(date, memberId);
+			} else {
+				list = service.getViewListByDate(date, memberId);
+			}
+
+			model.addAttribute("list", list);	
+		
 			return "diary/list";
 		}
 	
@@ -70,10 +81,7 @@ public class DiaryController extends BaseController {
 		Diary diary = service.findById(id);
 
 		model.addAttribute("list", list);
-		model.addAttribute("diary", diary);
-
-		System.out.println("나는 컨트롤러");
-	
+		model.addAttribute("diary", diary);	
 
 		return "diary/post";
 	}

@@ -42,16 +42,24 @@
          d.view,
 		 d.member_id,
 		 d.diary_scope_id,
-         COUNT(dl.diary_id) AS like_count,
+         COUNT(DISTINCT dl.idx) AS like_count,
          <if test="memberId == null">
          0 `like`
          </if>
          <if test="memberId != null">
-         (select count(diary_id) from diary_like where member_id=#{memberId} and diary_id=d.id) AS `like`
+         (select count(idx) from diary_like where member_id=#{memberId} and diary_id=d.id) AS `like`,
+         </if>
+		COUNT(DISTINCT dc.id) AS comment_count,
+         <if test="memberId == null">
+         0 `comment`
+         </if>
+         <if test="memberId != null">
+         (select count(id) from diary_comment where reg_member_id=#{memberId} and diary_post_id=d.id) AS `comment`
          </if>
       FROM
-         (diary d
-         LEFT JOIN diary_like dl ON (d.id = dl.diary_id))
+         diary d
+         LEFT JOIN diary_like dl ON (d.id = dl.diary_id)
+		 LEFT JOIN diary_comment dc ON (d.id = dc.diary_post_id)
       GROUP BY d.id, d.date, d.title, d.content, d.image, d.regdate, d.view, d.member_id, d.diary_scope_id
    ) dv
 	<trim prefix="where" prefixOverrides="AND|OR"> 

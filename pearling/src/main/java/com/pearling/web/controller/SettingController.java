@@ -28,7 +28,6 @@ public class SettingController extends BaseController {
 		pageTitle = "비밀번호 변경";
 
 		model.addAttribute("pageTitle", pageTitle);
-
 		model.addAttribute("headerShow", false);
 
 		return "setting/account-pwd";
@@ -41,7 +40,6 @@ public class SettingController extends BaseController {
 		pageTitle = "캘린더 설정";
 
 		model.addAttribute("pageTitle", pageTitle);
-
 		model.addAttribute("headerShow", false);
 
 		return "setting/calendar";
@@ -54,7 +52,6 @@ public class SettingController extends BaseController {
 		pageTitle = "카테고리 설정";
 
 		model.addAttribute("pageTitle", pageTitle);
-
 		model.addAttribute("headerShow", false);
 
 		return "setting/calendar-category";
@@ -67,7 +64,6 @@ public class SettingController extends BaseController {
 		pageTitle = "계정 삭제";
 
 		model.addAttribute("pageTitle", pageTitle);
-
 		model.addAttribute("headerShow", false);
 
 		return "setting/delete";
@@ -80,7 +76,6 @@ public class SettingController extends BaseController {
 		pageTitle = "친구 관리";
 
 		model.addAttribute("pageTitle", pageTitle);
-
 		model.addAttribute("headerShow", false);
 
 		return "setting/follow-group";
@@ -93,7 +88,6 @@ public class SettingController extends BaseController {
 		pageTitle = "친구 관리";
 
 		model.addAttribute("pageTitle", pageTitle);
-
 		model.addAttribute("headerShow", false);
 
 		return "setting/follow-list";
@@ -103,10 +97,9 @@ public class SettingController extends BaseController {
 	public String profile(Model model) {
 
 		String pageTitle = getPageTitle();
-		pageTitle = "프로필 설정";
+		pageTitle = "프로필 수정";
 
 		model.addAttribute("pageTitle", pageTitle);
-
 		model.addAttribute("headerShow", false);
 
 		return "setting/profile";

@@ -1,6 +1,8 @@
 package com.pearling.web.controller;
 
+import java.util.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +16,11 @@ import com.pearling.web.entity.Todo;
 import com.pearling.web.service.MemberService;
 import com.pearling.web.service.ScheduleService;
 import com.pearling.web.service.TodoService;
+import com.pearling.web.util.ElapsedTimeCalculator;
 
 @Controller
 @RequestMapping("search")
 public class SearchController extends BaseController {
-
 
     @Autowired
     private MemberService memberService;
@@ -41,7 +43,6 @@ public class SearchController extends BaseController {
         List<Schedule> scList = null;
         String searchResults = "";
 
-
         if (query == null) {
             memList = memberService.getList();
             tdList = todoService.getList();
@@ -52,6 +53,13 @@ public class SearchController extends BaseController {
             scList = scheduleService.getListByQuery(query);
             
             searchResults = query;
+        }
+        
+        for (Schedule schedule : scList) {
+            Date regDate = schedule.getRegDate();
+            System.out.println("Reg Date: " + regDate); // 등록일자 출력
+            String elapsedTime = ElapsedTimeCalculator.getElapsedTime(regDate);
+            schedule.setFormattedDate(elapsedTime);
         }
         
 

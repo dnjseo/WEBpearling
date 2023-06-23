@@ -73,7 +73,7 @@
                                     th:src="@{${s.profileImage} != null ? '/resources/img/' + ${s.profileImage} : '/images/profile/basic.png'}" 
                                     alt="프로필" />
                                     <p><span sec:authentication="principal.nickname"></span></p>
-                                    <p th:text="${#dates.format(s.regDate, 'yyyy-MM-dd')}">10분 전</p>
+                                    <p th:text="${s.formattedDate}">10분 전</p>
                                 </div>
                                 <div th:if="${s.memberId == #authentication.principal.id}" class="schedule-content">
                                     <p th:text="${s.title}">🎥 영화 제목 어쩌고저쩌고</p><br>

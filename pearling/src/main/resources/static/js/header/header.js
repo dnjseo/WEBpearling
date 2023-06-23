@@ -114,6 +114,15 @@ function updateDate(offset) {
     todaySection.querySelector('.today-date').innerText = date;
 }
 
+});
 
+window.addEventListener("DOMContentLoaded", function() {
+  let backButton = document.getElementById('back1');
 
+  backButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    history.back();
+  });
+
+  // 기타 코드...
 });

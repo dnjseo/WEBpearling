@@ -30,9 +30,6 @@ public class MyUserDetailsService implements UserDetailsService{
 		userDetails.setPassword(member.getPwd());
 		userDetails.setNickname(member.getNickname());
 		userDetails.setProfileImage(member.getProfileImage());
-		System.out.println("이름 정보 그지거와아!!!!!!!!!!!!"+member.getName());
-		System.out.println("닉네임 정보 그지거와아!!!!!!!!!!!!"+member.getNickname());
-		System.out.println("이미지 정보 그지거와아!!!!!!!!!!!!"+member.getProfileImage());
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER"));

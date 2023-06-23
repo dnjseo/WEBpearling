@@ -20,7 +20,8 @@ public class SpringSecurityConfig {
 		.csrf(csrf->csrf.disable())
 		.authorizeHttpRequests(
 				auth->auth
-					.requestMatchers("/shell/**").hasAnyRole("ADMIN", "MEMBER")
+					.requestMatchers( "/diary/**", "/follow/**", "/guestbook/**", "/notice/**", "/qa/**", 
+													"/schedule/**", "/search/**", "/setting/**", "/shell/**").hasAnyRole("ADMIN", "MEMBER")
 					.requestMatchers("/admin/**").hasAnyRole("ADMIN")
 					.anyRequest().permitAll()
 				)

@@ -116,6 +116,14 @@
                      <artifactId>lombok</artifactId>
                   </exclude>
                </excludes>
+                <resources>
+                        <resource>
+                           <directory>/src/main/webapp/resources/img</directory>
+                           <includes>
+                              <include>**</include>
+                           </includes>
+                        </resource>
+                    </resources>
             </configuration>
          </plugin>
       </plugins>

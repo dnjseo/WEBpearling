@@ -34,5 +34,4 @@ window.addEventListener("load", function () {
       reader.readAsDataURL(input.files[0]);
     }
   });
-
 });

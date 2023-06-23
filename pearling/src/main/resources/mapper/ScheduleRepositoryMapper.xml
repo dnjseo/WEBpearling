@@ -19,12 +19,13 @@
 		</trim>
 	</select>
 	<select id="findAllSch" resultType="Schedule">
-		select *
-		from schedule
+		SELECT s.*, m.profile_image
+		FROM schedule s
+		INNER JOIN member m ON s.member_id = m.id
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			<if test="query != null">
-				title like '%${query}%'
-			</if>			 
+			AND s.title LIKE '%${query}%'
+			</if>
 		</trim>
 	</select>
 	<select id="findByUserId" resultType="Schedule">

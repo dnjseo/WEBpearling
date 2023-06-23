@@ -27,7 +27,9 @@
                     <h3 class="d-none">검색 결과</h3>
                     <div>
                         <div th:each="m : ${memList}" class="account-box">
-                            <img src="/images/profile/profile_yj.png" th:src="@{/images/profile/{img}(img=${m.profileImage})}">
+                            <img class="profile_img"
+                                th:src="@{${m.profileImage} != null ? '/resources/img/' + ${m.profileImage} : '/images/profile/basic.png'}" 
+                                alt="프로필" />
                             <p class="account-name" th:text="${m.nickname}">연주의 점심</p>
                         </div>
                         <div class="non-result" th:unless="${not #lists.isEmpty(memList)}">
@@ -45,7 +47,9 @@
                         <div class="search-lists" th:each="t : ${tdList}">
                             <div>
                                 <div class="todo-statement">
-                                    <img src="/images/profile/profile_yj.png"  th:src="@{'/images/profile/' + ${#authentication.principal.profileImage}}">
+                                    <img class="profile_img"
+                                    th:src="@{${t.profileImage} != null ? '/resources/img/' + ${t.profileImage} : '/images/profile/basic.png'}" 
+                                    alt="프로필" />
                                     <p><span sec:authentication="principal.nickname"></span></p>
                                     <p th:text="${#dates.format(t.regDate, 'yyyy-MM-dd')}">18시간 전</p>
                                 </div>
@@ -65,7 +69,9 @@
                         <div class="search-lists" th:each="s : ${scList}">
                             <div>
                                 <div class="schedule-statement">
-                                    <img src="/images/profile/profile_yj.png" th:src="@{'/images/profile/' + ${#authentication.principal.profileImage}}">
+                                    <img class="profile_img"
+                                    th:src="@{${s.profileImage} != null ? '/resources/img/' + ${s.profileImage} : '/images/profile/basic.png'}" 
+                                    alt="프로필" />
                                     <p><span sec:authentication="principal.nickname"></span></p>
                                     <p th:text="${#dates.format(s.regDate, 'yyyy-MM-dd')}">10분 전</p>
                                 </div>

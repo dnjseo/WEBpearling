@@ -18,15 +18,16 @@ layout:decorate="~{inc/layout}">
         <!-- form -->
         <form action="/profile" method="post" enctype="multipart/form-data">
             <ul class="change">
-                <li>🫧 프로필 이미지</li>
-                <li>
+                <li class="eidt-img">
                     <p class="p-img">
                         <img class="profile_img"
                         th:src="@{${#authentication.principal.profileImage} != null ? '/resources/img/' + ${#authentication.principal.profileImage} : '/images/profile/basic.png'}" 
                         alt="프로필" />
                     </p> 
-                    <input id="fileInput" type="file" name="file" />
-
+                    <label for="fileInput" class="custom-file-button">
+                        <img class="edit" src="/images/profile/edit_profile.png" alt="Image" />
+                    </label>
+                    <input id="fileInput" type="file" accept="image/*" name="file" style="display: none;" />
                 </li>
                 <li>🫧 이름</li>
                 <li>

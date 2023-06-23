@@ -25,4 +25,5 @@ public class Schedule {
     private Double latitude;
     private Double longitude;
     private String place;
+    private String profileImage; // 추가된 필
 }

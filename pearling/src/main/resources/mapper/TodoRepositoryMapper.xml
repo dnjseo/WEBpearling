@@ -4,11 +4,12 @@
 
 <mapper namespace="com.pearling.web.repository.TodoRepository">
    <select id="findAll" resultType="Todo">
-		select *
-		from to_do
+		select t.*, m.profile_image
+		from to_do t
+		inner join member m on t.member_id = m.id
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			<if test="query != null">
-				content like '%${query}%'
+				and	t.content like '%${query}%'
 			</if>			
 		</trim>
 	</select>

@@ -75,9 +75,6 @@ public class MemberController {
                 user.setName(member.getName());
                 user.setNickname(member.getNickname());
                 user.setProfileImage(fileName);
-                System.out.println("이름!@@@@@정보를 왜 못불러 오는가....." + member.getName());
-                System.out.println("닉네임!@@@@@정보를 왜 못불러 오는가....." + member.getNickname());
-                System.out.println("이미지!@@@@@정보를 왜 못불러 오는가....." + member.getProfileImage());
             }
 
             // 수정된 member 객체를 다시 모델에 추가합니다.

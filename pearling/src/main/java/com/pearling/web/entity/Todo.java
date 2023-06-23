@@ -15,4 +15,5 @@ public class Todo {
     private boolean statement;
     private Integer memberId;
     private String content;
+    private String profileImage; // 추가된 필
 }

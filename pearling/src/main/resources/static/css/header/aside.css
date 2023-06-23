@@ -50,6 +50,14 @@
 
 .p-img img{
     width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover; 
+    object-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -6px -6px 9px 0px white, 6px 6px 9px rgba(0, 0, 0, 0.4)
 }
 
 .profile-setting{

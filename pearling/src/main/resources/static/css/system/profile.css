@@ -5,13 +5,39 @@
 }
 
 .logo{
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
-.p-img img{
-    text-align: center;
-    width: 150px;
+.eidt-img{
+    display: flex;
+    flex-direction: column;
+    /* padding-bottom: 20px; */
+}
+
+.p-img {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+  
+.p-img .profile_img {
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    object-fit: cover; 
+    object-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -6px -6px 9px 0px white, 6px 6px 9px rgba(0, 0, 0, 0.4)
+}
+  
+.custom-file-button{
+    margin-top: -30px;
+    align-self: flex-end;
 }
 
 .change input{
@@ -29,7 +55,7 @@
 }
 
 .change li:nth-child(1n){
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-weight: bold;
 }
 

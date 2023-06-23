@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
             todoDeleteBtns = document.querySelectorAll(".todo-delete-button");
             
             todoDeleteBtns.forEach(delBtn=>{
-              //delBtn.classList.toggle('act')
+              delBtn.classList.toggle('act')
               
                 delBtn.onclick=(e) => {
                 e.preventDefault();
@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <li class="todoList">
                   <div class="content">
                     <input type="checkbox" data-id="${todo.id}" ${todo.statement ? 'checked' : ''}>
-                    <p>${todo.content}</p>
+                    <p class="todo-content">${todo.content}</p>
                     <button class="todo-delete-button" data-id="${todo.id}">x</button>
                   </div>
                 </li>

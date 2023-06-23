@@ -41,8 +41,11 @@ function diaryListLoad(url) {
                             <span>${diary.likeCount}</span>
                         </div>
                         <div class="diary-comment">
-                            <span>🦄</span>
-                            <span>1</span>
+                            <svg 
+                            data-member-id="${mid}"
+                            data-diary-id="${diary.id}"
+                            class="icon icon-comment"  ${diary.comment ? 'icon-comment-fill' : ''}"></svg>
+                            <span>${diary.commentCount}</span>
                         </div>
                     </div>
                 </form>

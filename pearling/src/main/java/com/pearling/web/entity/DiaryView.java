@@ -24,4 +24,6 @@ public class DiaryView {
     private Integer diaryScopeId;
     private int likeCount;
     private int like;
+    private int commentCount;
+    private int comment;
 }

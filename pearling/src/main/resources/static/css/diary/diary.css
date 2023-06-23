@@ -44,6 +44,7 @@
 
 form {
     width: 90%;
+    max-width: 1200px;
 }
 
 .diary-date-content {
@@ -110,6 +111,7 @@ form {
         font-size: 20px;
         align-self: flex-start;
         letter-spacing: 0.2em;
+        overflow: hidden;
     }
 
 /* diary-list-section <diary-heart-commnet> */
@@ -192,7 +194,7 @@ form {
     opacity: 0.5;
 }
 
-/* 하트 아이콘 속성 */
+/* 하트, 댓글 아이콘 속성 */
 
 @keyframes heartbeat {
     0% {
@@ -221,4 +223,19 @@ form {
     height: 18px;
 
     animation: heartbeat 1s infinite;
+}
+
+.icon-comment {
+    background: url("/images/diary/icon-comment.svg") no-repeat center/cover;
+    width: 16px;
+    height: 16px;
+
+    position: relative;
+    display: inline-block;
+  }
+
+.icon-comment-fill {
+    background: url("/images/diary/icon-comment-fill.svg") no-repeat center/cover;
+    width: 18px;
+    height: 18px;
 }

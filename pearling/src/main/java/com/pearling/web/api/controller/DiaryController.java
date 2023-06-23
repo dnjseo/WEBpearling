@@ -1,6 +1,7 @@
 package com.pearling.web.api.controller;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,19 @@ public class DiaryController {
 			memberId = user.getId();
 		}
 
-		return service.getViewListByDate(date, memberId);
+		List<DiaryView> list = null; 
+
+		if (date == null) {
+			// 오늘 날짜로 지정
+			LocalDate today = LocalDate.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			date = today.format(formatter);
+			list = service.getViewListByDate(date, memberId);
+		} else {
+			list = service.getViewListByDate(date, memberId);
+		}
+
+		return list;
 	}
 
 	@GetMapping("detail/{id}")

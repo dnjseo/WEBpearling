@@ -57,8 +57,13 @@
                                     <span th:text="${d.likeCount}">1</span>
                                 </div>
                                 <div class="diary-comment">
-                                    <span>🦄</span>
-                                    <span>1</span>
+                                    <svg
+                                    sec:authorize="isAuthenticated()" 
+                                    th:data-member-id="${#authentication.principal.id}"
+                                    th:data-diary-id="${d.id}" 
+                                    class="icon icon-comment">
+                                    </svg>
+                                    <span th:text="${d.commentCount}">1</span>
                                 </div>
                             </div>
                         </form>

@@ -1,3 +1,54 @@
+// 체크 상태 변경 이벤트 리스너 등록 함수
+function addCheckboxEventListener(checkbox) {
+checkbox.addEventListener('change', function() {
+  // 체크 상태 가져오기
+  let isChecked = checkbox.checked;
+  let todoId = checkbox.dataset.id; // data-todo-id 속성에서 todoId 가져오기
+
+
+  // <p> 요소 폰트 스타일 변경 (줄 그어짐)
+  let pElement = checkbox.nextElementSibling;
+  if (isChecked) {
+    pElement.style.textDecoration = 'line-through';
+  } else {
+    pElement.style.textDecoration = 'none';
+  }
+
+  const todoCheck = {
+    id : todoId,
+    statement: isChecked
+  }
+
+  // 서버로 데이터 전송
+  fetch(`/api/todos/${todoId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(todoCheck)// 체크 상태를 JSON 형식으로 전송
+  })
+  .then(response => {
+
+    // 서버 응답 처리
+    if (response.ok) {
+      console.log(todoId +'체크 상태 업데이트 성공');
+    } else {
+      console.error(todoId+'체크 상태 업데이트 실패');
+    }
+  })
+  .catch(error => {
+    console.error('오류 발생:', error);
+  });
+
+  // <li> 요소 위치 변경
+  let liElement = checkbox.closest('li');
+  let ulElement = liElement.closest('ul');
+  if (isChecked) {
+    ulElement.appendChild(liElement); // 가장 하위로 이동
+  }
+});
+}
+
 function printCalendarEvent(calendar) {
     //캘린더 이벤트에 스케쥴 db 추가 
     fetch(`http://localhost:8080/api/schedules?`)
@@ -58,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //캘린더 출력
     printCalendarEvent(calendar);
     
-    //캘린더 하단 리스트 날짜 업데이트 
+     //캘린더 하단 리스트 날짜 업데이트 
     let currentDay = document.querySelector("#ms4")
     let dayIndex = 0;
     updateDate(dayIndex, currentDay);
@@ -67,7 +118,12 @@ document.addEventListener('DOMContentLoaded', function () {
     let clickedDate = null;
     let cMonth = null; let cDay = null; let cDate = null;
     let todoDeleteBtns = document.querySelectorAll('.todo-delete-button');
-    let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    let checkboxes = document.querySelectorAll('.todo-checkbox');
+
+    checkboxes = document.querySelectorAll('.todoListSection input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+      addCheckboxEventListener(checkbox);
+    });
 
     //캘린더에서 날짜 클릭
     calendar.on('dateClick', (info) => {
@@ -82,68 +138,17 @@ document.addEventListener('DOMContentLoaded', function () {
         currentDay.querySelector(".ms-today-day").innerText = cMonth + "." + cDay + " " + cDate;
         
         // 업데이트된 Todo List & Schedule List 조회
-        updateTodoList(clickedDate);
+        updateTodoList(clickedDate,checkboxes);
         updateScheduleList(clickedDate);
 
+        checkboxes = document.querySelectorAll('.todoListSection input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+          addCheckboxEventListener(checkbox);
+        });
     }); // onclick calendar end
 
 
-
-    // ========= 투두리스트 체크박스 기능 ==================
-
-    
-    checkboxes.forEach(checkbox => {
-      // 체크 상태 변경 이벤트 리스너 추가
-
-      checkbox.addEventListener('change', function() {
-        // 체크 상태 가져오기
-        let isChecked = checkbox.checked;
-        let todoId = checkbox.dataset.id; // data-todo-id 속성에서 todoId 가져오기
-    
-        let checkboxData  = {
-          statement : isChecked,
-          id : todoId
-        }
-
-        // <p> 요소 폰트 스타일 변경 (줄 그어짐)
-        let pElement = checkbox.nextElementSibling;
-        if (isChecked) {
-          pElement.style.textDecoration = 'line-through';
-        } else {
-          pElement.style.textDecoration = 'none';
-        }
-    
-        // 서버로 데이터 전송
-        fetch('/api/todos', {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ todoId: todoId, isChecked: isChecked }) // 체크 상태를 JSON 형식으로 전송
-        })
-        .then(response => {
-    
-          // 서버 응답 처리
-          if (response.ok) {
-            console.log(todoId +'체크 상태 업데이트 성공');
-          } else {
-            console.error(todoId+'체크 상태 업데이트 실패');
-          }
-        })
-        .catch(error => {
-          console.error('오류 발생:', error);
-        });
-    
-          // <li> 요소 위치 변경
-        let liElement = checkbox.closest('li');
-        let ulElement = liElement.closest('ul');
-        if (isChecked) {
-          ulElement.appendChild(liElement); // 가장 하위로 이동
-        }
-      });
-    });
-    
-    //하단 픽스드 버튼 이벤트
+      //하단 픽스드 버튼 이벤트
     //window.addEventListener("load", function () {
         let plus1 = document.querySelector('.plus');
         let plusDetail = document.querySelector('.plusDetail');
@@ -205,9 +210,6 @@ document.addEventListener('DOMContentLoaded', function () {
               todoAddForm.method = 'post';
               todoAddForm.action = 'post';
           
-              const checkboxInput = document.createElement('input');
-              checkboxInput.type = 'checkbox';
-          
               const contentInput = document.createElement('input');
               contentInput.className = 'todo-content-input';
               contentInput.type = 'text';
@@ -215,7 +217,6 @@ document.addEventListener('DOMContentLoaded', function () {
               contentInput.placeholder = '추가할 할 일을 입력하세요';
 
               todoAddForm.appendChild(contentInput);
-          
               formContainer.appendChild(todoAddForm);
       
               // 폼이 생성될 때만 한 번 등록
@@ -230,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
       
         })
-
+        
     
       // 투두(할일)추가용 엔터키 이벤트 핸들러
       function handleFormSubmit(e) {
@@ -323,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }//updateDate end
     
   // 투두 리스트 업데이트 
-  function updateTodoList(clickedDate) {
+  function updateTodoList(clickedDate, checkboxes) {
     let todoElements = document.querySelector('.todoListSection');
   
     // 클릭한 투두 비교 및 출력하기.
@@ -347,8 +348,8 @@ document.addEventListener('DOMContentLoaded', function () {
               let todoTemplate = `
                 <li class="todoList">
                   <div class="content">
-                    <input type="checkbox" ${todo.statement ? 'checked' : ''}>
-                    <p>${todo.content}</p>
+                    <input type="checkbox" data-id="${todo.id}" ${todo.statement ? 'checked' : ''}>
+                    <p class="todo-content">${todo.content}</p>
                     <button class="todo-delete-button" data-id="${todo.id}">x</button>
                   </div>
                 </li>
@@ -366,10 +367,15 @@ document.addEventListener('DOMContentLoaded', function () {
             }
           }
         }
-      })
-      .catch(error => {
-        console.error("Error fetching todo:", error);
-      });
+     // 체크박스 이벤트 리스너 등록
+    checkboxes = document.querySelectorAll('.todoListSection input[type="checkbox"]');
+     checkboxes.forEach(checkbox => {
+       addCheckboxEventListener(checkbox);
+     });
+   })
+   .catch(error => {
+     console.error("투두를 가져오는 중 오류 발생:", error);
+   });
   }//updateTodoList end
 
   // 스케쥴 리스트 업데이트
@@ -402,9 +408,9 @@ document.addEventListener('DOMContentLoaded', function () {
            let itemTemplate = `
            <li class="scheduleList">
              <div class="content">
-               <p>${schedule.title}</p>
+               <a href=../schedule/detail?id=${schedule.id}>${schedule.title}</a>
              </div>
-         </li>`;
+           </li>`;
 
            scheduleElements.insertAdjacentHTML("beforeend", itemTemplate);
          }

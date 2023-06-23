@@ -29,10 +29,10 @@
 		WHERE member_id = #{memberId} AND date = '${date.toString()}'
 		ORDER BY CASE WHEN statement = 'Y' THEN 0 ELSE 1 END;
 	</select>
-	<update id="update" >
+	<update id="update" parameterType="Integer">
 	update to_do
 	<set> 
-		<if test="end_date != null">statement = #{statement},</if>
+		<if test="statement != null">statement = #{statement}</if>
 	</set>
 	where id = #{id};
 	</update>

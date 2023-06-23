@@ -22,12 +22,14 @@
 
         <section id="ms4">
             <h1 class="d-none">일정 리스트</h1>
+            
             <div class="ms-today">
                 <img src="/images/profile/circle.png">
                 <span class="ms-today-day"></span>
            </div>
-
-            <div class="schedule">
+            <div class="schedule"  data-aos="fade-right"
+            data-aos-offset="300"
+            data-aos-easing="ease-in-sine">
                 <p>to do.</p>
                 <!-- 투두 인풋폼 생성되는 자리 -->
                 <div id="todo-add-form-section"></div>
@@ -35,20 +37,22 @@
                 <ul class=todoListSection id="mstodoList">
                     <li class="todoList" th:each="t : ${todoList}">
                         <div class="content">
-                            <input type="checkbox" th:checked="${t.statement}" th:data-id="${t.id}">
+                            <input class="todo-checkbox" type="checkbox" th:checked="${t.statement}" th:data-id="${t.id}">
                             <!-- <span id="todoItem"></span> -->
-                            <p th:text="${t.content}">소금빵 사러가기🥐</p>
+                            <p class="todo-content" th:text="${t.content}">소금빵 사러가기🥐</p>
                             <button class="todo-delete-button" th:data-id="${t.id}">x</button>
                         </div>
-                        <div class="tag">
+                        <!-- <div class="tag"> -->
                             <!-- <button>@채원</button> -->
-                        </div>
+                        <!-- </div> -->
                     </li>
                 </ul>
             </div>
 
-            <div class="schedule">
-                <p><br><br></p>
+            <div class="schedule"  data-aos="fade-left"
+            data-aos-offset="300"
+            data-aos-easing="ease-in-sine"
+            >
                 <p>일정.</p>
                 <ul class = scheduleListSection>
                     <li class="scheduleList" th:each="s : ${scheduleList}">
@@ -57,7 +61,6 @@
                                 <a th:href="@{../schedule/detail(id=${s.id})}" th:data-id="${s.id}" th:text="${s.title}">🎥 비색의 탄환</a>
                                 <!-- <p class="d-none" th:attr="data-schedule=${s.title}"></p> -->
                                 <!-- <p class="d-none scheduledate" th:attr="data-schedule=${#dates.format(s.startDate, 'yyyy-MM-dd')}"></div> -->
-                                </p>
                             </div>
                         <div class="tag">
                             <!-- <button></button> -->

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -59,32 +60,56 @@ public class TodoController {
         }
 
 
-@PutMapping
-public ResponseEntity<String> updateTodo(@RequestBody Map<Integer, Boolean> requestData,
-        @AuthenticationPrincipal MyUserDetails user, Authentication authentication) {
+@PutMapping("/{todoId}")
+public ResponseEntity<String> updateTodo(
+        @PathVariable Integer todoId,
+        @RequestBody Todo todoCheck,
+        @AuthenticationPrincipal MyUserDetails user,
+        Authentication authentication) {
 
-    MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
-    int userId = userDetails.getId();
-
-    for (Map.Entry<Integer, Boolean> entry : requestData.entrySet()) {
-        Integer todoId = entry.getKey();
-        boolean isChecked = entry.getValue();
-
-        // TODO: 데이터베이스에서 해당 todo를 찾아서 체크 상태 업데이트
-        Todo todo = service.findById(todoId);
-        if (todo != null) {
-            Todo updateTodo = Todo.builder()
-                        .statement(isChecked)
-                        .build();   
-            service.updateTodo(todo);
-            System.out.println("Todo 업데이트 성공 - todoId: " + todoId);
-        } else {
-            System.out.println("Todo를 찾을 수 없음 - todoId: " + todoId);
-        }
+    Boolean isChecked = todoCheck.isStatement();
+    // 데이터베이스에서 해당 todo를 찾아서 체크 상태 업데이트
+    Todo todo = service.findById(todoId);
+    if (todo != null) {
+        todo.setStatement(isChecked);
+        service.updateTodo(todo); // updateTodo 메서드 대신 updateTodoStatement 메서드를 호출
+        System.out.println("Todo 업데이트 성공 - todoId: " + todoId);
+        return ResponseEntity.ok("업데이트 완료");
+    } else {
+        System.out.println("Todo를 찾을 수 없음 - todoId: " + todoId);
+        return ResponseEntity.notFound().build();
     }
-
-    return ResponseEntity.ok("업데이트 완료");
 }
+
+
+
+    // @PutMapping
+    // public ResponseEntity<String> updateTodo(@RequestBody Map<Integer, Boolean> requestData,
+    //         @AuthenticationPrincipal MyUserDetails user, Authentication authentication) {
+
+    //     MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
+    //     int userId = userDetails.getId();
+
+    //     for (Map.Entry<Integer, Boolean> entry : requestData.entrySet()) {
+    //         Integer todoId = entry.getKey();
+    //         boolean isChecked = entry.getValue();
+
+    //         // TODO: 데이터베이스에서 해당 todo를 찾아서 체크 상태 업데이트
+    //         Todo todo = service.findById(todoId);
+    //         if (todo != null) {
+    //             Todo updateTodo = Todo.builder()
+    //                         .statement(isChecked)
+    //                         .build();   
+    //             service.updateTodo(todo);
+    //             System.out.println("Todo 업데이트 성공 - todoId: " + todoId);
+    //         } else {
+    //             System.out.println("Todo를 찾을 수 없음 - todoId: " + todoId);
+    //         }
+    //     }
+
+    //     return ResponseEntity.ok("업데이트 완료");
+    // }
+
     @PostMapping
      public ResponseEntity <String> addTodo(@RequestBody Todo todoData,
         @RequestParam(value = "clickedDate", required = false) String clickedDate,

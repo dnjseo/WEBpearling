@@ -7,11 +7,15 @@ import java.util.Date;
 
 import org.springframework.cglib.core.Local;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Schedule {
     private Integer id;
     private LocalDate startDate;

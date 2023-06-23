@@ -103,7 +103,7 @@ public class MemberServiceImp implements MemberService{
                                     HttpServletRequest request) throws IOException {
         if (!file.isEmpty()) {
 
-            String uploadDir = request.getServletContext().getRealPath("/resources/img/");
+            String uploadDir = request.getServletContext().getResource("/resources/img/").getPath();
             String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
             String filePath = uploadDir + fileName;
             File destination = new File(filePath);

@@ -28,7 +28,6 @@ public class MemberServiceImp implements MemberService{
     @Override
     public List<Member> getList() {
         List<Member> list = repository.findAll();
-
         return list;
     }
     
@@ -60,24 +59,24 @@ public class MemberServiceImp implements MemberService{
         return repository.findByEmail(email);
     }
 
-    // 회원 등록
+    // 회원가입
     @Override
-    public void registerMember(Member member) {
-
-        // 이메일 주소 설정
-        String fullEmail = member.getEmail() + "@" + member.getDomain();
-        member.setEmail(fullEmail);
-
-        // 비밀번호 암호화
-        String encryptedPassword = passwordEncoder.encode(member.getPwd());
-        member.setPwd(encryptedPassword);
-
-        // 프로필 사진이 null인 경우 기본 이미지 경로로 설정
-        // if (member.getProfileImage() == null) {
-        //     member.setProfileImage("/images/profile/basic.png");
-        // }
-
+    public void add(Member member) {
         repository.insertMember(member);
+    }
+
+    // 이메일 중복검사
+    @Override
+    public boolean checkEmailExists(String email) {
+        Member existingMember = repository.findByEmail(email);
+        return existingMember != null;
+    }
+
+    // 닉네임 중복검사
+    @Override
+    public boolean checkNicknameExists(String nickname) {
+        Member existingMember = repository.findByNickname(nickname);
+        return existingMember != null;
     }
 
     // 회원 수정
@@ -120,39 +119,9 @@ public class MemberServiceImp implements MemberService{
         return null;
     }
 
-    // 디드라이브 경로 ... ㅋㅋ
-    // @Override
-    // public String uploadProfileImage(MultipartFile file) throws IOException {
-    //     if (!file.isEmpty()) {
-    //         String uploadDir = "D:\\test";
-    //         // String uploadDir = "resources/img/";
-    //         String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-    //         File uploadPath = new File(uploadDir, fileName);
-
-    //         System.out.println("비어있지 않습니다 !! ");
-    //         System.out.println(uploadPath);
-
-    //         file.transferTo(uploadPath);
-    //         return fileName; // 프로필 이미지 경로 반환
-    //     }
-
-    //     System.out.println("안된단다...");
-
-    //     return null;
-    // }
-
-    // 비밀번호 찾기
+    // 비밀번호 변경
     @Override
-    public boolean isValid(String email, String pwd) {
-        Member user = repository.findByEmail(email);
-      
-      if(user == null)
-         return false;
-      else if(!user.getPwd().equals(pwd))
-         return false;
-      
-      return true;
+    public void updatePwd(Member member) {
+        repository.updatePwd(member);
     }
-
-   
 }

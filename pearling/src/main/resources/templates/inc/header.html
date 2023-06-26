@@ -1,3 +1,7 @@
+<html 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+>
 <!--header-wrap-->
 <header class="header-wrap">
     <!--header-->
@@ -18,9 +22,9 @@
    <!-- header-->
 
     <!-- 쉘 메뉴 -->
-    <div id ="shell-menu">
+    <div id ="shell-menu" th:if="${#authorization.expression('isAuthenticated()')}">
             <h1 class="d-none">쉘 메뉴</h1>
-            <div class="ourShell notselected">
+            <div class="ourShell notselected" >
                 <a href="/shell/ourshell">
                     <!-- <img src="images/main/s1/clamOpen.png"> -->
                     <p class="osfont">our shell</p>
@@ -47,3 +51,4 @@
     
 </header>
  <!--header-wrap-->
+</html>

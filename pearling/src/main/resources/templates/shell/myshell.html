@@ -7,7 +7,7 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
     <!-- <script src="/js/shell/shell-menu.js"></script> -->
     <!-- <script src='/fullcalendar/dist/index.global.js'></script> -->
-    <script th:inline="javascript" type="module" src="/js/shell/myshell.js"></script>
+    <script th:inline="javascript" src="/js/shell/myshell.js"></script>
     <title>my shell</title>
 </head>
 
@@ -23,14 +23,18 @@
         <section id="ms4">
             <h1 class="d-none">일정 리스트</h1>
             
-            <div class="ms-today">
+            <div class="ms-today" data-aos="flip-down" 
+            data-aos-duration="1000">
                 <img src="/images/profile/circle.png">
                 <span class="ms-today-day"></span>
            </div>
             <div class="schedule"  data-aos="fade-right"
             data-aos-offset="300"
             data-aos-easing="ease-in-sine">
-                <p>to do.</p>
+                <div class="todo-title-part">
+                    <p>to do.</p>
+                    <button class="show-del-btn">편집</button>
+                </div>
                 <!-- 투두 인풋폼 생성되는 자리 -->
                 <div id="todo-add-form-section"></div>
 
@@ -85,10 +89,11 @@
             <div class="plusDetail">
                 <div class="plus-todo"><a href="">할 일</a></div>
                 <div class="plus-schedule"><a href="/schedule/reg">일정</a></div>
+                <button onclick="openSchedulePostModal()">모달호출</button>
             </div>
         </section>
 
-
+        <div id="schedulePostModalContainer"></div>
     </main>
     <!-- /wrap -->
 </body>

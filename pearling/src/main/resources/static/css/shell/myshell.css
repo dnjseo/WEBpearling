@@ -221,6 +221,11 @@ input[type="text"]{
     align-items: center;
 }
 
+.content > a:hover{
+    background-color: aquamarine;
+
+}
+
 .schedule > ul > li> .tag > button {
 
     color: rgba(97, 94, 94, 1);

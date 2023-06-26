@@ -63,7 +63,8 @@ function printCalendarEvent(calendar) {
             let scheduleEndTime = schedule.endTime;
 
             if (scheduleColor == null){
-              scheduleColor = '#E6E6FA'
+              scheduleColor = '#e6eced'
+              //'#E6E6FA'
             }
 
             console.log (scheduleColor)
@@ -434,4 +435,18 @@ document.addEventListener('DOMContentLoaded', function () {
      });
   }//updateScheduleList end
 
-    
+  function openSchedulePostModal() {
+    const schedulePostModalContainer = document.getElementById("schedulePostModalContainer");
+  
+    fetch("/schedule/reg.html")
+      .then(function(response) {
+        return response.text();
+      })
+      .then(function(html) {
+        schedulePostModalContainer.innerHTML = html;
+      })
+      .catch(function(error) {
+        console.log("Error:", error);
+      });
+  }
+  

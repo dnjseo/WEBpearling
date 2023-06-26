@@ -1,12 +1,12 @@
 window.addEventListener("load", function(e) {
     let pallet = [
-        { color: "#F8801359", category: "약속" },
-        { color: "#96E97082", category: "기념일" },
-        { color: "#6AB04899", category: "카테고리1" },
-        { color: "#3859AD33", category: "카테고리2" },
-        { color: "#A0B5FF", category: "카테고리3" },
-        { color: "#BEA3C9CC", category: "카테고리4" },
-        { color: "#DE4AA382", category: "카테고리5" }
+        { color: "white", category: "약속" },
+        { color: "#E6E6FA", category: "기념일" },
+        { color: "#caefca", category: "카테고리1" },
+        { color: "#fbe7f2", category: "카테고리2" },
+        { color: "#e8e3e3", category: "카테고리3" },
+        { color: "#c6e0f8", category: "카테고리4" },
+        { color: "#d7fafd", category: "카테고리5" }
     ];
 
     let colBox = this.document.querySelector(".col-box");

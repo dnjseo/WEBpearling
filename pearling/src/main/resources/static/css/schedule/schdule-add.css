@@ -2,12 +2,30 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.send-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.schedulePostModal{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
 }
 
 .schdule-add-title {
     display: flex;
     flex-direction: row;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
     padding: 5px 20px;
     margin-bottom: 20px;
@@ -116,12 +134,12 @@
 .schedule-add-freind-wrap {
     display: flex;
     flex-direction: row;
-    /* justify-content: flex-start; */
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-items: center;
     gap: 10px;
-    padding: 5px 20px;
+    padding: 15px 20px;
 
-    width: 80%;
+    width: 85%;
 }
 
 .schedule-add-freind-wrap>input {
@@ -132,7 +150,15 @@
     /* text-align: center; */
     color: #A1A1A1;
 
-    padding-left: 10px;
+    padding: 8px;
+}
+
+.schedule-add-freind-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .schedule-add-freind-box > .friendList {
@@ -266,6 +292,8 @@
 .category-wrap {
     display: flex;
     flex-direction: column;
+    width: 90%;
+    padding: 10px;
 }
 
 .category-wrap > span {
@@ -353,6 +381,11 @@
   border: 0;
   border-top: 2px solid #5f5f5f;
   margin: 3px 0;
+}
+
+.add-lc > input {
+  padding: 5px;
+  width: 200px;
 }
 
 /* .add-lc .option {

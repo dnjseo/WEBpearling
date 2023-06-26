@@ -3,10 +3,44 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.pearling.web.repository.FollowRepository">
-   <select id="countFollowerId" resultType="int">
-        SELECT COUNT(*) FROM follow WHERE to_id = #{fromId}
-    </select>
-    <select id="countFollowingId" resultType="int">
-        SELECT COUNT(*) FROM follow WHERE from_id = #{fromId}
-    </select>
+ <insert id="addFollow" parameterType="int">
+    insert into follow (to_id, from_id)
+    values (#{toId}, #{fromId})
+ </insert>
+
+ <delete id = "deleteFollow" parameterType="int">
+    delete from follow
+    where to_id = #{toID} and from_id = #{fromId}
+ </delete>
+
+ <select id="checkFollow" resultType="com.pearling.web.entity.Follow" parameterType="boolean">
+   select exists(
+      select 1 from follow
+      where from_id = #{fromId} and to_id = #{toId}
+   )
+ </select>
+
+  <select id="findFollowingCount" resultType="com.pearling.web.entity.Follow" parameterType="int">
+   select count(*) from follow
+   where to_id = #{toId}
+ </select>
+
+ <select id="findFollowerCount" resultType="com.pearling.web.entity.Follow" parameterType="int">
+   select count(*) from follow
+   where from_id = #{fromId}
+ </select>
+
+ <select id="findFollowersList" resultType="com.pearling.web.entity.Follow">
+   select m.*
+   from member m
+   join follow f on f.from_id = m.id
+   where f.to_id = #{memberId}
+ </select>
+
+  <select id="findFollowingsList" resultType="com.pearling.web.entity.Follow">
+   select m.*
+   from member m
+   join follow f on f.to_id = m.id
+   where f.from_id = #{memberId}
+ </select>
 </mapper>

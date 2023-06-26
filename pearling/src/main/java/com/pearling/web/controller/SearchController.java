@@ -41,6 +41,7 @@ public class SearchController extends BaseController {
         List<Member> memList = null;
         List<Todo> tdList = null;
         List<Schedule> scList = null;
+        
         String searchResults = "";
 
         if (query == null) {

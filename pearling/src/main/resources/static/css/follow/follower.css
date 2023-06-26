@@ -33,7 +33,7 @@ a{
     grid-template-columns: 1fr 0.3fr 1fr;
     place-items: center;
 
-    margin: 22px;
+    margin: 22px 22px 35px 22px;
 }
 
 .follower{
@@ -56,11 +56,20 @@ a{
     display: grid;
     grid-template-columns: 1fr 1fr 4fr;
     place-items: center end;
-    margin-bottom: 25px;
+    margin-bottom: 40px;
+}
+
+.followers > li > img {
+    width: 45px;
+    height: 45px;
+    border-radius: 30px;
+    object-fit: cover; 
+    object-position: center;
+    margin-right: 15px;
 }
 
 .follower-list > ul > li > :nth-child(2) {
-    justify-self: center;
+    justify-self: start;
 }
 
 .following-statement{

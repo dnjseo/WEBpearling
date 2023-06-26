@@ -1,9 +1,19 @@
 package com.pearling.web.service;
 
-import org.apache.ibatis.annotations.Mapper;
+import java.util.List;
 
-@Mapper
+import com.pearling.web.entity.Follow;
+import com.pearling.web.entity.Member;
+
 public interface FollowService {
+
+    void addFollow(Follow follow);
+    void deleteFollow(Follow follow);
+    boolean checkFollow(Follow follow);
     
-    
+    void getFollowingCount(int toId);
+    void getFollowerCount(int fromId);
+
+    List<Member> getFollowersList(int memberId);
+    List<Member> getFollowingsList(int memberId);
 }

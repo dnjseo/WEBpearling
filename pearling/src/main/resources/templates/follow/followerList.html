@@ -24,12 +24,12 @@
         <div class="follower-list">
             <h2 class="d-none">목록</h2>
             <ul class="followers">
-                <li>
-                    <img src="/images/profile/profile_yj.png">
-                    <p>연주</p>
+                <li th:each="f : ${followers}">
+                    <img src="/images/profile/profile_yj.png" th:src="@{'/resources/img/' + ${f.profileImage}}">
+                    <p th:text="${f.nickname}">연주</p>
                     <p class="following-statement">팔로잉</p>
                 </li>
-                <li>
+                <!-- <li>
                     <img src="/images/profile/profile_d.png">
                     <p>채원</p>
                     <p class="following-statement">팔로잉</p>
@@ -43,7 +43,7 @@
                     <img src="/images/profile/profile_yr.png">
                     <p>예린</p>
                     <p class="following-statement">팔로잉</p>
-                </li>
+                </li> -->
             </ul>
         </div>
     </main>

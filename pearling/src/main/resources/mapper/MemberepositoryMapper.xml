@@ -5,9 +5,6 @@
 	<select id="findById" resultType="Member">
 		select * from member where id=#{id}
 	</select>
-	<select id="findByEmail" resultType="Member">
-		select * from member where email=#{email}
-	</select>
 	<select id="findByUsername" resultType="Member">
 		select * from member where email=#{email}
 	</select>
@@ -25,12 +22,21 @@
 			</if>			
 		</trim>
 	</select>
+	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="Member">
         insert into member
 		(id, name, pwd, nickname, email, birth)
         values 
 		(#{id}, #{name}, #{pwd}, #{nickname}, #{email}, #{birth})
     </insert>
+	<!-- 이메일 회원 조회 -->
+	<select id="findByEmail" resultType="Member">
+		select * from member where email=#{email}
+	</select>
+	<!-- 닉네임 회원 조회 -->
+    <select id="findByNickname" resultType="Member">
+        SELECT * FROM member WHERE nickname = #{nickname}
+    </select>
 	<update id="updateMember" parameterType="Member">
         update member
         <set>
@@ -43,6 +49,15 @@
 			<if test="profileImage != null or profileImage == null">
 				profile_image = #{profileImage}
 			</if>
+        </set>
+        where id = #{id}
+    </update>
+	<update id="updatePwd" parameterType="Member">
+        update member
+        <set>
+            <if test="pwd != null">
+                pwd = #{pwd},
+            </if>
         </set>
         where id = #{id}
     </update>

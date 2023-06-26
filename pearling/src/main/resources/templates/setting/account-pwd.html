@@ -4,45 +4,61 @@
 
 <head>
     <link href="/css/setting/setting-account-pwd.css" type="text/css" rel="stylesheet">
-    <script src="/js/system/confirm-modal.js"></script>
+    <script src="/js/system/account-pwd.js"></script>
     <title>setting-account-pwd</title>
 </head>
 
 <body>
     <!-- wrap -->
     <main layout:fragment="content" class="wrap">
-        <section id="d1">
-            <h1 class="d-none">비밀번호 변경</h1>
-            <div class="img-box">
-                <img src="/images/profile/purple_circle.png" alt="pearl">
-            </div>
-            <div class="pwd-change-box">
-                <div class="pwd1-box">
-                    <label class="pwd1_1" for="pwd1">현재 비밀번호</label>
-                    <input id="pwd1" type="text" name="pwd1" placeholder="현재 비밀번호 입력">
+        <form class="pwd-form" method="PUT" action="">
+            <section id="d1">
+                <h1 class="d-none">비밀번호 변경</h1>
+                <div class="img-box">
+                    <img src="/images/profile/purple_circle.png" alt="pearl">
                 </div>
-                <div class="pwd2-box">
-                    <label for="pwd2">변경할 비밀번호</label>
-                    <input id="pwd2" type="text" placeholder="현재 비밀번호 입력">
+                <div class="pwd-change-box">
+                    <div class="pwd1-box">
+                        <label class="pwd1_1" for="currentPwd">현재 비밀번호</label>
+                        <input type="password" id="currentPwd" name="currentPwd" placeholder="현재 비밀번호 입력" required>
+                    </div>
+                    <div class="pwd2-box">
+                        <label for="newPwd">변경할 비밀번호</label>
+                        <input type="password" id="newPwd" name="newPwd" placeholder="변경할 비밀번호 입력" required>
+                    </div>
+                    <div class="pwd3-box">
+                        <label for="confirmPwd">변경할 비밀번호 확인</label>
+                        <input type="password" id="confirmPwd" name="confirmPwd" placeholder="변경할 비밀번호 확인 입력" required>
+                    </div>
+                    <button class="add-btn">확인</button>
                 </div>
-                <div class="pwd3-box">
-                    <label for="pwd3">변경할 비밀번호 확인</label>
-                    <input id="pwd3" type="text" placeholder="현재 비밀번호 입력">
-                </div>
-            </div>
-            <div class="add-btn-box">
-                <button class="add-btn">확인</button>
-            </div>
-        </section>
+            </section>
 
-        <!-- 컨펌 모달 ------------------------------------------ -->
-        <div id="confirm-modal" class="modal">
-            <div class="modal-content">
-                <p>🫧 Message</p>
-                <p>비밀번호 변경이 완료되었습니다.</p>
-                <button class="confirm-yes">확인</button>
+            <!-- 컨펌 모달 ------------------------------------------ -->
+            <div id="pwd-confirm-modal" class="modal">
+                <div class="modal-content">
+                    <p>🫧 Message</p>
+                    <p>비밀번호 변경이 완료되었습니다.</p>
+                    <button class="pwd-yes">확인</button>
+                </div>
             </div>
-        </div>
+
+            <div id="currentPwd-confirm-modal" class="modal">
+                <div class="modal-content">
+                    <p>🫧 Message</p>
+                    <p>현재 비밀번호가 일치하지 않습니다.</p>
+                    <button class="currentPwd-yes">확인</button>
+                </div>
+            </div>
+
+            <div id="nopwd-confirm-modal" class="modal">
+                <div class="modal-content">
+                    <p>🫧 Message</p>
+                    <p>입력한 비밀번호와 확인 비밀번호가 일치하지 않습니다.</p>
+                    <button class="nopwd-yes">확인</button>
+                </div>
+            </div>
+        </form>
     </main>
     <!-- /wrap -->
 </body>

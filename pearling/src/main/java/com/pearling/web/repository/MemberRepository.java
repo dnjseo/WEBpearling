@@ -10,12 +10,15 @@ import com.pearling.web.entity.Member;
 public interface MemberRepository {
     List<Member> findAll(String query);
     List<Member> findByUserId(int memberId);
-    Member findByUsername(String username);
-    Member findById(int id);
-    Member findByEmail(String email);
     List<Member> findByQuery(String query);
     List<Member> findAll();
 
+    Member findByUsername(String username);
+    Member findById(int id);
+    Member findByEmail(String email);
+    Member findByNickname(String nickname); // 닉네임으로 회원 조회
+
+    int insertMember(Member member); // 회원가입 추가
     int updateMember(Member existingMember); // 업데이트하기
-    void insertMember(Member member); // insertMember 메서드 추가
+    int updatePwd(Member member); // 비밀번호 업데이트하기
 }

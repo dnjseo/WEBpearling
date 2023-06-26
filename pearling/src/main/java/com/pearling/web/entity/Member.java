@@ -21,7 +21,10 @@ public class Member {
     private String profileImage;
     private Integer roleId;
 
-    private String domain;
+    private String fullEmail; // 도메인과 이메일 주소를 합친 이메일
 
-    
+    // 비밀번호 변경
+    private String currentPassword;
+    private String newPassword;
+    private String confirmPassword;
 }

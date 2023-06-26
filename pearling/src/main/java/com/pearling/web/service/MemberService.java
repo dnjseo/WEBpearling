@@ -19,8 +19,13 @@ public interface MemberService {
     Member getByUsername(String username); // username 
     Member getByEmail(String email); // 이메일
     
-    void registerMember(Member member); // 회원 등록을 위한 메서드 추가
+    // 회원가입
+    void add(Member member); // 회원가입
+    boolean checkEmailExists(String email);
+    boolean checkNicknameExists(String nickname); // 닉네임 중복체크
+
+    // 회원수정
     int updateMember(Member member); // 회원 수정을 위한 메서드 추가
+    void updatePwd(Member member);
     String uploadProfileImage(MultipartFile file, HttpServletRequest request) throws IOException;
-	boolean isValid(String email, String pwd); // 비밀번호 찾기
 }

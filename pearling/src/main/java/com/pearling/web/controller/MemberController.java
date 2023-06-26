@@ -30,21 +30,6 @@ public class MemberController {
         return "signup";
     }
 
-    @PostMapping("signup")
-    public String signupSubmit(@ModelAttribute Member member){
-        service.registerMember(member);
-        return "redirect:/login";
-    }
-
-    @GetMapping("/profile")
-    public String profileForm(Model model,
-        @AuthenticationPrincipal MyUserDetails user) {
-        Member pmember = service.getByUsername(user.getUsername());
-        model.addAttribute("pmember", pmember);
-        System.out.println("ggggggggg 반갑습니다----------------------");
-        return "setting/profile";
-    }
-
     @PostMapping("/profile")
     public String profileSubmit(@ModelAttribute Member member,
                                 @AuthenticationPrincipal MyUserDetails user,
@@ -57,18 +42,14 @@ public class MemberController {
             existingMember.setName(member.getName());
             existingMember.setNickname(member.getNickname());
 
-            // System.out.println("ddddddddddddddddddddddddd" + existingMember.setName(member.getName()));
-
-            String fileName = null;
+            String fileName = existingMember.getProfileImage(); // 기존 파일명 유지
 
             if (!file.isEmpty()) {
-                // 파일 업로드를 MemberService를 통해 처리
+                // 파일이 비어있지 않은 경우에만 파일 업로드 수행
                 fileName = service.uploadProfileImage(file, request);
                 existingMember.setProfileImage(fileName);
-                System.out.println("나 업로드 중이다아앙!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             }
 
-            // 서비스 계층의 업데이트 코드를 제거하였으므로 해당 부분을 수정해야합니다.
             int result = service.updateMember(existingMember);
 
             if (result != 0) {
@@ -77,13 +58,12 @@ public class MemberController {
                 user.setProfileImage(fileName);
             }
 
-            // 수정된 member 객체를 다시 모델에 추가합니다.
             model.addAttribute("member", existingMember);
-
-            // 다른 작업이나 리디렉션을 처리하기 위해 코드를 수정합니다.
 
             return "redirect:/setting/profile";
         }
+
         return "redirect:/setting/profile";
     }
+
 }

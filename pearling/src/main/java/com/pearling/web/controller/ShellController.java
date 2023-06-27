@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
+import org.codehaus.groovy.runtime.dgmimpl.arrays.IntegerArrayGetAtMetaMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.security.core.Authentication;
@@ -15,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pearling.web.entity.Member;
@@ -61,6 +63,25 @@ public class ShellController extends BaseController {
 		return "shell/myshell";
 	}
 
+
+@GetMapping("othershell/{id}")
+public String otherShell(Model model, @PathVariable("id") int userId) {
+    Member otherUser = memberService.getById(userId);
+    LocalDate todayDate = LocalDate.now();
+	System.out.println(otherUser);
+
+    model.addAttribute("headerShow", true);
+    
+    List<Todo> todoList = service.getListByDate(otherUser.getId(), todayDate);
+    List<Schedule> scheduleList1 = scheduleService.getListByDate(otherUser.getId(), todayDate);
+
+    model.addAttribute("todoList", todoList);
+    model.addAttribute("scheduleList", scheduleList1);
+
+    return "shell/myshell";
+}
+
+
 	
 
 	@GetMapping("ourshell")
@@ -77,14 +98,14 @@ public class ShellController extends BaseController {
 		return "shell/ourshell";
 	}
 
-	@GetMapping("others-shell")
-	public String othersShell(Model model) {
+	// @GetMapping("others-shell")
+	// public String othersShell(Model model) {
 
 
-		model.addAttribute("headerShow", true);
+	// 	model.addAttribute("headerShow", true);
 
-		return "shell/others-shell";
-	}
+	// 	return "shell/others-shell";
+	// }
 
 
 }

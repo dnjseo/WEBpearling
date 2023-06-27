@@ -15,7 +15,7 @@ public interface ScheduleService {
     Schedule findById(Integer id);
     void addSchedule(Schedule schedule);
     void updateSchedule(Schedule schedule);
-    void deleteSchedule(Schedule schedule);
+    int deleteSchedule(Schedule schedule);
 
     
 }

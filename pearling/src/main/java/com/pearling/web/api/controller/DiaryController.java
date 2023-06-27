@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pearling.web.entity.Diary;
+import com.pearling.web.entity.DiaryComment;
 import com.pearling.web.entity.DiaryView;
 import com.pearling.web.security.MyUserDetails;
+import com.pearling.web.service.DiaryCommentService;
 import com.pearling.web.service.DiaryService;
 
 @RestController("apiDiaryController")

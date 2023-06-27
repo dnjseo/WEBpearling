@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DiaryComment {
     private Integer id;
-    private Integer RegMemberId;
+    private Integer regMemberId;
     private Date regDate;
-    private String Content; 
+    private String content; 
     private Integer diaryPostId;
     private String regMemberNickname;
 }

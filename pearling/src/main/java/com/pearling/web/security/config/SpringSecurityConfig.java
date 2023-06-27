@@ -20,6 +20,7 @@ public class SpringSecurityConfig {
 		.csrf(csrf->csrf.disable())
 		.authorizeHttpRequests(
 				auth->auth
+					.requestMatchers("/api/diaryComments").permitAll()
 					.requestMatchers("/shell/**").hasAnyRole("ADMIN", "MEMBER")
 					.requestMatchers("/admin/**").hasAnyRole("ADMIN")
 					.anyRequest().permitAll()

@@ -20,27 +20,29 @@
    )
  </select>
 
-  <select id="findFollowingCount" resultType="com.pearling.web.entity.Follow" parameterType="int">
-   select count(*) from follow
-   where to_id = #{toId}
+  <select id="findFollowingCount" resultType="int" parameterType="int">
+   SELECT COUNT(*) FROM follow
+    JOIN member ON follow.to_id = member.id
+    WHERE member.id = #{toId}
  </select>
 
- <select id="findFollowerCount" resultType="com.pearling.web.entity.Follow" parameterType="int">
-   select count(*) from follow
-   where from_id = #{fromId}
+ <select id="findFollowerCount" resultType="int" parameterType="int">
+   SELECT COUNT(*) FROM follow
+    JOIN member ON follow.from_id = member.id
+    WHERE member.id = #{fromId}
  </select>
 
  <select id="findFollowersList" resultType="com.pearling.web.entity.Follow">
    select m.*
    from member m
-   join follow f on f.from_id = m.id
-   where f.to_id = #{memberId}
+   join follow f on f.to_id = m.id
+   where f.from_id = #{memberId}
  </select>
 
   <select id="findFollowingsList" resultType="com.pearling.web.entity.Follow">
    select m.*
    from member m
-   join follow f on f.to_id = m.id
-   where f.from_id = #{memberId}
+   join follow f on f.from_id = m.id
+   where f.to_id = #{memberId}
  </select>
 </mapper>

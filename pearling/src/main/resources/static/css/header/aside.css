@@ -88,7 +88,7 @@
     font-size: 18px;
 }
 
-.follow{
+.follow-list{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -98,7 +98,7 @@
     margin-bottom: 20px;
 }
 
-.follow > div{
+.follow-list > div{
     display: flex;
     flex-direction: column-reverse;
     justify-content: center;
@@ -114,16 +114,16 @@
     font-family: 'Pretendar-SemiBold';
 }
 
-.follow > div > a{
+.follow-list > div > a{
     font-size: 16px;
 }
 
-.follow > div > span{
+.follow-list > div > span{
     font-family: 'Pretendard-Bold';
     font-size: 24px
 }
 
-.follow p:nth-child(1){
+.follow-list p:nth-child(1){
     margin-right: 10%;
 }
 

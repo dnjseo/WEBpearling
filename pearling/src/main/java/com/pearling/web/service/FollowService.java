@@ -11,8 +11,8 @@ public interface FollowService {
     void deleteFollow(Follow follow);
     boolean checkFollow(Follow follow);
     
-    void getFollowingCount(int toId);
-    void getFollowerCount(int fromId);
+    int getFollowingCount(int toId);
+    int getFollowerCount(int fromId);
 
     List<Member> getFollowersList(int memberId);
     List<Member> getFollowingsList(int memberId);

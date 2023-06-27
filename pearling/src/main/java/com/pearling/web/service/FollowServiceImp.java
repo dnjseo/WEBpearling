@@ -31,13 +31,13 @@ public class FollowServiceImp implements FollowService{
     }    
 
     @Override
-    public void getFollowingCount(int toId) {
-        repository.findFollowingCount(toId);
+    public int getFollowingCount(int toId) {
+        return repository.findFollowingCount(toId);
     }
 
     @Override
-    public void getFollowerCount(int fromId) {
-        repository.findFollowerCount(fromId);
+    public int getFollowerCount(int fromId) {
+        return repository.findFollowerCount(fromId);
     }
 
     @Override

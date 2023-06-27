@@ -1,9 +1,9 @@
-body{
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04)), #FFFFFF; 
-}
-
-a{
-    text-decoration-line: none;
+.following-wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
 }
 
 .following-follower{
@@ -11,19 +11,16 @@ a{
     flex-direction: column;
     align-items: center;
     margin: auto;
-
+    width: 80%;
+    height: 47px;
 }
 
 .following-selection{
     width: 80%;
     height: 47px;
-
- 
     background: rgba(165, 135, 224, 0.2);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
-
-    /* Inside auto layout */
 
     flex: none;
     order: 1;
@@ -40,25 +37,24 @@ a{
     color:#A587E0;
 }
 
-.following-list>ul{
-    list-style: none;
-    width: 100%;
-}
-
 .following-list{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 80%;
+}
+
+.following-list>ul{
+    width: 80%;
 }
 
 .following-list>ul>li{
+    width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1.3fr 4fr;
+    grid-template-columns: 0fr 2fr 4fr;
     place-items: center end;
-    margin-bottom: 25px;
-    
-}
+    margin-bottom: 40px;
+} 
 
 .followers > li > img {
     width: 45px;
@@ -94,5 +90,5 @@ a{
     order: 0;
     flex-grow: 0;
 
-    margin-right: 15%;
+    /* margin-right: 15%; */
 }

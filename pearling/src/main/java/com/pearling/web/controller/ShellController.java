@@ -1,23 +1,14 @@
 package com.pearling.web.controller;
 
-import java.io.Console;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.pearling.web.entity.Member;
 import com.pearling.web.entity.Schedule;
 import com.pearling.web.service.MemberService;
 import com.pearling.web.service.ScheduleService;
@@ -25,7 +16,6 @@ import com.pearling.web.entity.Todo;
 import com.pearling.web.security.MyUserDetails;
 import com.pearling.web.service.TodoService;
 
-import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("shell")
@@ -69,7 +59,7 @@ public class ShellController extends BaseController {
 		SecurityContext context = SecurityContextHolder.getContext();
 		MyUserDetails user = (MyUserDetails) context.getAuthentication().getPrincipal();
 
-        int userId = user.getId();
+        int memberId = user.getId();
 		
 	
 		model.addAttribute("headerShow", true);

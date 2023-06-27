@@ -22,6 +22,8 @@ public class SpringSecurityConfig {
 				auth->auth
 					.requestMatchers( "/diary/**", "/follow/**", "/guestbook/**", "/notice/**", "/qa/**", 
 													"/schedule/**", "/search/**", "/setting/**", "/shell/**").hasAnyRole("ADMIN", "MEMBER")
+					.requestMatchers("/api/diaryComments").permitAll()
+					.requestMatchers("/shell/**").hasAnyRole("ADMIN", "MEMBER")
 					.requestMatchers("/admin/**").hasAnyRole("ADMIN")
 					.anyRequest().permitAll()
 				)

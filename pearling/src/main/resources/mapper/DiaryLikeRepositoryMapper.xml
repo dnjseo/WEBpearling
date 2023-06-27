@@ -6,7 +6,7 @@
       
    <select id="findById" resultType="com.pearling.web.entity.DiaryLike">
       select * from diary_like 
-      where member_id=#{memberId} and menu_id=#{menuId}
+      where member_id=#{memberId} and diary_id=#{diaryId}
    </select>
    
    <select id="countByDiary" resultType="int">

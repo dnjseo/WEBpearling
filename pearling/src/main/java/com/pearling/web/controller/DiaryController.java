@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pearling.web.entity.Diary;
+import com.pearling.web.entity.DiaryComment;
 import com.pearling.web.entity.DiaryView;
 import com.pearling.web.security.MyUserDetails;
+import com.pearling.web.service.DiaryCommentService;
 import com.pearling.web.service.DiaryService;
 
 @Controller
@@ -24,6 +26,9 @@ import com.pearling.web.service.DiaryService;
 public class DiaryController extends BaseController {
 	@Autowired
 	private DiaryService service;
+
+	@Autowired
+	private DiaryCommentService diaryCommentService;
 		
 		@GetMapping("/list")
 		public String getDiaryList(
@@ -63,6 +68,7 @@ public class DiaryController extends BaseController {
 	public String post(
 			@RequestParam(name = "s", required = false) boolean editShow,
 			@RequestParam(name = "id", required = false) Integer id,
+			@AuthenticationPrincipal MyUserDetails user,
 			Model model) {
 
 		String pageTitle = getPageTitle();
@@ -77,11 +83,18 @@ public class DiaryController extends BaseController {
 			model.addAttribute("editShow", 2);
 
 		List<Diary> list = service.getList();
-
 		Diary diary = service.findById(id);
+		
+		Integer memberId = null;
+
+		if(user != null) 
+			memberId = user.getId();
+
+		List<DiaryComment> diaryComment = diaryCommentService.getList(memberId, id);
 
 		model.addAttribute("list", list);
 		model.addAttribute("diary", diary);	
+		model.addAttribute("diaryComment", diaryComment);	
 
 		return "diary/post";
 	}

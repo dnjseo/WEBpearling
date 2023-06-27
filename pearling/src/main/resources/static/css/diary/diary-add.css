@@ -44,7 +44,7 @@
 
 /* -----버튼(사진 첨부)--------------------------------------------------- */
 
-#file-upload-button {
+.upload-btn {
     background-image: url("/images/diary/photo.svg");
     background-repeat: no-repeat;
     background-position-x: center;
@@ -58,45 +58,205 @@
     border: none;
 }
 
-.btns>input:active {
+.btns>label:active {
     opacity: 0.8;
 }
 
 /* -----버튼(등록 버튼)--------------------------------------------------- */
 
 .diary-btns {
-    box-sizing: content-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
 
+    width: 82.5%;
+}
+
+.diary-post-btns {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    align-items: center;
+    padding-top: 20px;
+    gap: 5px;
+
+    width: 82.5%;
+
+    margin-bottom: 100px;
+}
+
+    .diary-btns .diary-heart-comment-btns {
+        display: flex;
+        flex-direction: row;
+        justify-self: flex-start;
+        align-content: center;
+        gap: 10px;
+    }
+
+    .heart-btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .comment-btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+
+        .icon-heart {
+            background: url("/images/diary/icon-heart.svg") no-repeat center/cover;
+            width: 18px;
+            height: 18px;
+
+            position: relative;
+            display: inline-block;
+        }
+
+        .icon-heart-fill {
+            background: url("/images/diary/icon-heart-fill.svg") no-repeat center/cover;
+            width: 18px;
+            height: 18px;
+
+            animation: heartbeat 1s infinite;
+        }
+
+        .icon-comment {
+            background: url("/images/diary/icon-comment.svg") no-repeat center/cover;
+            width: 16px;
+            height: 16px;
+
+            position: relative;
+            display: inline-block;
+        }
+
+        .icon-comment-fill {
+            background: url("/images/diary/icon-comment-fill.svg") no-repeat center/cover;
+            width: 18px;
+            height: 18px;
+        }
+
+    .diary-btns .diary-scope-summit-btns {
+        display: flex;
+        flex-direction: row;
+        justify-self: flex-end;
+        align-items: center;
+    }
+
+        .diary-scope-summit-btns>button:active,
+        .diary-post-btns>button:active {
+            background: rgba(90, 46, 149, 0.2);
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+        }
+
+        .diary-scope-summit-btns>select,
+        .diary-post-btns>select {
+            background: #FFFFFF;
+            border: 1px solid #D9D9D9;
+            
+            width: 70px;
+            height: 30px;
+
+            text-align: center;
+
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+            border-radius: 16px;
+        }
+
+        .diary-scope-summit-btns>button,
+        .diary-post-btns>button {
+            width: 80px;
+            height: 30px;
+            
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+            border-radius: 8px;
+            border: none;
+
+            margin-left: 10px;
+        }
+
+/* =========댓글 창=========================== */
+
+.diary-comment-section {
+    display: flex;
+    flex-direction: column;
+
+    padding-top: 20px;
+    margin-bottom: 200px;
 
     width: 80%;
 
-    padding-left: 50px;
-    padding-top: 20px; 
-    margin-bottom: 150px;
+    justify-content: center;
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.diary-btns>button:active {
-    background: rgba(90, 46, 149, 0.2);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+.comment-list,
+.comment-input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
+    .comment-input-box> textarea {
+        margin-top: 10px;
+        padding: 10px 10px;
 
-.diary-btns>select {
-    background: #FFFFFF;
-    border: 1px solid #D9D9D9;
-    /* REAL 그림자 */
+    }
 
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 16px;
-}
+    .comment > :nth-child(1) {
+        font-weight: bold;
+    }
 
-.diary-btns>button {
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    border: none;
-    margin-left: 10px;
-    width: 90px;
+    .del-box {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .del-box > button {
+        border: none;
+        background: none;
+    }
+
+.comment-btns> button{
+    margin-top: 5px;
+    width: 65px;
     height: 30px;
+
+    align-self: flex-end;
+
+    background: rgba(252, 251, 251, 0.75);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05), inset 0px 3px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    border: none;
+
+    font-size: 12px;
+    color: #797979;
+}
+
+.comment-section {
+    display: none;
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-bottom: 5px;
+}
+
+.comment-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 5px;
 }

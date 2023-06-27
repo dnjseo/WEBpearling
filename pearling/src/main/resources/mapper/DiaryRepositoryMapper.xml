@@ -15,6 +15,7 @@
 			id = #{id}
 			</if>
 		</trim>
+		limit 1
 	</select>
 	<select id="findByDate" resultType="com.pearling.web.entity.Diary">
 		select *

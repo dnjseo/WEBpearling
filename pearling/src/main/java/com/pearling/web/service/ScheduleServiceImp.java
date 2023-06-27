@@ -66,11 +66,10 @@ public class ScheduleServiceImp implements ScheduleService {
 
 
     @Override
-    public void deleteSchedule(Schedule schedule) {
+    public int deleteSchedule(Schedule schedule) {
         
-        repository.delete(schedule);
+        return repository.delete(schedule);
     }
-
   
   
 }

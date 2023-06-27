@@ -50,8 +50,21 @@ checkbox.addEventListener('change', function() {
 }
 
 function printCalendarEvent(calendar) {
+    fetch('http://localhost:8080/api/user') // 사용자 정보를 받아오는 API 엔드포인트
+    .then(response => response.json())
+    .then(userData => {
+        const userId = userData.id; // 사용자의 ID를 받아옴
+        
+
+        // 캘린더 이벤트에 스케줄 db 추가
+        let url = 'http://localhost:8080/api/schedules';
+        if (userId) {
+            url += `/${userId}`;
+        }
+        
+
     //캘린더 이벤트에 스케쥴 db 추가 
-    fetch(`http://localhost:8080/api/schedules?`)
+    fetch(url)
     .then(response => response.json())
     .then(scheduleList => {
         for (let schedule of scheduleList) {
@@ -70,24 +83,45 @@ function printCalendarEvent(calendar) {
             console.log (scheduleColor)
 
             let event=null;
-            if(!scheduleStartTime && !scheduleEndTime){
+            if(!scheduleStartTime && !scheduleEndTime
+              &&scheduleStartDate == scheduleEndDate ){
               event = {
-                  title: scheduleTitle,
-                  start: scheduleStartDate,
-                  end:scheduleEndDate,
-                  color: scheduleColor               
+                title: scheduleTitle,
+                start: scheduleStartDate,
+                end: scheduleEndDate,
+                color: scheduleColor,
+                allDay: true
               };
-           }else{
+              calendar.addEvent(event);
+            };
+
+            if(!scheduleStartTime && !scheduleEndTime
+            && scheduleStartDate != scheduleEndDate ){
+
+              let endDate = new Date(scheduleEndDate);
+              endDate.setDate(endDate.getDate() + 1);
+              
+              event = {
+                title: scheduleTitle,
+                start: scheduleStartDate,
+                end: endDate,
+                color: scheduleColor,
+                allDay: true
+              };
+            }
+
+            else{
               event = {
                 title: scheduleTitle,
                 start: scheduleStartDate+'T'+scheduleStartTime,
                 end:scheduleEndDate+'T'+scheduleEndTime,
-                color: scheduleColor               
+                color: scheduleColor,
+                allDay: false               
               };
         }
           calendar.addEvent(event);
-          
-        }
+      }
+       });
     });
 
     calendar.render();
@@ -280,8 +314,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
       }// 엔터키 핸들러 end
-      
-
 
     });// DOM road end
 
@@ -416,8 +448,8 @@ document.addEventListener('DOMContentLoaded', function () {
             clickedDate.getFullYear() <= scheduleEndDate.getFullYear() &&
             clickedDate.getMonth() <= scheduleEndDate.getMonth() &&
             clickedDate.getDate() <= scheduleEndDate.getDate()
-         ) {
-
+            ) {
+     
          //스케쥴 출력하기     
            let itemTemplate = `
            <li class="scheduleList">
@@ -435,18 +467,5 @@ document.addEventListener('DOMContentLoaded', function () {
      });
   }//updateScheduleList end
 
-  function openSchedulePostModal() {
-    const schedulePostModalContainer = document.getElementById("schedulePostModalContainer");
-  
-    fetch("/schedule/reg.html")
-      .then(function(response) {
-        return response.text();
-      })
-      .then(function(html) {
-        schedulePostModalContainer.innerHTML = html;
-      })
-      .catch(function(error) {
-        console.log("Error:", error);
-      });
-  }
-  
+
+

@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -49,6 +50,11 @@ public class ScheduleController{
         return scheduleList;
     }
 
+     @GetMapping("/{id}")
+    public List<Schedule> scheduleList(@PathVariable("id") int userId) {
+        List<Schedule> scheduleList = service.getListByUserId(userId);
+        return scheduleList;
+    }
 
     @GetMapping("detail/{id}")
     public Schedule detail(
@@ -69,11 +75,20 @@ public class ScheduleController{
     }
 
 
-    @DeleteMapping
-    public Schedule deleteSchedule(Schedule schedule){
+    @DeleteMapping("{id}")
+    public ResponseEntity<?>  deleteSchedule
+    (@PathVariable("id") Integer id){
 
+        Schedule schedule = service.findById(id);
 
-        return null;
+            if (schedule != null) {
+          int deletedRows = service.deleteSchedule(schedule);
+          if (deletedRows > 0) {
+              return ResponseEntity.ok().build(); // 성공적으로 삭제된 경우 200 OK 반환
+          }
+      }
+
+        return ResponseEntity.notFound().build();
     }
 
     @PostMapping("post")

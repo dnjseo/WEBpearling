@@ -92,7 +92,7 @@ public class ScheduleController{
     }
 
     @PostMapping("post")
-    public void addSchedule(@RequestBody ScheduleRequest scheduleRequest, @AuthenticationPrincipal MyUserDetails user){
+    public void addSchedule(@RequestBody Schedule scheduleRequest, @AuthenticationPrincipal MyUserDetails user){
         Schedule schedule = Schedule.builder()
 				.startDate(scheduleRequest.getStartDate())
 				.startTime(scheduleRequest.getStartTime())
@@ -114,68 +114,5 @@ public class ScheduleController{
     //     return entity;
     // }
     
-
-    public static class ScheduleRequest{
-        private LocalDate startDate;
-        private LocalTime startTime;
-        private LocalDate endDate;
-        private LocalTime endTime;
-        private String title;
-        private String backgroundColor; 
-        private Double latitude;
-        private Double longitude;
-    
-        
-        public LocalDate getStartDate() {
-            return startDate;
-        }
-        public void setStartDate(LocalDate startDate) {
-            this.startDate = startDate;
-        }
-        public LocalTime getStartTime() {
-            return startTime;
-        }
-        public void setStartTime(LocalTime startTime) {
-            this.startTime = startTime;
-        }
-        public LocalDate getEndDate() {
-            return endDate;
-        }
-        public void setEndDate(LocalDate endDate) {
-            this.endDate = endDate;
-        }
-        public LocalTime getEndTime() {
-            return endTime;
-        }
-        public void setEndTime(LocalTime endTime) {
-            this.endTime = endTime;
-        }
-        public String getTitle() {
-            return title;
-        }
-        public void setTitle(String title) {
-            this.title = title;
-        }
-        public String getBackgroundColor() {
-            return backgroundColor;
-        }
-        public void setBackgroundColor(String backgroundColor) {
-            this.backgroundColor = backgroundColor;
-        }
-        public Double getLatitude() {
-            return latitude;
-        }
-        public void setLatitude(Double latitude) {
-            this.latitude = latitude;
-        }
-        public Double getLongitude() {
-            return longitude;
-        }
-        public void setLongitude(Double longitude) {
-            this.longitude = longitude;
-        }
-    
-        
-    }
 
 }//class end

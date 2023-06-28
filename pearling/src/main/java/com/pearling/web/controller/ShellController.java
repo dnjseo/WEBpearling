@@ -56,7 +56,7 @@ public class ShellController extends BaseController {
 	}
 
 
-@GetMapping("othershell/{id}")
+@GetMapping("myshell/{id}")
 public String otherShell(Model model, @PathVariable("id") int userId) {
     Member otherUser = memberService.getById(userId);
     LocalDate todayDate = LocalDate.now();

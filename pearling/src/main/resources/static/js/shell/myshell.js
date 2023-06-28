@@ -283,6 +283,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (e.key === 'Enter' && todoAddForm && todoAddForm.contains(document.activeElement)) {
         e.preventDefault(); // 기본 동작인 새로운 줄 추가 방지
           const formData = new FormData(todoAddForm);
+          
+          if(!clickedDate)
+          clickedDate = new Date().toISOString().substring(0, 10)
 
           const todoData = {
             date: clickedDate ,
@@ -401,6 +404,7 @@ document.addEventListener('DOMContentLoaded', function () {
               `;
               todoElements.insertAdjacentHTML("beforeend", todoTemplate);
               
+          
             } else {
               let noTodoTemplate = `
                 <li class="todoList">

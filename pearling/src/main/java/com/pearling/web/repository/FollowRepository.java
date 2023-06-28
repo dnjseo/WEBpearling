@@ -12,8 +12,8 @@ public interface FollowRepository {
     int deleteFollow(Follow follow);
     boolean checkFollow(Follow follow);
     
-    int findFollowingCount(int toId);
-    int findFollowerCount(int fromId);
+    int findFollowingCount(int followerId);
+    int findFollowerCount(int followingId);
 
     List<Member> findFollowersList(int memberId);
     List<Member> findFollowingsList(int memberId);

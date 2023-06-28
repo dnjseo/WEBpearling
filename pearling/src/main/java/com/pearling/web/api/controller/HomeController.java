@@ -23,8 +23,8 @@ public class HomeController {
     @GetMapping
     public int[] count(@AuthenticationPrincipal MyUserDetails user) {
         int[] result = new int[2];
-        result[0] = service.getFollowerCount(user.getId());
-        result[1] = service.getFollowingCount(user.getId());
+        result[0] = service.getFollowingCount(user.getId());
+        result[1] = service.getFollowerCount(user.getId());
         return result;
     }
 

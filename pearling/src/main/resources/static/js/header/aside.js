@@ -7,8 +7,8 @@ window.onload = function () {
         fetch("/api/aside")
             .then(response => response.json())
             .then(count => {
-                follower.innerHTML = count[0];
-                following.innerHTML = count[1];
+                following.innerHTML = count[0];
+                follower.innerHTML = count[1];
             });
     }
     

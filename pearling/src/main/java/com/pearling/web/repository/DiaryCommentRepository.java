@@ -9,7 +9,8 @@ import com.pearling.web.entity.DiaryComment;
 public interface DiaryCommentRepository {
     List<DiaryComment> findAll(Integer memberId, Integer diaryId);
     DiaryComment findById(Integer memberId, Integer diaryId);
-    int save(DiaryComment diaryComment);
-    int delete(DiaryComment diaryComment);
+    void save(DiaryComment diaryComment);
+    void delete(Integer id);
     int countByDiary(int diaryId);
+    void update(DiaryComment diaryComment);
 }

@@ -216,15 +216,26 @@
         font-weight: bold;
     }
 
-    .del-box {
+    .up-del-box {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
 
-    .del-box > button {
+    .up-del-box > span {
+        justify-self: flex-start;
+    }
+
+    .up-del-btns {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    .up-del-btns > button {
         border: none;
         background: none;
+        color: #797979;
     }
 
 .comment-btns> button{

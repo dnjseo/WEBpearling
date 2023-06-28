@@ -19,9 +19,16 @@
       values(#{regMemberId}, #{content}, #{diaryPostId}, #{regMemberNickname})
    </insert>
    
-   <delete id="delete" parameterType="com.pearling.web.entity.DiaryComment">
-	  delete from diary_comment
-	  where member_id=#{memberId} and diary_post_id=#{diaryId}
-   </delete>
+	<delete id="delete">
+		delete from diary_comment where id=#{id}
+	</delete>
+
+   <update id="update">
+	UPDATE diary_comment
+	<set>
+		<if test="content != null">content = #{content}</if>
+	</set>
+	WHERE id = #{id} and reg_member_id = #{regMemberId}
+	</update>
    
 </mapper>

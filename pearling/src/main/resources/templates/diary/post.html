@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{inc/layout}">
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"    
+layout:decorate="~{inc/layout}">
 
 <head>
     <meta charset="UTF-8">
@@ -14,6 +15,7 @@
     <script src="/js/diary/delete-update.js"></script>
     <script src="/js/diary/comment-detail.js"></script>
     <script src="/js/diary/comment-post.js"></script>
+    <!-- <script src="/js/diary/comment-delete-update.js"></script> -->
     <!-- <script src="/js/system/modal-alert.js" defer></script> -->
 
     <title>diary-post</title>
@@ -36,7 +38,7 @@
             <h1 class="d-none">다이어리 내용</h1>
             <div th:switch="${editShow}">
                 <div th:case="1">
-                    <form class="diary-add-form" method="post" action="post">
+                    <form class="diary-add-form">
                         <div class="diary-detail-span">
                             <input class="diary-detail-date" type="date" name="date">
                             <input class="diary-detail-title" name="title" type="text" placeholder="타이틀을 입력하세요.">
@@ -48,11 +50,13 @@
                             </div>
                         </div>
                         <div class="diary-post-btns">
-                            <select type="submit" name="diaryScopeId">
+                            <select type="submit" name="diary-scope-id">
                                 <option value="1">전체공개</option>
                                 <option value="2">친구공개</option>
                                 <option value="3">비공개</option>
                             </select>
+                            <input type="hidden" name="member-id" sec:authorize="isAuthenticated()"
+							th:value="${#authentication.principal.id}">
                             <button class="diary-add-btn">등록</button>
                         </div>
 
@@ -74,13 +78,14 @@
                 <!-- 수정, 삭제창 -->
 
                 <div th:case="2">
-                    <form id="formId" class="diary-edit-form" method="post" action="">
+                    <form id="formId" class="diary-edit-form">
                         <div class="diary-detail-span">
                             <input class="diary-detail-date" type="date" th:value="${diary.date}" name="date">
                             <input class="diary-detail-title" type="text" th:value="${diary.title}" name="title">
                             <input class="d-none" type="image">
                             <textarea class="diary-detail-input" rows="15" th:text="${diary.content}"
                                 name="content"></textarea>
+                            <input type="hidden" name="id" th:value="${diary.id}">
                             <div class="btns">
                                 <!-- <button>🔒</button> -->
                                 <input class="file-btn" type="file">
@@ -100,7 +105,7 @@
                             </div>
 
                             <div class="diary-scope-summit-btns">
-                                <select type="submit" name="diaryScopeId">
+                                <select type="submit" name="diary-scope-id">
                                     <option value="1">전체공개</option>
                                     <option value="2">친구공개</option>
                                     <option value="3">비공개</option>
@@ -116,7 +121,7 @@
                             <div class="modal-content">
                                 <p>🫧 Message</p>
                                 <p>다이어리 수정이 완료되었습니다.</p>
-                                <button class="confirm-yes" type="submit" name="id" th:value="${diary.id}">확인</button>
+                                <button class="confirm-yes">확인</button>
                             </div>
                         </div>
 
@@ -126,8 +131,7 @@
                                 <p>🫧 Message</p>
                                 <p>다이어리를 삭제하시겠습니까?</p>
                                 <div class="del-modal-btns">
-                                    <button type="submit" name="id" th:value="${diary.id}"
-                                        class="del-confirm-yes">예</button>
+                                    <button class="del-confirm-yes">예</button>
                                     <button class="del-confirm-no"><a href="#">아니오</a></button>
                                 </div>
                             </div>
@@ -137,28 +141,38 @@
 
                     <!-- 댓글 section -->
                     <section class="diary-comment-section">
-                        <form class="diary-comment-form" method="post">
+                        <form class="diary-comment-form">
                             <ul>
                                 <li>
                                     <div class="comment-list">
                                         <div class="comment" th:each="dc : ${diaryComment}">
                                             <span th:text="${dc.regMemberNickname}"></span>
                                             <span th:text="${dc.content}"></span>
-                                            <div class="del-box">
+                                            <div class="up-del-box">
                                                 <span th:text="${dc.regDate}"></span>
-                                                <button>x</button>
+                                                <div class="up-del-btns">
+                                                    <button class="co-update-btn" type="button">수정</button>
+                                                    <button class="co-del-btn" type="button" th:data-id="${dc.id}">삭제</button>
+                                                </div>
                                                 <input type="hidden" name="diaryPostId" th:value="${diary.id}">
+                                                <input type="hidden" name="comment-id" th:value="${dc.id}">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="comment-input-box">
                                         <textarea placeholder="댓글을 입력하세요." name="content"></textarea>
-                                        <input type="hidden" name="diaryPostId" th:value="${diary.id}">
+                                        <input type="hidden" name="diary-post-id" th:value="${diary.id}">
+                                        <input type="hidden" name="reg-member-id" 
+                                        sec:authorize="isAuthenticated()"
+                                        th:value="${#authentication.principal.id}">
+                                        <input type="hidden" name="reg-member-nickname" 
+                                        sec:authorize="isAuthenticated()"
+                                        th:value="${#authentication.principal.nickname}">
 
                                         <div class="comment-btns">
-                                            <button class="comment-add-btn" type="submit">댓글 작성</button>
-                                            <button class="comment-del-btn" type="submit">댓글 삭제</button>
+                                            <button class="comment-add-btn">댓글 작성</button>
+                                            <button class="comment-del-btn">댓글 삭제</button>
                                         </div>
                                     </div>
                                 </li>

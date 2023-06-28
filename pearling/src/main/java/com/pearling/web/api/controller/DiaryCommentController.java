@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +21,7 @@ import com.pearling.web.security.MyUserDetails;
 import com.pearling.web.service.DiaryCommentService;
 
 @RestController("apiDiaryCommentController")
-@RequestMapping("api/diaryComments")
+@RequestMapping("/api/diaryComments")
 public class DiaryCommentController {
 
 	@Autowired
@@ -56,45 +57,42 @@ public class DiaryCommentController {
 		return result;
 	}
 
-	@PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public int add(
-			@ModelAttribute DiaryComment diaryComment,
-			@AuthenticationPrincipal MyUserDetails user) {
-	
-		Integer memberId = null;
-		String regMemberNickname = null;
-	
-		if (user != null) {
-			memberId = user.getId();
-			regMemberNickname = user.getNickname();
-		}
-	
-		diaryComment = DiaryComment.builder()
-				.regMemberId(memberId)
-				.content(diaryComment.getContent())
-				.diaryPostId(diaryComment.getDiaryPostId())
-				.regMemberNickname(regMemberNickname)
-				.build();
-	
+	@PostMapping(consumes = "application/json", produces = "application/json")
+	public void post(@RequestBody DiaryComment diaryComment) {
+
+		service.append(diaryComment);
 		System.out.println("나는 다이어리 포스트요청 레스트컨트롤러지롱");
-
-	
-		return service.append(diaryComment);
 	}
 
-	@DeleteMapping("{diaryId}/members/{memberId}")
-	public int delete(@PathVariable("diaryId") int diaryId,
-			@PathVariable("memberId") int memberId,
-			DiaryComment diaryComment) {
+	@DeleteMapping("/{id}/members/{memberId}")
+	public void delete(@PathVariable("id") Integer id,
+			@PathVariable("memberId") Integer memberId) {
 
-				diaryComment = DiaryComment.builder()
-				.regMemberId(memberId)
-				.content(diaryComment.getContent())
-				.diaryPostId(diaryId)
-				.regMemberNickname(diaryComment.getRegMemberNickname())
-				.build();
+			service.delete(id);
 
-		return service.delete(diaryComment);
+			System.out.println("나는 다이어리 딜리트요청 레스트컨트롤러지롱");
 	}
 
+// 	@PutMapping("{id}/members/{memberId}")
+// 	public void update(@PathVariable("id") Integer id,
+// 			@PathVariable("memberId") Integer regMemberId,
+// 			@RequestBody DiaryCommentRequest diaryCommentRequest,
+// 			@AuthenticationPrincipal MyUserDetails user) {
+
+// 				regMemberId = null;
+			
+// 				if (user != null) {
+// 					regMemberId = user.getId();
+// 				}
+
+// 			DiaryComment diaryComment = DiaryComment.builder()
+// 										.id(id)
+// 										.regMemberId(regMemberId)
+// 										.content(diaryCommentRequest.getContent())
+// 										.build();
+
+// 			service.update(diaryComment);
+// 	}
+
+// }
 }

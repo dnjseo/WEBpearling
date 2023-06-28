@@ -125,7 +125,7 @@ public class DiaryController extends BaseController {
 				.diaryScopeId(diaryScopeId)
 				.build();
 
-		service.addDiary(diary);
+		service.append(diary);
 
 		System.out.println("diary 확인 : " + diary);
 
@@ -141,7 +141,7 @@ public class DiaryController extends BaseController {
 		if (id != null) {
 			Diary diary = service.findById(id);
 			if (diary != null) {
-				service.deleteDiary(diary);
+				service.delete(diary);
 			}
 		}
 
@@ -166,7 +166,7 @@ public class DiaryController extends BaseController {
 
 		if (id != null) {
 			diary.setId(id);
-			service.updateDiary(diary);
+			service.update(diary);
 		}
 
 		return "redirect:list";

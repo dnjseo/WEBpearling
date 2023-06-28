@@ -17,10 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pearling.web.entity.Diary;
-import com.pearling.web.entity.DiaryComment;
 import com.pearling.web.entity.DiaryView;
 import com.pearling.web.security.MyUserDetails;
-import com.pearling.web.service.DiaryCommentService;
 import com.pearling.web.service.DiaryService;
 
 @RestController("apiDiaryController")
@@ -73,83 +71,30 @@ public class DiaryController {
 		return diary;
 	}
 
-	@PostMapping
-	public void post(@RequestBody DiaryRequest diaryRequest, @AuthenticationPrincipal MyUserDetails user) {
-		Diary diary = Diary.builder()
-				.date(diaryRequest.getDate())
-				.title(diaryRequest.getTitle())
-				.view(0)
-				.content(diaryRequest.getContent())
-				.memberId(user.getId()) // MyUserDetails 객체에서 id 값을 가져옵니다.
-				.diaryScopeId(diaryRequest.getDiaryScopeId())
-				.build();
-		service.addDiary(diary);
-
-		System.out.println("나는 레스트컨트롤러");
+	@PostMapping(consumes = "application/json", produces = "application/json")
+	public void post(@RequestBody Diary diary) {
+		
+		service.append(diary);
+		System.out.println("나는 diary-post 레스트컨트롤러");
 	}
 
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable("id") Integer id) {
 		Diary diary = service.findById(id);
 		if (diary != null) {
-			service.deleteDiary(diary);
+			service.delete(diary);
 		}
+
+		System.out.println("나는 diary-delete 레스트컨트롤러");
 	}
 
 	@PutMapping("{id}")
 	public void update(@PathVariable("id") Integer id,
-			@RequestBody DiaryRequest diaryRequest) {
-		Diary diary = Diary.builder()
-				.id(id)
-				.date(diaryRequest.getDate())
-				.title(diaryRequest.getTitle())
-				.content(diaryRequest.getContent())
-				.diaryScopeId(diaryRequest.getDiaryScopeId())
-				.build();
-		service.updateDiary(diary);
-	}
+			@RequestBody Diary diary) {
 
-	// getter, setter
+		service.update(diary);
+		System.out.println("나는 diary-put 레스트컨트롤러");
 
-	public static class DiaryRequest {
-		private LocalDate date;
-		private String title;
-		private String content;
-		private Integer diaryScopeId;
-
-		// Getters and setters
-
-		public LocalDate getDate() {
-			return date;
-		}
-
-		public void setDate(LocalDate date) {
-			this.date = date;
-		}
-
-		public String getTitle() {
-			return title;
-		}
-
-		public void setTitle(String title) {
-			this.title = title;
-		}
-
-		public String getContent() {
-			return content;
-		}
-
-		public void setContent(String content) {
-			this.content = content;
-		}
-
-		public Integer getDiaryScopeId() {
-			return diaryScopeId;
-		}
-
-		public void setDiaryScopeId(Integer diaryScopeId) {
-			this.diaryScopeId = diaryScopeId;
-		}
 	}
 
 }

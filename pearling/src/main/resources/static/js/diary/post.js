@@ -13,21 +13,23 @@ window.addEventListener('load', function (e) {
   confirmBtn.addEventListener('click', function (e) {
     e.preventDefault();
 
-    let formData = new FormData(form);
+    let inputs = form.elements;
+    let date = inputs["date"].value;
+    let title = inputs["title"].value;
+    let content = inputs["content"].value;
+    let diaryScopeId = inputs["diary-scope-id"].value;
+    let view = 0;
+    let memberId = inputs["member-id"].value;
 
-    let diaryRequest = {
-      date: formData.get('date'),
-      title: formData.get('title'),
-      content: formData.get('content'),
-      diaryScopeId: formData.get('diaryScopeId'),
-    };
+    let formData = { date, title, content, diaryScopeId, view, memberId };
+    let jsonData = JSON.stringify(formData);
 
     fetch('/api/diary', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(diaryRequest),
+      body: jsonData,
     })
       .then(function (response) {
         if (response.ok) {

@@ -8,7 +8,8 @@ import com.pearling.web.entity.DiaryComment;
 
 public interface DiaryCommentService {
 	List<DiaryComment> getList(Integer memberId, Integer diaryId);
-	int append(DiaryComment diaryComment);
-	int delete(DiaryComment diaryComment);
+	void append(DiaryComment diaryComment);
+	void delete(Integer id);
 	int getCountByDiary(Integer diaryId);
+    void update(DiaryComment diaryComment);
 }

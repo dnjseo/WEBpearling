@@ -1,17 +1,12 @@
 package com.pearling.web.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pearling.web.entity.Diary;
 import com.pearling.web.entity.DiaryComment;
-import com.pearling.web.entity.DiaryLike;
 import com.pearling.web.repository.DiaryCommentRepository;
-import com.pearling.web.repository.DiaryLikeRepository;
-import com.pearling.web.repository.DiaryRepository;
 
 @Service
 public class DiaryCommentServiceImp implements DiaryCommentService {
@@ -20,13 +15,13 @@ public class DiaryCommentServiceImp implements DiaryCommentService {
     private DiaryCommentRepository repository;
 
     @Override
-    public int append(DiaryComment diaryComment) {
-        return repository.save(diaryComment);
+    public void append(DiaryComment diaryComment) {
+        repository.save(diaryComment);
     }
 
     @Override
-    public int delete(DiaryComment diaryComment) {
-        return repository.delete(diaryComment);
+    public void delete(Integer id) {
+        repository.delete(id);
     }
 
     @Override
@@ -37,6 +32,11 @@ public class DiaryCommentServiceImp implements DiaryCommentService {
     @Override
     public List<DiaryComment> getList(Integer memberId, Integer diaryId) {
         return repository.findAll(memberId, diaryId);
+    }
+
+    @Override
+    public void update(DiaryComment diaryComment) {
+        repository.update(diaryComment);
     }
 
 

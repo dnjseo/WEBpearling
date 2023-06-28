@@ -1,27 +1,30 @@
-window.addEventListener('DOMContentLoaded', function(e) {
+window.addEventListener('load', function(e) {
     let form = document.querySelector('.diary-comment-form');
     let commentAddBtn = form.querySelector(".comment-add-btn");
   
     commentAddBtn.addEventListener('click', function (e) {
       console.log("클릭되었습니다.");
       e.preventDefault();
-  
-      let contentInput = form.querySelector('textarea[name="content"]');
-      let diaryPostIdInput = form.querySelector('input[name="diaryPostId"]');
-  
-      let content = contentInput.value;
-      let diaryPostId = diaryPostIdInput.value;
-  
-      let diaryComment = new URLSearchParams();
-      diaryComment.append('content', content);
-      diaryComment.append('diaryPostId', diaryPostId);
+
+      let form = document.querySelector('.diary-comment-form');
+      let inputs = form.elements;
+      
+      let regMemberId = inputs["reg-member-id"].value;
+      let content = inputs["content"].value;
+      let diaryPostId = inputs["diary-post-id"].value;
+      let regMemberNickname = inputs["reg-member-nickname"].value;
+
+      let formData = { regMemberId, content, diaryPostId, regMemberNickname };
+      let jsonData = JSON.stringify(formData);
+
+      console.log(jsonData);
   
       fetch('/api/diaryComments', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         },
-        body: diaryComment.toString(),
+        body: jsonData,
       })
         .then(function (response) {
           if (response.ok) {

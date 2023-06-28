@@ -34,19 +34,19 @@ public class DiaryServiceImp implements DiaryService {
     }
 
     @Override
-    public void addDiary(Diary diary) {
+    public void append(Diary diary) {
 
         repository.save(diary);
     }
 
     @Override
-    public void updateDiary(Diary diary) {
+    public void update(Diary diary) {
 
         repository.update(diary);
     }
 
     @Override
-    public void deleteDiary(Diary diary) {
+    public void delete(Diary diary) {
         
         repository.delete(diary);
     }

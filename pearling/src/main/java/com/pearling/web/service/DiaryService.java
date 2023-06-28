@@ -13,7 +13,7 @@ public interface DiaryService {
     List<DiaryView> getViewListByDate(String date, Integer memberId);
 
     Diary findById(Integer id);
-    void addDiary(Diary diary);
-    void updateDiary(Diary diary);
-    void deleteDiary(Diary diary);
+    void append(Diary diary);
+    void update(Diary diary);
+    void delete(Diary diary);
 }

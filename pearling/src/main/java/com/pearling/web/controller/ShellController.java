@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.pearling.web.entity.Member;
 import com.pearling.web.entity.Schedule;
 import com.pearling.web.service.MemberService;
 import com.pearling.web.service.ScheduleService;

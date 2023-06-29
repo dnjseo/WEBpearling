@@ -247,7 +247,13 @@
         color: #797979;
     }
 
-.comment-btns> button{
+.comment-update-form {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Pretendard-Regular';
+}
+
+.comment-update-form > .comment-update-submit {
     margin-top: 5px;
     width: 65px;
     height: 30px;
@@ -263,8 +269,20 @@
     color: #797979;
 }
 
-.comment-section {
-    display: none;
+.comment-btns> button{
+    margin-top: 5px;
+    width: 65px;
+    height: 30px;
+
+    align-self: flex-end;
+
+    background: rgba(252, 251, 251, 0.75);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05), inset 0px 3px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    border: none;
+
+    font-size: 12px;
+    color: #797979;
 }
 
 .comment {

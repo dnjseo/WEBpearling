@@ -23,12 +23,12 @@
 		delete from diary_comment where id=#{id}
 	</delete>
 
-   <update id="update">
-	UPDATE diary_comment
-	<set>
-		<if test="content != null">content = #{content}</if>
-	</set>
-	WHERE id = #{id} and reg_member_id = #{regMemberId}
-	</update>
+<update id="update" parameterType="com.pearling.web.entity.DiaryComment">
+  UPDATE diary_comment
+  <set>
+    <if test="content != null">content = #{content}</if>
+  </set>
+  WHERE id = #{id} and reg_member_id = #{regMemberId}
+</update>
    
 </mapper>

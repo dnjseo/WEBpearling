@@ -14,7 +14,7 @@ layout:decorate="~{inc/layout}">
     <script src="/js/diary/post.js"></script>
     <script src="/js/diary/delete-update.js"></script>
     <script src="/js/diary/comment-detail.js"></script>
-    <script src="/js/diary/comment-post.js"></script>
+    <!-- <script src="/js/diary/comment-post.js"></script> -->
     <!-- <script src="/js/diary/comment-delete-update.js"></script> -->
     <!-- <script src="/js/system/modal-alert.js" defer></script> -->
 
@@ -88,7 +88,7 @@ layout:decorate="~{inc/layout}">
                             <input type="hidden" name="id" th:value="${diary.id}">
                             <div class="btns">
                                 <!-- <button>🔒</button> -->
-                                <input class="file-btn" type="file">
+                                <!-- <input class="file-btn" type="file"> -->
                             </div>
 
                         </div>
@@ -143,15 +143,15 @@ layout:decorate="~{inc/layout}">
                     <section class="diary-comment-section">
                         <form class="diary-comment-form">
                             <ul>
-                                <li>
+                                <li class="comment-list-box">
                                     <div class="comment-list">
                                         <div class="comment" th:each="dc : ${diaryComment}">
                                             <span th:text="${dc.regMemberNickname}"></span>
-                                            <span th:text="${dc.content}"></span>
+                                            <span class="content-span" th:text="${dc.content}"></span>
                                             <div class="up-del-box">
                                                 <span th:text="${dc.regDate}"></span>
                                                 <div class="up-del-btns">
-                                                    <button class="co-update-btn" type="button">수정</button>
+                                                    <button class="co-update-btn" type="button" th:data-id="${dc.id}">수정</button>
                                                     <button class="co-del-btn" type="button" th:data-id="${dc.id}">삭제</button>
                                                 </div>
                                                 <input type="hidden" name="diaryPostId" th:value="${diary.id}">
@@ -161,7 +161,7 @@ layout:decorate="~{inc/layout}">
                                     </div>
 
                                     <div class="comment-input-box">
-                                        <textarea placeholder="댓글을 입력하세요." name="content"></textarea>
+                                        <textarea id="comment-input" class="comment-input" placeholder="댓글을 입력하세요." name="content"></textarea>
                                         <input type="hidden" name="diary-post-id" th:value="${diary.id}">
                                         <input type="hidden" name="reg-member-id" 
                                         sec:authorize="isAuthenticated()"
@@ -172,7 +172,6 @@ layout:decorate="~{inc/layout}">
 
                                         <div class="comment-btns">
                                             <button class="comment-add-btn">댓글 작성</button>
-                                            <button class="comment-del-btn">댓글 삭제</button>
                                         </div>
                                     </div>
                                 </li>

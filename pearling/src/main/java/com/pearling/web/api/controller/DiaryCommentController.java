@@ -27,11 +27,6 @@ public class DiaryCommentController {
 	@Autowired
 	private DiaryCommentService service;
 
-	// @PostMapping
-	// public int add(DiaryLike DiaryLike) {
-	// return service.append(DiaryLike);
-	// }
-
 	@GetMapping("{diaryId}")
 	public List<DiaryComment> list(
 		@PathVariable("diaryId") Integer diaryId,
@@ -73,26 +68,15 @@ public class DiaryCommentController {
 			System.out.println("나는 다이어리 딜리트요청 레스트컨트롤러지롱");
 	}
 
-// 	@PutMapping("{id}/members/{memberId}")
-// 	public void update(@PathVariable("id") Integer id,
-// 			@PathVariable("memberId") Integer regMemberId,
-// 			@RequestBody DiaryCommentRequest diaryCommentRequest,
-// 			@AuthenticationPrincipal MyUserDetails user) {
+	@PutMapping("{id}/members/{memberId}")
+	public void update(@PathVariable("id") Integer id,
+			@PathVariable("memberId") Integer regMemberId,
+			@RequestBody DiaryComment diaryComment) {
 
-// 				regMemberId = null;
-			
-// 				if (user != null) {
-// 					regMemberId = user.getId();
-// 				}
+			service.update(diaryComment);
+			System.out.println("나는 다이어리 업데이트요청 레스트컨트롤러지롱");
 
-// 			DiaryComment diaryComment = DiaryComment.builder()
-// 										.id(id)
-// 										.regMemberId(regMemberId)
-// 										.content(diaryCommentRequest.getContent())
-// 										.build();
-
-// 			service.update(diaryComment);
-// 	}
+	}
 
 // }
 }

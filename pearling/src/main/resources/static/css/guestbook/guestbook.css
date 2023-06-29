@@ -27,12 +27,15 @@ body{
     background-size: cover;
 }
 
+.footer{
+    position: absolute;
+    bottom: 0;
+}
 
 .clam{
     display: flex;
     flex-wrap: wrap;
 }
-
 
 .bgnone{
     background: none;
@@ -44,7 +47,6 @@ body{
     rgba(0, 0, 0, 0.04)), #FFFFFF;
     transition: all 1s ease-in;
 }
-
 
 .clam li img{
     cursor: pointer;
@@ -140,7 +142,6 @@ section.guestbook {
 }
 
 .deleteBtn{
-    /* Auto layout */
     display: flex;
     flex-direction: row;
     justify-content: center;

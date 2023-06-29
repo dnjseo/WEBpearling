@@ -14,7 +14,7 @@
         <h1>방명록은 총 <span th:text="${#lists.size(list)}"></span>개입니다.</h1>
         <ul class="clam" id="clam-list">
             <li th:each="g, stat : ${list}" th:data-index="${stat.index}" th:data-id="${g.id}">
-                <img th:src="${g.imageUrl}" alt="Clam Image" 
+                <img alt="Clam Image" 
                 data-aos="zoom-in" data-aos-duration="1500"/>         
             </li>
         </ul>
@@ -46,7 +46,7 @@
             </div>
         </div>
         <!-- alert창 ------------------------------->
+    <input id="input-member-id" type="hidden" th:value="${#authentication.principal.id}">
     </main>
 </body>
-
 </html>

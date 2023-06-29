@@ -129,7 +129,8 @@ function handleCommentUpdate(updateBtnId, memberId, jsonData) {
                 commentList.innerHTML = "";
                 console.log('다이어리 댓글 업데이트가 완료되었습니다.');
                 commentListLoad(`/api/diaryComments/${diaryId}`);
-                window.location.reload();
+
+                // window.location.reload();
             } else {
                 console.error('다이어리 댓글 업데이트에 실패했습니다.');
             }
@@ -149,70 +150,58 @@ function addClickEventListeners() {
 
     commentSection.addEventListener('click', function (event) {
         if (event.target.classList.contains('co-update-btn')) {
-            event.preventDefault();
-            // 수정 버튼 클릭 처리
-            let updateBtnId = event.target.dataset.id;
-            console.log(updateBtnId);
+          event.preventDefault();
+      
+          // 수정 폼 표시
+          let commentItem = event.target.closest('.comment');
+          let commentContent = commentItem.querySelector('.content-span').textContent;
+      
+          let memberIdInput = document.querySelector('input[name="reg-member-id"]');
+          if (!memberIdInput) {
+            console.error('reg-member-id input을 찾을 수 없습니다.');
+            return;
+          }
+          
+          let memberId = memberIdInput.value;
+      
+          let updateForm = document.createElement('form');
+          updateForm.classList.add('comment-update-form');
+          updateForm.innerHTML = `
+            <textarea class="comment-update-input" name="update-content">${commentContent}</textarea>
+            <input type="hidden" name="comment-id" value="${commentItem.dataset.comId}">
+            <input type="hidden" name="reg-member-id" value="${memberId}">
+            <button class="comment-update-submit" type="submit">수정</button>
+          `;
+      
+          commentItem.replaceWith(updateForm);
+      
+          updateForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+      
+            let content = updateForm.querySelector('.comment-update-input').value;
+            console.log(updateForm.querySelector('.comment-update-input').value);
+            let commentId = updateForm.querySelector('input[name="comment-id"]').value;
+            let memberId = updateForm.querySelector('input[name="reg-member-id"]').value;
 
-            // let commentBox = document.querySelector(".comment");
-            // let commentText = commentBox.querySelector('.content-span').textContent;
-
-            // 기존 댓글 자리에 수정 textarea replace 처리
-            let commentUpdateInput = document.createElement("textarea");
-            commentUpdateInput.classList.add = "comment-update-input";
-            commentUpdateInput.name = "update-content";
-            commentUpdateInput.id = "update-comment-input"
-            commentUpdateInput.dataset.id = updateBtnId;
-            // commentUpdateInput.value = commentText;
-            let commentItem = event.target.closest('.comment');
-            commentItem.replaceWith(commentUpdateInput);
-
-            let updateForm = document.querySelector(".diary-comment-form");
-            let memberIdInput = updateForm.querySelector('input[name="reg-member-id"]');
-            let memberId = memberIdInput.value;
-
-            // json 데이터로 넘겨줄 변수 선언, id와 등록멤버를 충족하면 content 속성을 변경.
-            let content;
-            let id;
+            let id = commentId;
             let regMemberId = memberId;
 
-            // 수정 textread 현재 value를 포함하기 위해 input 이벤트 설정
-            commentUpdateInput.addEventListener('input', function (e) {
-                e.preventDefault();
-                content = this.value;
-                id = commentUpdateInput.dataset.id;
-            });
-
-            // 기존 댓글 작성 버튼을 댓글 수정 버튼으로 변경하기 위해 replace
-            let updateBtn = document.querySelector(".comment-add-btn");
-            let newCommentAddBtn = document.createElement("button");
-            newCommentAddBtn.classList.add = "new-comment-add-btn";
-            newCommentAddBtn.innerText = "댓글 수정";
-
-            let replaceBtn = updateBtn.parentNode;
-            replaceBtn.replaceChild(newCommentAddBtn, updateBtn);
-
-            replaceBtn.addEventListener('click', function (e) {
-                console.log("쿨릭");
-                e.preventDefault();
-
-                let formData = { id, content, regMemberId };
-                let jsonData = JSON.stringify(formData);
-
-                handleCommentUpdate(updateBtnId, memberId, jsonData);
-            });
-
+            let formData = { id, content, regMemberId };
+            let jsonData = JSON.stringify(formData);
+      
+            handleCommentUpdate(commentId, memberId, jsonData);
+          });
         } else if (event.target.classList.contains('co-del-btn')) {
-            // 삭제 버튼 클릭 처리
-            let delBtnId = event.target.dataset.id;
-
-            let delForm = document.querySelector(".diary-comment-form");
-            let memberIdInput = delForm.querySelector('input[name="reg-member-id"]');
-            let memberId = memberIdInput.value;
-
-            handleCommentDelete(delBtnId, memberId);
+          // 삭제 버튼 클릭 처리
+          let delBtnId = event.target.dataset.id;
+      
+          let delForm = document.querySelector(".diary-comment-form");
+          let memberIdInput = delForm.querySelector('input[name="reg-member-id"]');
+          let memberId = memberIdInput.value;
+      
+          handleCommentDelete(delBtnId, memberId);
         }
-    });
+      });
 
     commentAddBtn.addEventListener('click', function (e) {
         console.log("클릭되었습니다.");

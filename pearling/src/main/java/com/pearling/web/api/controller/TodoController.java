@@ -82,34 +82,6 @@ public ResponseEntity<String> updateTodo(
 }
 
 
-
-    // @PutMapping
-    // public ResponseEntity<String> updateTodo(@RequestBody Map<Integer, Boolean> requestData,
-    //         @AuthenticationPrincipal MyUserDetails user, Authentication authentication) {
-
-    //     MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
-    //     int userId = userDetails.getId();
-
-    //     for (Map.Entry<Integer, Boolean> entry : requestData.entrySet()) {
-    //         Integer todoId = entry.getKey();
-    //         boolean isChecked = entry.getValue();
-
-    //         // TODO: 데이터베이스에서 해당 todo를 찾아서 체크 상태 업데이트
-    //         Todo todo = service.findById(todoId);
-    //         if (todo != null) {
-    //             Todo updateTodo = Todo.builder()
-    //                         .statement(isChecked)
-    //                         .build();   
-    //             service.updateTodo(todo);
-    //             System.out.println("Todo 업데이트 성공 - todoId: " + todoId);
-    //         } else {
-    //             System.out.println("Todo를 찾을 수 없음 - todoId: " + todoId);
-    //         }
-    //     }
-
-    //     return ResponseEntity.ok("업데이트 완료");
-    // }
-
     @PostMapping
      public ResponseEntity <String> addTodo(@RequestBody Todo todoData,
         @RequestParam(value = "clickedDate", required = false) String clickedDate,
@@ -127,11 +99,7 @@ public ResponseEntity<String> updateTodo(
                         .build();
                 service.addTodo(newTodo);
 
-                System.out.println("테스트입니다~~~~");
-
-      // Todo 추가 후 업데이트된 목록을 다시 조회
-        //List<Todo> updatedTodoList = service.getListByUserId(userId);
-        return ResponseEntity.ok("제출 완");
+        return ResponseEntity.ok("투두 post 완");
         
     } catch (Exception e) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);

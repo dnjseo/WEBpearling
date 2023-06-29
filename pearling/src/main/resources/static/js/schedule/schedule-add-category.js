@@ -1,4 +1,6 @@
 window.addEventListener("load", function(e) {
+
+    e.preventDefault;
     let pallet = [
         { color: "white", category: "약속" },
         { color: "#E6E6FA", category: "기념일" },

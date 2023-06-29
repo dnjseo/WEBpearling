@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pearling.web.entity.Diary;
+import com.pearling.web.entity.Member;
 import com.pearling.web.entity.Schedule;
 import com.pearling.web.security.MyUserDetails;
+import com.pearling.web.service.FollowService;
 import com.pearling.web.service.ScheduleService;
 
 @Controller
@@ -27,6 +29,9 @@ public class ScheduleController extends BaseController {
 
 	@Autowired
 	private ScheduleService service;
+
+	@Autowired
+	private FollowService followService;
 
 	@GetMapping("detail")
 	public String detail(
@@ -49,13 +54,21 @@ public class ScheduleController extends BaseController {
 	}
 	
 	@GetMapping("reg")
-	public String post(Model model) {
+	public String post(Model model, MyUserDetails user) {
+
+		SecurityContext context = SecurityContextHolder.getContext();
+		user = (MyUserDetails) context.getAuthentication().getPrincipal();
+		
 
 		String pageTitle = getPageTitle();
 		pageTitle = "일정 추가";
+		
+		List<Member> followerList = followService.getFollowersList(user.getId());
+
 
 		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("headerShow", false);
+		model.addAttribute("followList", followerList);
 
 		return "schedule/reg";
 	}
@@ -78,6 +91,7 @@ public class ScheduleController extends BaseController {
 
 		SecurityContext context = SecurityContextHolder.getContext();
 		user = (MyUserDetails) context.getAuthentication().getPrincipal();
+		
 
 		Schedule schedule = Schedule.builder()
 				.startDate(startDate)
@@ -93,18 +107,6 @@ public class ScheduleController extends BaseController {
 				.build();
 
 		service.addSchedule(schedule);
-
-		System.out.println("startDate: " + startDate);
-		System.out.println("endDate: " + endDate);
-		System.out.println("startTime: " + startTime);
-		System.out.println("endTime: " + endTime);
-		System.out.println("title: " + title);
-		System.out.println("backgroundColor: " + backgroundColor);
-		System.out.println("latitude: " + latitude);
-		System.out.println("longitude: " + longitude);
-		System.out.println("place: " + place);
-
-		System.out.println("Schedule 확인 : " + schedule);
 
 		return "redirect:/shell/myshell";
 	}

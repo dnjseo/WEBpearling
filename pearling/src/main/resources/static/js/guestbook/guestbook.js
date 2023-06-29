@@ -1,79 +1,68 @@
-window.addEventListener("load", function () {
-  const wrap = document.getElementById("wrap");
-  const liElements = document.querySelectorAll("li");
-  const bookElements = document.querySelectorAll('section[class^="guestbook"]');
-  const gcloseElements = document.querySelectorAll(".guestbook-close");
-  const deleteBtn = document.querySelectorAll(".deleteBtn");
-  const black = document.querySelector(".black");
+window.addEventListener('DOMContentLoaded', function(e) {
+  let clamList = document.getElementById("clam-list");
+  let black = document.querySelector(".black");
 
-  const deleteModal = document.getElementById("delete-modal");
-  const deleteYes = deleteModal.querySelector(".delete-yes");
+  // 이미지 URL 배열 생성
+  let imageUrls = [
+    "/images/guestbook/clam1.png",
+    "/images/guestbook/clam2.png",
+    "/images/guestbook/clam3.png"
+  ];
 
-  // 방명록 하나하나 보이게 해주는 함수
-  liElements.forEach(function (li) {
-    li.addEventListener("click", function (event) {
-      event.preventDefault(); // 기본 동작(새로고침) 방지
-
-      // 모든 방명록 숨기기
-      bookElements.forEach(function (book) {
-        book.style.display = "none";
-      });
-
-      const index = li.getAttribute("data-index");
-      const book = document.querySelector("#s" + index);
-      book.style.display = "block";
+  let listItems = clamList.getElementsByTagName("li");
+  for (let i = 0; i < listItems.length; i++) {
+    let randomIndex = Math.floor(Math.random() * imageUrls.length);
+    let imageUrl = imageUrls[randomIndex];
+    let listItem = listItems[i];
+    let clamImage = listItem.getElementsByTagName("img")[0];
+    let sectionId = "s" + listItem.getAttribute("data-index");
+    let section = document.getElementById(sectionId);
+    clamImage.src = imageUrl;
+    clamImage.addEventListener("click", function() {
+      section.style.display = "block";
       black.style.display = "block";
     });
-  });
 
-  // 닫기 버튼을 누르면 방명록이 닫히는 함수
-  gcloseElements.forEach(function (gclose) {
-    gclose.addEventListener("click", function () {
-      bookElements.forEach(function (book) {
-        book.style.display = "none";
-      });
+    let closeBtn = section.querySelector(".guestbook-close");
+    closeBtn.addEventListener("click", function() {
+      section.style.display = "none";
       black.style.display = "none";
     });
-  });
 
-  // 삭제 버튼
-  deleteBtn.forEach(function (addDelete, index) {
-    addDelete.addEventListener("click", function () {
-      const book = bookElements[index];
-      if (book) {
-        book.style.display = "none";
-        deleteModal.style.display = "block";
+    let deleteBtn = section.querySelector(".deleteBtn");
+    let deleteModal = document.getElementById("delete-modal");
+    let deleteYes = deleteModal.querySelector(".delete-yes");
 
-        // 추가된 코드: 삭제 확인 버튼을 누르면 AJAX 요청을 서버로 보냄
-        deleteYes.addEventListener("click", function () {
-          const guestbookId = book.getAttribute("data-id"); // 방명록 ID 추출
-          deleteGuestbook(guestbookId);
-        });
-      }
+    deleteBtn.addEventListener("click", function() {
+      deleteModal.style.display = "block";
+      section.style.display = "none";
+      deleteYes.setAttribute("data-id", section.getAttribute("data-id"));
     });
-  });
 
-  deleteYes.addEventListener("click", function () {
-    deleteModal.style.display = "none";
-    black.style.display = "none";
-  });
+    deleteYes.addEventListener("click", function() {
+      let guestbookId = deleteYes.getAttribute("data-id");
+      deleteGuestbook(guestbookId);
+    });
+  }
 
   // 방명록 삭제 요청을 서버로 보내는 함수
   function deleteGuestbook(guestbookId) {
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "/guestbook/delete/" + guestbookId, true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          console.log(xhr.responseText);
+    fetch("/api/guestbook/delete/" + guestbookId, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
           console.log("방명록 삭제에 성공했습니다");
           location.reload(); // 페이지 새로고침
         } else {
           console.error("방명록 삭제에 실패했습니다.");
         }
-      }
-    };
-    xhr.send();
+      })
+      .catch((error) => {
+        console.error("방명록 삭제 요청 중 오류가 발생했습니다.", error);
+      });
   }
 });

@@ -1,3 +1,5 @@
+let scheduleTitle = document.querySelector("#schedule-title")
+
 window.addEventListener("load", function(e) {
     e.preventDefault;
 

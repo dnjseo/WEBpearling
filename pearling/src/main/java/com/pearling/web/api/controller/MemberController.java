@@ -1,25 +1,20 @@
 package com.pearling.web.api.controller;
 
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.pearling.web.api.controller.MemberController.CheckEmaileRequest;
 import com.pearling.web.entity.Member;
 import com.pearling.web.security.MyUserDetails;
 import com.pearling.web.service.MemberService;
-
-
-import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController("apiMemberController")
 @RequestMapping("api/member")
@@ -32,40 +27,28 @@ public class MemberController {
     private PasswordEncoder passwordEncoder;
 
     // 회원가입
-    @PostMapping
-    public void post(@RequestBody MemberRequest memberRequest) {
+    @PostMapping(consumes = "application/json", produces = "application/json")
+    public void post(@RequestBody Member member) {
 
-        String fullEmail = memberRequest.getEmail() + "@" + memberRequest.getDomain();
-        String encodedPwd = passwordEncoder.encode(memberRequest.getPwd());
+        // 비밀번호 암호화
+        String encryptedPassword = passwordEncoder.encode(member.getPwd());
+        member.setPwd(encryptedPassword);
 
-        Member member = Member.builder()
-                        .email(fullEmail)
-                        .pwd(encodedPwd)
-                        .name(memberRequest.getName())
-                        .nickname(memberRequest.getNickname())
-                        .birth(memberRequest.getBirth())
-                        .build();
         service.add(member);
-
-        System.err.println("회원가입 레스트 컨트롤러 입니다!");
+        System.out.println("회원가입 컨트롤러입니다 !");
     }
 
     // 이메일 중복 검사
     @PostMapping("/check-email")
-    public boolean checkEmailExists(@RequestBody CheckEmaileRequest checkEmailRequest) {
-        String checkEmail = checkEmailRequest.getCheckEmail();
-        return service.checkEmailExists(checkEmail);
+    public boolean checkEmailExists(@RequestParam("email") String email) {
+        return service.checkEmailExists(email);
     }
 
     // 닉네임 중복검사
     @PostMapping("/check-nickname")
-    public boolean checkNicknameExists(@RequestBody CheckNicknameRequest checkNicknameRequest) {
-        String checkNickname = checkNicknameRequest.getCheckNickname();
-        return service.checkNicknameExists(checkNickname);
+    public boolean checkNicknameExists(@RequestParam("nickname") String nickname) {
+        return service.checkNicknameExists(nickname);
     }
-
-    // 프로필 업데이트
-
 
     // 비밀번호 변경
     @PutMapping("/change-password")
@@ -91,34 +74,6 @@ public class MemberController {
         String encryptedNewPassword = passwordEncoder.encode(newPassword);
         existingMember.setPwd(encryptedNewPassword);
         service.updatePwd(existingMember);
-    }
-
-    // getter setter
-
-    // 이메일 중복 체크
-    public static class CheckEmaileRequest {
-        private String checkEmail;
-
-        public String getCheckEmail() {
-            return checkEmail;
-        }
-
-        public void setCheckEmailname(String checkEmail) {
-            this.checkEmail = checkEmail;
-        }
-    }
-
-    // 닉네임 중복 체크
-    public static class CheckNicknameRequest {
-        private String checkNickname;
-
-        public String getCheckNickname() {
-            return checkNickname;
-        }
-
-        public void setCheckNickname(String checkNickname) {
-            this.checkNickname = checkNickname;
-        }
     }
 
     // 비밀번호 변경
@@ -151,71 +106,4 @@ public class MemberController {
             this.confirmNewPassword = confirmNewPassword;
         }
     }
-    
-    // 회원가입
-    public static class MemberRequest {
-        private String fullEmail;
-        private String domain;
-		private String email;
-		private String pwd;
-		private String name;
-		private String nickname;
-        private LocalDate birth;
-
-        public String getFullEmail() {
-            return fullEmail;
-        }
-
-        public void setFullEmail(String fullEmail) {
-            this.fullEmail = fullEmail;
-        }
-
-        public String getDomain() {
-            return domain;
-        }
-
-        public void setDomain(String domain) {
-            this.domain = domain;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getPwd() {
-            return pwd;
-        }
-
-        public void setPwd(String pwd) {
-            this.pwd = pwd;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getNickname() {
-            return nickname;
-        }
-
-        public void setNickname(String nickname) {
-            this.nickname = nickname;
-        }
-
-        public LocalDate getBirth() {
-            return birth;
-        }
-
-        public void setBirth(LocalDate birth) {
-            this.birth = birth;
-        }
-	}
 }

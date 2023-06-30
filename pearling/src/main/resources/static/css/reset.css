@@ -8,24 +8,23 @@ section,time,mark,audio,video{margin:0;padding:0;}
 article,aside,details,figcaption,figure,footer,header,menu,nav,section,video{display: block;}
 
 
-body{
+body {
     font-family: 'Pretendard-Regular';
     font-size: 12px;
-    background: linear-gradient(0deg,
-        rgba(0, 0, 0, 0.04), 
-        rgba(0, 0, 0, 0.04)), #FFFFFF;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04)), #FFFFFF;
     letter-spacing: 0.04em;
-
+  
     display: flex;
     min-height: 100vh;
     flex-direction: column;
     color: #797979;
-}
-
-.wrap{
+  }
+  
+  .wrap {
     padding: 0 12px;
-    flex: 1;
-}
+    min-height: 100vh;
+    height: auto;
+  }
 
 table{
     border-collapse:collapse;

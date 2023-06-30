@@ -24,7 +24,7 @@
                 <!-- 이메일 입력부분 -->
                 <div class="email-box">
                     <label for="email" id="mailTxt">이메일(중복불가)</label>
-                    <input type="text" class="form-control text" id="memail" name="email" placeholder="이메일 아이디를 입력하세요">
+                    <input type="text" class="form-control text" id="memail" name="email" placeholder="이메일 아이디를 입력하세요" required>
                     <span>@</span>
                     <select class="form-control" id="memail-domain" name="domain">
                         <option value="">메일 선택</option>
@@ -47,34 +47,34 @@
                 <div class="pwd-box">
                     <label for="pwd">비밀번호<br><br>
                     *비밀번호는 영문, 숫자, 특수 기호를 포함하여 6자리 이상이어야 합니다.</label>
-                    <input type="password" id="pwd" name="pwd" placeholder="비밀번호를 입력하세요">
+                    <input type="password" id="pwd" name="pwd" placeholder="비밀번호를 입력하세요" required>
                     <p id="pwd-error" class="error-message"></p>
                 </div>
 
                 <!-- 비밀번호 확인 -->
                 <div class="pwd-check-box">
                     <label for="pwd-check">비밀번호 확인</label>
-                    <input type="password" id="pwd-check" placeholder="비밀번호를 입력하세요(확인)">
+                    <input type="password" id="pwd-check" placeholder="비밀번호를 입력하세요(확인)" required>
                     <p id="pwd-match-message" class="error-message"></p>
                 </div>
 
                 <!-- 이름 입력 부분 -->
                 <div class="name-box">
                     <label for="name">이름</label>
-                    <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
+                    <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required>
                 </div>
 
                 <!-- 닉네임 입력 부분 -->
                 <div class="nickname-box">
                     <label for="nickname">닉네임(중복 불가)</label>
-                    <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력하세요">
+                    <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력하세요" required>
                     <button type="button" class="add-btn" id="checkNickname">중복검사</button>
                 </div>
                 
                 <!-- 생일 선택 부분 -->
                 <div class="birth-box">
                     <label for="name">생일</label>
-                    <input type="date" id="birth" name="birth" min="1900-01-01" max="2099-12-31">
+                    <input type="date" id="birth" name="birth" min="1900-01-01" max="2099-12-31" required>
                 </div>
 
                 <!-- 취소 & 가입 버튼 -->

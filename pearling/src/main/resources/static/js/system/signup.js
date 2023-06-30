@@ -39,23 +39,6 @@ window.addEventListener("load", function () {
         }
     });
 
-    // 비밀번호 유효성 검사
-    let checkpwdInput = document.getElementById("pwd");
-
-    checkpwdInput.addEventListener("keyup", function(){
-        let password = this.value;
-        let errorMessage = document.getElementById("pwd-error");
-
-        let regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-
-        if (regex.test(password)) {
-            document.getElementById("pwd-error").textContent = ""; // 유효한 비밀번호 입력
-        } else {
-            errorMessage.textContent = "비밀번호는 영문, 숫자, 특수 기호를 포함하여 6자리 이상이어야 합니다.";
-            errorMessage.style.color = "red";
-        }
-    });
-
     // 닉네임 중복검사
     let checkNickname = document.getElementById("checkNickname"); // 중복검사 버튼
 
@@ -66,21 +49,15 @@ window.addEventListener("load", function () {
     let checkNicknameYes = checkNicknameModal.querySelector('.check-nickname-yes');
 
     // 닉네임 중복검사
-    checkNickname.addEventListener('click', function() {
-        // 회원가입 post를 위한 요소들
-        let formData = new FormData(form);
-
-        let checkNicknameRequest = {
-            checkNickname: formData.get('nickname'),
-        };
+    checkNickname.addEventListener('click', function () {
+        let nickname = document.getElementById("nickname").value;
 
         // 닉네임 중복 검사 요청 추가
-        fetch('/api/member/check-nickname', {
+        fetch('/api/member/check-nickname?nickname=' + encodeURIComponent(nickname), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(checkNicknameRequest),
         })
         .then(function (response) {
             if (response.ok) {
@@ -101,31 +78,46 @@ window.addEventListener("load", function () {
         });
     });
 
+
     // 중복된 닉네임 확인 버튼 클릭 시
-    nicknameYes.addEventListener('click', function() {
+    nicknameYes.addEventListener('click', function () {
         nicknameModal.style.display = 'none';
     });
 
     // 사용 가능한 닉네임 확인 버튼 클릭 시
-    checkNicknameYes.addEventListener('click', function() {
+    checkNicknameYes.addEventListener('click', function () {
         checkNicknameModal.style.display = 'none';
     });
 
+
     // 회원가입 전송 post
-    memberAddBtn.addEventListener('click', function(e) {
+    memberAddBtn.addEventListener('click', function (e) {
         e.preventDefault();
 
         // 회원가입 post를 위한 요소들
-        let formData = new FormData(form);
+        let inputs = form.elements;
+        let email = inputs["email"].value;
+        let domain = inputs["domain"].value;
+        let fullEmail = email + "@" + domain;
+        let pwd = inputs["pwd"].value;
+        let name = inputs["name"].value;
+        let nickname = inputs["nickname"].value;
+        let birth = inputs["birth"].value;
 
-        let memberRequest = {
-            email: formData.get('email'),
-            domain: formData.get('domain'),
-            pwd: formData.get('pwd'),
-            name: formData.get('name'),
-            nickname: formData.get('nickname'),
-            birth: formData.get('birth'),
-        };
+        let formData = { email: fullEmail, pwd, name, nickname, birth };
+        let jsonData = JSON.stringify(formData);
+
+        // 비밀번호 유효성 검사
+        let pwdInput = document.getElementById("pwd");
+        let errorMessage = document.getElementById("pwd-error");
+
+        let regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+
+        if (!regex.test(pwd)) {
+            errorMessage.textContent = "비밀번호는 영문, 숫자, 특수 기호를 포함하여 6자리 이상이어야 합니다.";
+            errorMessage.style.color = "red";
+            return; // 비밀번호 유효성 검사에 실패하면 함수 종료
+        }
 
         // 회원가입 완료
         let signupConfirmModal = document.getElementById("signup-confirm-modal"); // 회원가입 완료 모달
@@ -137,7 +129,7 @@ window.addEventListener("load", function () {
         }
 
         // 모달 창 닫기 클릭
-        signupConfirmYes.addEventListener("click", function(e) {
+        signupConfirmYes.addEventListener("click", function (e) {
             e.preventDefault();
             form.submit();
             signupConfirmModal.style.display = "none";
@@ -149,19 +141,20 @@ window.addEventListener("load", function () {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(memberRequest),
+            body: jsonData,
         })
-        .then(function(response) {
-            if (response.ok) {
-                openModal();
-            } else {
-                noInputModal();
-            }
-        })
-        .catch(function(error) {
-            console.error('멤버 등록 중 오류가 발생했습니다.', error);
-        });
+            .then(function (response) {
+                if (response.ok) {
+                    openModal();
+                } else {
+                    noInputModal();
+                }
+            })
+            .catch(function (error) {
+                console.error('멤버 등록 중 오류가 발생했습니다.', error);
+            });
     });
+
 });
 
 // 이메일 전송 함수
@@ -212,18 +205,11 @@ document.addEventListener("DOMContentLoaded", function() {
         let memailconfirmTxt = document.getElementById("memailconfirmTxt");
 
         let fullEmail = memail.value + "@" + document.getElementById("memail-domain").value;
-
-        let checkEmailRequest = {
-            checkEmail: fullEmail,
-        };
-
-        // 닉네임 중복 검사 요청 추가
-        fetch('/api/member/check-email', {
+        fetch('/api/member/check-email?email=' + encodeURIComponent(fullEmail), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(checkEmailRequest),
         })
         .then(function (response) {
             if (response.ok) {
@@ -236,25 +222,35 @@ document.addEventListener("DOMContentLoaded", function() {
             if (data) {
                 emailModal.style.display = 'block';
             } else {
-                let xhr = new XMLHttpRequest();
-                xhr.open("POST", "/signup/mailConfirm", true);
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
+                let mailConfirmRequest = new URLSearchParams();
+                mailConfirmRequest.append('email', fullEmail);
+        
+                fetch('/signup/mailConfirm', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: mailConfirmRequest
+                })
+                .then(function (response) {
+                    if (response.ok) {
                         showModal("send-modal");
-                        let data = xhr.responseText;
-                        console.log("data: " + data);
-                        chkEmailConfirm(data, memailconfirm, memailconfirmTxt);
-                    } else if (xhr.status !== 200) {
-                        console.log("Error: " + xhr.status);
+                        return response.text();
+                    } else {
+                        console.error('이메일 확인 요청에 실패했습니다.');
                     }
-                };
-                xhr.send("email=" + fullEmail);
+                })
+                .then(function (data) {
+                    console.log("data: " + data);
+                    chkEmailConfirm(data, memailconfirm, memailconfirmTxt);
+                })
+                .catch(function (error) {
+                    console.error('이메일 확인 요청 중 오류가 발생했습니다.', error);
+                });
             }
         })
         .catch(function (error) {
             console.error('이메일 중복 검사 중 오류가 발생했습니다.', error);
-        });
-
+        }); 
     });
 });

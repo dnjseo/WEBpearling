@@ -14,6 +14,11 @@ public class FollowServiceImp implements FollowService{
 
     @Autowired FollowRepository repository;
 
+     @Override
+    public Follow findById(int id) {
+        return repository.findById(id);
+    }
+
     @Override
     public void addFollow(Follow follow) {
         repository.addFollow(follow);
@@ -23,12 +28,6 @@ public class FollowServiceImp implements FollowService{
     public void deleteFollow(Follow follow) {
         repository.deleteFollow(follow);
     }
-
-    @Override
-    public boolean checkFollow(Follow follow) {
-    
-        return repository.checkFollow(follow);
-    }    
 
     @Override
     public int getFollowingCount(int followingId) {

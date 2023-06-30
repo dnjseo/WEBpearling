@@ -7,9 +7,10 @@ import com.pearling.web.entity.Member;
 
 public interface FollowService {
 
+    Follow findById(int id);
+
     void addFollow(Follow follow);
     void deleteFollow(Follow follow);
-    boolean checkFollow(Follow follow);
     
     int getFollowingCount(int followingId);
     int getFollowerCount(int followerId);

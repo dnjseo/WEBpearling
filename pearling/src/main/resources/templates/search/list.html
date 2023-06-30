@@ -45,7 +45,7 @@
                     <div class="todo-box">
                         <div class="todo-list"></div>
                         <div class="search-lists" th:each="t : ${tdList}">
-                            <div>
+                            <div th:if="${t.memberId == #authentication.principal.id}">
                                 <div class="todo-statement">
                                     <img class="profile_img"
                                     th:src="@{${t.profileImage} != null ? '/resources/img/' + ${t.profileImage} : '/images/profile/basic.png'}" 
@@ -53,13 +53,9 @@
                                     <p><span sec:authentication="principal.nickname"></span></p>
                                     <p th:text="${#dates.format(t.regDate, 'yyyy-MM-dd')}">18시간 전</p>
                                 </div>
-                                <div th:if="${t.memberId == #authentication.principal.id}" class="todo-content">
+                                <div class="todo-content">
                                     <input type="checkbox">
                                     <p th:text="${t.content}">점심 : 이수역 애플하우스</p>
-                                </div>
-                                <div class="non-result1" th:unless="${not #lists.isEmpty(tdList)}">
-                                    <p th:text="${searchResults}"></p>
-                                    <p> 에 대한 검색 결과가 없음</p>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +63,7 @@
                     <div class="schedule-box">
                         <div class="schedule-list"></div>
                         <div class="search-lists" th:each="s : ${scList}">
-                            <div>
+                            <div th:if="${s.memberId == #authentication.principal.id}">
                                 <div class="schedule-statement">
                                     <img class="profile_img"
                                     th:src="@{${s.profileImage} != null ? '/resources/img/' + ${s.profileImage} : '/images/profile/basic.png'}" 
@@ -75,12 +71,8 @@
                                     <p><span sec:authentication="principal.nickname"></span></p>
                                     <p th:text="${s.formattedDate}">10분 전</p>
                                 </div>
-                                <div th:if="${s.memberId == #authentication.principal.id}" class="schedule-content">
+                                <div class="schedule-content">
                                     <p th:text="${s.title}">🎥 영화 제목 어쩌고저쩌고</p><br>
-                                </div>
-                                <div class="non-result2" th:unless="${not #lists.isEmpty(scList)}">
-                                    <p th:text="${searchResults}"></p>
-                                    <p> 에 대한 검색 결과가 없음</p>
                                 </div>
                             </div>
                         </div>

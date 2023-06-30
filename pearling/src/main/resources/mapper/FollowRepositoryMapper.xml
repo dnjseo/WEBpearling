@@ -3,22 +3,26 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.pearling.web.repository.FollowRepository">
+
+<select id="findById" resultType="com.pearling.web.entity.Follow">
+   select *
+		from follow
+		<trim prefix="where" prefixOverrides="AND|OR"> 
+			<if test="id != null">
+			id = #{id}
+			</if>
+		</trim>
+</select>
+
  <insert id="addFollow" parameterType="int">
-    insert into follow (to_id, from_id)
-    values (#{toId}, #{fromId})
+    insert into follow (follower_id, following_id)
+    values (#{followerId}, #{followingId})
  </insert>
 
  <delete id = "deleteFollow" parameterType="int">
     delete from follow
-    where to_id = #{toID} and from_id = #{fromId}
+    where id = #{id}
  </delete>
-
- <select id="checkFollow" resultType="com.pearling.web.entity.Follow" parameterType="boolean">
-   select exists(
-      select 1 from follow
-      where from_id = #{fromId} and to_id = #{toId}
-   )
- </select>
 
   <select id="findFollowingCount" resultType="int" parameterType="int">
    SELECT COUNT(*) FROM follow
@@ -33,14 +37,19 @@
  </select>
 
  <select id="findFollowersList" resultType="com.pearling.web.entity.Follow">
-   select m.*
-   from member m
-   join follow f on f.following_id = m.id
-   where f.follower_id = #{memberId}                 
+   SELECT m.*, f.id as status_id,
+    EXISTS (
+        SELECT 1
+        FROM follow
+        WHERE following_id = #{memberId} AND follower_id = m.id
+    ) AS is_follower
+   FROM member m
+   JOIN follow f ON f.following_id = m.id
+   WHERE f.follower_id = #{memberId}                 
  </select>
 
   <select id="findFollowingsList" resultType="com.pearling.web.entity.Follow">
-   select m.*
+   select m.*, f.id status_id
    from member m
    join follow f on f.follower_id = m.id
    where f.following_id = #{memberId}

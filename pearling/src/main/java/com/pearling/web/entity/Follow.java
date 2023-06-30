@@ -15,4 +15,6 @@ public class Follow {
     private int followingId; // 로그인한 사용자의 memberId (팔로잉)
     private String nickname;
     private String profileImage;
+    private int statusId;
+    private boolean isFollowing;
 }

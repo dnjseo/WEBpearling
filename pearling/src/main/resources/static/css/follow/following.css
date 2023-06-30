@@ -44,11 +44,18 @@
     width: 80%;
 }
 
-.following-list>ul{
+.following-list > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.following-list>div>ul{
     width: 80%;
 }
 
-.following-list>ul>li{
+.following-list>div>ul>li{
     width: 100%;
     display: grid;
     grid-template-columns: 0fr 2fr 4fr;
@@ -56,7 +63,8 @@
     margin-bottom: 40px;
 } 
 
-.followers > li > img {
+.followings
+ > li > img {
     width: 45px;
     height: 45px;
     border-radius: 30px;
@@ -65,10 +73,24 @@
     margin-right: 15px;
 }
 
-.following-list > ul > li > :nth-child(2) {
+.following-list >div> ul > li > :nth-child(2) {
     justify-self: self-start;
 }
 
+button{
+    font-family: 'Pretendard-Regular';
+    font-size: 12px;
+    background: linear-gradient(0deg,
+        rgba(0, 0, 0, 0.04), 
+        rgba(0, 0, 0, 0.04)), #FFFFFF;
+    letter-spacing: 0.04em;
+
+    display: flex;
+    /* min-height: 100vh; */
+    flex-direction: column;
+    color: #797979;
+    border: none;
+}
 
 .following-statement{
     display: flex;
@@ -78,7 +100,7 @@
     padding: 10px 0px;
     
     width: 84px;
-    height: 22px;
+    height: 42px;
     
     background: rgba(255, 255, 255, 0.7);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05), inset 0px 3px 5px rgba(0, 0, 0, 0.25);

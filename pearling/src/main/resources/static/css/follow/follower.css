@@ -41,7 +41,7 @@
     color:#A587E0;
 }
 
-.follower-list>ul{
+.follower-list>div>ul{
     list-style: none;
     width: 80%;
 }
@@ -53,11 +53,15 @@
     width: 80%;
 }
 
-.follower-list>ul{
-    width: 80%;
+.follower-list > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
-.follower-list>ul>li{
+
+.follower-list>div>ul>li{
     width: 100%;
     display: grid;
     grid-template-columns: 0fr 2fr 4fr;
@@ -74,11 +78,37 @@
     margin-right: 15px;
 }
 
-.follower-list > ul > li > :nth-child(2) {
+.follower-list > div> ul > li > div{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.follower-list > div> ul > li > div > :nth-child(2){
+    color: #A587E0;
+}
+
+.follower-list > div>  ul > li > :nth-child(2) {
     justify-self: start;
 }
 
-.following-statement{
+button{
+    font-family: 'Pretendard-Regular';
+    font-size: 12px;
+    background: linear-gradient(0deg,
+        rgba(0, 0, 0, 0.04), 
+        rgba(0, 0, 0, 0.04)), #FFFFFF;
+    letter-spacing: 0.04em;
+
+    display: flex;
+    /* min-height: 100vh; */
+    flex-direction: column;
+    color: #797979;
+    border: none;
+}
+
+
+.follower-delete{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -86,7 +116,7 @@
     padding: 10px 0px;
     
     width: 84px;
-    height: 22px;
+    height: 42px;
     
     background: rgba(255, 255, 255, 0.7);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05), inset 0px 3px 5px rgba(0, 0, 0, 0.25);

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.pearling.web.security.MyUserDetails;
 import com.pearling.web.service.FollowService;
+import com.pearling.web.entity.Follow;
 import com.pearling.web.entity.Member;
 
 @Controller
@@ -28,9 +29,9 @@ public class FollowerController extends BaseController {
     	int memberId = user.getId();
 
 		List<Member> followerList = service.getFollowersList(memberId);
-		
+    	
 		String pageTitle = getPageTitle();
-		pageTitle = "팔로워";
+		pageTitle = user.getNickname();
 		
 		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("headerShow", false);
@@ -50,7 +51,7 @@ public class FollowerController extends BaseController {
 		List<Member> followingList = service.getFollowingsList(memberId);
 
 		String pageTitle = getPageTitle();
-		pageTitle = "팔로잉";
+		pageTitle = user.getNickname();
 		
 		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("headerShow", false);

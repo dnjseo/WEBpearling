@@ -5,7 +5,7 @@
 <head>
     <title>follower</title>
     <link href="/css/follow/follower.css" type="text/css" rel="stylesheet">
-    <script src="/js/follow/follow.js"></script>
+    <script src="/js/follow/followerList.js"></script>
 </head>
 
 <body>
@@ -20,32 +20,23 @@
                 <p class="follower">팔로워</p>
             </div>
         </div>
-
-        <div class="follower-list">
-            <h2 class="d-none">목록</h2>
-            <ul class="followers">
-                <li th:each="f : ${followers}">
-                    <img src="/images/profile/profile_yj.png" th:src="@{'/resources/img/' + ${f.profileImage}}">
-                    <p th:text="${f.nickname}">연주</p>
-                    <p class="following-statement">팔로잉</p>
-                </li>
-                <!-- <li>
-                    <img src="/images/profile/profile_d.png">
-                    <p>채원</p>
-                    <p class="following-statement">팔로잉</p>
-                </li>
-                <li>
-                    <img src="/images/profile/profile_c.png">
-                    <p>도원</p>
-                    <p class="following-statement">팔로잉</p>
-                </li>
-                <li>
-                    <img src="/images/profile/profile_yr.png">
-                    <p>예린</p>
-                    <p class="following-statement">팔로잉</p>
-                </li> -->
-            </ul>
-        </div>
+        <form class="follower-list">
+            <div>
+                <h2 class="d-none">목록</h2>
+                <ul class="followers">
+                    <li th:each="f : ${followers}">
+                        <img src="/images/profile/profile_yj.png" th:src="@{'/resources/img/' + ${f.profileImage}}">
+                        <div>
+                            <p th:text="${f.nickname}">연주</p>
+                            <button th:data-follow-status="${f.isFollowing}">팔로우</button>
+                        </div>
+                        <button class="follower-delete" th:data-id="${f.statusId}">삭제</button>
+                        <input type="hidden" name="hideFollowingId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
+                        <input type="hidden" name="hideFollowerId" sec:authorize="isAuthenticated()" th:value="${f.id}"/>
+                    </li> 
+                </ul>
+            </div>
+        </form>
     </main>
     <!-- wrap -->
 </body>

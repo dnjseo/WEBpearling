@@ -1,5 +1,6 @@
 // 체크 상태 변경 이벤트 리스너 등록 함수
 function addCheckboxEventListener(checkbox) {
+
   checkbox.addEventListener('change', function () {
     // 체크 상태 가져오기
     let isChecked = checkbox.checked;
@@ -96,6 +97,7 @@ function printCalendarEvent(calendar) {
             if (!scheduleStartTime && !scheduleEndTime
               && scheduleStartDate != scheduleEndDate) {
 
+              document.querySelector('.fc-event-time').style.display="none"; 
               let endDate = new Date(scheduleEndDate);
               endDate.setDate(endDate.getDate() + 1);
 
@@ -104,7 +106,7 @@ function printCalendarEvent(calendar) {
                 start: scheduleStartDate,
                 end: endDate,
                 color: scheduleColor,
-                allDay: true
+                allDay: true,
               };
             }
 
@@ -131,11 +133,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let calendarEl = document.getElementById('calendar');
   let calendar = new FullCalendar.Calendar(calendarEl, {
+    
     eventTimeFormat: {
       hour: 'numeric',
       minute: '2-digit',
       meridiem: false
-    }
+    },
+    
+    eventDidMount: function(info) {
+      let time = null;
+
+      if( info.event.end && info.event.start != info.event.end) {
+        time =  info.event.startStr.slice(0, 10)+' '+info.event.startStr.slice(11, 16)
+        + ' - ' +
+        info.event.endStr.slice(0, 10) +' '+info.event.endStr.slice(11, 16);
+      } else {
+        time = info.event.allDay ?  '하루종일' : 
+        info.event.startStr.slice(0, 10)+' '+info.event.startStr.slice(11, 16)
+        + ' - ' +
+        info.event.endStr.slice(0, 10) +' '+info.event.endStr.slice(11, 16);
+      }
+      
+      tippy(info.el, {
+          content:  `<div style="padding:5px">
+          <div class="tippy-title" style="background-color:${info.event.backgroundColor}">
+            <p>${info.event.title}</p>
+          </div>
+          <p class="tippy-content"> 기간 : ${time}</p>
+          </div>`
+         //이벤트 타이틀을 툴팁으로 가져옵니다. 
+          ,placement: 'top'
+          ,theme: 'lavendar'
+          ,animation: 'scale'
+          , delay: [500,0]
+          ,allowHTML: true
+          //content:  info.event.extendedProps.description,//이벤트 디스크립션을 툴팁으로
+          });
+      },
 
   });
   //캘린더 출력
@@ -178,7 +212,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //캘린더 아래에 클릭한 날짜 출력
     let currentDay = document.querySelector("#ms4");
-    currentDay.querySelector(".ms-today-day").innerText = cMonth + "." + cDay + " " + cDate;
+    let clickedDateContainer = currentDay.querySelector(".ms-today-day")
+    clickedDateContainer.innerText = cMonth + "." + cDay + " " + cDate;
+    //clickedDateContainer.innerHTML = `${cMonth}.${cDay} ${cDate}`
+    clickedDateContainer.classList.toggle('flipped')
 
     // 업데이트된 Todo List & Schedule List 조회
     updateTodoList(clickedDate, checkboxes);

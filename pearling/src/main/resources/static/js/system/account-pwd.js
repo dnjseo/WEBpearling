@@ -1,3 +1,19 @@
+// 모달 보여주는 함수
+function showModal(modalId) {
+  let modal = document.getElementById(modalId);
+  modal.style.display = "block";
+}
+
+// 모달 확인 버튼 누르면 모달 사라지는 함수
+function noneModal(modalId, buttonClass) {
+  let modal = document.getElementById(modalId);
+  let button = document.querySelector(buttonClass);
+
+  button.addEventListener("click", function() {
+      modal.style.display = "none";
+  });
+}
+
 window.addEventListener('load', function (e) {
   let form = document.querySelector('.pwd-form');
   let addBtn = document.querySelector(".add-btn");
@@ -6,42 +22,14 @@ window.addEventListener('load', function (e) {
     e.preventDefault();
 
     // 비밀번호 변경 완료 모달
-    let pwdConfirmModal = document.getElementById("pwd-confirm-modal"); // 회원가입 완료 모달
+    let pwdConfirmModal = document.getElementById("pwd-confirm-modal");
     let pwdConfirmYes = pwdConfirmModal.querySelector('.pwd-yes');
 
-    function openModal() {
-      pwdConfirmModal.style.display = "block";
-    }
-
     pwdConfirmYes.addEventListener("click", function(e) {
-        e.preventDefault();
-        form.submit();
-        pwdConfirmModal.style.display = "none";
-        window.location.href = "/shell/ourshell";
-    });
-
-    // 현재 비밀번호 일치 않은 함수
-    let currentPwdConfirmModal = document.getElementById("currentPwd-confirm-modal"); // 회원가입 완료 모달
-    let currnetPwdYes = currentPwdConfirmModal.querySelector('.currentPwd-yes');
-
-    function noCorrectModal() {
-      currentPwdConfirmModal.style.display = "block";
-    }
-
-    currnetPwdYes.addEventListener("click", function(e) {
-        currentPwdConfirmModal.style.display = "none";
-    });
-
-    // 비밀번호와 비밀번호 확인이 일치하지 않은 함수
-    let noPwdConfirmModal = document.getElementById("nopwd-confirm-modal"); // 회원가입 완료 모달
-    let noPwdYes = noPwdConfirmModal.querySelector('.nopwd-yes');
-
-    function pwdCorrectModal() {
-      noPwdConfirmModal.style.display = "block";
-    }
-
-    noPwdYes.addEventListener("click", function(e) {
-      noPwdConfirmModal.style.display = "none";
+      e.preventDefault();
+      form.submit();
+      pwdConfirmModal.style.display = "none";
+      window.location.href = "/shell/ourshell";
     });
 
     let currentPwdInput = document.getElementById('currentPwd');
@@ -52,58 +40,66 @@ window.addEventListener('load', function (e) {
     let newPwd = newPwdInput.value;
     let confirmPwd = confirmPwdInput.value;
 
+    // 현재 비밀번호를 입력하지 않음
     if (currentPwd === "") {
-      alert("현재 비밀번호를 입력해주세요.");
+      showModal("current-pwd-modal");
+      noneModal("current-pwd-modal",".currnet-yes");
       currentPwdInput.focus();
       return;
     }
 
+    // 변경할 비밀번호를 입력하지 않음
     if (newPwd === "") {
-      alert("변경할 비밀번호를 입력해주세요.");
+      showModal("input-pwd-modal");
+      noneModal("input-pwd-modal",".input-yes");
       newPwdInput.focus();
       return;
     }
 
+    // 변경할 비밀번호 확인 입력하지 않음
     if (confirmPwd === "") {
-      alert("변경할 비밀번호 확인을 입력해주세요.");
+      showModal("onemore-confirm-modal");
+      noneModal("onemore-confirm-modal",".onemore-yes");
       confirmPwdInput.focus();
       return;
     }
 
+    // 입력한 비밀번호와 확인 비밀번호가 일치하지 않음
     if (newPwd !== confirmPwd) {
-      pwdCorrectModal();
+      showModal("nopwd-confirm-modal");
+      noneModal("nopwd-confirm-modal",".nopwd-yes");
       newPwdInput.value = "";
       confirmPwdInput.value = "";
       newPwdInput.focus();
       return;
     }
     
+    // 현재 비밀번호와 변경할 비밀번호가 동일함
     if (currentPwd === newPwd) {
-      alert("현재 비밀번호와 변경할 비밀번호가 동일합니다.");
+      showModal("same-pwd-modal");
+      noneModal("same-pwd-modal",".same-yes");
       newPwdInput.value = "";
-      confirmPwdInput.value = "";
+      currentPwdInput.value = "";
       newPwdInput.focus();
       return;
     }
 
-    let changePasswordRequest = {
-      currentPassword: currentPwd,
-      newPassword: newPwd,
-      confirmNewPassword: confirmPwd
-    };
+    let formData = new FormData();
+    formData.append('currentPassword', currentPwd);
+    formData.append('newPassword', newPwd);
+    formData.append('confirmNewPassword', confirmPwd);
 
     fetch('/api/member/change-password', {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(changePasswordRequest),
+      body: formData,
     })
       .then(function (response) {
         if (response.ok) {
-          openModal();
+          showModal("pwd-confirm-modal");
+          noneModal("nopwd-confirm-modal", ".nopwd-yes");
         } else {
-          noCorrectModal();
+          showModal("currentPwd-confirm-modal");
+          noneModal("currentPwd-confirm-modal",".currentPwd-yes");
         }
       })
       .catch(function (error) {

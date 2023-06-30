@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -53,12 +54,11 @@ public class MemberController {
     // 비밀번호 변경
     @PutMapping("/change-password")
     @Transactional
-    public void changePassword(@RequestBody ChangePasswordRequest changePasswordRequest,
-                               @AuthenticationPrincipal MyUserDetails user) {
+    public void changePassword(@RequestParam("currentPassword") String currentPassword,
+                            @RequestParam("newPassword") String newPassword,
+                            @RequestParam("confirmNewPassword") String confirmNewPassword,
+                            @AuthenticationPrincipal MyUserDetails user) {
         Member existingMember = service.getByUsername(user.getUsername());
-        String currentPassword = changePasswordRequest.getCurrentPassword();
-        String newPassword = changePasswordRequest.getNewPassword();
-        String confirmNewPassword = changePasswordRequest.getConfirmNewPassword();
 
         if (!newPassword.equals(confirmNewPassword)) {
             throw new IllegalArgumentException("변경할 비밀번호와 변경할 비밀번호 확인이 일치하지 않습니다.");
@@ -76,34 +76,9 @@ public class MemberController {
         service.updatePwd(existingMember);
     }
 
-    // 비밀번호 변경
-    public static class ChangePasswordRequest {
-        private String currentPassword;
-        private String newPassword;
-        private String confirmNewPassword;
+    @DeleteMapping("/delete")
+    public void delete(@RequestBody Member member){
 
-        public String getCurrentPassword() {
-            return currentPassword;
-        }
-
-        public void setCurrentPassword(String currentPassword) {
-            this.currentPassword = currentPassword;
-        }
-
-        public String getNewPassword() {
-            return newPassword;
-        }
-
-        public void setNewPassword(String newPassword) {
-            this.newPassword = newPassword;
-        }
-
-        public String getConfirmNewPassword() {
-            return confirmNewPassword;
-        }
-
-        public void setConfirmNewPassword(String confirmNewPassword) {
-            this.confirmNewPassword = confirmNewPassword;
-        }
     }
+
 }

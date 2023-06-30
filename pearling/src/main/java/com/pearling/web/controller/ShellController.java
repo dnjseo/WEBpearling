@@ -65,10 +65,10 @@ public String otherShell(Model model, @PathVariable("id") int userId) {
     model.addAttribute("headerShow", true);
     
     List<Todo> todoList = service.getListByDate(otherUser.getId(), todayDate);
-    List<Schedule> scheduleList1 = scheduleService.getListByDate(otherUser.getId(), todayDate);
+    List<Schedule> scheduleList = scheduleService.getListByDate(otherUser.getId(), todayDate);
 
     model.addAttribute("todoList", todoList);
-    model.addAttribute("scheduleList", scheduleList1);
+    model.addAttribute("scheduleList", scheduleList);
 
     return "shell/myshell";
 }

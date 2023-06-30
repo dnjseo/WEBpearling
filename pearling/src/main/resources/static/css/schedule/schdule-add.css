@@ -1,192 +1,75 @@
- /* Modal styles */
- .regModal {
-  position: fixed;
-  z-index: 1200;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4); /* Add a semi-transparent background */
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 600px;
+input[type="text"]{
+  font-style: italic;
+  font-size: 12px;
 }
 
 #d1 {
+    margin-top: 20px;
+    margin-bottom: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    /* width: 100%; */
+
+    gap: 5px;
 }
 
-.send-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-
-}
-.schedulePostModal{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 1000;
+#d1 > div{
+  margin-bottom: 20px;
 }
 
-.schdule-add-title {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 5px 20px;
-    margin-bottom: 20px;
-    gap: 10px;
-
-    width: 80%;
-    height: 35px;
-
-    background: rgba(255, 255, 255, 0.7);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
+#d1>div>label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #A587E0;
 }
 
-.schdule-add-title>input {
-    
-    border: none;
-    width: 80%;
-    height: 90%;
-    font-weight: bold;
+#d1>div>p{
+  text-align: center;
+  font-family: 'Pretendard-Regular';
+  font-size: 12px;
+  letter-spacing: 0.04em;
 }
 
-.schedule-add-date {
-    /* Auto layout */
+#d1>div>input {
+  width: 280px;
+  height: 30px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 5px 20px;
-    margin-bottom: 20px;
-    gap: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  border: none;
 
-    width: 80%;
-    height: 120px;
-
-    background: #FFFFFF;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 14px;
-}
-
-.schedule-add-date>div>label {
-    margin-right: 10px;
-}
-
-.schedule-add-date>div>input {
-    background: rgba(255, 255, 255, 0.7);
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25), inset 0px 1px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
-    border: none;
-    color: #797979;
-
-    width: 130px;
-    padding-left: 10px;
-}
-
-.schedule-add-location {
-    /* Auto layout */
-
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: start;
-    padding: 5px 20px;
-    padding-bottom: 20px;
-    margin-bottom: 10px;
-    gap: 15px;
-
-    width: 80%;
-  
-    background: #FFFFFF;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 14px;
-}
-
-.add-lc{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-}
-
-#keyword{
-    background: rgba(255, 255, 255, 0.7);
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25), inset 0px 1px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
-    border: none;
-    color: #A1A1A1;
-    padding-left: 10px;
-    margin-left: 8px;
-}
-
-#add-map {
-    background: rgba(255, 255, 255, 0.7);
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25), inset 0px 1px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
-    border: none;
-    text-align: center;
-    color: #A1A1A1;
-
-    padding-left: 10px;
-    margin-left: 15px;
+  padding-left: 13px;
+  padding-top: 3px;
 }
 
 
-.schedule-add-freind-wrap {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
-    padding: 15px 20px;
+#d1>div>.btn-style {
+  width: 94px;
+  height: 27px;
 
-    width: 85%;
+  background: linear-gradient(0deg, rgba(90, 46, 149, 0.2), rgba(90, 46, 149, 0.2)), rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  border: none;
+
+  color: #A587E0;
 }
 
-.schedule-add-freind-wrap>input {
-    background: rgba(255, 255, 255, 0.7);
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25), inset 0px 1px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
-    border: none;
-    /* text-align: center; */
-    color: #A1A1A1;
-
-    padding: 8px;
+#d1>.schedule-add-title>input{
+  width: 380px;
 }
 
-.schedule-add-freind-box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+#d1>.schedule-add-date-box>input{
+  width: 180px;
 }
 
 .schedule-add-freind-box > .friendList {
     overflow-x: scroll;
-    width: 80%;
 
     display: flex;
     flex-direction: row;
@@ -194,32 +77,34 @@
     margin-bottom: 10px;
 
     gap: 20px;
-
-    /* background: rgba(255, 255, 255, 0.7);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 40px; */
-    
-    /* Inside auto layout */
-    flex: none;
-    order: 1;
-    flex-grow: 0;
 }
 
 .schedule-add-freind-box > .friendList > li {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 
     width: 80%;
     padding: 15px;
 }
 
 
+/* 친구 프로필 이미지 */
 .schedule-add-freind-box > .friendList > li > img {
     flex-direction: column;
     align-items: center;
     text-align: center;
     justify-content: center;
+    display: flex;
+
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover; 
+    object-position: center;
+
+    box-shadow: -6px -6px 9px 0px white, 6px 6px 9px rgba(0, 0, 0, 0.4)
 }
 
 .schedule-add-freind-box > .friendList > li >  p {
@@ -247,35 +132,39 @@
     gap: 15px;
 
     height: 130px;
-
-    /* background: #FFFFFF;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 14px; */
 }
-
-
 
 .schedule-add-submit {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    /* padding: 10px 0px; */
-    gap: 130px;
-    margin: 0;
-
-    height: 58px;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
 }
 
-.schedule-add-submit>button {
-    background: rgba(252, 251, 251, 0.75);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05), inset 0px 3px 5px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
-    border: none;
+.schedule-add-submit > :nth-child(1) {
+  width: 134px;
+  height: 28px;
+  margin-left: 5px;
 
-    width: 78px;
-    height: 25px;
-    color: #797979;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  border: none;
+
+  color: #A587E0;
+}
+
+.schedule-add-submit > :nth-child(2) {
+  width: 134px;
+  height: 28px;
+  margin-left: 5px;
+
+  background: rgba(90, 46, 149, 0.2);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  border: none;
+
+  color: #A587E0;
 }
 
 .schedule-add-submit>button:active {
@@ -284,44 +173,6 @@
 
 /* ----<색상 팔레트>------------------------------------------------------- */
 
-
-/* .schedule-add-color-wrap>label {
-    margin-top: 15px;
-}
-
-.schedule-add-color-wrap>.box {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-
-    width: 100%;
-}
-
-.active {
-    outline: 1px solid black;
-}
-
-.colorBox {
-    width: 50px;
-    height: 52px;
-    float: left;
-    margin-right: 12px;
-    cursor: pointer;
-    border-radius: 80px 80px;
-} */
-
-.category-wrap {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    padding: 10px;
-}
-
-.category-wrap > span {
-    padding: 5px 20px;
-}
 
 .category-wrap > .col-box {
     height: 100px;
@@ -408,21 +259,8 @@
 }
 
 .add-lc > input {
-  padding: 5px;
   width: 200px;
 }
-
-/* .add-lc .option {
-  text-align: center;
-}
-
-.add-lc .option p {
-  margin: 10px 0;
-}
-
-.add-lc .option button {
-  margin-left: 5px;
-} */
 
 #placesList li {
   list-style: none;

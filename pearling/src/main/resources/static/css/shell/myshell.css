@@ -11,7 +11,7 @@
 
 .flip-effect{
     transform: rotateX(0);
-    transition: transform 1s ease;
+    transition: transform 2s ease;
 }
 
 .flip-effect.flipped {

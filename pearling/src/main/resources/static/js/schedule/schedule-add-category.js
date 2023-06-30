@@ -53,7 +53,7 @@ function paintPallet() {
         console.log("선택한 카테고리:", selectedColor.category);
     };// colBox click end
 
-}
+} //paintPallet end
 
 // 기본 시간 : 오늘
 function setOffsetDate(){
@@ -71,7 +71,7 @@ function setOffsetDate(){
       
     startDate.value = currentKRDate;
     endDate.value = currentKRDate;
-}
+} //setOffsetDate end
 
 function selectFreind(){
 
@@ -103,4 +103,4 @@ function selectFreind(){
             console.log("선택한 색상:", selectedColor.color);
             console.log("선택한 카테고리:", selectedColor.category);
         };// colBox click end
-}
+} //selectFriend end

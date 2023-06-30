@@ -50,19 +50,18 @@ public class ScheduleController{
         return scheduleList;
     }
 
-     @GetMapping("/{id}")
+    @GetMapping("/{id}")
     public List<Schedule> scheduleList(@PathVariable("id") int userId) {
         List<Schedule> scheduleList = service.getListByUserId(userId);
         return scheduleList;
     }
 
-    @GetMapping("detail/{id}")
-    public Schedule detail(
-        @PathVariable("id") int id){
+    @GetMapping("detail")
+    public Schedule detail(@RequestParam("id") int id){
 
-            Schedule schedule = service.get(id);
+            Schedule s = service.get(id);
 
-            return schedule;
+            return s;
     }
 
     @PutMapping

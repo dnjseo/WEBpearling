@@ -599,6 +599,7 @@ function updateScheduleList(clickedDate) {
            </li>`;
 
           scheduleElements.insertAdjacentHTML("beforeend", itemTemplate);
+
         }
       }
     })

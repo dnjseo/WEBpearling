@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pearling.web.entity.Member;
 import com.pearling.web.entity.Schedule;
+import com.pearling.web.service.FollowService;
 import com.pearling.web.service.MemberService;
 import com.pearling.web.service.ScheduleService;
 import com.pearling.web.entity.Todo;
@@ -33,6 +35,9 @@ public class ShellController extends BaseController {
 
 	@Autowired
 	private MemberService memberService;
+
+	@Autowired
+	private FollowService followService;
 	
 	@GetMapping("myshell")
 	public String myShell(Model model) {
@@ -83,12 +88,17 @@ public String otherShell(Model model, @PathVariable("id") int userId) {
 		MyUserDetails user = (MyUserDetails) context.getAuthentication().getPrincipal();
 
         int memberId = user.getId();
+
+		List<Member> friendList = followService.getFollowingsList(memberId);
 		
 	
 		model.addAttribute("headerShow", true);
+		model.addAttribute("friendList", friendList);
 
 		return "shell/ourshell";
 	}
+
+
 
 	// @GetMapping("others-shell")
 	// public String othersShell(Model model) {

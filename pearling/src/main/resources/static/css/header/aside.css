@@ -88,6 +88,10 @@
     font-size: 18px;
 }
 
+.name > span{
+    font-weight: bolder;
+}
+
 .follow-list{
     display: flex;
     flex-direction: row;

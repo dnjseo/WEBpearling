@@ -39,65 +39,27 @@ layout:decorate="~{inc/layout}">
                 <h1 class="d-none">친구 리스트</h1>
                 <div class = "findFriend">
                     <a class = "findFriend-a" href="/setting/follow-list">
-                        <p>🔎 친구 관리 ></p></a>
-                    <!-- <button class = "findFriendButton">🔎 모든 친구</button> -->
+                        <p>🔎 친구 관리 ></p>
+                    </a>
                 </div>
                 <ul class = "friendList">
-                    <li class="fr">
-                        <a href="./others-shell">
-                            <img src="/images/profile/profile_yr.png">
-                            탐정</a>
+                    <li class="fr" th:each="f : ${friendList}">
+                        <a href="./others-shell" th:href="@{/shell/myshell/{id}(id=${f.followerId})}">
+                            <img src="/images/profile/profile_yr.png" th:src="@{'/resources/img/' + ${f.profileImage}}">
+                            <p th:text="${f.nickname}">탐정</p>
+                        </a>
                     </li>
-                    <li class="fr">
-                        <a href="./others-shell">
-                        <img src="/images/profile/profile_d.png">
-                            감자</a>
-                        </li>
-                    <li class="fr">
-                        <a href="./others-shell">
-                        <img src="/images/profile/profile_c.png">
-                            진미채</a>
-                        </li>
-                    <li class="fr">
-                        <a href="./others-shell">
-                        <img src="/images/profile/profile_yj.png">
-                            name</a>
-                        </li>
-                    <li class="fr">
-                        <a href="./others-shell">
-                        <img src="/images/profile/profile_yj.png">
-                            name</a>
-                        </li>
-                    <li class="fr">
-                        <a href="/shell/others-shell">
-                        <img src="/images/profile/profile_yj.png">
-                            name</a>
-                        </li>
-                    <li class="fr">
-                        <a href="./others-shell">
-                        <img src="/images/profile/profile_yj.png">
-                            name</a>
-                        </li>
-                    <li class="fr">
-                        <a href="./others-shell">
-                        <img src="/images/profile/profile_yj.png">
-                            name</a>
-                        </li>
-                    <li class="fr">
-                        <a href="./others-shell">
-                        <img src="/images/profile/profile_yj.png">
-                            name</a>
-                        </li>
-                    <div>     
+                </ul>    
             </section>
 
             <section id = m4-friendSchedule >
                 <h1 class="d-none">친구 일정</h1>
                 <div class = friendScheduleList>
                     <ul class = "friendScheduleList">
-                        <li class="fs1" >
+                        <li class="fs1" th:each="f : ${friendList}">
                              <div class = "profile-x">
-                                <img src="/images/profile/profile_yj.png"><p>연주</p>
+                                <img src="/images/profile/profile_yj.png" th:src="@{'/resources/img/' + ${f.profileImage}}">
+                                <p th:text="${f.nickname}">연주</p>
                             </div>
                             <div class = "scheduleContents">
                                 <ul>
@@ -119,43 +81,6 @@ layout:decorate="~{inc/layout}">
                                         </div>
                                     </li>
                                     <li><p>☑︎ http 강의듣기</p>  <div class="tag"><button>@나</button></li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="fs2">
-                            <div class = "profile-x">
-                                <img src="/images/profile/profile_c.png"><p>채원</p>
-                            </div>
-                            <div class = "scheduleContents">
-                                <ul>
-                                    <li>☑︎ 소금빵 사러가기 </li>
-                                    <li>☑︎ 마라탕 먹으러가기 </li>
-                                    <li>☑︎ 산책하기 </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="fs3">
-                            <div class = "profile-x">
-                                <img src="/images/profile/profile_d.png"><p>도원</p>
-                            </div>
-                            <div class = "scheduleContents">
-                                <ul>
-                                    <li>☑︎ 승연이 뮤비 체크하기</li>
-                                    <li>☑︎ 마라탕 먹으러가기 </li>
-                                    <li>☑︎ 승연이 인스타 체크하기 </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="fs4">
-                            <div class = "profile-x">
-                                <img src="/images/profile/profile_yr.png"><p>예린</p>
-                            </div>
-                            <div class = "scheduleContents">
-                                <ul>
-                                    <li>☑︎ 비색의 탄환 다시보기</li>
-                                    <li>☑︎ 포와로 카페 방문 </li>
-                                    <li>☑︎ 마라탕 먹으러가기 </li>
                                 </ul>
                             </div>
                         </li>

@@ -300,6 +300,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // 픽스드 < + > 버튼 클릭
   plus1.addEventListener('click', () => {
     plusDetail.classList.toggle('act');
+    console.log('<+>버튼 클릭')
   })
 
   //< 할 일 > 버튼 클릭
@@ -598,6 +599,7 @@ function updateScheduleList(clickedDate) {
            </li>`;
 
           scheduleElements.insertAdjacentHTML("beforeend", itemTemplate);
+
         }
       }
     })

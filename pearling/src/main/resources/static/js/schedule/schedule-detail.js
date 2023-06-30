@@ -9,6 +9,4 @@ window.addEventListener('DOMContentLoaded', function () {
         console.log('삭제버튼')
     }
 
-
-
 });

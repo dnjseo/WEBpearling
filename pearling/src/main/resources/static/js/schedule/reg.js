@@ -18,17 +18,28 @@ window.addEventListener("load", function(e) {
     e.preventDefault;
     
     let schedule = new ScheduleElements();
-
+    
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
+    
+    const delScheduleBtn = document.querySelector('#schedule-del-btn-in-header')
+
+    delScheduleBtn.onclick=(e)=>{
+        console.log('삭제버튼 클릭')
+
+        deleteSchedule(id);
+    }
 
 
     setOffsetDate(schedule);
     paintPallet(schedule);
     //selectFreind();
 
+
+    // ** 스케쥴 디테일을 보는 경우의 로직 ** // 
     if(id!=null){
         getDetail(id, schedule);
+        delScheduleBtn.classList.add('schedule-del-btn-in-header-show')
      }
 
 });    
@@ -158,4 +169,26 @@ function selectFreind(){
 } //selectFriend end
 
 
-  
+// 스케쥴 삭제 로직 
+function deleteSchedule(id){
+
+    fetch(`/api/schedules/${id}`, {
+        method: "DELETE"
+      })
+        .then(response => {
+          if (response.ok) {
+            // 성공적으로 요청이 처리된 경우의 동작
+            console.log('삭제 성공~!');
+            window.location.href = "http://localhost:8080/shell/myshell";
+    
+          } else {
+            // 요청이 실패한 경우의 동작
+            console.error('삭제 실패');
+          }
+        })
+        .catch(error => {
+          // 네트워크 오류 등 예외 처리
+          console.error('폼 제출 오류:', error);
+        });
+
+}

@@ -8,6 +8,10 @@ input[type="time"]{
   accent-color: #A587E0;
 } 
 
+.d-none.schedule-del-btn-in-header-show{
+  display: block;
+}
+
 #d1 {
     margin-top: 20px;
     margin-bottom: 80px;

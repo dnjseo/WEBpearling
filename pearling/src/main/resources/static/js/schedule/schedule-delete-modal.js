@@ -1,13 +1,14 @@
 window.addEventListener("load", function () {
-    let wrap = document.getElementById("wrap")
-    // let btns = wrap.querySelector(".schedule-btns");
-    let delBtn = wrap.querySelector(".del-btn");
+    // let wrap = document.getElementById("wrap")
+    // let delBtn = wrap.querySelector(".del-btn");
+
+    const delScheduleBtn = document.querySelector('.schedule-del-btn-in-header')
 
     let deleteModal = document.getElementById("delete-modal");
     let confirmYes = deleteModal.querySelector(".del-confirm-yes");
     let confirmNo = deleteModal.querySelector(".del-confirm-no");
 
-    delBtn.addEventListener("click", function () {
+    delScheduleBtn.addEventListener("click", function () {
         deleteModal.style.display = "block";
     });
 
@@ -15,11 +16,11 @@ window.addEventListener("load", function () {
         deleteModal.style.display = "none"; // 모달창 닫기  
     });
 
-
-    confirmYes.addEventListener("click", function () {
-        // 등록 처리
+    confirmYes.addEventListener("click", function (e) {
+      e.preventDefault;
 
         console.log('삭제버튼')
+        
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get("id");
 

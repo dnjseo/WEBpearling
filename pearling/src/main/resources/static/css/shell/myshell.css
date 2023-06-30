@@ -155,7 +155,7 @@ input[type="checkbox"]:checked + p {
 }
 
 .scheduleListSection{
-    padding-top: 10px;
+    padding-top: 20px;
 }
 
 .scheduleList:hover {
@@ -249,6 +249,7 @@ input[type="checkbox"]:checked + p {
     border-radius: 10px;
     transform: rotate(0.28deg);
 }
+
 
   /* ==========(+) plus 추가 버튼 (픽스드)===================== */
 

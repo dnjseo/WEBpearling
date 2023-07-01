@@ -97,7 +97,6 @@ function printCalendarEvent(calendar) {
             if (!scheduleStartTime && !scheduleEndTime
               && scheduleStartDate != scheduleEndDate) {
 
-              document.querySelector('.fc-event-time').style.display="none"; 
               let endDate = new Date(scheduleEndDate);
               endDate.setDate(endDate.getDate() + 1);
 
@@ -159,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class="tippy-title" style="background-color:${info.event.backgroundColor}">
             <p>${info.event.title}</p>
           </div>
-          <p class="tippy-content"> 기간 : ${time}</p>
+          <p class="tippy-content"> 🕓 : ${time}</p>
           </div>`
          //이벤트 타이틀을 툴팁으로 가져옵니다. 
           ,placement: 'top'

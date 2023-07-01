@@ -7,12 +7,15 @@ class ScheduleElements {
         this.endDate = s.querySelector("#end-date");
         this.endTime = s.querySelector("#end-time");
         this.place = s.querySelector("#keyword");
-
+        this.backgroundColor = s.querySelector("#background-color");
+        
         this.colBox = s.querySelector(".col-box");
         this.colBall = this.colBox.querySelectorAll(".col-ball");
         this.current = this.colBox.querySelector(".active");
     }
 }// class end
+
+
 
 window.addEventListener("load", function(e) {
     e.preventDefault;
@@ -24,26 +27,37 @@ window.addEventListener("load", function(e) {
     
     const delScheduleBtn = document.querySelector('#schedule-del-btn-in-header')
 
-    delScheduleBtn.onclick=(e)=>{
+    // 삭제 버튼 클릭 시 스케쥴 삭제.
+    delScheduleBtn.addEventListener("click", function () {
         console.log('삭제버튼 클릭')
-
         deleteSchedule(id);
-    }
-
+    });
 
     setOffsetDate(schedule);
     paintPallet(schedule);
-    //selectFreind();
-
-
-    // ** 스케쥴 디테일을 보는 경우의 로직 ** // 
+    
     if(id!=null){
         getDetail(id, schedule);
-        delScheduleBtn.classList.add('schedule-del-btn-in-header-show')
-     }
+        delScheduleBtn.classList.add('schedule-del-btn-in-header-show')  
+        changeUpdateMode()
+
+
+    }
 
 });    
 
+function changeUpdateMode() {
+  let cofirmModal = document.querySelector('.confirmModal')
+  let updateBtn = document.querySelector(".confirm-btn")
+  updateBtn.innerHTML='수정'
+
+  cofirmModal.querySelector(".confirm-text").innerHTML = '일정이 수정되었습니다.'
+  let cofirmBtn = cofirmModal.querySelector(".confirm-yes")
+  cofirmBtn.onclick= (e) => {
+    e.preventDefault;
+    updateSchedule(id, schedule)
+  }
+}
 
 // schedule Detail 가져오기
 function getDetail(id,schedule) {
@@ -60,11 +74,18 @@ function getDetail(id,schedule) {
         schedule.endDate.value = s.endDate;
         schedule.endTime.value = s.endTime;
         schedule.place.value = s.place;
-        
+        schedule.backgroundColor.value = s.backgroundColor
+
+        // ** 선택 된 컬러 표시하기 **
+        let receivedColor = schedule.backgroundColor.value;
+        // 데이터 컬러와 일치하는 col-ball 찾기.
+        let selectedColBall = Array.from(schedule.colBall).find(
+          colBall => colBall.getAttribute("data-color") === receivedColor
+        );
+          selectedColBall.classList.add("selected");        
 
       });
   }//getDetail end
-
 
 // 컬러팔레트 설정 부분.
 function paintPallet(schedule) {
@@ -82,40 +103,25 @@ function paintPallet(schedule) {
     for (let i = 0; i < pallet.length; i++) {
         schedule.colBall[i].style.background = pallet[i].color;
     }
+  
 
     //색상 선택(클릭) 이벤트 
-    schedule.colBox.onclick = function(e) {
+       schedule.colBox.onclick = function(e) {
+        console.log(schedule.colBox + '선택')
         if (!(e.target.classList.contains("col-ball"))) {
             return;
         }
 
         if (schedule.current != null) {
             schedule.current.classList.remove("active");
-            
         }
 
         e.target.classList.add("active");
         schedule.current = e.target;
 
-        let colorIndex = Array.from(schedule.colBall).indexOf(e.target);
-        let selectedColor = pallet[colorIndex];
+        let selectedColor = e.target.getAttribute("data-color");
+        schedule.backgroundColor.value = selectedColor;
 
-        let input = document.createElement("input");
-        input.type = "hidden";
-        input.name = "backgroundColor";
-        input.value = selectedColor.color;
-        document.querySelector(".send-form").appendChild(input);
-
-        console.log("선택한 색상:", selectedColor.color);
-        console.log("선택한 카테고리:", selectedColor.category);
-
-          // s.backgroundColor 값과 일치하는 col-ball 요소에 active 클래스 추가
-  let selectedColorIndex = pallet.findIndex(color => color.color === s.backgroundColor);
-  if (selectedColorIndex !== -1) {
-    let selectedColBall = schedule.colBall[selectedColorIndex];
-    selectedColBall.classList.add("active");
-    schedule.current = selectedColBall;
-  }
     };// colBox click end
 
 } //paintPallet end
@@ -168,7 +174,6 @@ function selectFreind(){
         };// colBox click end
 } //selectFriend end
 
-
 // 스케쥴 삭제 로직 
 function deleteSchedule(id){
 
@@ -190,5 +195,44 @@ function deleteSchedule(id){
           // 네트워크 오류 등 예외 처리
           console.error('폼 제출 오류:', error);
         });
+
+}//deleteSchedule end
+
+// 스케쥴 업데이트 로직
+function updateSchedule(id, schedule){
+
+  const scheduleData = {
+    id : id,
+    title : schedule.title.value,
+    startDate: schedule.startDate.value,
+    startTime: schedule.startTime.value,
+    endDate: schedule.endDate.value,
+    endTime: schedule.endTime.value,
+    latitude: document.querySelector('#latitude').value,
+    longitude: document.querySelector('#longtitude').value,
+    place: schedule.place.value,
+    backgroundColor: schedule.backgroundColor.value
+  }
+
+    // 서버로 데이터 전송
+    fetch(`/api/todos/${todoId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(scheduleData)// 체크 상태를 JSON 형식으로 전송
+    })
+      .then(response => {
+
+        // 서버 응답 처리
+        if (response.ok) {
+          console.log(todoId + '체크 상태 업데이트 성공');
+        } else {
+          console.error(todoId + '체크 상태 업데이트 실패');
+        }
+      })
+      .catch(error => {
+        console.error('오류 발생:', error);
+      });
 
 }

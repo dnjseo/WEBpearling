@@ -74,7 +74,7 @@ public class ScheduleController extends BaseController {
 		return "schedule/reg";
 	}
 	
-	@PostMapping("reg")
+	//@PostMapping("reg")
 	public String post(
 			@RequestParam(name = "startDate", required = false) LocalDate startDate,
 			@RequestParam(name = "startTime", required = false) LocalTime startTime,
@@ -93,7 +93,6 @@ public class ScheduleController extends BaseController {
 		SecurityContext context = SecurityContextHolder.getContext();
 		user = (MyUserDetails) context.getAuthentication().getPrincipal();
 		
-
 		Schedule schedule = Schedule.builder()
 				.startDate(startDate)
 				.startTime(startTime)

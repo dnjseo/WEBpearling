@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pearling.web.entity.Diary;
 import com.pearling.web.entity.Schedule;
 import com.pearling.web.security.MyUserDetails;
 import com.pearling.web.service.ScheduleService;
@@ -64,8 +65,9 @@ public class ScheduleController{
             return s;
     }
 
-    @PutMapping
-    public Schedule editSchedule(Schedule schedule) {
+    @PutMapping("detail")
+    public Schedule editSchedule(@RequestParam("id") int id,
+			@RequestBody Schedule schedule) {
 
         service.updateSchedule(schedule);
         Schedule updatedSchedule = service.get(schedule.getId());
@@ -105,13 +107,6 @@ public class ScheduleController{
 				.build();
         service.addSchedule(schedule);
     }
-
-    // @PostMapping(value="path")
-    // public SomeEnityData postMethodName(@RequestBody SomeEnityData entity) {
-    //     //TODO: process POST request
-        
-    //     return entity;
-    // }
     
 
 }//class end

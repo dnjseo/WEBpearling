@@ -10,7 +10,29 @@ input[type="time"]{
 
 .d-none.schedule-del-btn-in-header-show{
   display: block;
+  border-style: none;
+  width: 25px;
+  height: 25px;
 }
+
+#schedule-del-btn-in-header {
+  border: none;
+  background-image: url(/images/shell/delete-bin-close.svg);
+  background-color: transparent; 
+  background-repeat: no-repeat;
+  background-position: 0px 0px;  
+  border: none;         
+  cursor: pointer;       
+  width: 50px;           
+  vertical-align: middle;
+}
+
+#schedule-del-btn-in-header:hover {
+  background-image: url(/images/shell/delete-bin-open.svg);
+  background-position: 20px 0px;
+  width: 70px;
+}
+
 
 #d1 {
     margin-top: 20px;
@@ -209,6 +231,11 @@ input[type="time"]{
     border: 2px solid #A1A1A1;
 }
 
+.category-wrap > .col-box > .selected {
+  opacity: 1;
+  outline: none;
+  border: 3px dotted #A1A1A1;
+}
 
 
 /* ----<카카오맵 추가>------------------------------------------------------- */

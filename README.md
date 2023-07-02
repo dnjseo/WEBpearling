@@ -1,5 +1,4 @@
-# 🫧 Pearling
-SpringBoot-Project
+<img src="https://capsule-render.vercel.app/api?type=rounded&color=auto&height=200&section=header&text=Pearling&fontSize=90" />
 
 ## 프로젝트 소개
 일정 관리와 SNS를 접목한 웹 프로젝트입니다.

@@ -71,7 +71,7 @@ SpringBoot-Project
 - 회원 언팔로우
 - 회원 팔로잉, 팔로우 리스트 조회
 
-### 관리자 페이지 - 상세보기
+### 관리자 페이지 - [상세보기 - wiki page](https://github.com/dnjseo/WEBpearling.wiki.git)
 - 공지사항 관리
 - 문의 답변
 

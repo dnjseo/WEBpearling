@@ -23,10 +23,15 @@ function commentListLoad(url) {
                 let formattedMinute = minute < 10 ? `0${minute}` : minute;
 
                 let formattedDate = `${year}/${formattedMonth}/${formattedDay} ${formattedHour}:${formattedMinute}`;
-
+        
                 let itemTemplate = `
                     <div class="comment" data-com-id="${comment.id}">
+                    <div class="comment-deco-box">
+                        <div>
+                        <span class="pearl-img"><img src="/images/profile/circle.png"></span>
                         <span>${comment.regMemberNickname}</span>
+                        </div>
+                    </div>
                         <span class="content-span">${comment.content}</span>
                         <div class="up-del-box">
                             <span>${formattedDate}</span>
@@ -36,17 +41,47 @@ function commentListLoad(url) {
                         </div>
                         <input type="hidden" name="diaryPostId">
                         <input type="hidden" name="comment-id" value="${comment.id}">
+                        <input type="hidden" name="reg-id" value="${comment.regMemberId}">
                     </div>
                     </div>`;
 
-                commentList.insertAdjacentHTML("beforeend", itemTemplate);
-
-
+                commentList.insertAdjacentHTML("beforeend", itemTemplate); 
+                
+                // showCommenteBtns();       
+                
             }
         })
         .catch((error) => {
             console.error('댓글 리스트 호출 중 오류가 발생했습니다', error);
         });
+}
+
+function showCommenteBtns() {
+    let commentSection = document.querySelector(".diary-comment-section");
+    let commentList = commentSection.querySelector(".comment-list");
+
+    commentList.addEventListener('click', function(e) {
+        e.preventDefault();
+    
+        let commentShowBtn = e.target;
+        let commentItem = commentShowBtn.closest(".comment");
+        if (!commentItem) {
+            return; // 클릭 이벤트가 발생한 요소의 부모 요소가 .comment 클래스를 갖지 않으면 종료
+        }
+    
+        let commentEditBtn = commentItem.querySelector(".co-update-btn");
+        let commentDelBtn = commentItem.querySelector(".co-del-btn");
+    
+        if (commentShowBtn.classList.contains("comment-show-btn")) {
+            if (commentEditBtn.style.display === "block") {
+                commentEditBtn.style.display = "none";
+                commentDelBtn.style.display = "none";
+            } else {
+                commentEditBtn.style.display = "block";
+                commentDelBtn.style.display = "block";
+            }
+        }
+    });
 }
 
 /* ----------------- Delete 요청 처리 ----------------- */
@@ -79,6 +114,7 @@ function handleCommentDelete(commentId, memberId) {
 
 /* ----------------- POST 요청 처리 ----------------- */
 function handleCommentPost(jsonData) {
+
     let commentSection = document.querySelector(".diary-comment-section");
     let commentList = commentSection.querySelector(".comment-list");
     let commentInput = document.querySelector(".comment-input")
@@ -150,58 +186,58 @@ function addClickEventListeners() {
 
     commentSection.addEventListener('click', function (event) {
         if (event.target.classList.contains('co-update-btn')) {
-          event.preventDefault();
-      
-          // 수정 폼 표시
-          let commentItem = event.target.closest('.comment');
-          let commentContent = commentItem.querySelector('.content-span').textContent;
-      
-          let memberIdInput = document.querySelector('input[name="reg-member-id"]');
-          if (!memberIdInput) {
-            console.error('reg-member-id input을 찾을 수 없습니다.');
-            return;
-          }
-          
-          let memberId = memberIdInput.value;
-      
-          let updateForm = document.createElement('form');
-          updateForm.classList.add('comment-update-form');
-          updateForm.innerHTML = `
+            event.preventDefault();
+
+            // 수정 폼 표시
+            let commentItem = event.target.closest('.comment');
+            let commentContent = commentItem.querySelector('.content-span').textContent;
+
+            let memberIdInput = document.querySelector('input[name="reg-member-id"]');
+            let memberId = memberIdInput.value;
+           
+            if (!memberIdInput) {
+                console.error('reg-member-id input을 찾을 수 없습니다.');
+                return;
+            }
+
+            let updateForm = document.createElement('form');
+            updateForm.classList.add('comment-update-form');
+            updateForm.innerHTML = `
             <textarea class="comment-update-input" name="update-content">${commentContent}</textarea>
             <input type="hidden" name="comment-id" value="${commentItem.dataset.comId}">
             <input type="hidden" name="reg-member-id" value="${memberId}">
-            <button class="comment-update-submit" type="submit">수정</button>
-          `;
-      
-          commentItem.replaceWith(updateForm);
-      
-          updateForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-      
-            let content = updateForm.querySelector('.comment-update-input').value;
-            console.log(updateForm.querySelector('.comment-update-input').value);
-            let commentId = updateForm.querySelector('input[name="comment-id"]').value;
-            let memberId = updateForm.querySelector('input[name="reg-member-id"]').value;
+            <button class="comment-update-submit" type="submit">✓</button>
+            `;
+            
+            commentItem.replaceWith(updateForm);
 
-            let id = commentId;
-            let regMemberId = memberId;
+            updateForm.addEventListener('submit', function (e) {
+                e.preventDefault();
 
-            let formData = { id, content, regMemberId };
-            let jsonData = JSON.stringify(formData);
-      
-            handleCommentUpdate(commentId, memberId, jsonData);
-          });
+                let content = updateForm.querySelector('.comment-update-input').value;
+                console.log(updateForm.querySelector('.comment-update-input').value);
+                let commentId = updateForm.querySelector('input[name="comment-id"]').value;
+                let memberId = updateForm.querySelector('input[name="reg-member-id"]').value;
+
+                let id = commentId;
+                let regMemberId = memberId;
+
+                let formData = { id, content, regMemberId };
+                let jsonData = JSON.stringify(formData);
+
+                handleCommentUpdate(commentId, memberId, jsonData);
+            });
         } else if (event.target.classList.contains('co-del-btn')) {
-          // 삭제 버튼 클릭 처리
-          let delBtnId = event.target.dataset.id;
-      
-          let delForm = document.querySelector(".diary-comment-form");
-          let memberIdInput = delForm.querySelector('input[name="reg-member-id"]');
-          let memberId = memberIdInput.value;
-      
-          handleCommentDelete(delBtnId, memberId);
+            // 삭제 버튼 클릭 처리
+            let delBtnId = event.target.dataset.id;
+
+            let delForm = document.querySelector(".diary-comment-form");
+            let memberIdInput = delForm.querySelector('input[name="reg-member-id"]');
+            let memberId = memberIdInput.value;
+
+            handleCommentDelete(delBtnId, memberId);
         }
-      });
+    });
 
     commentAddBtn.addEventListener('click', function (e) {
         console.log("클릭되었습니다.");
@@ -237,14 +273,15 @@ window.addEventListener('DOMContentLoaded', function (e) {
     commentShowBtn.addEventListener('click', function (e) {
         console.log("나 불렀엉?");
         e.preventDefault();
-        
+
         if (commentForm.style.display === "block") {
             commentForm.style.display = "none";
         } else {
             commentForm.style.display = "block";
         }
-        commentListLoad(`/api/diaryComments/${diaryId}`);
 
+        commentListLoad(`/api/diaryComments/${diaryId}`);
+        
     });
 
     addClickEventListeners();

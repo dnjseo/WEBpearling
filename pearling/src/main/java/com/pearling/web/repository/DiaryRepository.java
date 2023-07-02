@@ -16,6 +16,8 @@ public interface DiaryRepository {
     List<DiaryView> findViewAll(String date, Integer memberId);
 
     Diary findById(Integer id);
+    DiaryView findByViewId(Integer id, Integer memberId);
+
     int save(Diary diary);
     int update(Diary diary);
     int delete(Diary diary);

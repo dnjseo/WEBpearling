@@ -72,7 +72,9 @@ window.addEventListener('DOMContentLoaded', function(e) {
     
     calendar.on('dateClick', function(info) {
         let clickedDate = info.dateStr; // 클릭한 날짜 정보 가져오기
+        let memberId = document.querySelector("#input-member-id").value;
         console.log(clickedDate);
+        console.log(memberId);
         diaryListLoad(`http://localhost:8080/api/diary/${clickedDate}`);
     });
 

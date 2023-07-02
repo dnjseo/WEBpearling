@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pearling.web.entity.Diary;
 import com.pearling.web.entity.DiaryView;
+import com.pearling.web.entity.Member;
 import com.pearling.web.security.MyUserDetails;
 import com.pearling.web.service.DiaryService;
+import com.pearling.web.service.MemberService;
 
 @RestController("apiDiaryController")
 @RequestMapping("api/diary")
@@ -27,6 +29,9 @@ public class DiaryController {
 
 	@Autowired
 	private DiaryService service;
+
+	@Autowired
+	private MemberService memberService;
 
 	@GetMapping("list")
 	public List<Diary> list(
@@ -62,11 +67,41 @@ public class DiaryController {
 		return list;
 	}
 
+
+	// @GetMapping("{date}/{id}")
+	public List<DiaryView> list(
+			@RequestParam(name = "s", required = false) boolean editShow,
+			@PathVariable("date") String date,
+			@PathVariable("id") int userId) {
+
+		Member otherUser = memberService.getById(userId);
+
+		List<DiaryView> list = null; 
+
+		if (date == null) {
+			// 오늘 날짜로 지정
+			LocalDate today = LocalDate.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			date = today.format(formatter);
+			list = service.getViewListByDate(date, otherUser.getId());
+		} else {
+			list = service.getViewListByDate(date, otherUser.getId());
+		}
+
+		return list;
+	}
+
 	@GetMapping("detail/{id}")
-	public Diary list(@PathVariable("id") Integer id,
+	public DiaryView list(@PathVariable("id") Integer id,
+			@AuthenticationPrincipal MyUserDetails user,
 			@RequestParam(name = "s", required = false) boolean editShow) {
 
-		Diary diary = service.findById(id);
+		Integer memberId = null;
+		
+		if(user != null) 
+		memberId = user.getId();
+
+		DiaryView diary = service.findByViewId(id, memberId);
 
 		return diary;
 	}

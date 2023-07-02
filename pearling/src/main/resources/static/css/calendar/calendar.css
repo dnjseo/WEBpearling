@@ -1,12 +1,19 @@
 /* ==============(ms3) 캘린더 섹션 ===================== */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
 
 #calendar {
     display: flex;
     max-width: 1200px;
     min-height: 450px;
+    max-height: 600px;
     margin: 0 auto;
     width: 90%;
-    aspect-ratio: 4/3;
+    aspect-ratio: 4/2;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
   }
 
  :root {

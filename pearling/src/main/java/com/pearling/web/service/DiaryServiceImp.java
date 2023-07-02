@@ -61,4 +61,9 @@ public class DiaryServiceImp implements DiaryService {
         return repository.findViewAll(date, memberId);
     }
 
+    @Override
+    public DiaryView findByViewId(Integer id, Integer memberId) {
+        return repository.findByViewId(id, memberId);
+    }
+
 }

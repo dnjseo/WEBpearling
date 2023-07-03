@@ -56,9 +56,16 @@ public class SearchController extends BaseController {
             searchResults = query;
         }
         
+        for (Todo todo : tdList) {
+            Date regDate = todo.getRegDate();
+            System.out.println("일정 등록일자: " + regDate); // 등록일자 출력
+            String elapsedTime = ElapsedTimeCalculator.getElapsedTime(regDate);
+            todo.setFormattedDate(elapsedTime);
+        }
+
         for (Schedule schedule : scList) {
             Date regDate = schedule.getRegDate();
-            System.out.println("Reg Date: " + regDate); // 등록일자 출력
+            System.out.println("할 일 등록일자: " + regDate); // 등록일자 출력
             String elapsedTime = ElapsedTimeCalculator.getElapsedTime(regDate);
             schedule.setFormattedDate(elapsedTime);
         }

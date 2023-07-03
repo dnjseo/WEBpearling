@@ -44,7 +44,7 @@ layout:decorate="~{inc/layout}">
                 </div>
                 <ul class = "friendList">
                     <li class="fr" th:each="f : ${friendList}">
-                        <a href="./others-shell" th:href="@{/shell/myshell/{id}(id=${f.followerId})}">
+                        <a href="./others-shell" th:href="@{/shell/myshell/{id}(id=${f.id})}" th:data-follower-id="${f.id}">
                             <img src="/images/profile/profile_yr.png" th:src="@{'/resources/img/' + ${f.profileImage}}">
                             <p th:text="${f.nickname}">탐정</p>
                         </a>
@@ -54,7 +54,7 @@ layout:decorate="~{inc/layout}">
 
             <section id = m4-friendSchedule >
                 <h1 class="d-none">친구 일정</h1>
-                <div class = friendScheduleList>
+                <div class = friendScheduleList >
                     <ul class = "friendScheduleList">
                         <li class="fs1" th:each="f : ${friendList}">
                              <div class = "profile-x">
@@ -62,25 +62,18 @@ layout:decorate="~{inc/layout}">
                                 <p th:text="${f.nickname}">연주</p>
                             </div>
                             <div class = "scheduleContents">
-                                <ul>
-                                    <li>
+                                <ul th:each= "ft : ${friendTodoList}" th:if="${ft.id} == ${f.id}">
+                                    <li >
                                         <div class="content">
-                                        <p>☑︎ 마라탕 먹으러가기</p> 
+                                        <p th:text="${ft.content}">☑︎ 마라탕 먹으러가기</p> 
                                         </div>
-                                        <div class="tag">
+                                        <!-- <div class="tag">
                                             <button>@나</button>
                                             <button>@채원</button>
                                             <button>@도원</button>
                                             <button>@예린</button>
-                                        </div>
+                                        </div> -->
                                     </li>
-                                    <li><p>☑︎ 소금빵 사러가기</p>
-                                        <div class="tag">
-                                            <button>@나</button>
-                                            <button>@채원</button>
-                                        </div>
-                                    </li>
-                                    <li><p>☑︎ http 강의듣기</p>  <div class="tag"><button>@나</button></li>
                                 </ul>
                             </div>
                         </li>

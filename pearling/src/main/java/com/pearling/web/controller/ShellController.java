@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -82,18 +83,23 @@ public String otherShell(Model model, @PathVariable("id") int userId) {
 	
 
 	@GetMapping("ourshell")
-	public String ourShell(Model model) {
+	public String ourShell(Model model, Integer memberId) {
 
 		SecurityContext context = SecurityContextHolder.getContext();
 		MyUserDetails user = (MyUserDetails) context.getAuthentication().getPrincipal();
 
-        int memberId = user.getId();
-
-		List<Member> friendList = followService.getFollowingsList(memberId);
+        int userId = user.getId();
+		
+;
+		List<Member> friendList = followService.getFollowingsList(userId); 
+		
+		List<Todo> friendTodoList = service.getListByCurDate(memberId);		
 		
 	
 		model.addAttribute("headerShow", true);
 		model.addAttribute("friendList", friendList);
+		model.addAttribute("friendTodoList", friendTodoList);
+		
 
 		return "shell/ourshell";
 	}

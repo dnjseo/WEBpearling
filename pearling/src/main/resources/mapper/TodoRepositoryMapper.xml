@@ -29,6 +29,15 @@
 		WHERE member_id = #{memberId} AND date = '${date.toString()}'
 		ORDER BY CASE WHEN statement = 'Y' THEN 0 ELSE 1 END;
 	</select>
+	<select id="findByCurDate" resultType="Todo">
+		SELECT m.id, m.nickname, t.content
+		FROM follow f
+		JOIN member m ON f.following_id = m.id
+		JOIN to_do t ON m.id = t.member_id
+		WHERE f.follower_id = 3
+			AND DATE(t.date) = CURDATE()
+			AND t.member_id = m.id;
+	</select>
 	<update id="update" parameterType="Integer">
 	update to_do
 	<set> 

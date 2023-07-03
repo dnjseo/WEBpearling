@@ -51,7 +51,7 @@
                                     th:src="@{${t.profileImage} != null ? '/resources/img/' + ${t.profileImage} : '/images/profile/basic.png'}" 
                                     alt="프로필" />
                                     <p><span sec:authentication="principal.nickname"></span></p>
-                                    <p th:text="${#dates.format(t.regDate, 'yyyy-MM-dd')}">18시간 전</p>
+                                    <p th:text="${t.formattedDate}">18시간 전</p>
                                 </div>
                                 <div class="todo-content">
                                     <input type="checkbox">

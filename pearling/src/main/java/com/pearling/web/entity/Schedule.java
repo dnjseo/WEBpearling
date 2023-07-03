@@ -29,7 +29,3 @@ public class Schedule {
     private String profileImage;
     private String formattedDate; 
 }
-
-            // public Schedule() {
-            //     this.regDate = new Date(); // 현재 시간으로 초기화
-            // }}

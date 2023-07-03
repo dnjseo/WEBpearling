@@ -21,4 +21,5 @@ public class Todo {
     private Integer memberId;
     private String content;
     private String profileImage; // 추가된 필
+    public String formattedDate;
 }

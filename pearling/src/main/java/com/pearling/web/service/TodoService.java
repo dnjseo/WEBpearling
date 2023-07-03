@@ -11,6 +11,7 @@ public interface TodoService {
     List<Todo> getListByQuery(String query);
     List<Todo> getListByUserId(Integer userId);
     List<Todo> getListByDate(Integer userId, LocalDate date);
+    List<Todo> getListByCurDate(Integer userId);
     
     Todo findById(Integer id);
     int addTodo(Todo todo);

@@ -22,7 +22,7 @@
    <!-- header-->
 
     <!-- 쉘 메뉴 -->
-    <div id ="shell-menu" th:if="${#authorization.expression('isAuthenticated()')}">
+    <div id ="shell-menu">
             <h1 class="d-none">쉘 메뉴</h1>
             <div class="ourShell notselected" >
                 <a href="/shell/ourshell">
@@ -37,8 +37,16 @@
                     <p class="msfont">my shell</p>
                 </a>
             </div>
-        </div>
+    </div>
         <!-- 쉘 메뉴 -->
+
+        <div id="s1"  style="display: none;">
+            <h1 class="d-none">프로필</h1>
+            <div class = "profile-x">
+                <img src="/images/profile/profile_yr.png"><p>탐정's shell</p>
+            </div>
+            <input class="follobutton" type="button" value="팔로잉">
+        </div>
 
         <!-- 마이쉘 하위메뉴 -->
         <div id="myshell-menu">

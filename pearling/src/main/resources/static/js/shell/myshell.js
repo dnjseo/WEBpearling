@@ -333,52 +333,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   // 투두(할일)추가용 엔터키 이벤트 핸들러
-  // function handleFormSubmit(e) {
-  //   if (e.key === 'Enter' &&
-  //   todoAddForm.contains(document.activeElement) &&
-  //   document.querySelector(".todo-content-input").value != ""
-  //   ) {
-  //     e.preventDefault(); // 기본 동작인 새로운 줄 추가 방지
-  //     console.log('enter-key 입력')
-
-  //     const formData = new FormData(todoAddForm);
-
-  //     if (!clickedDate)
-  //       clickedDate = currentKRDate
-  //       console.log('클릭 된 날짜가 없어 시스템 날짜로 등록됩니다'+ clickedDate)
-      
-  //       const todoData = {
-  //       date: clickedDate,
-  //       content: formData.get('content')
-  //     };
-
-  //     fetch("/api/todos", {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify(todoData) // 폼 데이터를 URL 인코딩하여 전송
-  //     })
-  //       .then(response => {
-  //         if (response.ok) {
-  //           // 성공적으로 요청이 처리된 경우의 동작
-  //           console.log('폼 제출 성공');
-  //           updateTodoList(clickedDate)
-  //           document.querySelector(".todo-content-input").value = "";
-
-  //         } else {
-  //           // 요청이 실패한 경우의 동작
-  //           console.error('폼 제출 실패');
-  //         }
-  //       })
-  //       .catch(error => {
-  //         // 네트워크 오류 등 예외 처리
-  //         console.error('폼 제출 오류:', error);
-  //       });
-  //   }
-  // }// 엔터키 핸들러 end
-
-  // 투두(할일)추가용 엔터키 이벤트 핸들러
 function handleFormSubmit(e) {
   if (e.key !== 'Enter' || !todoAddForm ||
    !todoAddForm.contains(document.activeElement)) {
@@ -493,20 +447,20 @@ function updateTodoList(clickedDate, checkboxes) {
   let todoElements = document.querySelector('.todoListSection');
 
   // 클릭한 투두 비교 및 출력하기.
-  const url = new URL(window.location.href);
+    const url = new URL(window.location.href);
     const path = url.pathname;
     const pathArray = path.split("/");
     const userId = (pathArray[1] === "shell" && pathArray[2] === "myshell") ? pathArray[3] || null : null;
 
-    const urlWithId = userId ? `http://localhost:8080/api/todos/${userId}` : 'http://localhost:8080/api/todos';
+    const urlWithId = userId ? `http://localhost:8080/api/todos?=${userId}` : 'http://localhost:8080/api/todos';
 
     fetch(urlWithId)    
-    .then(response => response.json())    
-    .then(list => {
+    .then(response => response.json())
+    .then(todoList => {
       // 기존에 출력된 투두 리스트 지우기
       todoElements.innerHTML = '';
 
-      for (let todo of list) {
+      for (let todo of todoList) {
         let tododate = new Date(todo.date).toISOString().substring(0, 10);
 
         if (clickedDate == null)
@@ -516,26 +470,28 @@ function updateTodoList(clickedDate, checkboxes) {
           new Date(clickedDate).toISOString().substring(0, 10) === tododate 
         ) {
           // 투두 출력하기
-          if (clickedDate) {
+          if ( userId == null ) {
             let todoTemplate = `
                 <li class="todoList">
                   <div class="content">
-                    <input type="checkbox" name="statement" data-id="${todo.id}" ${todo.statement ? 'checked' : ''}>
+                    <input class="todo-checkbox"type="checkbox" name="statement" data-id="${todo.id}" ${todo.statement ? 'checked' : ''}
+                    >
                     <p class="todo-content">${todo.content}</p>
                     <button class="todo-delete-button" data-id="${todo.id}">x</button>
                   </div>
                 </li>
               `;
             todoElements.insertAdjacentHTML("beforeend", todoTemplate);
-
-
           } else {
             let noTodoTemplate = `
-                <li class="todoList">
-                  <div class="content">
-                    <p>일정이 없습니다.</p>
-                  </div>
-                </li>
+              <li class="todoList">
+              <div class="content">
+                <input class="todo-checkbox"type="checkbox" name="statement" data-id="${todo.id}" ${todo.statement ? 'checked' : ''}
+                disabled>
+                <p class="todo-content">${todo.content}</p>
+                <button class="todo-delete-button" data-id="${todo.id}">x</button>
+              </div>
+            </li>
               `;
             todoElements.insertAdjacentHTML("beforeend", noTodoTemplate);
           }

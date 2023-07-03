@@ -9,6 +9,7 @@
     <script th:inline="javascript" src="/js/shell/myshell.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <script src="/js/shell/shell-menu.js"></script>
     <title>my shell</title>
 </head>
 
@@ -38,7 +39,7 @@
                 <div class="title-part">
                     <p class="schedule-titles">할 일.</p>
                     <!-- todo 편집 버튼 (삭제 버튼 생성) -->
-                    <button class="show-del-btn">•••</button>
+                    <button class="show-del-btn d-none">•••</button>
                 </div>
 
                 <!-- Todo input form 생성되는 자리 -->
@@ -49,7 +50,7 @@
                     <li class="todoList" th:each="t : ${todoList}">
                         <div class="content">
                             <input class="todo-checkbox" type="checkbox" th:checked="${t.statement}"
-                                th:data-id="${t.id}">
+                                th:data-id="${t.id}" disabled>
                             <p class="todo-content" th:text="${t.content}">소금빵 사러가기🥐</p>
                             <button class="todo-delete-button" th:data-id="${t.id}">x</button>
                         </div>
@@ -80,7 +81,7 @@
 
         
         <!--  < + > 작성 버튼 (하단 fixed) 부분-->
-        <section class="plusbox">
+        <section class="plusbox d-none">
             <h1 class="d-none">작성</h1>
             <div class="plus">+</div>
 

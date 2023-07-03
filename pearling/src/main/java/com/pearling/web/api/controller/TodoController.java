@@ -51,7 +51,7 @@ public class TodoController {
         return todoList;
     }
 
-     @GetMapping("{id}")
+     @GetMapping("/{id}")
      public Todo detail(
         @PathVariable("id") int id){
 

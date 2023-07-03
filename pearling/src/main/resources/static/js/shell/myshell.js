@@ -502,7 +502,6 @@ function updateTodoList(clickedDate, checkboxes) {
 
     fetch(urlWithId)    
     .then(response => response.json())    
-    .then(response => response.json())
     .then(list => {
       // 기존에 출력된 투두 리스트 지우기
       todoElements.innerHTML = '';
@@ -565,7 +564,8 @@ function updateScheduleList(clickedDate) {
 
     const urlWithId = userId ? `http://localhost:8080/api/schedules/${userId}` : 'http://localhost:8080/api/schedules';
 
-    fetch(urlWithId)    .then(response => response.json())
+    fetch(urlWithId)    
+    .then(response => response.json())
     .then(list => {
 
       // 기존에 출력된 스케줄 지우기

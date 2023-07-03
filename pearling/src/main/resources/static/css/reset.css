@@ -17,14 +17,12 @@ body{
     letter-spacing: 0.04em;
 
     display: flex;
-    /* min-height: 100vh; */
     flex-direction: column;
     color: #797979;
 }
 
 .wrap{
     padding: 0 12px;
-    min-height: 100vh;
     height: auto;
   }
 

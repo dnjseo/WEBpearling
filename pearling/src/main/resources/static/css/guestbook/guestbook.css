@@ -13,18 +13,13 @@
     font-style: normal;
 }
 
-.pearl p {
-    font-family: 'Cafe24Ssurround';
-    font-size: 18px;
-    font-weight: normal;
-
-    color: #676464db;
-    
-}
-
 body{
     background: url("/images/guestbook/background.png");
     background-size: cover;
+}
+
+.wrap{
+    height: 50vh;
 }
 
 .clam{
@@ -43,11 +38,17 @@ body{
     transition: all 1s ease-in;
 }
 
-.clam li img{
-    cursor: pointer;
-    width: 100px;
+.clam li{
+    width: 180px;
 }
 
+.clam li img {
+    cursor: pointer;
+    width: 150px;
+    transition: width 3s ease-in-out;
+}
+
+/* 방명록 부분 */
 section.guestbook {
     display: none;
 }
@@ -72,6 +73,13 @@ section.guestbook {
     align-items: center;
     justify-content: center;
     color:  black;
+}
+
+.pearl>p{
+    font-family: 'Cafe24Ssurround';
+    font-size: 18px;
+    font-weight: normal;
+    color: #676464db;
 }
 
 .date{

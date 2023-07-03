@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,9 +19,6 @@ public class MemberServiceImp implements MemberService{
 
     @Autowired
     private MemberRepository repository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     // 멤버 리스트
     @Override
@@ -123,5 +119,11 @@ public class MemberServiceImp implements MemberService{
     @Override
     public void updatePwd(Member member) {
         repository.updatePwd(member);
+    }
+
+    // 회원삭제
+    @Override
+    public void delete(Member member) {
+        repository.delete(member);
     }
 }

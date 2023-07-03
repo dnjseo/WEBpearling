@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -92,12 +93,21 @@ public class MemberController {
     }
 
 
-    // 회원 조회
+    // 로그인한 회원 조회
     @GetMapping
     public Member getLoginMember(
         @AuthenticationPrincipal MyUserDetails user){
 
             Member member = service.getById(user.getId());
+
+        return member;
+    }
+
+    @GetMapping("/{userId}")
+    public Member getMember(
+        @PathVariable("userId") Integer id) {
+
+            Member member = service.getById(id);
 
         return member;
     }

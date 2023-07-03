@@ -1,38 +1,56 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-const url = new URL(window.location.href);
-const path = url.pathname;
-const pathArray = path.split("/");
-const userId = (pathArray[1] === "shell" && pathArray[2] === "myshell") ? pathArray[3] || null : null;
-const plusBtn = document.querySelector('.plusbox')
-const checkboxes = document.querySelectorAll('.todo-checkbox');
+  const url = new URL(window.location.href);
+  const path = url.pathname;
+  const pathArray = path.split("/");
+  const userId = (pathArray[1] === "shell" && pathArray[2] === "myshell") ? pathArray[3] || null : null;
+  const plusBtn = document.querySelector('.plusbox')
+  const checkboxes = document.querySelectorAll('.todo-checkbox');
 
-fetch('/api/member')
-.then(response => response.json())
-.then(member => {
-  let loginMember = member.id;
+  //로그인한 회원 정보 가져오기
+  fetch('/api/member')
+    .then(response => response.json())
+    .then(member => {
+      let loginMember = member.id;
+
+      // 본인 쉘일 경우 : myshell의 작성/수정/삭제 활성화 
+      if (userId == null || userId == loginMember) {
+        plusBtn.classList.remove('d-none');
+        document.querySelector('.show-del-btn').classList.remove('d-none');
+
+        checkboxes.forEach(function (checkbox) {
+          checkbox.removeAttribute('disabled');
+        });
+
+        // 아닐 경우 : 아워쉘 메뉴 비활성화
+      } else {
+        document.getElementById('s1').style.display = "block";
+        document.getElementById('s1').style.display = "flex";
+        document.getElementById('shell-menu').style.display = "none";
+
+        //마이쉘 하위메뉴 a링크 값 변경
+        document.querySelector('#myshell-menu .monthly').href = "/shell/myshell/" + userId
+        document.querySelector('#myshell-menu .diary').href = "/diary/list/" + userId
+        document.querySelector('#myshell-menu .guestbook').href = "/guestbook/list/" + userId
+        
+        changeProfile(userId);
 
 
-if(userId == null || userId == loginMember){
-  plusBtn.classList.remove('d-none');
-  document.querySelector('.show-del-btn').classList.remove('d-none');
-          
-    checkboxes.forEach(function(checkbox) {
-      checkbox.removeAttribute('disabled');
-    });
+      }
 
+    })//fetch
 
-  } else {
-    document.getElementById('s1').style.display = "block";
-    document.getElementById('s1').style.display = "flex";
-    document.getElementById('shell-menu').style.display = "none";
-
-    document.querySelector('#myshell-menu .monthly').href = "/shell/myshell/"+userId
-    document.querySelector('#myshell-menu .diary').href = "/diary/list/"+userId
-    document.querySelector('#myshell-menu .guestbook').href = "/guestbook/list/"+userId
-}
-
-})
-  
 
 }); //DOM end
+
+function changeProfile(userId){
+  fetch(`/api/member/${userId}`)
+  .then(response => response.json())
+  .then(member => {
+    console.log('member확인:'+member)
+
+   let userProfile = document.getElementById('s1')
+   userProfile.querySelector('.shell-name').innerHTML=`${member.nickname}의 Shell`
+   userProfile.querySelector('.shell-image').src=`/resources/img/${member.profileImage}`
+  })
+}

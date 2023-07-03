@@ -51,83 +51,63 @@ function addCheckboxEventListener(checkbox) {
 }
 
 function printCalendarEvent(calendar) {
-  fetch('http://localhost:8080/api/user') // 사용자 정보를 받아오는 API 엔드포인트
+  const url = new URL(window.location.href);
+  const path = url.pathname;
+  const pathArray = path.split("/");
+  const userId = (pathArray[1] === "shell" && pathArray[2] === "myshell") ? pathArray[3] || null : null;
+
+  const urlWithId = userId ? `http://localhost:8080/api/schedules/${userId}` : 'http://localhost:8080/api/schedules';
+
+  fetch(urlWithId)
     .then(response => response.json())
-    .then(userData => {
-      const userId = userData.id; // 사용자의 ID를 받아옴
+    .then(scheduleList => {
+      for (let schedule of scheduleList) {
+        let scheduleTitle = schedule.title;
+        let scheduleStartDate = schedule.startDate;
+        let scheduleEndDate = schedule.endDate;
+        let scheduleColor = schedule.backgroundColor || '#e6eced';
+        let scheduleStartTime = schedule.startTime;
+        let scheduleEndTime = schedule.endTime;
 
-      // 캘린더 이벤트에 스케줄 db 추가
-      let url = 'http://localhost:8080/api/schedules';
-      if (userId) {
-        url += `/${userId}`;
+        let event = null;
+
+        if (!scheduleStartTime && !scheduleEndTime && scheduleStartDate == scheduleEndDate) {
+          event = {
+            title: scheduleTitle,
+            start: scheduleStartDate,
+            end: scheduleEndDate,
+            color: scheduleColor,
+            allDay: true
+          };
+        } else if (!scheduleStartTime && !scheduleEndTime && scheduleStartDate != scheduleEndDate) {
+          let endDate = new Date(scheduleEndDate);
+          endDate.setDate(endDate.getDate() + 1);
+
+          event = {
+            title: scheduleTitle,
+            start: scheduleStartDate,
+            end: endDate,
+            color: scheduleColor,
+            allDay: true,
+          };
+        } else {
+          event = {
+            title: scheduleTitle,
+            start: scheduleStartDate + 'T' + scheduleStartTime,
+            end: scheduleEndDate + 'T' + scheduleEndTime,
+            color: scheduleColor,
+            allDay: false
+          };
+        }
+
+        calendar.addEvent(event);
       }
-
-
-      //캘린더 이벤트에 스케쥴 db 추가 
-      fetch(url)
-        .then(response => response.json())
-        .then(scheduleList => {
-          for (let schedule of scheduleList) {
-            let scheduleTitle = schedule.title;
-            let scheduleStartDate = schedule.startDate;
-            let scheduleEndDate = schedule.endDate;
-            let scheduleColor = schedule.backgroundColor;
-            let scheduleStartTime = schedule.startTime;
-            let scheduleEndTime = schedule.endTime;
-
-            if (scheduleColor == null) {
-              scheduleColor = '#e6eced'
-            }
-
-            console.log(scheduleColor)
-
-            let event = null;
-            if (!scheduleStartTime && !scheduleEndTime
-              && scheduleStartDate == scheduleEndDate) {
-              event = {
-                title: scheduleTitle,
-                start: scheduleStartDate,
-                end: scheduleEndDate,
-                color: scheduleColor,
-                allDay: true
-              };
-              calendar.addEvent(event);
-            };
-
-            if (!scheduleStartTime && !scheduleEndTime
-              && scheduleStartDate != scheduleEndDate) {
-
-              let endDate = new Date(scheduleEndDate);
-              endDate.setDate(endDate.getDate() + 1);
-
-              event = {
-                title: scheduleTitle,
-                start: scheduleStartDate,
-                end: endDate,
-                color: scheduleColor,
-                allDay: true,
-              };
-            }
-
-            else {
-              event = {
-                title: scheduleTitle,
-                start: scheduleStartDate + 'T' + scheduleStartTime,
-                end: scheduleEndDate + 'T' + scheduleEndTime,
-                color: scheduleColor,
-                allDay: false
-              };
-            }
-            calendar.addEvent(event);
-          }
-        });
     });
 
   calendar.render();
   calendar.setOption('contentHeight', 350);
-
 }
-
+// printCalendarEvent end
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -152,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
         info.event.startStr.slice(0, 10)+' '+info.event.startStr.slice(11, 16)
         + ' - ' +
         info.event.endStr.slice(0, 10) +' '+info.event.endStr.slice(11, 16);
+
       }
       
       tippy(info.el, {
@@ -512,8 +493,15 @@ function updateTodoList(clickedDate, checkboxes) {
   let todoElements = document.querySelector('.todoListSection');
 
   // 클릭한 투두 비교 및 출력하기.
-  fetch(`http://localhost:8080/api/todos?`)
-    .then(response => response.json())
+  const url = new URL(window.location.href);
+    const path = url.pathname;
+    const pathArray = path.split("/");
+    const userId = (pathArray[1] === "shell" && pathArray[2] === "myshell") ? pathArray[3] || null : null;
+
+    const urlWithId = userId ? `http://localhost:8080/api/todos/${userId}` : 'http://localhost:8080/api/todos';
+
+    fetch(urlWithId)    
+    .then(response => response.json())    
     .then(list => {
       // 기존에 출력된 투두 리스트 지우기
       todoElements.innerHTML = '';
@@ -569,7 +557,14 @@ function updateScheduleList(clickedDate) {
   let scheduleElements = document.querySelector('.scheduleListSection');
 
   //클릭한 스케쥴 비교 및 출력하기.
-  fetch(`http://localhost:8080/api/schedules?`)
+    const url = new URL(window.location.href);
+    const path = url.pathname;
+    const pathArray = path.split("/");
+    const userId = (pathArray[1] === "shell" && pathArray[2] === "myshell") ? pathArray[3] || null : null;
+
+    const urlWithId = userId ? `http://localhost:8080/api/schedules/${userId}` : 'http://localhost:8080/api/schedules';
+
+    fetch(urlWithId)    
     .then(response => response.json())
     .then(list => {
 

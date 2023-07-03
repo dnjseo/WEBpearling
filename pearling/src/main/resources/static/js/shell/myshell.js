@@ -541,14 +541,30 @@ function updateScheduleList(clickedDate) {
           clickedDate.getDate() <= scheduleEndDate.getDate()
         ) {
 
-          //스케쥴 출력하기     
-          let itemTemplate = `
-           <li class="scheduleList">
-             <div class="content">
-               <a href=../schedule/detail?id=${schedule.id}>${schedule.title}</a>
-             </div>
-           </li>`;
+          //스케쥴 출력하기
 
+          let itemTemplate = '';
+          if (userId) {
+            // UserID가 있는 경우
+            itemTemplate = `
+            <li class="scheduleList">
+              <div class="content">
+                <span>${schedule.title}</span>
+              </div>
+            </li>
+          `;
+          } else {
+            // UserID가 null인 경우
+            itemTemplate = `
+              <li class="scheduleList">
+                <div class="content">
+                  <a class="sche-link" href="../schedule/detail?id=${schedule.id}">${schedule.title}</a>
+                </div>
+              </li>
+            `;
+          }
+          
+            
           scheduleElements.insertAdjacentHTML("beforeend", itemTemplate);
 
         }

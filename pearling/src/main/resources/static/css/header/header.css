@@ -161,3 +161,73 @@ input.submit-btn {
     border-style: none;
     transition: all 1s ease-in-out;
 }
+
+
+/* ==========(s1) 프로필 섹션 ===================== */
+
+.shell-name{
+    font-size: 14px;
+}
+
+#s1{
+    width: 70%;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+    align-items: center;
+    gap: 150px; 
+
+    /* background: rgba(255, 255, 255, 0.7); */
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15), 
+        inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    padding: 20px;
+}
+
+#s1 > .profile-x {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+#s1 > .profile-x> p{
+    font-size: 16px;
+    font-family: 'Pretendard-SemiBold';
+    letter-spacing: 0.1em;
+}
+
+
+#s1 > .profile-x > img{
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50%;
+    object-fit: cover; 
+}
+
+.follobutton {
+    /* 폰트 */
+    font-family: 'Pretendard-SemiBold';
+    font-size: 10px;
+    letter-spacing: 0.1em;
+
+
+    /* 버튼 */
+    background: #FFFFFF;
+    border: none;
+    height: 30px;
+    width: 50px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25), 
+        inset 0px 2px 4px rgba(0, 0, 0, 0.25), 
+        inset 0px 0px 55px #FFFFFF, 
+        inset 0px 32px 16px rgba(199, 192, 196, 0.09),
+        inset 0px 16px 8px rgba(199, 192, 196, 0.09),
+        inset 0px -79px 40px rgba(199, 192, 196, 0.1),
+        inset 0px -36px 30px rgba(199, 192, 196, 0.15),
+        inset 0px -23px 25px rgba(199, 192, 196, 0.17);
+    border-radius: 10px;
+    transform: rotate(0.28deg);
+}
+

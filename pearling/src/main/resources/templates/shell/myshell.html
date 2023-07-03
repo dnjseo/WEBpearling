@@ -9,13 +9,15 @@
     <script th:inline="javascript" src="/js/shell/myshell.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
-    <script src="/js/shell/shell-menu.js"></script>
+    <script src="/js/shell/checkOwnShell.js"></script>
     <title>my shell</title>
 </head>
+
 
 <body>
     <!-- wrap -->
     <main layout:fragment="content" class="wrap">
+        
 
         <!-- 캘린더 부분 -->
         <section id="ms3">
@@ -67,7 +69,7 @@
                 <ul class=scheduleListSection>
                     <li class="scheduleList" th:each="s : ${scheduleList}">
                         <div class="content">
-                            <a th:href="@{../schedule/detail(id=${s.id})}" 
+                            <a class="sche-link" th:href="@{../schedule/detail(id=${s.id})}" 
                             th:data-id="${s.id}" th:text="${s.title}">비색의 탄환</a>
                         </div>
                         <div class="tag">

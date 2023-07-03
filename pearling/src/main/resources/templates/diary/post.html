@@ -98,9 +98,9 @@
                                         <svg sec:authorize="isAuthenticated()"
                                             th:data-member-id="${#authentication.principal.id}"
                                             th:data-diary-id="${diary.id}" class="icon icon-heart"
-                                            th:classappend="${diary.like} > 0 ? 'icon-heart-fill' : ''">
+                                            th:classappend="${diary.like} ? 'icon-heart-fill' : ''">
                                         </svg>
-                                        <!-- <span th:text="${diary.like}"></span> -->
+                                        <span th:text="${diary.like}"></span>
                                         <span th:text="${diary.likeCount}">1</span>
                                         <span>좋아요</span>
                                     </div>

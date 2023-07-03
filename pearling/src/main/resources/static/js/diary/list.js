@@ -4,8 +4,6 @@ function diaryListLoad(url) {
     // let diary = diaryList.querySelector(".diary");
 
     let mid = document.querySelector("#input-member-id").value;
-    let urlParams = new URLSearchParams(window.location.search);
-    let userId = urlParams.get('uid');
 
     fetch(url)
         .then(response => response.json())
@@ -18,7 +16,21 @@ function diaryListLoad(url) {
 
                 let dateObject = new Date(diary.date);
                 let day = dateObject.getDate(); // 일자
-                let month = dateObject.toLocaleString('default', { month: 'long' }); // 월 (예: "8월")             
+                let month = dateObject.toLocaleString('default', { month: 'long' }); // 월 (예: "8월")    
+                
+                let urlParams = new URLSearchParams(window.location.search);
+                let uid = urlParams.get('uid');
+
+                if(uid == mid) {
+                    userId = mid;
+                } else if(uid == null) {
+                    userId = mid;                    
+                } else {
+                    userId = uid;
+                }
+
+                console.log("mid 확인" + mid);
+                console.log("uid 확인" + userId);
 
                 let itemTemplate = `<li class="diary-detail" data-aos="flip-down" data-aos-duration="2000">
                 <form>
@@ -29,7 +41,7 @@ function diaryListLoad(url) {
                             <span>${month}</span>
                         </div>
                         <div class="diary-content">
-                            <a class="diary-href" href="post?id=${diary.id}">
+                            <a class="diary-href" href="post?id=${diary.id}&uid=${userId}">
                                 <span>${diary.title}</span>
                                 <span>${diary.content}</span>
                             </a>
@@ -63,6 +75,11 @@ function diaryListLoad(url) {
 
 window.addEventListener('DOMContentLoaded', function(e) {
     // css 파일이 js 파일보다 먼저 로드될 수 있도록 DOMContentLoaded 사용 
+
+    let urlParams = new URLSearchParams(window.location.search);
+    let userId = urlParams.get('uid');
+    
+    console.log("이거 확인중" + userId);
     
     let calendarEl = document.getElementById('calendar');
     let calendar = new FullCalendar.Calendar(calendarEl, {
@@ -73,9 +90,6 @@ window.addEventListener('DOMContentLoaded', function(e) {
     calendar.render();
     calendar.setOption('contentHeight', 350);
 
-    let urlParams = new URLSearchParams(window.location.search);
-    let userId = urlParams.get('uid');
-    
     calendar.on('dateClick', function(info) {
         let clickedDate = info.dateStr; // 클릭한 날짜 정보 가져오기
         let memberId = document.querySelector("#input-member-id").value;
@@ -88,6 +102,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
         } else {
             id = userId;
         }
+
         console.log(clickedDate);
         console.log(id);
         diaryListLoad(`http://localhost:8080/api/diary/${clickedDate}/${id}`);
@@ -105,9 +120,24 @@ window.addEventListener('DOMContentLoaded', function(e) {
 
         let { memberId, diaryId } = el.dataset;
 
+        let urlParams = new URLSearchParams(window.location.search);
+        let userId = urlParams.get('uid');
+
+        let id;
+        if(userId == null) {
+            id = memberId;
+        } else if(memberId == userId) {
+            id = memberId;
+        } else {
+            id = userId;
+        }
+
+        console.log("이것이죠" + userId);
+        console.log("이것입니다" + memberId);
+
         // LIKE 삭제
 		if (el.classList.contains("icon-heart-fill")) {
-			fetch(`/api/diarylikes/${diaryId}/members/${memberId}`, {
+			fetch(`/api/diarylikes/${diaryId}/members/${id}`, {
 				method: 'DELETE'
 			})
 				.then(response=>response.text())
@@ -119,7 +149,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
 						fetch(`/api/diarylikes/count?dr=${diaryId}`) // diaryId에 해당하는 diary의 정보를 불러오고
 						.then(response=>response.json()) // 정보를 json 형식으로 담아줌
 						.then(count=> { // count라는 이름에 json 객체를 담아주고
-							el.nextElementSibling.innerText = count;
+							el.nextElementSibling.innerText = count; // target의 형제 요소 텍스트 변경
 							console.log(`count is ${count}`);
 						});
 					}
@@ -128,7 +158,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
 
 		// LIKE 추가
 		 else {
-			let data = `dr=${diaryId}&mb=${memberId}`;
+			let data = `dr=${diaryId}&mb=${id}`;
 
 			fetch("/api/diarylikes", { // 보낼 api: POST/diaryLikes
 				method: 'POST',

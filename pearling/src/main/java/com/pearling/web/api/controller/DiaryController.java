@@ -102,7 +102,7 @@ public class DiaryController {
 		if(user != null) 
 		memberId = user.getId();
 
-		DiaryView diary = service.findByViewId(id);
+		DiaryView diary = service.findByViewId(id, memberId);
 
 		return diary;
 	}

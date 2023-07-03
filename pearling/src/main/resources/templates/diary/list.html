@@ -40,7 +40,8 @@
                                     <span th:text="${#temporals.format(d.date, 'MMM')}"></span>
                                 </div>
                                 <div class="diary-content">
-                                    <a class="diary-href" th:href="@{../diary/post(id=${d.id})}">
+                                    <a class="diary-href" th:href="@{/diary/post(id=${d.id}, uid=${userId})}">
+                                        <!-- <span class="nnnn" th:text="지금은요 + ${userId}"></span> -->
                                         <span th:text="${d.title}">title</span>
                                         <span th:text="${d.content}">다이어리 내용</span>
                                     </a>

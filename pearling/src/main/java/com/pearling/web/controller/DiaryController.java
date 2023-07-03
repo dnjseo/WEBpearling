@@ -69,6 +69,7 @@ public class DiaryController extends BaseController {
 			}
 
 			model.addAttribute("list", list);	
+			model.addAttribute("userId", userId);
 		
 			return "diary/list";
 		}
@@ -131,8 +132,18 @@ public class DiaryController extends BaseController {
 			model.addAttribute("editShow", 2);
 
 		List<Diary> list = service.getList();
+
+		Integer memberId = null;
+
+		if(user != null)
+			memberId = user.getId();
+
+		if(userId != memberId && userId == null)
+			userId = memberId;
 		
-		DiaryView diary = service.findByViewId(id);
+		System.out.println("userId 값" + userId);
+
+		DiaryView diary = service.findByViewId(id, userId);
 		List<DiaryComment> diaryComment = diaryCommentService.getList(id);
 
 		model.addAttribute("list", list);

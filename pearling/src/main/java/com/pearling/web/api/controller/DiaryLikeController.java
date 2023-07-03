@@ -29,11 +29,6 @@ public class DiaryLikeController {
 	@Autowired
 	private DiaryLikeService service;
 
-	// @PostMapping
-	// public int add(DiaryLike DiaryLike) {
-	// return service.append(DiaryLike);
-	// }
-
 	@GetMapping("count")
 	public int count(@RequestParam("dr") int diaryId) {
 

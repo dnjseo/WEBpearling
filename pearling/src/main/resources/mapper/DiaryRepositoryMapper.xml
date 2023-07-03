@@ -56,6 +56,9 @@
 		<if test="id != null">
 		id = #{id}
 		</if>
+		<if test="memberId != null">
+		AND member_id = #{memberId}
+		</if>
 	</trim>
 	limit 1
 	</select>
@@ -117,11 +120,13 @@
 	</trim>
 		order by date
 </select>
+
 	<insert id="save">
 		insert into 
 		diary(date, title, content, view, member_id, diary_scope_id) 
 		values(#{date},#{title},#{content},#{view},#{memberId},#{diaryScopeId}) 
 	</insert>
+	
 	<update id="update">
 	UPDATE diary
 	<set>
@@ -133,6 +138,7 @@
 	WHERE id = #{id}
 	<!-- <if test="id == null">AND id IS NULL</if> -->
 	</update>
+	
 	<delete id="delete">
 		delete from diary where id=#{id}
 	</delete>

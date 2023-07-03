@@ -40,6 +40,7 @@ public class DiaryController extends BaseController {
 		public String getDiaryList(
 				@RequestParam(name = "s", required = false) boolean editShow,
 				@RequestParam(name = "d", required = false) String date,
+				@RequestParam(name = "uid", required = false) Integer userId,
 				@AuthenticationPrincipal MyUserDetails user,
 				Model model) {
 	
@@ -47,8 +48,11 @@ public class DiaryController extends BaseController {
 
 			Integer memberId = null;
 
-			if(user != null) 
-				memberId = user.getId();
+			if(user != null && userId == null) {
+				memberId = user.getId(); 
+			} else {
+				memberId = userId;
+			}
 
 			List<DiaryView> list = null; 
 			// null로 초기화하는 이유는 list 객체에 어떤 데이터가 담겨있는 것을 방지하고,
@@ -64,10 +68,7 @@ public class DiaryController extends BaseController {
 				list = service.getViewListByDate(date, memberId);
 			}
 
-			// Member member = memberService.getById(userId);
-
 			model.addAttribute("list", list);	
-			// model.addAttribute("member", member);	
 		
 			return "diary/list";
 		}
@@ -114,7 +115,7 @@ public class DiaryController extends BaseController {
 	public String post(
 			@RequestParam(name = "s", required = false) boolean editShow,
 			@RequestParam(name = "id", required = false) Integer id,
-			@RequestParam(name = "memberId", required = false) Integer memberId,
+			@RequestParam(name = "uid", required = false) Integer userId,
 			@AuthenticationPrincipal MyUserDetails user,
 			Model model) {
 
@@ -131,13 +132,8 @@ public class DiaryController extends BaseController {
 
 		List<Diary> list = service.getList();
 		
-		memberId = null;
-		
-		if(user != null) 
-		memberId = user.getId();
-		
-		DiaryView diary = service.findByViewId(id, memberId);
-		List<DiaryComment> diaryComment = diaryCommentService.getList(memberId, id);
+		DiaryView diary = service.findByViewId(id);
+		List<DiaryComment> diaryComment = diaryCommentService.getList(id);
 
 		model.addAttribute("list", list);
 		model.addAttribute("diary", diary);	
@@ -170,13 +166,13 @@ public class DiaryController extends BaseController {
 
 		List<Diary> list = service.getList();
 		
-		DiaryView diary = service.findByViewId(id, otherUser.getId());
-		List<DiaryComment> diaryComment = diaryCommentService.getList(otherUser.getId(), id);
+		// DiaryView diary = service.findByViewId(id, otherUser.getId());
+		// List<DiaryComment> diaryComment = diaryCommentService.getList(otherUser.getId(), id);
 
-		model.addAttribute("list", list);
-		model.addAttribute("diary", diary);	
-		model.addAttribute("diaryComment", diaryComment);	
-		model.addAttribute("userId", otherUser.getId());
+		// model.addAttribute("list", list);
+		// model.addAttribute("diary", diary);	
+		// model.addAttribute("diaryComment", diaryComment);	
+		// model.addAttribute("userId", otherUser.getId());
 
 		return "diary/post";
 	}

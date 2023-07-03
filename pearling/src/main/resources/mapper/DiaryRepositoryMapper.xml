@@ -56,9 +56,6 @@
 		<if test="id != null">
 		id = #{id}
 		</if>
-		<if test="memberId != null">
-		AND member_id = #{memberId}
-		</if>
 	</trim>
 	limit 1
 	</select>

@@ -6,7 +6,7 @@
       
    <select id="findAll" resultType="com.pearling.web.entity.DiaryComment">
       select * from diary_comment 
-      where reg_member_id=#{memberId} and diary_post_id=#{diaryId}
+      where diary_post_id=#{diaryId}
    </select>
    
    <select id="countByDiary" resultType="int">

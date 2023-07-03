@@ -37,7 +37,7 @@ public class DiaryCommentController {
 			if (user != null) {
 				memberId = user.getId();
 			}
-		List<DiaryComment> diaryComment = service.getList(memberId, diaryId);
+		List<DiaryComment> diaryComment = service.getList(diaryId);
 
 		System.out.println("나는 다이어리 코멘트 겟요청 레스트컨트롤러지롱");
 

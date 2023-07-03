@@ -33,6 +33,7 @@
                 <ul class="diary-list">
                     <li class="diary-detail" th:each="d : ${list}" data-aos="flip-down" data-aos-duration="2000">
                         <form>
+                            <input id="hidden-id" type="hidden" th:value="${userId}">
                             <div class="diary-date-content">
                                 <div class="diary-date">
                                     <span th:text="${#temporals.format(d.date, 'd')}"></span>

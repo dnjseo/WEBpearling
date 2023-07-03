@@ -223,11 +223,13 @@ input[type="checkbox"]:checked + p {
     align-items: center;
 }
 
-.content > a:hover{
+.content > a:hover,
+.content > span:hover{
     background-color:#cbcbf7
     /* #c9d5fff7; */
 
 }
+
 
 .schedule > ul > li> .tag > button {
 

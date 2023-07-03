@@ -69,7 +69,7 @@
                 <ul class=scheduleListSection>
                     <li class="scheduleList" th:each="s : ${scheduleList}">
                         <div class="content">
-                            <a th:href="@{../schedule/detail(id=${s.id})}" 
+                            <a class="sche-link" th:href="@{../schedule/detail(id=${s.id})}" 
                             th:data-id="${s.id}" th:text="${s.title}">비색의 탄환</a>
                         </div>
                         <div class="tag">

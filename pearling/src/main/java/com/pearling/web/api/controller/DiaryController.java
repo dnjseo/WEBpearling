@@ -40,7 +40,7 @@ public class DiaryController {
 		return service.getList();
 	}
 
-	@GetMapping("{date}")
+	/* @GetMapping("{date}")
 	public List<DiaryView> list(
 			@RequestParam(name = "s", required = false) boolean editShow,
 			@PathVariable("date") String date,
@@ -66,15 +66,16 @@ public class DiaryController {
 
 		return list;
 	}
+	*/
 
 
-	// @GetMapping("{date}/{id}")
+	@GetMapping("{date}/{id}")
 	public List<DiaryView> list(
 			@RequestParam(name = "s", required = false) boolean editShow,
+			@RequestParam(name = "uid", required = false) Integer userId,
 			@PathVariable("date") String date,
-			@PathVariable("id") int userId) {
-
-		Member otherUser = memberService.getById(userId);
+			@PathVariable("id") Integer memberId,
+			@AuthenticationPrincipal MyUserDetails user) {
 
 		List<DiaryView> list = null; 
 
@@ -83,9 +84,9 @@ public class DiaryController {
 			LocalDate today = LocalDate.now();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			date = today.format(formatter);
-			list = service.getViewListByDate(date, otherUser.getId());
+			list = service.getViewListByDate(date, memberId);
 		} else {
-			list = service.getViewListByDate(date, otherUser.getId());
+			list = service.getViewListByDate(date, memberId);
 		}
 
 		return list;
@@ -101,7 +102,7 @@ public class DiaryController {
 		if(user != null) 
 		memberId = user.getId();
 
-		DiaryView diary = service.findByViewId(id, memberId);
+		DiaryView diary = service.findByViewId(id);
 
 		return diary;
 	}

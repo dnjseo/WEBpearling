@@ -30,8 +30,8 @@ public class DiaryCommentServiceImp implements DiaryCommentService {
     }
 
     @Override
-    public List<DiaryComment> getList(Integer memberId, Integer diaryId) {
-        return repository.findAll(memberId, diaryId);
+    public List<DiaryComment> getList(Integer diaryId) {
+        return repository.findAll(diaryId);
     }
 
     @Override

@@ -111,7 +111,7 @@ public class ScheduleController extends BaseController {
 		return "redirect:/shell/myshell";
 	}
 
-	@PostMapping("delete")
+	//@PostMapping("delete")
 	public String delete(
 			@RequestParam(name = "id", required = false) Integer id,
 			Model model) {

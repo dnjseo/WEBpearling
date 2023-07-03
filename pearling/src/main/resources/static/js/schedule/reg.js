@@ -1,5 +1,3 @@
-
-
 class ScheduleElements {
     constructor(){
         let s = document.querySelector("#d1")
@@ -30,7 +28,6 @@ window.addEventListener("load", function(e) {
 
     // 삭제 버튼 클릭 시 스케쥴 삭제.
     delScheduleBtn.addEventListener("click", function () {
-        console.log('삭제버튼 클릭')
         deleteSchedule(id);
     });
 
@@ -41,23 +38,28 @@ window.addEventListener("load", function(e) {
         getDetail(id, schedule);
         delScheduleBtn.classList.add('schedule-del-btn-in-header-show')  
         changeUpdateMode()
+    } 
 
+    const postModal = document.getElementById('cofirm-modal');
+    const postBtn = this.document.querySelector('.confirm-yes')
 
-    }
+    postBtn.addEventListener("click", function () {
+      if(id==null){
+        postSchedule(id, schedule);
+      }else{
+        updateSchedule(id, schedule);
+      }
+    })
+
 
 });    
 
 function changeUpdateMode() {
-  let cofirmModal = document.querySelector('.confirmModal')
   let updateBtn = document.querySelector(".confirm-btn")
   updateBtn.innerHTML='수정'
 
-  cofirmModal.querySelector(".confirm-text").innerHTML = '일정이 수정되었습니다.'
-  let cofirmBtn = cofirmModal.querySelector(".confirm-yes")
-  cofirmBtn.onclick= (e) => {
-    e.preventDefault;
-    updateSchedule(id, schedule)
-  }
+  confirmModal = document.getElementById('confirm-modal')
+  confirmModal.querySelector('.confirm-text').innerHTML = '일정이 수정되었습니다.'
 }
 
 // schedule Detail 가져오기
@@ -175,8 +177,60 @@ function selectFreind(){
         };// colBox click end
 } //selectFriend end
 
+function postSchedule(id, schedule){
+  if(id != null)
+  return;
+
+    const scheduleData = {
+      startDate: schedule.startDate.value,
+      startTime: schedule.startTime.value,
+      endDate: schedule.endDate.value,
+      endTime: schedule.endTime.value,
+      title : schedule.title.value,
+      backgroundColor: schedule.backgroundColor.value,
+      latitude: document.querySelector('#latitude').value,
+      longitude: document.querySelector('#longitude').value,
+      place: schedule.place.value,
+    }
+    fetch('/api/schedules', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(scheduleData) // 폼 데이터를 URL 인코딩하여 전송
+    })
+      .then(response => {
+        if (response.ok) {
+          // 성공적으로 요청이 처리된 경우의 동작
+          console.log('폼 제출 성공');
+          window.location.href = "http://localhost:8080/shell/myshell";
+        } else {
+          // 요청이 실패한 경우의 동작
+          console.error('폼 제출 실패');
+        }
+      })
+      .catch(error => {
+        // 네트워크 오류 등 예외 처리
+        console.error('폼 제출 오류:', error);
+      })
+
+}
+
 // 스케쥴 삭제 로직 
 function deleteSchedule(id){
+  let deleteModal = document.getElementById("delete-modal");
+  let confirmYes = deleteModal.querySelector(".del-confirm-yes");
+  let confirmNo = deleteModal.querySelector(".del-confirm-no");
+  
+  deleteModal.style.display = "block";
+
+  confirmNo.addEventListener("click", function () {
+    console.log ('삭제 모달 - 노')
+    deleteModal.style.display = "none";
+  });
+
+  confirmYes.addEventListener("click", function () {
+    console.log ('삭제 모달 - 예스')
 
     fetch(`/api/schedules/${id}`, {
         method: "DELETE"
@@ -197,10 +251,16 @@ function deleteSchedule(id){
           console.error('폼 제출 오류:', error);
         });
 
+      })
+
 }//deleteSchedule end
 
 // 스케쥴 업데이트 로직
 function updateSchedule(id, schedule){
+  if(id == null)
+  return;
+
+  let url = `http://localhost:8080/api/schedules/detail?id=${id}`;
 
   const scheduleData = {
     id : id,
@@ -210,13 +270,13 @@ function updateSchedule(id, schedule){
     endDate: schedule.endDate.value,
     endTime: schedule.endTime.value,
     latitude: document.querySelector('#latitude').value,
-    longitude: document.querySelector('#longtitude').value,
+    longitude: document.querySelector('#longitude').value,
     place: schedule.place.value,
     backgroundColor: schedule.backgroundColor.value
   }
 
     // 서버로 데이터 전송
-    fetch(`/api/todos/${todoId}`, {
+    fetch(url, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -227,9 +287,10 @@ function updateSchedule(id, schedule){
 
         // 서버 응답 처리
         if (response.ok) {
-          console.log(todoId + '체크 상태 업데이트 성공');
+          window.location.href = "http://localhost:8080/shell/myshell";
+
         } else {
-          console.error(todoId + '체크 상태 업데이트 실패');
+          console.error('스케쥴 업데이트 실패');
         }
       })
       .catch(error => {

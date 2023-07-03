@@ -7,6 +7,8 @@ window.addEventListener('DOMContentLoaded', function () {
     
     delScheduleBtn.onclick = (e) => {
         console.log('삭제버튼')
+        
+        
     }
 
 });

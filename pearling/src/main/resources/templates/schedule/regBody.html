@@ -1,7 +1,9 @@
     <!DOCTYPE html>
     <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorate="~{inc/layout}">
-    
+    <head>
+        <script src="/js/schedule/schedule-modal.js"></script>
+    </head>
     <!-- header -->
         <div layout:fragment="reg-content">
         <form method="post" action="reg" class="send-form">
@@ -91,7 +93,7 @@
 
                 <div class="schedule-add-submit">
                     <button class="defence">취소</button>
-                    <button class="add-btn defence confirm-btn">확인</button>
+                    <button type="button" class="add-btn defence confirm-btn">확인</button>
                 </div>
 
 
@@ -101,7 +103,7 @@
                     <div class="modal-content">
                         <p>🫧 Message</p>
                         <p class="confirm-text">일정이 등록되었습니다.</p>
-                        <button class="confirm-yes">확인</button>
+                        <button type="button" class="confirm-yes ">확인</button>
                     </div>
                 </div>
 
@@ -113,8 +115,8 @@
                         <p>🫧 Message</p>
                         <p>일정을 삭제하시겠습니까?</p>
                         <div class="del-modal-btns">
-                            <button class="del-confirm-yes">예</button>
-                            <button class="del-confirm-no">아니오</button>
+                            <button type="button" class="del-confirm-yes">예</button>
+                            <button type="button" class="del-confirm-no">아니오</button>
                         </div>
                     </div>
                 </div>

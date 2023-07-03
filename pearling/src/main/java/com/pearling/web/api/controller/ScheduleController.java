@@ -92,8 +92,9 @@ public class ScheduleController{
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("post")
-    public void addSchedule(@RequestBody Schedule scheduleRequest, @AuthenticationPrincipal MyUserDetails user){
+    @PostMapping
+    public void addSchedule(@RequestBody Schedule scheduleRequest, 
+    @AuthenticationPrincipal MyUserDetails user){
         Schedule schedule = Schedule.builder()
 				.startDate(scheduleRequest.getStartDate())
 				.startTime(scheduleRequest.getStartTime())
@@ -104,6 +105,7 @@ public class ScheduleController{
 				.backgroundColor(scheduleRequest.getBackgroundColor())
 				.latitude(scheduleRequest.getLatitude())
 				.longitude(scheduleRequest.getLongitude())
+                .place(scheduleRequest.getPlace())
 				.build();
         service.addSchedule(schedule);
     }

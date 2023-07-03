@@ -1,6 +1,4 @@
 window.addEventListener("load", function () {
-    // let wrap = document.getElementById("wrap")
-    // let delBtn = wrap.querySelector(".del-btn");
 
     const delScheduleBtn = document.querySelector('.schedule-del-btn-in-header')
 

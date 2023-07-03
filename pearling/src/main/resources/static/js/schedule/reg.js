@@ -1,3 +1,5 @@
+
+
 class ScheduleElements {
     constructor(){
         let s = document.querySelector("#d1")
@@ -15,11 +17,10 @@ class ScheduleElements {
     }
 }// class end
 
-
-
 window.addEventListener("load", function(e) {
-    e.preventDefault;
-    
+  e.preventDefault;
+  
+  // loadContent 함수를 호출하여 다른 HTML 파일의 내용을 가져옵니다.
     let schedule = new ScheduleElements();
     
     const urlParams = new URLSearchParams(window.location.search);

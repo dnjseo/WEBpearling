@@ -21,4 +21,5 @@ public interface MemberRepository {
     int insertMember(Member member); // 회원가입 추가
     int updateMember(Member existingMember); // 업데이트하기
     int updatePwd(Member member); // 비밀번호 업데이트하기
+    void delete(Member member);
 }

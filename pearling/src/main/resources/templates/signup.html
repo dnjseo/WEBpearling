@@ -54,7 +54,7 @@
                 <!-- 비밀번호 확인 -->
                 <div class="pwd-check-box">
                     <label for="pwd-check">비밀번호 확인</label>
-                    <input type="password" id="pwd-check" placeholder="비밀번호를 입력하세요(확인)" required>
+                    <input type="password" id="pwd-check" name="pwd-check" placeholder="비밀번호를 입력하세요(확인)" required>
                     <p id="pwd-match-message" class="error-message"></p>
                 </div>
 
@@ -145,6 +145,14 @@
                 <p>🫧 Message</p>
                 <p>비밀번호를 다시 확인해주세요</p>
                 <button class="check-pwd-yes">확인</button>
+            </div>
+        </div>
+
+        <div id="no-pwd-Modal" class="modal">
+            <div class="modal-content">
+                <p>🫧 Message</p>
+                <p>입력한 비밀번호와 비밀번호 확인이 다릅니다.</p>
+                <button class="no-pwd-yes">확인</button>
             </div>
         </div>
     </div>

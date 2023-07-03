@@ -55,12 +55,12 @@
 }
 
 .change li:nth-child(1n){
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     font-weight: bold;
 }
 
 .change li:nth-child(2n){
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     font-weight: lighter;
 }
 

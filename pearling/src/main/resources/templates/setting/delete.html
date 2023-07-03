@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{inc/layout}">
-
 <head>
     <link href="/css/setting/setting-delete.css" type="text/css" rel="stylesheet">
+    <script src="/js/setting/setting-delete.js"></script>
     <title>setting-delete</title>
 </head>
-
 <body>
-
-     <!-- header -->
-
     <!-- wrap -->
     <main layout:fragment="content" class="wrap">
         <section class="setting-delete">
@@ -24,9 +20,17 @@
             </div>
         </section>
 
+        <!-- alert창 ------------------------------->
+
+        <!-- 계정 삭제 완료 창 -->
+        <div id="delete-modal" class="modal">
+            <div class="modal-content">
+                <p>🫧 Message</p>
+                <p>계정이 성공적으로 삭제되었습니다.</p>
+                <button class="delete-yes">확인</button>
+            </div>
+        </div>
     </main>
     <!-- /wrap -->
-
 </body>
-
 </html>

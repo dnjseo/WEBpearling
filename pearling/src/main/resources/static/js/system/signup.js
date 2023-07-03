@@ -87,9 +87,11 @@ window.addEventListener("load", function () {
         let pwdCheck = this.value;
 
         if (pwd === pwdCheck) {
+            matchMessage.style.display = "block";
             matchMessage.textContent = "비밀번호가 일치합니다.";
             matchMessage.style.color = "blue";
         } else {
+            matchMessage.style.display = "block";
             matchMessage.textContent = "비밀번호가 일치하지 않습니다.";
             matchMessage.style.color = "red";
         }
@@ -116,6 +118,7 @@ window.addEventListener("load", function () {
    // 비밀번호 유효성 검사 결과 표시 함수
     function displayPasswordErrorMessage(message) {
         let errorMessage = document.getElementById("pwd-error");
+        errorMessage.style.display = "block";
         errorMessage.textContent = message;
         errorMessage.style.color = "red";
     }
@@ -132,6 +135,7 @@ window.addEventListener("load", function () {
         let errorMessage = document.getElementById("pwd-error");
 
         if (validatePassword(pwd)) {
+            errorMessage.style.display = "block";
             errorMessage.textContent = ""; // 유효성 검사에 성공하면 에러 메시지를 지움
         } else {
             displayPasswordErrorMessage("비밀번호는 영문, 숫자, 특수 기호를 포함하여 6자리 이상이어야 합니다.");
@@ -148,6 +152,7 @@ window.addEventListener("load", function () {
         let domain = inputs["domain"].value;
         let fullEmail = email + "@" + domain;
         let pwd = inputs["pwd"].value;
+        let pwdCheck = inputs["pwd-check"].value;
         let name = inputs["name"].value;
         let nickname = inputs["nickname"].value;
         let birth = inputs["birth"].value;
@@ -161,7 +166,14 @@ window.addEventListener("load", function () {
             noneModal("check-pwd-Modal", ".check-pwd-yes"); // 비밀번호 다시 확인하는 함수
             return;
         }
-    
+
+        // 비밀번호 같은지 다른지
+        if (pwd != pwdCheck) {
+            showModal("no-pwd-Modal");
+            noneModal("no-pwd-Modal", ".no-pwd-yes"); // 비밀번호 다시 확인하는 함수
+            return;
+        } 
+
         try {
         // 이메일 중복 검사
         let isEmailDuplicate = await checkEmailDuplicate(fullEmail);
@@ -214,11 +226,13 @@ function chkEmailConfirm(data, memailconfirm) {
     let emconfirmchk = document.querySelector(".emconfirmchk");
     memailconfirm.addEventListener("keyup", function() {
         if (data !== memailconfirm.value) {
+            emconfirmchk.style.display = "block";
             emconfirmchk.textContent = "인증번호가 잘못되었습니다";
             emconfirmchk.style.color = "#FA3E3E";
             emconfirmchk.style.fontWeight = "bold";
             emconfirmchk.style.fontSize = "10px";
         } else {
+            emconfirmchk.style.display = "block";
             emconfirmchk.textContent = "인증번호 확인 완료";
             emconfirmchk.style.color = "#0D6EFD";
             emconfirmchk.style.fontWeight = "bold";

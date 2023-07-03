@@ -61,4 +61,8 @@
         </set>
         where id = #{id}
     </update>
+	<!-- 회원 삭제 -->
+	<delete id="delete" parameterType="Member">
+		delete from member where id = #{id}
+	</delete>
 </mapper>

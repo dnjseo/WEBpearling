@@ -1,21 +1,21 @@
-
+/* section */
 .setting-delete{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    font-size: 20px;
+
+    margin-top: 100px;
+
+    font-size: 16px;
     font-weight: bold;
 }
 
 .comfirm{
     display: flex;
-    /* 가로 */
     align-items: center;
     justify-content: center;
-    /* 세로 */
-    align-items: center;
     width: 60%;
     height: 220px;
 
@@ -25,13 +25,10 @@
 }
 
 .select-btn{
-    /* Auto layout */
     display: flex;
     flex-direction: row;
-
-    width: 80%;
-
     justify-content: center;
+    width: 80%;
 
     padding: 10px 0px;
     gap: 10px;

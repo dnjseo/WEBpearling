@@ -11,6 +11,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -76,9 +77,17 @@ public class MemberController {
         service.updatePwd(existingMember);
     }
 
+    // 회원 삭제
     @DeleteMapping("/delete")
-    public void delete(@RequestBody Member member){
+    public void delete(@ModelAttribute Member member,
+                        @AuthenticationPrincipal MyUserDetails user) {
+
+        Member existingMember = service.getByUsername(user.getUsername());
+        Member id = service.getById(user.getId());
+
+        if(existingMember != null){
+            service.delete(id);
+        }
 
     }
-
 }

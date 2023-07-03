@@ -1,9 +1,9 @@
 window.addEventListener("load", function () {
-    var modify = document.querySelector('.modify'); // 수정 버튼
-    var cancelButton = document.querySelector('.cancel'); // 취소 버튼
+    let modify = document.querySelector('.modify'); // 수정 버튼
+    let cancelButton = document.querySelector('.cancel'); // 취소 버튼
 
-    var modifyModal = document.getElementById("modify-modal");
-    var modifyYes = document.querySelector('.modify-yes');
+    let modifyModal = document.getElementById("modify-modal");
+    let modifyYes = document.querySelector('.modify-yes');
 
     // 취소 버튼
     cancelButton.addEventListener("click", function (event) {
@@ -25,9 +25,9 @@ window.addEventListener("load", function () {
 
     // 파일 선택 시 이미지 미리보기
     document.getElementById("fileInput").addEventListener("change", function(event) {
-    var input = event.target;
+    let input = event.target;
     if (input.files && input.files[0]) {
-      var reader = new FileReader();
+      let reader = new FileReader();
       reader.onload = function(e) {
         document.querySelector(".profile_img").setAttribute("src", e.target.result);
       }

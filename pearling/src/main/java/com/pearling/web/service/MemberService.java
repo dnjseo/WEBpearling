@@ -26,6 +26,9 @@ public interface MemberService {
 
     // 회원수정
     int updateMember(Member member); // 회원 수정을 위한 메서드 추가
-    void updatePwd(Member member);
+    void updatePwd(Member member); // 
     String uploadProfileImage(MultipartFile file, HttpServletRequest request) throws IOException;
+
+    // 회원 삭제
+    void delete(Member member);
 }

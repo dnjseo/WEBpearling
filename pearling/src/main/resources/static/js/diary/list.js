@@ -4,6 +4,8 @@ function diaryListLoad(url) {
     // let diary = diaryList.querySelector(".diary");
 
     let mid = document.querySelector("#input-member-id").value;
+    let urlParams = new URLSearchParams(window.location.search);
+    let userId = urlParams.get('uid');
 
     fetch(url)
         .then(response => response.json())
@@ -20,6 +22,7 @@ function diaryListLoad(url) {
 
                 let itemTemplate = `<li class="diary-detail" data-aos="flip-down" data-aos-duration="2000">
                 <form>
+                <input id="hidden-id" type="hidden" value="${userId}">
                     <div class="diary-date-content">
                         <div class="diary-date">
                             <span>${day}</span>
@@ -69,13 +72,25 @@ window.addEventListener('DOMContentLoaded', function(e) {
 
     calendar.render();
     calendar.setOption('contentHeight', 350);
+
+    let urlParams = new URLSearchParams(window.location.search);
+    let userId = urlParams.get('uid');
     
     calendar.on('dateClick', function(info) {
         let clickedDate = info.dateStr; // 클릭한 날짜 정보 가져오기
         let memberId = document.querySelector("#input-member-id").value;
+
+        let id;
+        if(userId == null) {
+            id = memberId;
+        } else if(memberId == userId) {
+            id = memberId;
+        } else {
+            id = userId;
+        }
         console.log(clickedDate);
-        console.log(memberId);
-        diaryListLoad(`http://localhost:8080/api/diary/${clickedDate}`);
+        console.log(id);
+        diaryListLoad(`http://localhost:8080/api/diary/${clickedDate}/${id}`);
     });
 
     let diaryListSection = document.querySelector(".diary-list-section");

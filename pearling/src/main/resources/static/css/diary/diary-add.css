@@ -338,31 +338,28 @@
         height: 15px;
     }
 
-    .comment-input-box> textarea {
-        font-family: 'Pretendard-Regular';
-        font-size: 12px;
-        color: #797979;
-
-        margin-top: 10px;
-        padding: 10px 10px;
+    .comment > .content-span {
+        padding-left: 18px;
     }
 
+    
     .up-del-box {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
-
+    
     .up-del-box > span {
         justify-self: flex-start;
+        padding-left: 18px;
     }
-
+    
     .up-del-btns {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
     }
-
+    
     .up-del-btns > button {
         /* display: none; */
         border: none;
@@ -370,10 +367,19 @@
         color: #797979;
         font-size: 12px;
     }
+    
+.comment-input-box> textarea {
+    font-family: 'Pretendard-Regular';
+    font-size: 12px;
+    color: #797979;
+
+    margin-top: 10px;
+    padding: 10px 10px;
+}
 
 .comment-update-form {
     display: flex;
-    flex-direction: column;
+flex-direction: column;
 }
 
     .comment-update-form > .comment-update-input {

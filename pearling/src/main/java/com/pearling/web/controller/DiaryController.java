@@ -146,6 +146,41 @@ public class DiaryController extends BaseController {
 		return "diary/post";
 	}
 
+	//@GetMapping("post/{id}")
+	public String post(
+			@RequestParam(name = "s", required = false) boolean editShow,
+			@RequestParam(name = "id", required = false) Integer id,
+			@RequestParam(name = "memberId", required = false) Integer memberId,
+			@PathVariable("id") int userId,
+			@AuthenticationPrincipal MyUserDetails user,
+			Model model) {
+
+		String pageTitle = getPageTitle();
+		pageTitle = "";
+
+		model.addAttribute("pageTitle", pageTitle);
+		model.addAttribute("headerShow", false);
+
+		if (editShow)
+			model.addAttribute("editShow", 1);
+		else
+			model.addAttribute("editShow", 2);
+
+		Member otherUser = memberService.getById(userId);
+
+		List<Diary> list = service.getList();
+		
+		DiaryView diary = service.findByViewId(id, otherUser.getId());
+		List<DiaryComment> diaryComment = diaryCommentService.getList(otherUser.getId(), id);
+
+		model.addAttribute("list", list);
+		model.addAttribute("diary", diary);	
+		model.addAttribute("diaryComment", diaryComment);	
+		model.addAttribute("userId", otherUser.getId());
+
+		return "diary/post";
+	}
+
 	// @PostMapping("post")
 	public String post(
 			@RequestParam(name = "date", required = false) LocalDate date,

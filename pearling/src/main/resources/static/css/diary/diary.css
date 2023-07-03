@@ -211,6 +211,8 @@ form {
 
     position: relative;
     display: inline-block;
+
+    cursor: pointer;
   }
 
 .icon-heart-fill {
@@ -219,6 +221,7 @@ form {
     height: 18px;
 
     animation: heartbeat 1s infinite;
+    cursor: pointer;
 }
 
 .icon-comment {

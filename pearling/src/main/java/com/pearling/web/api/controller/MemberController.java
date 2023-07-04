@@ -88,6 +88,5 @@ public class MemberController {
         if(existingMember != null){
             service.delete(id);
         }
-
     }
 }

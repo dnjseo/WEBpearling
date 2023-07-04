@@ -126,4 +126,10 @@ public class MemberServiceImp implements MemberService{
     public void delete(Member member) {
         repository.delete(member);
     }
+
+    // 로그인 api 아이디 찾기
+    @Override
+    public Member getByProviderId(String providerId) {
+        return repository.findByProviderId(providerId);
+    }
 }

@@ -22,13 +22,23 @@
 			</if>			
 		</trim>
 	</select>
+	<select id="findByProviderId" resultType="Member">
+		select * from member where provider_id=#{providerId}
+	</select>
+	<!-- Find member by login ID (email) -->
+    <select id="findByLoginId" resultType="Member">
+        SELECT *
+        FROM member
+        WHERE login_id = #{loginId}
+    </select>
 	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="Member">
-        insert into member
-		(id, name, pwd, nickname, email, birth)
-        values 
-		(#{id}, #{name}, #{pwd}, #{nickname}, #{email}, #{birth})
-    </insert>
+		insert into member
+		(id, name, pwd, nickname, email, birth, login_id, provider, provider_id)
+		values 
+		(#{id}, #{name}, #{pwd}, #{nickname}, #{email}, #{birth}, #{loginId}, 
+		(SELECT id FROM social_type WHERE social_type = #{provider}), #{providerId})
+	</insert>
 	<!-- 이메일 회원 조회 -->
 	<select id="findByEmail" resultType="Member">
 		select * from member where email=#{email}

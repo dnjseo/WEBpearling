@@ -13,6 +13,8 @@
     <script src="/js/diary/post.js"></script>
     <script src="/js/diary/delete-update.js"></script>
     <script src="/js/diary/comment-detail.js"></script>
+    <script src="/js/diary/show.js"></script>
+
     <!-- <script src="/js/diary/comment-post.js"></script> -->
     <!-- <script src="/js/diary/comment-delete-update.js"></script> -->
     <!-- <script src="/js/system/modal-alert.js" defer></script> -->
@@ -23,8 +25,6 @@
 <body>
     <!-- wrap ---------------------------------->
     <main layout:fragment="content" class="wrap">
-
-
 
         <!-- 본문 ------------------------------->
         <!-- 등록창 -->
@@ -80,12 +80,14 @@
                                 <button class="add-btn">등록</button>
                             </div>
                             <div class="diary-detail-span">
-                                <input class="diary-detail-date" type="date" th:value="${diary.date}" name="date">
-                                <input class="diary-detail-title" type="text" th:value="${diary.title}" name="title">
+                                <input class="diary-detail-date" type="date" th:value="${diary.date}" name="date" disabled>
+                                <input class="diary-detail-title" type="text" th:value="${diary.title}" name="title" disabled>
                                 <input class="d-none" type="image">
                                 <textarea class="diary-detail-input" rows="15" th:text="${diary.content}"
-                                    name="content"></textarea>
+                                    name="content" disabled></textarea>
                                 <input type="hidden" name="id" th:value="${diary.id}">
+                                <input type="hidden" id="input-login-id" th:value="${#authentication.principal.id}">
+                                <input type="hidden" name="diary-reg-member-id" th:value="${diary.memberId}">
                                 <div class="btns">
                                     <!-- <button>🔒</button> -->
                                     <!-- <input class="file-btn" type="file"> -->
@@ -100,7 +102,7 @@
                                             th:data-diary-id="${diary.id}" class="icon icon-heart"
                                             th:classappend="${diary.like} ? 'icon-heart-fill' : ''">
                                         </svg>
-                                        <span th:text="${diary.like}"></span>
+                                        <!-- <span th:text="${diary.like}"></span> -->
                                         <span th:text="${diary.likeCount}">1</span>
                                         <span>좋아요</span>
                                     </div>
@@ -115,7 +117,7 @@
                                 </div>
 
                                 <div class="diary-scope-summit-btns">
-                                    <select type="submit" name="diary-scope-id">
+                                    <select type="submit" name="diary-scope-id" disabled>
                                         <option value="1">전체공개</option>
                                         <option value="2">친구공개</option>
                                         <option value="3">비공개</option>
@@ -167,9 +169,9 @@
                                                 <div class="up-del-box">
                                                     <span th:text="${dc.regDate}"></span>
                                                     <div class="up-del-btns">
-                                                        <button class="co-update-btn" type="button"
+                                                        <button class="co-update-btn d-none" type="button"
                                                             th:data-id="${dc.id}">수정</button>
-                                                        <button class="co-del-btn" type="button"
+                                                        <button class="co-del-btn d-none" type="button"
                                                             th:data-id="${dc.id}">삭제</button>
                                                     </div>
                                                     <input type="hidden" name="diaryPostId" th:value="${diary.id}">
@@ -197,6 +199,7 @@
                                 </ul>
                             </form>
                         </section>
+
                     </div>
                 </div>
 

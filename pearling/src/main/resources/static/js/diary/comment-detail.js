@@ -23,7 +23,7 @@ function commentListLoad(url) {
                 let formattedMinute = minute < 10 ? `0${minute}` : minute;
 
                 let formattedDate = `${year}/${formattedMonth}/${formattedDay} ${formattedHour}:${formattedMinute}`;
-        
+
                 let itemTemplate = `
                     <div class="comment" data-com-id="${comment.id}">
                     <div class="comment-deco-box">
@@ -45,10 +45,9 @@ function commentListLoad(url) {
                     </div>
                     </div>`;
 
-                commentList.insertAdjacentHTML("beforeend", itemTemplate); 
-                
-                // showCommenteBtns();       
-                
+                commentList.insertAdjacentHTML("beforeend", itemTemplate);
+
+                showCommenteBtns();
             }
         })
         .catch((error) => {
@@ -57,31 +56,32 @@ function commentListLoad(url) {
 }
 
 function showCommenteBtns() {
-    let commentSection = document.querySelector(".diary-comment-section");
-    let commentList = commentSection.querySelector(".comment-list");
 
-    commentList.addEventListener('click', function(e) {
-        e.preventDefault();
-    
-        let commentShowBtn = e.target;
-        let commentItem = commentShowBtn.closest(".comment");
-        if (!commentItem) {
-            return; // 클릭 이벤트가 발생한 요소의 부모 요소가 .comment 클래스를 갖지 않으면 종료
+    let commentUpdateBtns = document.querySelectorAll(".co-update-btn");
+    let commentDeleteBtns = document.querySelectorAll(".co-del-btn");
+
+    let urlParams = new URLSearchParams(window.location.search);
+    let userId = urlParams.get('uid');
+    let loginId = document.querySelector("#input-login-id").value;
+    let regMemberIdInputs = document.querySelectorAll('input[name="reg-id"]');
+    let diaryHostIdInput = document.querySelector('input[name="diary-reg-member-id"]');
+    let diaryHostId = diaryHostIdInput.value;
+    console.log("다이어리 주인 아이디" + diaryHostIdInput.value);
+
+    for (let i = 0; i < regMemberIdInputs.length; i++) {
+        let regMemberId = regMemberIdInputs[i].value;
+
+        console.log("유저 : " + loginId + "멤버 : " + regMemberId);
+        console.log("조건식 결과: " + i + (loginId == regMemberId) + (userId == null) + (loginId == diaryHostId));
+
+        if (loginId == regMemberId || userId == null || loginId == diaryHostId) {
+            commentUpdateBtns[i].classList.remove("d-none");
+            commentDeleteBtns[i].classList.remove("d-none");
+        } else {
+            commentUpdateBtns[i].classList.add("d-none");
+            commentDeleteBtns[i].classList.add("d-none");
         }
-    
-        let commentEditBtn = commentItem.querySelector(".co-update-btn");
-        let commentDelBtn = commentItem.querySelector(".co-del-btn");
-    
-        if (commentShowBtn.classList.contains("comment-show-btn")) {
-            if (commentEditBtn.style.display === "block") {
-                commentEditBtn.style.display = "none";
-                commentDelBtn.style.display = "none";
-            } else {
-                commentEditBtn.style.display = "block";
-                commentDelBtn.style.display = "block";
-            }
-        }
-    });
+    }
 }
 
 /* ----------------- Delete 요청 처리 ----------------- */
@@ -194,7 +194,7 @@ function addClickEventListeners() {
 
             let memberIdInput = document.querySelector('input[name="reg-member-id"]');
             let memberId = memberIdInput.value;
-           
+
             if (!memberIdInput) {
                 console.error('reg-member-id input을 찾을 수 없습니다.');
                 return;
@@ -208,7 +208,7 @@ function addClickEventListeners() {
             <input type="hidden" name="reg-member-id" value="${memberId}">
             <button class="comment-update-submit" type="submit">✓</button>
             `;
-            
+
             commentItem.replaceWith(updateForm);
 
             updateForm.addEventListener('submit', function (e) {
@@ -263,6 +263,7 @@ function addClickEventListeners() {
 /* ----------------- 윈도우 로드 시 댓글 리스트 조회 ----------------- */
 
 window.addEventListener('DOMContentLoaded', function (e) {
+
     let diaryPostIdInput = document.querySelector('input[name="diary-post-id"]');
     let diaryId = diaryPostIdInput.value;
 
@@ -281,7 +282,7 @@ window.addEventListener('DOMContentLoaded', function (e) {
         }
 
         commentListLoad(`/api/diaryComments/${diaryId}`);
-        
+
     });
 
     addClickEventListeners();

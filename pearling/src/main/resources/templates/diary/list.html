@@ -33,7 +33,6 @@
                 <ul class="diary-list">
                     <li class="diary-detail" th:each="d : ${list}" data-aos="flip-down" data-aos-duration="2000">
                         <form>
-                            <input id="hidden-id" type="hidden" th:value="${userId}">
                             <div class="diary-date-content">
                                 <div class="diary-date">
                                     <span th:text="${#temporals.format(d.date, 'd')}"></span>
@@ -45,10 +44,11 @@
                                         <span th:text="${d.title}">title</span>
                                         <span th:text="${d.content}">다이어리 내용</span>
                                     </a>
+                                    <input id="input-reg-member-id" type="hidden" th:value="${d.memberId}">
                                 </div>
                             </div>
                             <div class="diary-heart-comment">
-                                <div class="diary-emog">
+                                <div class="diary-emog"> 
                                     <svg
                                     sec:authorize="isAuthenticated()" 
                                     th:data-member-id="${#authentication.principal.id}"
@@ -75,7 +75,7 @@
             <!----------------------- 다이어리 내용 --------------------->
             <section>
                 <div class="add-btn">
-                    <button><a class="defence" th:href="@{../diary/post(s=1, id=0)}">+</a></button>
+                    <button class="diary-post-add-btn"><a class="defence" th:href="@{../diary/post(s=1, id=0)}">+</a></button>
                 </div>
             </section>
     <input id="input-member-id" type="hidden" th:value="${#authentication.principal.id}">

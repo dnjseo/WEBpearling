@@ -49,10 +49,31 @@ window.addEventListener('DOMContentLoaded', function (e) {
   let showBtn = delForm.querySelector(".show-btn");
   let showedBtns = delForm.querySelector(".show-diary-del-edit-btn");
   let delBtn = delForm.querySelector(".del-confirm-yes");
+  
+  let urlParams = new URLSearchParams(window.location.search);
+  console.log("url : " + urlParams);
+  let userId = urlParams.get('uid');
+  console.log("uid : " + userId);
+  let loginId = document.querySelector("#input-login-id").value;
+  console.log("loginId : " + loginId);
+  let selectElement = document.querySelector('select[name="diary-scope-id"]');
+  console.log("selectShow : " + selectElement);
+  let diaryDateInput = document.querySelector(".diary-detail-date");
+  let diaryTitleInput = document.querySelector(".diary-detail-title");
+  let diaryContentInput = document.querySelector(".diary-detail-input");
+
+  if(userId == loginId || userId == "") {
+      showBtn.style.display = "block";
+      selectElement.removeAttribute("disabled");
+      diaryDateInput.removeAttribute("disabled");
+      diaryTitleInput.removeAttribute("disabled");
+      diaryContentInput.removeAttribute("disabled");
+  } else {
+      showBtn.style.display = "none";
+  }
 
   showBtn.addEventListener('click', function (e) {
     e.preventDefault();
-    // showedBtns.style.display = "block";
 
     if (showedBtns.style.display === "block") {
       showedBtns.style.display = "none";
@@ -64,7 +85,6 @@ window.addEventListener('DOMContentLoaded', function (e) {
       e.preventDefault();
       showedBtns.style.display = "none";
 
-      // let delForm = document.querySelector(".diary-edit-form");
       let inputs = delForm.elements;
       let id = inputs["id"].value;
       handleDelete(id);
@@ -78,8 +98,6 @@ window.addEventListener('DOMContentLoaded', function (e) {
   addBtn.addEventListener('click', (e) => {
     e.preventDefault();
     showedBtns.style.display = "none";
-
-    // let editForm = document.querySelector(".diary-edit-form");
 
     let inputs = editForm.elements;
     let id = inputs["id"].value;

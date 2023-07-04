@@ -152,6 +152,7 @@ form {
     height: 100px;
     right: 3%;
     bottom: 2%;
+    z-index: 9999;
 }
 
     .add-btn > button{
@@ -188,6 +189,10 @@ form {
     .add-btn > button > a {
         color: #797979;
     }
+
+    /* .diary-post-add-btn[disabled] a {
+        pointer-events: none;
+      } */
 
 
 /* 하트, 댓글 아이콘 속성 */

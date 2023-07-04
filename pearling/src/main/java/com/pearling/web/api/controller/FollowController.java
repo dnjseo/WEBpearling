@@ -72,6 +72,19 @@ public class FollowController {
         }
     }
 
+
+    @PostMapping("followerList/{id}")
+    public void addFollower(@PathVariable("id") int id,
+                            @RequestBody FollowRequest followRequest, 
+                            @AuthenticationPrincipal MyUserDetails user){
+        Follow follow = Follow.builder()
+                        .followerId(followRequest.getFollowerId())
+                        .followingId(user.getId())
+                        .build();
+        service.addFollow(follow);
+    }
+
+
     @DeleteMapping("followerList/{id}")
      public void deleteFollower(@PathVariable("id") int id){
         

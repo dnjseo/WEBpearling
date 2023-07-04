@@ -16,7 +16,7 @@ function followerListLoad(url){
                                 <img src=${follower.profileImage}>
                                 <div>
                                     <p>${follower.nickname}>연주</p>
-                                    <button data-follow-status="${follower.isFollowing}">팔로우</button>
+                                    <button class="follow-follower" data-follow-status="${follower.isFollower}">팔로우</button>
                                 </div>
                                 <!-- <p>팔로잉</p> -->
                                 <button class="follower-delete" data-id="${follower.statusId}">삭제</button>
@@ -37,6 +37,7 @@ let url = 'http://localhost:8080/api/follow/followerList';
 
 window.addEventListener("DOMContentLoaded", function(e){
     let deleteBtns = document.querySelectorAll(".follower-delete");
+    let followBtns = document.querySelectorAll(".follow-follower");
 
     deleteBtns.forEach(deleteBtn => {
         deleteBtn.addEventListener('click', function(e){
@@ -70,5 +71,43 @@ window.addEventListener("DOMContentLoaded", function(e){
             }
 
         })
+    })
+
+    followBtns.forEach(followBtn => {
+        followBtn.addEventListener('click', function(e){
+
+            let el = e.target;
+    
+            let followingId = el.closest("li").querySelector("input[name='hideFollowingId']").value;
+            let followerId = el.closest("li").querySelector("input[name='hideFollowerId']").value;
+
+
+            
+            let id = el.dataset.id;
+            
+            console.log("id값은 " +id);
+            console.log("나를 팔로우하는 사람의 id는 " +followerId);
+            console.log("내 id는 " +followingId);
+            
+            if (el.classList.contains('follow-follower')) {
+                
+                fetch(`/api/follow/followerList/${id}`,{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({followingId, followerId})
+                })
+                    .then(function(response){
+                        if(response.ok){
+                            console.log("추가 완");
+                        }
+                    })
+                
+            }
+
+
+        })
+
     })
 })

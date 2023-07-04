@@ -29,7 +29,7 @@
                 <ul class="followings">
                     <li th:each="f : ${followings}">
                         <img src = "/images/profile/profile_yj.png" th:src="@{'/resources/img/' + ${f.profileImage}}">
-                        <p th:text="${f.nickname}">연주</p>
+                        <a th:text="${f.nickname}" th:href="@{/shell/myshell/{id}(id=${f.id})}">예린</a>
                         <button class="following-statement" th:data-id="${f.statusId}">팔로잉</butoon>
                         <input type="hidden" name="hideFollowingId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
                         <input type="hidden" name="hideFollowerId" sec:authorize="isAuthenticated()" th:value="${f.id}"/>

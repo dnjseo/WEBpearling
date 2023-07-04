@@ -16,5 +16,5 @@ public class Follow {
     private String nickname;
     private String profileImage;
     private int statusId;
-    private boolean isFollowing;
+    private int isFollower;
 }

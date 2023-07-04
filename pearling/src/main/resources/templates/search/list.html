@@ -30,7 +30,9 @@
                             <img class="profile_img"
                                 th:src="@{${m.profileImage} != null ? '/resources/img/' + ${m.profileImage} : '/images/profile/basic.png'}" 
                                 alt="프로필" />
-                            <p class="account-name" th:text="${m.nickname}">연주의 점심</p>
+                            <div class="account-name" th:data-member-id="${m.id}">
+                                <a th:text="${m.nickname}" th:href="@{/shell/myshell/{id}(id=${m.id})}">연주의 점심</a>
+                            </div>
                         </div>
                         <div class="non-result" th:unless="${not #lists.isEmpty(memList)}">
                             <p th:text="${searchResults}"></p>

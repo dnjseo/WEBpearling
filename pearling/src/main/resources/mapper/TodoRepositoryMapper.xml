@@ -34,7 +34,7 @@
 		FROM follow f
 		JOIN member m ON f.following_id = m.id
 		JOIN to_do t ON m.id = t.member_id
-		WHERE f.follower_id = 3
+		WHERE f.follower_id = #{memberId}
 			AND DATE(t.date) = CURDATE()
 			AND t.member_id = m.id;
 	</select>

@@ -62,7 +62,7 @@ layout:decorate="~{inc/layout}">
                                 <p th:text="${f.nickname}">연주</p>
                             </div>
                             <div class = "scheduleContents">
-                                <ul th:each= "ft : ${friendTodoList}" th:if="${ft.id} == ${f.id}">
+                                <ul th:each= "ft : ${friendTodoList}" th:if="${f.id} == ${ft.id}">
                                     <li >
                                         <div class="content">
                                         <p th:text="${ft.content}">☑︎ 마라탕 먹으러가기</p> 

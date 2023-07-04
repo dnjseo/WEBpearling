@@ -93,7 +93,7 @@ public String otherShell(Model model, @PathVariable("id") int userId) {
 ;
 		List<Member> friendList = followService.getFollowingsList(userId); 
 		
-		List<Todo> friendTodoList = service.getListByCurDate(memberId);		
+		List<Todo> friendTodoList = service.getListByCurDate(userId);		
 		
 	
 		model.addAttribute("headerShow", true);

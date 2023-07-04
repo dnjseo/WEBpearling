@@ -107,6 +107,10 @@
     margin-bottom: 30px;
 }
 
+    .diary-detail-date:disabled {
+        background-color: transparent;
+    }
+
 .diary-detail-title {
     font-family: 'Pretendard-Regular';
     border: none;
@@ -116,12 +120,22 @@
     margin-bottom: 10px;
 }
 
+    .diary-detail-title:disabled {
+    background-color: transparent;
+    }
+
+
 .diary-detail-input {
     box-sizing: border-box;
     font-family: 'Pretendard-Regular';
     border: none;
     line-height: 25px;
 }
+
+    .diary-detail-input:disabled {
+    background-color: transparent;
+    }
+
 
 
 /* -----버튼(사진 첨부)--------------------------------------------------- */

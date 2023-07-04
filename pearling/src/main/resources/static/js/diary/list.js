@@ -34,7 +34,6 @@ function diaryListLoad(url) {
 
                 let itemTemplate = `<li class="diary-detail" data-aos="flip-down" data-aos-duration="2000">
                 <form>
-                <input id="hidden-id" type="hidden" value="${userId}">
                     <div class="diary-date-content">
                         <div class="diary-date">
                             <span>${day}</span>
@@ -77,10 +76,16 @@ window.addEventListener('DOMContentLoaded', function(e) {
     // css 파일이 js 파일보다 먼저 로드될 수 있도록 DOMContentLoaded 사용 
 
     let urlParams = new URLSearchParams(window.location.search);
+    // console.log("url : " + urlParams);
     let userId = urlParams.get('uid');
-    
-    console.log("이거 확인중" + userId);
-    
+    let loginId = document.querySelector("#input-member-id").value;
+    let postAddBtn = document.querySelector(".add-btn");
+
+    if(userId == loginId || urlParams == "") 
+        postAddBtn.style.display = "block";
+    else
+        postAddBtn.style.display = "none";
+        
     let calendarEl = document.getElementById('calendar');
     let calendar = new FullCalendar.Calendar(calendarEl, {
         editable: true,
@@ -92,13 +97,12 @@ window.addEventListener('DOMContentLoaded', function(e) {
 
     calendar.on('dateClick', function(info) {
         let clickedDate = info.dateStr; // 클릭한 날짜 정보 가져오기
-        let memberId = document.querySelector("#input-member-id").value;
 
         let id;
         if(userId == null) {
-            id = memberId;
-        } else if(memberId == userId) {
-            id = memberId;
+            id = loginId;
+        } else if(loginId == userId) {
+            id = loginId;
         } else {
             id = userId;
         }

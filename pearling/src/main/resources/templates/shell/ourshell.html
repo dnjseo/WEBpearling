@@ -63,9 +63,10 @@ layout:decorate="~{inc/layout}">
                             </div>
                             <div class = "scheduleContents">
                                 <ul th:each= "ft : ${friendTodoList}" th:if="${f.id} == ${ft.id}">
-                                    <li >
+                                    <li>
                                         <div class="content">
-                                        <p th:text="${ft.content}">☑︎ 마라탕 먹으러가기</p> 
+                                            <input type="checkbox" th:checked="${ft.statement}" disabled>
+                                            <p th:text="${ft.content}">☑︎ 마라탕 먹으러가기</p> 
                                         </div>
                                         <!-- <div class="tag">
                                             <button>@나</button>

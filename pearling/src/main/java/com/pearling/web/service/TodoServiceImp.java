@@ -64,8 +64,9 @@ public class TodoServiceImp implements TodoService{
     }
 
     @Override
-    public List<Todo> getListByCurDate(Integer userId) {
-        return repository.findByCurDate(userId);
+    public List<Todo> getListByCurDate(Integer userId, LocalDate date) {
+        
+        return repository.findByCurDate(userId, date);
     }
 
     

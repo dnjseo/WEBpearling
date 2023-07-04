@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pearling.web.entity.Schedule;
+import com.pearling.web.entity.Todo;
 import com.pearling.web.repository.ScheduleRepository;
 
 @Service
@@ -69,6 +70,13 @@ public class ScheduleServiceImp implements ScheduleService {
     public int deleteSchedule(Schedule schedule) {
         
         return repository.delete(schedule);
+    }
+
+
+    @Override
+    public List<Schedule> getListByCurDate(Integer memberId, LocalDate date) {
+        
+        return repository.findByCurDate(memberId, date);
     }
   
   

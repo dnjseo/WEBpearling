@@ -89,17 +89,18 @@ public String otherShell(Model model, @PathVariable("id") int userId) {
 		MyUserDetails user = (MyUserDetails) context.getAuthentication().getPrincipal();
 
         int userId = user.getId();
-		
+		LocalDate todayDate = LocalDate.now();
+
 ;
 		List<Member> friendList = followService.getFollowingsList(userId); 
 		
-		List<Todo> friendTodoList = service.getListByCurDate(userId);		
-		
+		List<Todo> friendTodoList = service.getListByCurDate(userId,todayDate);		
+		//List<Schedule> friendScheduleList = scheduleService.getListByCurDate(userId, todayDate);
 	
 		model.addAttribute("headerShow", true);
 		model.addAttribute("friendList", friendList);
 		model.addAttribute("friendTodoList", friendTodoList);
-		
+		//model.addAttribute("friendScheduleList", friendScheduleList);
 
 		return "shell/ourshell";
 	}

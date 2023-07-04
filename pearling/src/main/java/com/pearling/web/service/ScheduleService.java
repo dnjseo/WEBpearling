@@ -10,6 +10,7 @@ public interface ScheduleService {
     List<Schedule> getListByUserId(Integer memberId);
     List<Schedule> getListByDate(Integer memberId, LocalDate date);
     List<Schedule> getListByQuery(String query);
+    List<Schedule> getListByCurDate(Integer memberId, LocalDate date);
 
     Schedule get(Integer id);
     Schedule findById(Integer id);

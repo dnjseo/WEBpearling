@@ -13,7 +13,7 @@ public interface TodoRepository {
     List<Todo> findAll(String query);
     List<Todo> findByUserId(Integer memberId);
     List<Todo> findByDate(Integer memberId, LocalDate date);
-    List<Todo> findByCurDate(Integer memberId);
+    List<Todo> findByCurDate(Integer memberId, LocalDate date);
 
 
     Todo findById(Integer id);

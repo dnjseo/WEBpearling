@@ -45,6 +45,15 @@
 			AND start_date &lt;= str_to_date(#{date}, '%Y-%m-%d')
 			AND end_date  &gt;= str_to_date(#{date}, '%Y-%m-%d');
 	</select>
+	<select id="findByCurDate" resultType="Schedule">
+		SELECT m.id, m.nickname, s.title
+		FROM follow f
+		JOIN member m ON f.following_id = m.id
+		JOIN schedule s ON m.id = s.member_id
+		WHERE f.follower_id = #{memberId}
+			AND str_to_date(#{date}, '%Y-%m-%d') BETWEEN s.start_date AND s.end_date
+			AND s.member_id = m.id
+	</select>
 	<insert id="save">
 		insert into
 		schedule(start_date, start_time, end_date, end_time, title, member_id, background_color, latitude, longitude, place)		

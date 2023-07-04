@@ -39,9 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         changeProfile(userId);
 
         schedules.forEach(function (schedule) {
-          let scheduleElements = document.querySelector('.scheduleListSection');
       
-
           schedule.href = '#';
           schedule.onclick = function (event) {
             event.preventDefault(); // 클릭 이벤트 막기

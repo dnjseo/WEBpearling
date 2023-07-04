@@ -86,9 +86,12 @@ body{
     align-items: flex-start;
 }
 
-input[type=checkbox] {
-    accent-color: rgba(165, 135, 224, 1)
-  }
+input[type=checkbox],
+input[type=checkbox]:disabled{
+    accent-color: rgba(165, 135, 224, 1);
+    color: rgba(165, 135, 224, 1);
+    background-color: rgba(165, 135, 224, 1);
+  }  
 
 input[type="checkbox"]:checked + p {
     text-decoration: line-through;

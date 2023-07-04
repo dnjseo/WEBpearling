@@ -66,8 +66,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;    
-        gap: 10px;        
-        width: 95%;
+        gap: 10px;     
+        width: 75%;   
+        max-width: 800px;
         height: 170px;
                 
         flex: none;
@@ -83,19 +84,6 @@
             flex: none;
             order: 0;
             flex-grow: 0;
-
-            /* 박스 모양 */
-            /* background: #6B6B6B;
-            padding: 8px;
-            box-shadow: inset 0px 0px 55px #FFFFFF, inset 0px 32px 16px rgba(199, 192, 196, 0.09), inset 0px 16px 8px rgba(199, 192, 196, 0.09), inset 0px -79px 40px rgba(199, 192, 196, 0.1), inset 0px -36px 30px rgba(199, 192, 196, 0.15), inset 0px -23px 25px rgba(199, 192, 196, 0.17);
-            border-radius: 10px;
-            transform: rotate(0.28deg); */
-
-            /* background: rgba(255, 255, 255, 0.7);
-            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15), 
-            inset 0px 2px 2px rgba(0, 0, 0, 0.25);
-            border-radius: 40px;
-            padding: 8px; */
         }
 
         .findFriend-a{
@@ -178,7 +166,8 @@
         justify-content: center;
         align-items: center;
 
-        width: 90% ;
+        width: 80%;   
+        max-width: 800px;
 
         padding-bottom: 20px;
 
@@ -222,11 +211,16 @@
 
         padding: 30px;
         background: rgba(255, 255, 255, 0.7);
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15), 
+        inset 0px 2px 2px rgba(0, 0, 0, 0.25);
         border-radius: 40px;
 
     }
     
+    .scheduleContents > p {
+        padding: 5px;
+    }
+
     .scheduleContents > ul > li  {
         display: grid;
         grid-template-columns: 1.2fr 1fr;
@@ -234,6 +228,22 @@
         padding: 3px;
     }
 
+   .content {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+   }
+
+   input[type=checkbox],
+   input[type=checkbox]:disabled{
+       accent-color: rgba(165, 135, 224, 1);
+       color: rgba(165, 135, 224, 1);
+       background-color: rgba(165, 135, 224, 1);
+     }  
+   
+   input[type="checkbox"]:checked + p {
+       text-decoration: line-through;
+     }
    
 
     .scheduleContents > ul > li> .tag > button {

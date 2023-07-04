@@ -9,6 +9,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/system/login.css" type="text/css" rel="stylesheet">
+    <script>
+        // window.Kakao.init("3d361f30e69314c27438078598f2b011");
+
+        // function kakaoLogin(){
+        //     window.Kakao.Auth.login({
+        //         scope:'profile_nickname, account_email',
+        //         success : function(authObj){
+        //             console.log(authObj);
+        //             window.Kakao.API.request({
+        //                 url:'/v2/user/me',
+        //                 success: res => {
+        //                     const kakao_account = res.kakao_account;
+        //                     console.log(kakao_account)
+        //                 }
+        //             });
+        //         }
+        //     });
+        // }
+    </script>
     <title>login</title>
 </head>
 <body>
@@ -54,14 +73,12 @@
                 <h2>간편 로그인</h2>
                 <!-- apiImg -->
                 <div class="apiImg">
-                    <a class="naverlogin" href="">
-                        <img src="/images/login/naver_square.png">
+                    <a href="/oauth2/authorization/google">구글 로그인</a>
+                    <a class="naver login" href="">
+                        Naver 로그인
                     </a>
-                    <a class="naverlogin" href="">
-                        <img src="/images/login/naver_square.png">
-                    </a>
-                    <a class="naverlogin" href="">
-                        <img src="/images/login/naver_square.png">
+                    <a class="kakao" href="javascript:kakaoLogin();">
+                        Kakao 로그인
                     </a>
                 </div>
             </div>

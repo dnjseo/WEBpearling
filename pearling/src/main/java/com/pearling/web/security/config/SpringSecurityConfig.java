@@ -1,5 +1,6 @@
 package com.pearling.web.security.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +13,9 @@ import com.pearling.web.security.MyUserDetailsService;
 
 @Configuration
 public class SpringSecurityConfig {
+
+    @Autowired
+    private MemberOauth2UserService memberOauth2UserService;
 	
     @Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -35,7 +39,13 @@ public class SpringSecurityConfig {
                         	)
                             .logout(logout->logout.logoutUrl("/logout")
 							.logoutSuccessUrl("/")
-                        	);
+                        	)
+                    .oauth2Login(customizer -> customizer
+                            .loginPage("/login")
+                            .defaultSuccessUrl("/shell/ourshell")
+                            .userInfoEndpoint()
+                            .userService(memberOauth2UserService)
+                    );
 		return http.build();
 	}
 

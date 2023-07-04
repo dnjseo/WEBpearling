@@ -20,6 +20,9 @@ public class Member {
     private LocalDate birth; 
     private String profileImage;
     private Integer roleId;
+    private String loginId;
+    private String provider;
+    private String providerId;
 
     private String Domain; // 도메인과 이메일 주소를 합친 이메일
 

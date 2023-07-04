@@ -31,4 +31,7 @@ public interface MemberService {
 
     // 회원 삭제
     void delete(Member member);
+
+    // 로그인 api
+    Member getByProviderId(String providerId);
 }

@@ -2,11 +2,13 @@ package com.pearling.web.security.config;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -33,21 +35,37 @@ public class MemberOauth2UserService extends DefaultOAuth2UserService {
     @Autowired
     private RoleService service;
 
+    private BCryptPasswordEncoder encoder;
+
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User oAuth2User = super.loadUser(userRequest);
         log.info("getAttributes: {}", oAuth2User.getAttributes());
 
+        OAuth2UserInfo oAuth2UserInfo = null;
+
         String provider = userRequest.getClientRegistration().getRegistrationId();
-        String providerId = oAuth2User.getAttribute("sub");
+
+        if(provider.equals("google")) {
+            log.info("구글 로그인 요청");
+            oAuth2UserInfo = new GoogleUserInfo( oAuth2User.getAttributes() );
+        } else if(provider.equals("kakao")) {
+            log.info("카카오 로그인 요청");
+            oAuth2UserInfo = new KakaoUserInfo( (Map)oAuth2User.getAttributes() );
+        } else if(provider.equals("naver")) {
+            log.info("네이버 로그인 요청");
+            oAuth2UserInfo = new NaverUserInfo( (Map)oAuth2User.getAttributes().get("response") );
+        } 
+
+        String providerId = oAuth2UserInfo.getProviderId();
+        String email = oAuth2UserInfo.getEmail();
         String loginId = provider + "_" + providerId;
+        String name = oAuth2UserInfo.getName();
 
         Optional<Member> optionalUser = repository.findByLoginId(loginId);
-        Member member;
+        Member member = null;
 
         if (optionalUser.isEmpty()) {
-            String email = oAuth2User.getAttribute("email");
-            String name = oAuth2User.getAttribute("name");
             member = Member.builder()
                     .loginId(loginId)
                     .email(email)

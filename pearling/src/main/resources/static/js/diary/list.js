@@ -72,11 +72,18 @@ function diaryListLoad(url) {
         });
 }
 
+function formatDate(date) {
+    const dateObj = new Date(date);
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
 window.addEventListener('DOMContentLoaded', function(e) {
     // css 파일이 js 파일보다 먼저 로드될 수 있도록 DOMContentLoaded 사용 
 
     let urlParams = new URLSearchParams(window.location.search);
-    // console.log("url : " + urlParams);
     let userId = urlParams.get('uid');
     let loginId = document.querySelector("#input-member-id").value;
     let postAddBtn = document.querySelector(".add-btn");
@@ -85,20 +92,47 @@ window.addEventListener('DOMContentLoaded', function(e) {
         postAddBtn.style.display = "block";
     else
         postAddBtn.style.display = "none";
+
+    // 캘린더 호출
         
     let calendarEl = document.getElementById('calendar');
     let calendar = new FullCalendar.Calendar(calendarEl, {
         editable: true,
-        initialView: 'dayGridMonth',
+        initialView: 'dayGridWeek',
     });
 
     calendar.render();
     calendar.setOption('contentHeight', 350);
 
-    calendar.on('dateClick', function(info) {
-        let clickedDate = info.dateStr; // 클릭한 날짜 정보 가져오기
+    let clickedDate = null;
+    let formattedDate = null;
+    let nextDateBtn = document.querySelector(".fc-next-button");
+    let preDateBtn = document.querySelector(".fc-prev-button");
+    let dateBag = document.querySelector('.fc-daygrid-day-frame');
+      
+    nextDateBtn.addEventListener('click', function(info) {
+        clickedDate = calendar.getDate();
+        formattedDate = formatDate(clickedDate);
+        // calendar.gotoDate( clickedDate );
+        dateBag.style.background = 'rgba(244, 180, 214, 0.609)';
+        let id = (userId == null || loginId == userId) ? loginId : userId;
+        diaryListLoad(`http://localhost:8080/api/diary/${formattedDate}/${id}`);
+      });
+      
+      preDateBtn.addEventListener('click', function(info) {
+        clickedDate = calendar.getDate();
+        formattedDate = formatDate(clickedDate);
+        let id = (userId == null || loginId == userId) ? loginId : userId;
+        dateBag.style.background = 'rgba(244, 180, 214, 0.609)';
+        // console.log(formattedDate);
+        diaryListLoad(`http://localhost:8080/api/diary/${formattedDate}/${id}`);
+      });
 
-        let id;
+    calendar.on('dateClick', function(info) {
+        clickedDate = info.dateStr; // 클릭한 날짜 정보 가져오기
+
+        let id = null;
+
         if(userId == null) {
             id = loginId;
         } else if(loginId == userId) {
@@ -108,10 +142,10 @@ window.addEventListener('DOMContentLoaded', function(e) {
         }
 
         console.log(clickedDate);
-        console.log(id);
+        dateBag.style.background = 'none';
         diaryListLoad(`http://localhost:8080/api/diary/${clickedDate}/${id}`);
     });
-
+    
     let diaryListSection = document.querySelector(".diary-list-section");
     let diaryList = diaryListSection.querySelector(".diary-list");
 

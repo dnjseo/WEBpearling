@@ -95,9 +95,6 @@
     border-radius: 14px;
     margin-top: 30px;
     padding: 30px 20px 20px 30px;
-
-    width: 80%;
-    max-width: 700px;
 }
 
 .diary-detail-date {
@@ -137,10 +134,9 @@
     }
 
 
-
 /* -----버튼(사진 첨부)--------------------------------------------------- */
 
-.upload-btn {
+/* .upload-btn {
     background-image: url("/images/diary/photo.svg");
     background-repeat: no-repeat;
     background-position-x: center;
@@ -156,10 +152,11 @@
 
 .btns>label:active {
     opacity: 0.8;
-}
+} */
 
 /* -----버튼(등록 버튼)--------------------------------------------------- */
 
+/* 다이어리 수정, 삭제창 버튼 */
 .diary-btns {
     display: flex;
     flex-direction: row;
@@ -172,21 +169,6 @@
     max-width: 700px;
 
     border-bottom: solid 1px #D9D9D9;
-}
-
-.diary-post-btns {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    padding-top: 20px;
-    gap: 5px;
-
-    width: 90%;
-    max-width: 700px;
-
-
-    margin-bottom: 100px;
 }
 
     .diary-btns .diary-heart-comment-btns {
@@ -250,14 +232,7 @@
         align-items: center;
     }
 
-        .diary-scope-summit-btns>button:active,
-        .diary-post-btns>button:active {
-            /* background: rgba(90, 46, 149, 0.2);
-            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15), inset 0px 2px 2px rgba(0, 0, 0, 0.25); */
-        }
-
-        .diary-scope-summit-btns>select,
-        .diary-post-btns>select {
+        .diary-scope-summit-btns>select {
             background: #FFFFFF;
             border: 1px solid #D9D9D9;
             
@@ -273,8 +248,7 @@
             font-size: 12px;
         }
 
-        .diary-scope-summit-btns>button,
-        .diary-post-btns>button {
+        .diary-scope-summit-btns>button {
             width: 40px;
             height: 20px;
             
@@ -287,6 +261,57 @@
             color: #797979;
             font-size: 12px;
         }
+
+/* 다이어리 등록창 버튼 */
+
+.diary-post-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: 20px;
+    padding-left: 40px;
+
+    width: 80%;
+    max-width: 700px;
+
+    margin-bottom: 100px;
+}
+
+    .diary-post-btns > select {
+        background: #FFFFFF;
+        border: 1px solid #D9D9D9;
+        
+        width: 80px;
+        height: 30px;
+
+        text-align: center;
+
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 16px;
+
+        color: #797979;
+        font-size: 12px;
+    }
+
+    .diary-post-btns > button {
+        width: 80px;
+        height: 30px;
+        
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+        border: none;
+
+        margin-left: 10px;
+
+        color: #797979;
+        font-size: 12px;
+    }
+
+    .diary-post-btns>button:active {
+        background: rgba(90, 46, 149, 0.2);
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    }
 
 /* =========댓글 창=========================== */
 

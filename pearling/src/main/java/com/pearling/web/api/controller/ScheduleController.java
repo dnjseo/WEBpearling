@@ -58,6 +58,15 @@ public class ScheduleController{
         return scheduleList;
     }
 
+    @GetMapping("ourshell/{id}")
+    public List<Schedule> friendScheduleList(
+        @PathVariable("id") int userId,
+        @RequestParam("date") LocalDate date) {
+
+        List<Schedule> scheduleList = service.getListByDate(userId, date);
+        return scheduleList;
+    }
+
     @GetMapping("detail")
     public Schedule detail(@RequestParam("id") int id){
 

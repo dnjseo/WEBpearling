@@ -9,11 +9,7 @@ layout:decorate="~{inc/layout}">
 </head>
 <body>
 
-        <!-- header
-        <header id="header"></header> -->   
-        <!-- <div th:insert="template/inc/shellmenu :: shellmenu"></div> -->
-        <!-- <th:block th:replace="template/inc/shellmenu :: shellmenu"></th:block> -->
-
+     
         <!-- wrap -->
         <main layout:fragment="content" class="wrap">
             
@@ -55,6 +51,7 @@ layout:decorate="~{inc/layout}">
             <section id = m4-friendSchedule >
                 <h1 class="d-none">친구 일정</h1>
                 <div class = friendScheduleList >
+
                     <ul class = "friendScheduleList">
                         <li class="fs1" th:each="f : ${friendList}">
                              <div class = "profile-x">
@@ -68,17 +65,12 @@ layout:decorate="~{inc/layout}">
                                             <input type="checkbox" th:checked="${ft.statement}" disabled>
                                             <p th:text="${ft.content}">☑︎ 마라탕 먹으러가기</p> 
                                         </div>
-                                        <!-- <div class="tag">
-                                            <button>@나</button>
-                                            <button>@채원</button>
-                                            <button>@도원</button>
-                                            <button>@예린</button>
-                                        </div> -->
                                     </li>
                                 </ul>
                             </div>
                         </li>
                     </ul>
+                    
                 </div>
             </section>
 

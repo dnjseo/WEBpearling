@@ -1,11 +1,13 @@
 package com.pearling.web.api.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +31,13 @@ import com.pearling.web.service.TodoService;
 public class ShellController {
 
     @Autowired
-    FollowService service;
+    FollowService followService;
+
+    @Autowired
+    TodoService todoService;
+
+    @Autowired
+    ScheduleService scheduleService;
 
     @GetMapping("myshell")
       public List<Member> myFollowingList(){
@@ -38,7 +46,7 @@ public class ShellController {
         MyUserDetails user = (MyUserDetails) authentication.getPrincipal();
         int memberId = user.getId();
         
-        List<Member> friendList = service.getFollowingsList(memberId);
+        List<Member> friendList = followService.getFollowingsList(memberId);
 
         return friendList;
       }
@@ -51,19 +59,41 @@ public class ShellController {
                         .followerId(followRequest.getFollowerId())
                         .followingId(user.getId())
                         .build();
-        service.addFollow(follow);
+        followService.addFollow(follow);
       }
   
-    @GetMapping("ourshell")
-      public List<Member> followingList(){
+    // @GetMapping("ourshell")
+    //   public List<Member> followingList(){
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        MyUserDetails user = (MyUserDetails) authentication.getPrincipal();
-        int memberId = user.getId();
+    //     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    //     MyUserDetails user = (MyUserDetails) authentication.getPrincipal();
+    //     int memberId = user.getId();
         
-        List<Member> friendList = service.getFollowingsList(memberId);
+    //     List<Member> friendList = followService.getFollowingsList(memberId);
 
-        return friendList;
+    //     return friendList;
+    // }
+
+    @GetMapping("ourshell")
+    public List<Object> firendScheduleList(){
+      	SecurityContext context = SecurityContextHolder.getContext();
+	    	MyUserDetails user = (MyUserDetails) context.getAuthentication().getPrincipal();
+
+        int userId = user.getId();
+		    LocalDate todayDate = LocalDate.now();
+
+      	List<Member> friendList = followService.getFollowingsList(userId); 
+	    	List<Todo> friendTodoList = todoService.getListByCurDate(userId,todayDate);	
+        List<Schedule> scheduleList = scheduleService.getListByCurDate(userId, todayDate);
+
+        List<Object> combinedList = new ArrayList<>();
+        
+        combinedList.addAll(friendList);
+        combinedList.addAll(friendTodoList);
+        combinedList.addAll(scheduleList);
+
+
+        return combinedList;
     }
   
 }

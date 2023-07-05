@@ -31,7 +31,7 @@ import com.pearling.web.service.TodoService;
 @RestController("apiTodoController")
 @RequestMapping("api/todos")
 public class TodoController {
-    
+
     @Autowired
     private TodoService service;
 
@@ -46,80 +46,89 @@ public class TodoController {
         List<Todo> todoList = new ArrayList<>();
 
         todoList = service.getListByUserId(userId);
-        //System.out.println(todoList);
+        // System.out.println(todoList);
 
         return todoList;
     }
 
-     @GetMapping("/{id}")
-     public List<Todo> todoList(
-        @PathVariable("id") int userId){
+    @GetMapping("/{id}")
+    public List<Todo> todoList(
+            @PathVariable("id") int userId) {
 
-            List<Todo> todoList = service.getListByUserId(userId);
+        List<Todo> todoList = service.getListByUserId(userId);
 
-            return todoList;
-        }
-
-
-@PutMapping("/{todoId}")
-public ResponseEntity<String> updateTodo(
-        @PathVariable Integer todoId,
-        @RequestBody Todo todoCheck,
-        @AuthenticationPrincipal MyUserDetails user,
-        Authentication authentication) {
-
-    Boolean isChecked = todoCheck.isStatement();
-    // 데이터베이스에서 해당 todo를 찾아서 체크 상태 업데이트
-    Todo todo = service.findById(todoId);
-    if (todo != null) {
-        todo.setStatement(isChecked);
-        service.updateTodo(todo); // updateTodo 메서드 대신 updateTodoStatement 메서드를 호출
-        System.out.println("Todo 업데이트 성공 - todoId: " + todoId);
-        return ResponseEntity.ok("업데이트 완료");
-    } else {
-        System.out.println("Todo를 찾을 수 없음 - todoId: " + todoId);
-        return ResponseEntity.notFound().build();
+        return todoList;
     }
-}
 
+    @GetMapping("ourshell/{id}")
+    public List<Todo> firendtodoList(
+        @PathVariable("id") int userId,
+        @RequestParam("date") LocalDate date) {
+
+        List<Todo> todoList = service.getListByDate(userId, date);
+
+        return todoList;
+    }
+
+
+    @PutMapping("/{todoId}")
+    public ResponseEntity<String> updateTodo(
+            @PathVariable Integer todoId,
+            @RequestBody Todo todoCheck,
+            @AuthenticationPrincipal MyUserDetails user,
+            Authentication authentication) {
+
+        Boolean isChecked = todoCheck.isStatement();
+        // 데이터베이스에서 해당 todo를 찾아서 체크 상태 업데이트
+        Todo todo = service.findById(todoId);
+        if (todo != null) {
+            todo.setStatement(isChecked);
+            service.updateTodo(todo); // updateTodo 메서드 대신 updateTodoStatement 메서드를 호출
+            System.out.println("Todo 업데이트 성공 - todoId: " + todoId);
+            return ResponseEntity.ok("업데이트 완료");
+        } else {
+            System.out.println("Todo를 찾을 수 없음 - todoId: " + todoId);
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @PostMapping
-     public ResponseEntity <String> addTodo(@RequestBody Todo todoData,
-        @RequestParam(value = "clickedDate", required = false) String clickedDate,
-        @AuthenticationPrincipal MyUserDetails user, 
-        Authentication authentication) {
-            
-    try {
-       MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
-        int userId = userDetails.getId();
+    public ResponseEntity<String> addTodo(@RequestBody Todo todoData,
+            @RequestParam(value = "clickedDate", required = false) String clickedDate,
+            @AuthenticationPrincipal MyUserDetails user,
+            Authentication authentication) {
 
-                Todo newTodo = Todo.builder()
-                        .date(todoData.getDate())
-                        .content(todoData.getContent())
-                        .memberId(userId)
-                        .build();
-                service.addTodo(newTodo);
+        try {
+            MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
+            int userId = userDetails.getId();
 
-        return ResponseEntity.ok("투두 post 완");
-        
-    } catch (Exception e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            Todo newTodo = Todo.builder()
+                    .date(todoData.getDate())
+                    .content(todoData.getContent())
+                    .memberId(userId)
+                    .build();
+            service.addTodo(newTodo);
+
+            return ResponseEntity.ok("투두 post 완");
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
-  }
 
-  @DeleteMapping("{id}")
-@PreAuthorize("@todoSecurity.checkOwnership(#id, authentication.principal.id)")
-  public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
-      Todo todo = service.findById(id);
+    @DeleteMapping("{id}")
+    @PreAuthorize("@todoSecurity.checkOwnership(#id, authentication.principal.id)")
+    public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
+        Todo todo = service.findById(id);
 
-      if (todo != null) {
-          int deletedRows = service.deleteTodo(todo);
-          if (deletedRows > 0) {
-              return ResponseEntity.ok().build(); // 성공적으로 삭제된 경우 200 OK 반환
-          }
-      }
+        if (todo != null) {
+            int deletedRows = service.deleteTodo(todo);
+            if (deletedRows > 0) {
+                return ResponseEntity.ok().build(); // 성공적으로 삭제된 경우 200 OK 반환
+            }
+        }
 
-      return ResponseEntity.notFound().build(); // 실패한 경우 404 Not Found 반환
-  }
+        return ResponseEntity.notFound().build(); // 실패한 경우 404 Not Found 반환
+    }
 
 }// class end

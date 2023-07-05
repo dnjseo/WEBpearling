@@ -452,9 +452,9 @@ function updateTodoList(clickedDate, checkboxes) {
     const pathArray = path.split("/");
     const userId = (pathArray[1] === "shell" && pathArray[2] === "myshell") ? pathArray[3] || null : null;
 
-    const urlWithId = userId ? `http://localhost:8080/api/todos?=${userId}` : 'http://localhost:8080/api/todos';
+    const urlWithId = userId ? `http://localhost:8080/api/todos/${userId}` : 'http://localhost:8080/api/todos';
 
-    fetch(`/api/todos/${userId}`)    
+    fetch(urlWithId)    
     .then(response => response.json())
     .then(todoList => {
       // 기존에 출력된 투두 리스트 지우기

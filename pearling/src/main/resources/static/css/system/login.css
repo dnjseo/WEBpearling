@@ -29,7 +29,7 @@ body{
     justify-content: center;
     align-items: center;
     gap: 30px;
-    margin-top: 80px;
+    margin-top: 60px;
 }
 
 .logo-imgs> :nth-child(1) {
@@ -88,7 +88,7 @@ body{
     justify-content: center;
     align-items: center;
 
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .l1-btns>button {
@@ -124,14 +124,12 @@ body{
 .findpsw:hover{
     color: #A587E0;
     font-family: 'Pretendard-SemiBold';
-
 }
 
 .signup:hover{
     color: #A587E0;
     font-family: 'Pretendard-SemiBold';
 }
-
 
 .login-api{
     width: 320px;
@@ -141,7 +139,7 @@ body{
     justify-content: center;
     align-items: center;
     
-    padding: 50px;
+    padding: 30px;
     gap: 10px;
     
     /* 폰트 스타일 */
@@ -164,5 +162,4 @@ body{
 
 .login-api > div > a > img{
     width: 50px;
-
 }

@@ -45,7 +45,9 @@
 .nocorrect-yes, .modify-yes,
 .email-yes, .nickname-yes,
 .check-nickname-yes, .pwd-yes,
-.currentPwd-yes, .nopwd-yes{
+.currentPwd-yes, .nopwd-yes,
+.check-pwd-yes, .no-pwd-yes,
+.no-input-yes, .send-nocorrect-yes{
     display: flex;
     flex-direction: row;
     justify-content: center;

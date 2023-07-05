@@ -454,7 +454,7 @@ function updateTodoList(clickedDate, checkboxes) {
 
     const urlWithId = userId ? `http://localhost:8080/api/todos?=${userId}` : 'http://localhost:8080/api/todos';
 
-    fetch(urlWithId)    
+    fetch(`/api/todos/${userId}`)    
     .then(response => response.json())
     .then(todoList => {
       // 기존에 출력된 투두 리스트 지우기
@@ -482,6 +482,7 @@ function updateTodoList(clickedDate, checkboxes) {
                 </li>
               `;
             todoElements.insertAdjacentHTML("beforeend", todoTemplate);
+          
           } else {
             let noTodoTemplate = `
               <li class="todoList">

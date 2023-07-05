@@ -52,12 +52,12 @@ public class TodoController {
     }
 
      @GetMapping("/{id}")
-     public Todo detail(
-        @PathVariable("id") int id){
+     public List<Todo> todoList(
+        @PathVariable("id") int userId){
 
-            Todo todo = service.findById(id);
+            List<Todo> todoList = service.getListByUserId(userId);
 
-            return todo;
+            return todoList;
         }
 
 

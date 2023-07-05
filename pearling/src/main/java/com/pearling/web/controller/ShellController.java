@@ -1,6 +1,7 @@
 package com.pearling.web.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pearling.web.entity.Member;
+import com.pearling.web.entity.Ourshell;
 import com.pearling.web.entity.Schedule;
 import com.pearling.web.service.FollowService;
 import com.pearling.web.service.MemberService;
@@ -91,15 +93,21 @@ public String otherShell(Model model, @PathVariable("id") int userId) {
         int userId = user.getId();
 		LocalDate todayDate = LocalDate.now();
 
-;
+	
+
 		List<Member> friendList = followService.getFollowingsList(userId); 
+		List<Todo> friendTodoList = service.getListByCurDate(userId,todayDate);	
 		
-		List<Todo> friendTodoList = service.getListByCurDate(userId,todayDate);		
+		List<Object> combinedList = new ArrayList<>();
+		combinedList.addAll(friendList);
+		combinedList.addAll(friendTodoList);
+
 		//List<Schedule> friendScheduleList = scheduleService.getListByCurDate(userId, todayDate);
 	
 		model.addAttribute("headerShow", true);
 		model.addAttribute("friendList", friendList);
-		model.addAttribute("friendTodoList", friendTodoList);
+		model.addAttribute("combinedList", combinedList);
+		
 		//model.addAttribute("friendScheduleList", friendScheduleList);
 
 		return "shell/ourshell";

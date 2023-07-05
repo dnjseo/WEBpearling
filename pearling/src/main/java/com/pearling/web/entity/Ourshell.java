@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OurshellView {
+public class Ourshell {
 
     Integer id;
     Integer followerId;

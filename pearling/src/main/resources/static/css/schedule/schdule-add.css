@@ -99,6 +99,15 @@ input[type="time"]{
   width: 180px;
 }
 
+/* 유효성 검사용 */
+#schedule-title.alert{
+  border: 3px solid rgb(247, 150, 150);
+}
+
+#schedule-title.alert::placeholder{
+  color: rgb(247, 150, 150); 
+}
+
 .schedule-add-freind-box > .friendList {
     overflow-x: scroll;
     max-width: 380px;

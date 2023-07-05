@@ -41,7 +41,7 @@ public class ScheduleController extends BaseController {
 		,Model model) {
 
 		String pageTitle = getPageTitle();
-		pageTitle = "";
+		pageTitle = "일정 상세";
 
 		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("headerShow", false);

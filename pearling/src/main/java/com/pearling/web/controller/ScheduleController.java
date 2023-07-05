@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.geo.Point;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -55,17 +56,15 @@ public class ScheduleController extends BaseController {
 	}
 	
 	@GetMapping("reg")
-	public String post(Model model, MyUserDetails user) {
-
-		SecurityContext context = SecurityContextHolder.getContext();
-		user = (MyUserDetails) context.getAuthentication().getPrincipal();
-		
+	public String post(Model model, 
+	@AuthenticationPrincipal MyUserDetails user
+) {
+		Integer memberId = user.getId();
 
 		String pageTitle = getPageTitle();
 		pageTitle = "일정 추가";
 		
-		List<Member> followerList = followService.getFollowersList(user.getId());
-
+		List<Member> followerList = followService.getFollowersList(memberId);
 
 		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("headerShow", false);

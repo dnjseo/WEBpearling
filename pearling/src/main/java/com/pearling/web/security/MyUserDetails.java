@@ -20,8 +20,8 @@ public class MyUserDetails implements UserDetails, OAuth2User{
 	private String nickname;
 	private String profileImage;
 	private List<GrantedAuthority> authorities;
-	private Member member;
 	private Map<String, Object> attributes;
+	private Member member;
 	
 	// 아이디 getter setter
 	public int getId() {

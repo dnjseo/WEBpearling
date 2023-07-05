@@ -51,26 +51,32 @@ window.addEventListener('DOMContentLoaded', function (e) {
   let delBtn = delForm.querySelector(".del-confirm-yes");
   
   let urlParams = new URLSearchParams(window.location.search);
-  console.log("url : " + urlParams);
+  // console.log("url : " + urlParams);
   let userId = urlParams.get('uid');
-  console.log("uid : " + userId);
+  // console.log("uid : " + userId);
   let loginId = document.querySelector("#input-login-id").value;
-  console.log("loginId : " + loginId);
+  // console.log("loginId : " + loginId);
   let selectElement = document.querySelector('select[name="diary-scope-id"]');
-  console.log("selectShow : " + selectElement);
+  // console.log("selectShow : " + selectElement);
+
   let diaryDateInput = document.querySelector(".diary-detail-date");
   let diaryTitleInput = document.querySelector(".diary-detail-title");
   let diaryContentInput = document.querySelector(".diary-detail-input");
+ 
+  let updateBtn = document.querySelector(".update-btn");
 
   if(userId == loginId || userId == "") {
       showBtn.style.display = "block";
-      selectElement.removeAttribute("disabled");
-      diaryDateInput.removeAttribute("disabled");
-      diaryTitleInput.removeAttribute("disabled");
-      diaryContentInput.removeAttribute("disabled");
   } else {
       showBtn.style.display = "none";
   }
+
+  updateBtn.addEventListener("click", function() {
+    selectElement.removeAttribute("disabled");
+    diaryDateInput.removeAttribute("disabled");
+    diaryTitleInput.removeAttribute("disabled");
+    diaryContentInput.removeAttribute("disabled");
+  });
 
   showBtn.addEventListener('click', function (e) {
     e.preventDefault();
@@ -123,9 +129,24 @@ window.addEventListener('DOMContentLoaded', function (e) {
 
     let { memberId, diaryId } = el.dataset;
 
+    let urlParams = new URLSearchParams(window.location.search);
+    let userId = urlParams.get('uid');
+
+    let id;
+    if(userId == null) {
+        id = memberId;
+    } else if(memberId == userId) {
+        id = memberId;
+    } else {
+        id = userId;
+    }
+
+    console.log("이것이죠" + userId);
+    console.log("이것입니다" + memberId);
+
     // LIKE 삭제
     if (el.classList.contains("icon-heart-fill")) {
-      fetch(`/api/diarylikes/${diaryId}/members/${memberId}`, {
+      fetch(`/api/diarylikes/${diaryId}/members/${id}`, {
         method: 'DELETE'
       })
         .then(response => response.text())
@@ -146,7 +167,7 @@ window.addEventListener('DOMContentLoaded', function (e) {
 
     // LIKE 추가
     else {
-      let data = `dr=${diaryId}&mb=${memberId}`;
+      let data = `dr=${diaryId}&mb=${id}`;
 
       fetch("/api/diarylikes", { // 보낼 api: POST/diaryLikes
         method: 'POST',

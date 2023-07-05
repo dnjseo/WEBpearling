@@ -46,7 +46,7 @@
         align-self: flex-end;
 
         margin-right: 5%;
-        width: 80px;
+        width: 130px;
         height: 25px;
         
         background: rgba(252, 251, 251, 0.75);
@@ -65,7 +65,7 @@
             color: #797979;
             font-size: 12px;
 
-            width: 38px;
+            width: 40px;
             height: 25px;
 
             padding: 0px;
@@ -491,3 +491,12 @@ button,
 select {
     cursor: pointer;
 }
+
+/* 유효성 검사용 */
+/* .alert{
+    border: 3px solid rgb(247, 150, 150);
+  } */
+  
+  .alert::placeholder{
+    color: rgb(247, 150, 150); 
+  }

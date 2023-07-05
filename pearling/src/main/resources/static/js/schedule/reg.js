@@ -178,8 +178,7 @@ function selectFreind(){
 } //selectFriend end
 
 function postSchedule(id, schedule){
-  if(id != null)
-  return;
+  if(id != null) return;
 
   if(schedule.title.value.trim() == ''){
   document.getElementById('schedule-title').placeholder="*일정 제목을 입력하셔야 합니다."
@@ -264,6 +263,12 @@ function deleteSchedule(id){
 // 스케쥴 업데이트 로직
 function updateSchedule(id, schedule){
   if(id == null) return;
+
+  if(schedule.title.value.trim() == ''){
+    document.getElementById('schedule-title').placeholder="*일정 제목을 입력하셔야 합니다."
+    document.getElementById('schedule-title').classList.add('alert')
+    return;
+    }
 
   let url = `http://localhost:8080/api/schedules/detail?id=${id}`;
 

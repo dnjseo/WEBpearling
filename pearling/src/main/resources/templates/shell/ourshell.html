@@ -4,7 +4,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorate="~{inc/layout}">
 <head>
     <link href="/css/shell/main-ourshell.css" type="text/css" rel="stylesheet" >
-    <script src="/js/shell/main-ourshell.js"></script>
+    <script src="/js/shell/ourshellCalendar.js"></script>
+    <script src="/js/shell/ourShell.js"></script>
     <title>Pearl-ing</title>
 </head>
 <body>
@@ -50,27 +51,7 @@ layout:decorate="~{inc/layout}">
 
             <section id = m4-friendSchedule >
                 <h1 class="d-none">친구 일정</h1>
-                <div class = friendScheduleList >
-
-                    <ul class = "friendScheduleList">
-                        <li class="fs1" th:each="f : ${friendList}">
-                             <div class = "profile-x">
-                                <img src="/images/profile/profile_yj.png" th:src="@{'/resources/img/' + ${f.profileImage}}">
-                                <p th:text="${f.nickname}">연주</p>
-                            </div>
-                            <div class = "scheduleContents">
-                                <ul th:each= "ft : ${friendTodoList}" th:if="${f.id} == ${ft.id}">
-                                    <li>
-                                        <div class="content">
-                                            <input type="checkbox" th:checked="${ft.statement}" disabled>
-                                            <p th:text="${ft.content}">☑︎ 마라탕 먹으러가기</p> 
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                    
+                <div class = friendScheduleList id="os-fl"> 
                 </div>
             </section>
 

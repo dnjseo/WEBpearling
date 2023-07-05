@@ -14,6 +14,30 @@ function noneModal(modalId, buttonClass) {
     });
 }
 
+function noneModalFocus(modalId, buttonClass, focusFunction) {
+    let modal = document.getElementById(modalId);
+    let button = document.querySelector(buttonClass);
+
+    button.addEventListener("click", function() {
+        modal.style.display = "none";
+        if (typeof focusFunction === "function") {
+            focusFunction(); // focus 함수 호출
+        }
+    });
+}
+
+// 입력하지 않은 값에 포커스를 줌
+function focusOnEmptyFields() {
+    let inputs = document.querySelectorAll('.member-add-form input');
+    for (let i = 0; i < inputs.length; i++) {
+      let input = inputs[i];
+      if (input.value === '') {
+        input.focus();
+        break;
+      }
+    }
+}
+
 // 이메일 중복 검사
 async function checkEmailDuplicate(email) {
     try {
@@ -28,10 +52,16 @@ async function checkEmailDuplicate(email) {
         );
 
         if (!emailResponse.ok) {
-        throw new Error("이메일 중복 검사에 실패했습니다.");
+            throw new Error("이메일 중복 검사에 실패했습니다.");
         }
 
         let emailData = await emailResponse.json();
+
+        if (emailData.isDuplicate) {
+            // 중복된 이메일이 있을 경우 해당 input에 포커스를 줌
+            let emailInput = document.getElementById("email");
+            emailInput.focus();
+        }
 
         return emailData;
     } catch (error) {
@@ -54,10 +84,16 @@ async function checkNicknameDuplicate(nickname) {
         );
 
         if (!nicknameResponse.ok) {
-        throw new Error("닉네임 중복 검사에 실패했습니다.");
+            throw new Error("닉네임 중복 검사에 실패했습니다.");
         }
 
         let nicknameData = await nicknameResponse.json();
+
+        if (nicknameData.isDuplicate) {
+            // 중복된 닉네임이 있을 경우 해당 input에 포커스를 줌
+            let nicknameInput = document.getElementById("nickname");
+            nicknameInput.focus();
+        }
 
         return nicknameData;
     } catch (error) {
@@ -65,6 +101,17 @@ async function checkNicknameDuplicate(nickname) {
         return false;
     }
 }
+
+// 이메일 인증번호 확인
+async function verifyEmailConfirmation(sentCode, inputCode) {
+    if (sentCode !== inputCode) {
+        showModal("send-nocorrect-Modal");
+        noneModal("send-nocorrect-Modal", ".send-nocorrect-yes");
+        return false;
+    }
+    return true;
+}
+
 
 window.addEventListener("load", function () {
     let form = document.querySelector('.member-add-form');
@@ -82,10 +129,10 @@ window.addEventListener("load", function () {
     let pwdCheckInput = document.getElementById("pwd-check");
     let matchMessage = document.getElementById("pwd-match-message");
 
-    pwdCheckInput.addEventListener("input", function() {
-        let pwd = pwdInput.value;
-        let pwdCheck = this.value;
-
+    pwdInput.addEventListener("input", function() {
+        let pwd = this.value;
+        let pwdCheck = pwdCheckInput.value;
+    
         if (pwd === pwdCheck) {
             matchMessage.style.display = "block";
             matchMessage.textContent = "비밀번호가 일치합니다.";
@@ -96,6 +143,22 @@ window.addEventListener("load", function () {
             matchMessage.style.color = "red";
         }
     });
+    
+    pwdCheckInput.addEventListener("input", function() {
+        let pwd = pwdInput.value;
+        let pwdCheck = this.value;
+    
+        if (pwd === pwdCheck) {
+            matchMessage.style.display = "block";
+            matchMessage.textContent = "비밀번호가 일치합니다.";
+            matchMessage.style.color = "blue";
+        } else {
+            matchMessage.style.display = "block";
+            matchMessage.textContent = "비밀번호가 일치하지 않습니다.";
+            matchMessage.style.color = "red";
+        }
+    });
+    
 
     let checkNickname = document.getElementById("checkNickname"); // 중복검사 버튼
 
@@ -159,12 +222,25 @@ window.addEventListener("load", function () {
     
         let formData = { email: fullEmail, pwd, name, nickname, birth };
         let jsonData = JSON.stringify(formData);
-    
+
+        // 입력하지 않은 값
+        if (email === "" || domain === "" || pwd === "" || pwdCheck === "" || name === "" || nickname === "" || birth === "") {
+            showModal("no-input-Modal");
+            noneModalFocus("no-input-Modal",".no-input-yes", focusOnEmptyFields);
+            return; 
+        }
+
+        // 이메일 인증번호 확인
+        let emailConfirmation = inputs["email-confirmation"].value;
+        let isEmailConfirmed = await verifyEmailConfirmation(sentCode, emailConfirmation);
+
+        if (!isEmailConfirmed) {
+            return;
+        }
+        
         // 비밀번호 유효성 검사
         if (!validatePassword(pwd)) {
             showModal("check-pwd-Modal");
-            noneModal("check-pwd-Modal", ".check-pwd-yes"); // 비밀번호 다시 확인하는 함수
-            return;
         }
 
         // 비밀번호 같은지 다른지
@@ -280,6 +356,7 @@ document.addEventListener("DOMContentLoaded", function() {
             showModal("send-modal");
             let data = await confirmResponse.text();
             console.log("data: " + data);
+            sentCode = data; // 보낸 인증번호 저장
             chkEmailConfirm(data, memailconfirm, memailconfirmTxt);
         } catch (error) {
             console.error('이메일 검사 또는 확인 요청 중 오류가 발생했습니다.', error);

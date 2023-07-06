@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.pearling.web.entity.Diary;
 import com.pearling.web.entity.Follow;
 import com.pearling.web.entity.Member;
 

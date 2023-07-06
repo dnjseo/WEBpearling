@@ -60,7 +60,6 @@ async function printFriendScheduleList(osDate) {
       //투두 리스트
       const todoResponse = await fetch(`/api/todos/ourshell/${userId}?date=${date}`);
       const todoList = await todoResponse.json();
-      console.log(`Todo List for user ${userId}:`, todoList);
 
       let todoItems = '';
       todoList.forEach(todo => {
@@ -77,7 +76,6 @@ async function printFriendScheduleList(osDate) {
       // 스케쥴 리스트
       const scheduleResponse = await fetch(`/api/schedules/ourshell/${userId}?date=${date}`);
       const scheduleList = await scheduleResponse.json();
-      console.log(`Schedule List for user ${userId}:`, scheduleList);
 
       let scheduleItems = '';
       scheduleList.forEach(schedule => {
@@ -94,6 +92,7 @@ async function printFriendScheduleList(osDate) {
         <ul class="friendScheduleList">
           <li class="fs1">
             <div class="profile-x">
+            <a href="/shell/myshell/${follower.id}">
               <img src="/resources/img/${follower.profileImage}">
               <p>${follower.nickname}</p>
             </div>

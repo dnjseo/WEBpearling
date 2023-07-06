@@ -22,6 +22,11 @@ public class SpringSecurityConfig {
 		
 		http
 		.csrf(csrf->csrf.disable())
+		.sessionManagement(session -> session
+            .maximumSessions(1) // 동시 로그인 세션 수 설정
+            .maxSessionsPreventsLogin(false) // 동시 로그인 제한에 대한 처리 설정 (true: 새로운 세션 로그인 거부, false: 이전 세션 만료)
+            .expiredUrl("/logout") // 세션 만료 시 리다이렉트될 URL
+        )
 		.authorizeHttpRequests(
 				auth->auth
 					.requestMatchers( "/diary/**", "/follow/**", "/guestbook/**", "/notice/**", "/qa/**", 

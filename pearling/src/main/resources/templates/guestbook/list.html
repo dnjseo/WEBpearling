@@ -1,25 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{inc/layout}">
 
 <head>
     <link href="/css/guestbook/guestbook.css" type="text/css" rel="stylesheet">
     <link href="/css/header/guestbook.css" type="text/css" rel="stylesheet">
     <script src="/js/guestbook/guestbook.js"></script>
-    <title>방명록(내버전)</title>
+    <title>방명록</title>
 </head>
 
 <body>
     <main layout:fragment="content" id="wrap" class="wrap guestbook">
-        <h1>방명록은 총 <span th:text="${#lists.size(list)}"></span>개입니다.</h1>
-        <ul class="clam" id="clam-list">
-            <li th:each="g, stat : ${list}" th:data-index="${stat.index}" th:data-id="${g.id}">
-                <img alt="Clam Image" 
-                data-aos="zoom-in" data-aos-duration="1500"/>         
-            </li>
-        </ul>
+        <div class="img-list">
+            <!-- <h1><img src="/images/guestbook/count3.png" ><span th:text="${#lists.size(list)}">개</span><img src="/images/guestbook/count3.png" ></h1> -->
+            <ul class="clam" id="clam-list">
+                <li th:each="g, stat : ${list}" th:data-index="${stat.index}" th:data-id="${g.id}">
+                    <img alt="Clam Image" 
+                    data-aos="zoom-in" data-aos-duration="1500"/>         
+                </li>
+            </ul>
+        </div>
 
-        <section th:each="g, stat : ${list}" th:id="'s' + ${stat.index}"
+        <p><a class="plus" th:href="@{/guestbook/post/{id}(id=${userId}, s=true)}">+</a></p>
+
+        <section th:each="g, stat : ${list}" th:id="'b' + ${stat.index}"
             th:class="'guestbook guestbook-' + ${stat.index}" th:data-id="${g.id}">
             <h1 class="d-none">방명록</h1>
             <div class="book">
@@ -28,7 +33,9 @@
                 </div>
                 <div class="underline">
                     <p class="date" th:text="${#dates.format(g.regdate, 'yyyy-MM-dd')}">2023/12/21</p>
-                    <p class="deleteBtn">삭제</p>
+                    <p class="btn delete-button">삭제</p>
+                    <p th:if="${g.fromId == loginId}" class="btn updateBtn">수정</p>
+                    <p th:if="${g.fromId == loginId}" class="btn deleteBtn">삭제</p>
                 </div>
             </div>
             <p class="guestbook-close">x</p>
@@ -36,15 +43,16 @@
 
         <!-- 뒤에 배경 어둡게 하기 -->
         <div class="black"></div>
-
         <!-- alert창 ------------------------------->
-        <div id="delete-modal" class="dmodal">
-            <div class="dmodal-content">
+        <div id="delete-modal" class="modal">
+            <div class="modal-content">
                 <p>🫧 Message</p>
                 <p>방명록 삭제가 완료되었습니다.</p>
                 <button class="delete-yes">확인</button>
             </div>
         </div>
+        <input id="input-member-id" type="hidden" th:value="${#authentication.principal.id}">
+        <input id="input-user-id" type="hidden" th:value="${userId}">
     </main>
 </body>
 </html>

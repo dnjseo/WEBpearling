@@ -1,37 +1,45 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{inc/layout}">
 
 <head>
     <link href="/css/guestbook/guestbook-plus.css" type="text/css" rel="stylesheet">
-    <script src="/js/system/confirm-modal.js"></script>
+    <script src="/js/guestbook/post.js"></script>
     <title>방명록 추가</title>
 </head>
 
 <body>
     <!-- wrap ---------------------------------->
     <main layout:fragment="content" th:switch="${editShow}" id="wrap" class="wrap">
+        <input id="input-member-id" type="hidden" th:value="${#authentication.principal.id}">
+        <input id="input-user-id" type="hidden" th:value="${userId}">
+        
+        <!-- 방명록 등록 -->
         <section th:case="1" id="d1">
-            <h1 class="guestbook-title">방명록 추가</h1>
+            <form class="guestbook-add-form">
+                <section class="guestbook-plus">
+                    <h1 class="d-none">방명록 입력</h1>
+                    <div class="guestbook-write">
+                        <textarea placeholder="방명록을 입력하세요"></textarea>
+                    </div>
+                    <button class="guestbook-add-btn">등록</button>
+                </section>
 
-            <section class="guestbook-plus">
-                <h1 class="d-none">방명록 입력</h1>
-                <div class="guestbook-write">
-                    <textarea placeholder="방명록을 입력하세요"></textarea>
+                <div id="confirm-modal" class="modal">
+                    <div class="modal-content">
+                        <p>🫧 Message</p>
+                        <p>방명록 등록이 완료되었습니다.</p>
+                        <button class="confirm-yes">확인</button>
+                    </div>
                 </div>
-            </section>
-
-            <section class="guestbook-btns">
-                <h1 class="d-none">방명록 등록</h1>
-                <button class="add-btn">등록</button>
-            </section>
+            </form>
         </section>
 
-        <!-- 방명록 수정 -->
 
+        <!-- 방명록 수정 -->
         <section th:case="2" id="d1">
             <h1 class="guestbook-title">방명록 수정</h1>
-
             <section class="guestbook-plus">
                 <h1 class="d-none">방명록 입력</h1>
                 <div class="guestbook-write">
@@ -44,21 +52,7 @@
                 <button class="add-btn">등록</button>
             </section>
         </section>
-
-        <!-- alert창 ------------------------------->
-
-        <div id="confirm-modal" class="modal">
-            <div class="modal-content">
-                <p>🫧 Message</p>
-                <p>방명록 등록이 완료되었습니다.</p>
-                <button class="confirm-yes">확인</button>
-            </div>
-        </div>
-
-        <!-- alert창 ------------------------------->
-
     </main>
     <!-- /wrap ------------------------------->
 </body>
-
 </html>

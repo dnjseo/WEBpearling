@@ -2,6 +2,10 @@ window.addEventListener('DOMContentLoaded', function(e) {
   let clamList = document.getElementById("clam-list");
   let black = document.querySelector(".black");
 
+  // URL에서 userId 값을 가져오기
+  let userId = document.querySelector("#input-user-id").value; // userId 추가
+  let loginId = document.querySelector("#input-member-id").value;
+
   // 이미지 URL 배열 생성
   let imageUrls = [
     "/images/guestbook/clam1.png",
@@ -11,29 +15,44 @@ window.addEventListener('DOMContentLoaded', function(e) {
 
   let listItems = clamList.getElementsByTagName("li");
   for (let i = 0; i < listItems.length; i++) {
+
     let randomIndex = Math.floor(Math.random() * imageUrls.length);
     let imageUrl = imageUrls[randomIndex];
     let listItem = listItems[i];
     let clamImage = listItem.getElementsByTagName("img")[0];
-    let sectionId = "s" + listItem.getAttribute("data-index");
+
+    let sectionId = "b" + listItem.getAttribute("data-index");
     let section = document.getElementById(sectionId);
+
+    let closeBtn = section.querySelector(".guestbook-close"); // 닫기 버튼
+
+    let deleteButton = section.querySelector(".delete-button"); // 삭제버튼
+    let deleteModal = document.getElementById("delete-modal");
+    let deleteYes = deleteModal.querySelector(".delete-yes");
+
+    let updateBtn = section.querySelector(".updateBtn"); // 수정버튼
+
+    let plusBtn = document.querySelector(".plus"); // 추가하기 버튼
+
     clamImage.src = imageUrl;
     clamImage.addEventListener("click", function() {
       section.style.display = "block";
       black.style.display = "block";
+      if(loginId == userId || userId == ""){
+        deleteButton.style.display = "block";
+      }else 
+        deleteButton.style.display = "none";
     });
 
-    let closeBtn = section.querySelector(".guestbook-close");
+    if(userId != "")
+      plusBtn.style.display = "block";
+
     closeBtn.addEventListener("click", function() {
       section.style.display = "none";
       black.style.display = "none";
     });
 
-    let deleteBtn = section.querySelector(".deleteBtn");
-    let deleteModal = document.getElementById("delete-modal");
-    let deleteYes = deleteModal.querySelector(".delete-yes");
-
-    deleteBtn.addEventListener("click", function() {
+    deleteButton.addEventListener("click", function() {
       deleteModal.style.display = "block";
       section.style.display = "none";
       deleteYes.setAttribute("data-id", section.getAttribute("data-id"));

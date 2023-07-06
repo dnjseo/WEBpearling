@@ -3,6 +3,11 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.pearling.web.repository.GuestbookRepository">
+   <select id="findAll" resultType="com.pearling.web.entity.Guestbook">     
+      select *
+      from guestbook 
+      regdate desc
+   </select>
    <select id="findByAll" resultType="Guestbook">
       select *
       from guestbook
@@ -11,6 +16,10 @@
       </if>
       order by regdate desc
    </select>
+   <insert id="addGuestbook" parameterType="com.pearling.web.entity.Guestbook">
+      insert into guestbook (content, regdate, from_id, to_id)
+      values (#{content}, #{regdate}, #{fromId}, #{toId})
+   </insert>
    <delete id="delete" parameterType="int">
       delete from guestbook
       where id = #{id}

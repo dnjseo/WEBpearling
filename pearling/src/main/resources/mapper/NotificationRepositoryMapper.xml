@@ -1,0 +1,34 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pearling.web.repository.NotificationRepository">
+      
+   <select id="findById" resultType="Notification">
+      select * from notification
+      where id=#{id}
+   </select>
+
+   <select id="findByUserId" resultType="Notification">
+      select * from notification
+      where sub_member_id = #{subMemberId}
+   </select>
+   
+   <insert id="save" parameterType="notification">
+      insert into notification(pub_member_id, sub_member_id, message, type) 
+      values(#{pubMemberId}, #{subMemberId}, #{message}, #{type})
+   </insert>
+   
+	<delete id="delete">
+		delete from notification where id=#{id}
+	</delete>
+
+   <update id="update" parameterType="Notification">
+   UPDATE notification
+   <set>
+      <if test="message != null">message = #{message}</if>
+   </set>
+      WHERE id = #{id}
+   </update>
+   
+</mapper>

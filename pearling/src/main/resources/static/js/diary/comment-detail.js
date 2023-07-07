@@ -122,6 +122,9 @@ function handleCommentPost(jsonData) {
     let diaryPostIdInput = document.querySelector('input[name="diary-post-id"]');
     let diaryId = diaryPostIdInput.value;
 
+    let diaryHostIdInput = document.querySelector('input[name="diary-reg-member-id"]');
+    let diaryHostId = diaryHostIdInput.value;
+
     fetch('/api/diaryComments', {
         method: 'POST',
         headers: {
@@ -135,6 +138,19 @@ function handleCommentPost(jsonData) {
                 commentList.innerHTML = "";
                 console.log('다이어리 댓글 등록이 완료되었습니다.');
                 commentListLoad(`/api/diaryComments/${diaryId}`);
+
+                // 다이어리 댓글 등록 성공 시 알림 등록
+                const commentData = JSON.parse(jsonData);
+                let pubMemberId = commentData.regMemberId;
+                let pubMemberNickname = commentData.regMemberNickname;
+                let subMemberId = diaryHostId;
+                let message = pubMemberNickname + '님이 다이어리에 댓글을 남겼습니다.';
+                let type = 0;
+
+                let notificationData = { pubMemberId, subMemberId, message, type };
+
+                notifyNotificationService(subMemberId, notificationData);
+
             } else {
                 console.error('다이어리 댓글 등록에 실패했습니다.');
             }
@@ -260,6 +276,30 @@ function addClickEventListeners() {
     });
 }
 
+/* ----------------- 댓글 알림 등록 함수 ----------------- */
+function notifyNotificationService(subMemberId, notificationData) {
+
+    console.log("댓글은 이렇습니다" + JSON.stringify(notificationData));
+    
+    fetch(`/api/notifications/notify/${subMemberId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(notificationData),
+    })
+        .then(function (response) {
+            if (response.ok) {
+                console.log('알림 등록이 완료되었습니다.');
+            } else {
+                console.error('알림 등록에 실패했습니다.');
+            }
+        })
+        .catch(function (error) {
+            console.error('알림 등록 중 오류가 발생했습니다.', error);
+        });
+}
+
 /* ----------------- 윈도우 로드 시 댓글 리스트 조회 ----------------- */
 
 window.addEventListener('DOMContentLoaded', function (e) {
@@ -279,7 +319,7 @@ window.addEventListener('DOMContentLoaded', function (e) {
             commentForm.style.display = "none";
         } else {
             commentForm.style.display = "block";
-        }
+        }                                                                                    
 
         commentListLoad(`/api/diaryComments/${diaryId}`);
 

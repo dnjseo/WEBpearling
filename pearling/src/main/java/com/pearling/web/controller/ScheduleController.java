@@ -74,41 +74,41 @@ public class ScheduleController extends BaseController {
 	}
 	
 	//@PostMapping("reg")
-	public String post(
-			@RequestParam(name = "startDate", required = false) LocalDate startDate,
-			@RequestParam(name = "startTime", required = false) LocalTime startTime,
-			@RequestParam(name = "endDate", required = false) LocalDate endDate,
-			@RequestParam(name = "endTime", required = false) LocalTime endTime,
-			@RequestParam(name = "title", required = false) String title,
-			@RequestParam(name = "memberId", required = false) Integer memberId,
-			@RequestParam(name = "backgroundColor", required = false) String backgroundColor,
-			@RequestParam(name = "latitude", required = false) Double latitude,
-            @RequestParam(name = "longitude", required = false) Double longitude,
-			@RequestParam(name = "place", required = false) String place,
-			Model model, MyUserDetails user) {
+	// public String post(
+	// 		@RequestParam(name = "startDate", required = false) LocalDate startDate,
+	// 		@RequestParam(name = "startTime", required = false) LocalTime startTime,
+	// 		@RequestParam(name = "endDate", required = false) LocalDate endDate,
+	// 		@RequestParam(name = "endTime", required = false) LocalTime endTime,
+	// 		@RequestParam(name = "title", required = false) String title,
+	// 		@RequestParam(name = "memberId", required = false) Integer memberId,
+	// 		@RequestParam(name = "backgroundColor", required = false) String backgroundColor,
+	// 		@RequestParam(name = "latitude", required = false) Double latitude,
+    //         @RequestParam(name = "longitude", required = false) Double longitude,
+	// 		@RequestParam(name = "place", required = false) String place,
+	// 		Model model, MyUserDetails user) {
 
-		System.out.println("여러분 userId는 이것입니다! ::::: " + user.getId());
+	// 	System.out.println("여러분 userId는 이것입니다! ::::: " + user.getId());
 
-		SecurityContext context = SecurityContextHolder.getContext();
-		user = (MyUserDetails) context.getAuthentication().getPrincipal();
+	// 	SecurityContext context = SecurityContextHolder.getContext();
+	// 	user = (MyUserDetails) context.getAuthentication().getPrincipal();
 		
-		Schedule schedule = Schedule.builder()
-				.startDate(startDate)
-				.startTime(startTime)
-				.endDate(endDate)
-				.endTime(endTime)
-				.title(title)
-				.memberId(user.getId())
-				.backgroundColor(backgroundColor)
-				.latitude(latitude)
-				.longitude(longitude)
-				.place(place)
-				.build();
+	// 	Schedule schedule = Schedule.builder()
+	// 			.startDate(startDate)
+	// 			.startTime(startTime)
+	// 			.endDate(endDate)
+	// 			.endTime(endTime)
+	// 			.title(title)
+	// 			.memberId(user.getId())
+	// 			.backgroundColor(backgroundColor)
+	// 			.latitude(latitude)
+	// 			.longitude(longitude)
+	// 			.place(place)
+	// 			.build();
 
-		service.addSchedule(schedule);
+	// 	service.addSchedule(schedule);
 
-		return "redirect:/shell/myshell";
-	}
+	// 	return "redirect:/shell/myshell";
+	// }
 
 	//@PostMapping("delete")
 	public String delete(

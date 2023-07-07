@@ -445,3 +445,52 @@ input[type="time"]{
   cursor: default;
   color: #777;
 }
+
+#autocomplete-list{
+  position: absolute;
+  background-color: white;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 290px;
+  z-index: 999;
+
+  gap: 10px;
+
+  border-radius: 0 0 20px 20px;
+}
+
+#autocomplete-list.active{
+  position: absolute;
+  
+  border-left: 1px solid #A587E0;
+  border-right: 1px solid #A587E0;
+  border-bottom: 1px solid #A587E0;
+
+  /* padding: 10px; */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+.autocomplete-item{
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 180px;
+  padding: 10px;
+  padding-left: 20px;
+  border-bottom: 1px solid #ccc1e2;
+}
+
+#autocomplete-list > div> img {
+  width: 60px;
+  height: 60px;
+  margin-right: 20px;
+  border-radius: 50%;
+  object-fit: cover; 
+  object-position: center;
+}

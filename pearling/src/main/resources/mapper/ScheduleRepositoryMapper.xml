@@ -54,11 +54,15 @@
 			AND str_to_date(#{date}, '%Y-%m-%d') BETWEEN s.start_date AND s.end_date
 			AND s.member_id = m.id
 	</select>
-	<insert id="save">
+	<insert id="save" parameterType="Schedule" useGeneratedKeys="true" keyProperty="id">
 		insert into
 		schedule(start_date, start_time, end_date, end_time, title, member_id, background_color, latitude, longitude, place)		
 		values(#{startDate},#{startTime},#{endDate},#{endTime}, #{title},#{memberId},#{backgroundColor},#{latitude}, #{longitude}, #{place});
 	</insert>
+	<insert id="saveFriendTag" parameterType="FriendTag">
+        INSERT INTO friend_tag (member_id, schedule_id, friend_id)
+        VALUES (#{memberId}, #{scheduleId}, #{friendId})
+    </insert>
 	<update id="update">
 		update schedule
 		<set>

@@ -40,7 +40,7 @@
                         <label for="location-add">장소</label>
                         <input type="text" value="" id="keyword" size="15" name="place"
                         placeholder="장소 이름을 검색하세요.">
-                        <button class="btn-style" id="add-map">검색하기</button> 
+                        <button type="button" class="btn-style" id="add-map">검색하기</button> 
                     </div>
                     
                 
@@ -60,18 +60,27 @@
                 <!-- 친구 태그 선택 ------------------------------------------ -->
                 <div class="schedule-add-freind-wrap">
                     <label for="freind-tag">친구 태그</label>
-                    <input type="text" placeholder="친구의 닉네임을 검색하세요.">
-                    <button class="btn-style"> 검색하기 </button> 
+                    <input 
+                        type="text"
+                        id="friend-tag-input"
+                        placeholder="친구를 검색하여 추가 버튼을 눌러주세요."
+                        list="autocomplete-list"
+                        data-friendId=""
+                    />
+                    <!-- <datalist id="autocomplete-list"></datalist> -->
+                    <div id="autocomplete-list"></div>
+                    <button type="button" class="btn-style add-friend-btn"> 추가 </button> 
+                    <div class="completed-tag-box"></div>
                 </div>
 
-                <div class="schedule-add-freind-box">
+                <!-- <div class="schedule-add-freind-box">
                     <ul class="friendList">
                         <li class="fr" th:each="f : ${followList}" >
                             <img src="/images/profile/profile_yr.png"  th:src="@{'/resources/img/' + ${f.profileImage}}">
                             <p th:text="${f.nickname}">탐정</p>
                         </li>
                     </ul>
-                </div>
+                </div> -->
 
                 <!-- 컬러팔레트 선택 ------------------------------------------ -->
 
@@ -92,7 +101,7 @@
                 <!-- 취소, 확인버튼 선택 ------------------------------------------ -->
 
                 <div class="schedule-add-submit">
-                    <button class="defence">취소</button>
+                    <button type="button" class="defence">취소</button>
                     <button type="button" class="add-btn defence confirm-btn">확인</button>
                 </div>
 

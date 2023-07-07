@@ -11,19 +11,22 @@
                 <img src="/images/profile/circle.png">
             </div>
 
-            <div class="profile">
-                <div class="profile-setting">
-                    <p class="p-img">
-                        <img src="/images/header/profile.png" 
-                        th:src="@{${#authentication.principal.profileImage} != null ? '/resources/img/' + ${#authentication.principal.profileImage} : '/images/profile/basic.png'}" 
-                        alt="프로필" />
-                    </p>                    
-                    <div class="names">
-                        <p class="nickname"><span sec:authentication="principal.nickname"></span></p>
-                        <p class="name"><span sec:authentication="principal.name"></span> 님</p>
+            <a href="/shell/myshell">
+                <div class="profile">
+                    <div class="profile-setting">
+                        <p class="p-img">
+                            <img src="/images/header/profile.png" 
+                            th:src="@{${#authentication.principal.profileImage} != null ? '/resources/img/' + ${#authentication.principal.profileImage} : '/images/profile/basic.png'}" 
+                            alt="프로필" />
+                        </p>                    
+                        <div class="names">
+                            <p class="nickname"><span sec:authentication="principal.nickname"></span></p>
+                            <p class="name"><span sec:authentication="principal.name"></span> 님</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
+
             <form>
                 <div class="follow-list">
                     <div><a href="/follow/followingList">팔로잉</a> <span class="following-count">89</span></div>

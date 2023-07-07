@@ -5,7 +5,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +25,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pearling.web.entity.Diary;
+import com.pearling.web.entity.FriendTag;
 import com.pearling.web.entity.Schedule;
 import com.pearling.web.security.MyUserDetails;
+import com.pearling.web.service.FriendTagService;
 import com.pearling.web.service.ScheduleService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +40,9 @@ public class ScheduleController{
 
     @Autowired
     private ScheduleService service;
+
+    @Autowired
+    private FriendTagService tagService;
 
     @GetMapping
     public List<Schedule> scheduleList (){
@@ -104,22 +112,59 @@ public class ScheduleController{
     }
 
     @PostMapping
-    public void addSchedule(@RequestBody Schedule scheduleRequest, 
-    @AuthenticationPrincipal MyUserDetails user){
+    public void addSchedule(@RequestBody Map<String, Object> requestData,
+        @AuthenticationPrincipal MyUserDetails user){
+            
+        Map<String, Object> scheduleRequest = (HashMap) requestData.get("scheduleData");
+
+        String startDateString = (String)scheduleRequest.get("startDate");
+        LocalDate startDate = LocalDate.parse(startDateString);
+        String endDateString = (String)scheduleRequest.get("endDate");
+        LocalDate endDate = LocalDate.parse(endDateString);
+
+        String startTimeString = (String)scheduleRequest.get("startTime");
+        LocalTime startTime = startTimeString != "" ? LocalTime.parse(startTimeString) : null;
+        String endTimeString = (String) scheduleRequest.get("endTime");
+        LocalTime endTime = endTimeString != "" ? LocalTime.parse(endTimeString) : null;
+       
+        String latitudeString = (String) scheduleRequest.get("latitude");
+        Double latitude = latitudeString != "" ? Double.parseDouble(latitudeString) : null;
+
+        String longitudeString = (String) scheduleRequest.get("longitude");
+        Double longitude = longitudeString != "" ? Double.parseDouble(longitudeString) : null;
+
         Schedule schedule = Schedule.builder()
-				.startDate(scheduleRequest.getStartDate())
-				.startTime(scheduleRequest.getStartTime())
-				.endDate(scheduleRequest.getEndDate())
-				.endTime(scheduleRequest.getEndTime())
-				.title(scheduleRequest.getTitle())
+				.startDate(startDate)
+				.startTime(startTime)
+				.endDate(endDate)
+				.endTime(endTime)
+				.title((String)scheduleRequest.get("title"))
 				.memberId(user.getId())
-				.backgroundColor(scheduleRequest.getBackgroundColor())
-				.latitude(scheduleRequest.getLatitude())
-				.longitude(scheduleRequest.getLongitude())
-                .place(scheduleRequest.getPlace())
+				.backgroundColor((String)scheduleRequest.get("backgroundColor"))
+				.latitude(latitude)
+				.longitude(longitude)
+                .place((String)scheduleRequest.get("place"))
 				.build();
-        service.addSchedule(schedule);
-    }
+
+    int rtScheduleId = service.addSchedule(schedule);
+
+    System.out.println("rtScheduleId입니다:::::::"+rtScheduleId);
+    List<String> tagDataStringList = (List<String>) requestData.get("tagData");
+    List<Integer> tagDataList = tagDataStringList.stream().map(Integer::parseInt).collect(Collectors.toList());
+
+    System.out.println("태그데이터를 꺼냇읍니다:::::::"+tagDataList);
     
+        if(!tagDataList.isEmpty()){
+            for (Integer friendId : tagDataList) {    
+                FriendTag friendTag = FriendTag.builder()
+                    .memberId(user.getId())
+                    .scheduleId(rtScheduleId)
+                    .friendId(friendId)
+                    .build();
+                tagService.append(friendTag);
+            }
+        }
+    }    
+
 
 }//class end

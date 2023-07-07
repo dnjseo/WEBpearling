@@ -17,14 +17,11 @@ class ScheduleElements {
 
 window.addEventListener("load", function(e) {
   e.preventDefault;
-  
-  // loadContent 함수를 호출하여 다른 HTML 파일의 내용을 가져옵니다.
-    let schedule = new ScheduleElements();
-    
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
-    
-    const delScheduleBtn = document.querySelector('#schedule-del-btn-in-header')
+  let schedule = new ScheduleElements();  
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get('id');
+  const delScheduleBtn = document.querySelector('#schedule-del-btn-in-header')
+  const friendIds = [];
 
     // 삭제 버튼 클릭 시 스케쥴 삭제.
     delScheduleBtn.addEventListener("click", function () {
@@ -33,26 +30,33 @@ window.addEventListener("load", function(e) {
 
     setOffsetDate(schedule);
     paintPallet(schedule);
+
     
+    // 스케쥴 디테일 가져오는 경우
     if(id!=null){
         getDetail(id, schedule);
         delScheduleBtn.classList.add('schedule-del-btn-in-header-show')  
         changeUpdateMode()
     } 
-
-    const postModal = document.getElementById('cofirm-modal');
+    
+    // reg.html 하단의 확인키 
     const postBtn = this.document.querySelector('.confirm-yes')
-
+    
     postBtn.addEventListener("click", function () {
+      const friends = document.querySelectorAll('.taged-id-input');
+      friends.forEach(friend => {
+        friendIds.push(friend.value);
+      });
       if(id==null){
-        postSchedule(id, schedule);
+        postSchedule(id, schedule, friendIds);
       }else{
         updateSchedule(id, schedule);
       }
-    })
+    });
 
 
-});    
+
+});//window.addEventListener end 
 
 function changeUpdateMode() {
   let updateBtn = document.querySelector(".confirm-btn")
@@ -142,42 +146,87 @@ function setOffsetDate(schedule){
     const currentKRDate = new Date().toLocaleString('en-US', options).replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2');
       
     schedule.startDate.value = currentKRDate;
-    schedule.endDate.value = currentKRDate;
+    schedule.endDate.value = schedule.startDate.value ;
+
+    // 시작 날짜가 바뀌면 끝나는 날짜 자동으로 변경
+    schedule.startDate.oninput = () =>{
+      schedule.endDate.value = schedule.startDate.value ;
+    }
+
 } //setOffsetDate end
 
-function selectFreind(){
 
-    let friendList = document.querySelector('.friendList')
-    let friend = friendList.querySelector('.fr')
-    let current = colBox.querySelector(".active");
+// 친구 태그
+function selectFriend() {
+  fetch('/api/follow/followerList')
+    .then(response => response.json())
+    .then(followerList => {
+      console.log('fetch확인', followerList);
+      const list = data.followerList.map(item => item.nickname);
 
-        //색상 선택(클릭) 이벤트 
-        friendList.onclick = (e) => {
-            if (!(e.target.classList.contains("fr"))) {
-                return;
-            }
+      const input = document.querySelector('#friend-tag-input');
+      const autoComplete = document.querySelector('.autocomplete');
+      let nowIndex = 0;
 
-            console.log('친구 클릭!');
-            
-            if (current != null) {
-                current.classList.remove("active");
-            }
-    
-            e.target.classList.add("active");
-            current = e.target;
-    
-            // let input = document.createElement("input");
-            // input.type = "hidden";
-            // input.name = "tag";
-            // input.value = selectedColor.color;
-            // document.querySelector(".send-form").appendChild(input);
-    
-            console.log("선택한 색상:", selectedColor.color);
-            console.log("선택한 카테고리:", selectedColor.category);
-        };// colBox click end
-} //selectFriend end
+      const showList = (data, value, currentIndex) => {
+        // 정규식으로 변환
+        const regex = new RegExp(`(${value})`, 'g');
 
-function postSchedule(id, schedule){
+        autoComplete.innerHTML = data
+          .map((label, index) => `
+            <div class="${currentIndex === index ? 'active' : ''}">
+              ${label.replace(regex, '<mark>$1</mark>')}
+            </div>
+          `)
+          .join('');
+      };
+
+      input.onkeyup = (e) => {
+        const value = input.value.trim();
+
+        const matchDataList = value
+          ? list.filter((label) => label.includes(value))
+          : [];
+
+        switch (e.keyCode) {
+          // UP KEY
+          case 38:
+            nowIndex = Math.max(nowIndex - 1, 0);
+            break;
+
+          // DOWN KEY
+          case 40:
+            nowIndex = Math.min(nowIndex + 1, matchDataList.length - 1);
+            break;
+
+          // ENTER KEY
+          case 13:
+            document.querySelector("#search").value = matchDataList[nowIndex] || "";
+            // 초기화
+            nowIndex = 0;
+            matchDataList.length = 0;
+            break;
+
+          // 그외 다시 초기화
+          default:
+            nowIndex = 0;
+            break;
+        }
+
+        // 리스트 보여주기
+        showList(matchDataList, value, nowIndex);
+      };
+    })
+    .catch(error => {
+      console.log('팔로워 목록을 가져오는 동안 오류가 발생했습니다:', error);
+    });
+}
+
+
+
+
+// 스케쥴 등록
+function postSchedule(id, schedule, friendIds){
   if(id != null) return;
 
   if(schedule.title.value.trim() == ''){
@@ -197,12 +246,18 @@ function postSchedule(id, schedule){
       longitude: document.querySelector('#longitude').value,
       place: schedule.place.value,
     }
+
+    const requestData = {
+      scheduleData: scheduleData,
+      tagData: friendIds
+    };
+ 
     fetch('/api/schedules', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(scheduleData) // 폼 데이터를 URL 인코딩하여 전송
+      body: JSON.stringify(requestData) // 폼 데이터를 URL 인코딩하여 전송
     })
       .then(response => {
         if (response.ok) {
@@ -212,6 +267,7 @@ function postSchedule(id, schedule){
         } else {
           // 요청이 실패한 경우의 동작
           console.error('폼 제출 실패');
+          console.log(requestData);
         }
       })
       .catch(error => {
@@ -221,7 +277,7 @@ function postSchedule(id, schedule){
 
 }
 
-// 스케쥴 삭제 로직 
+// 스케쥴 삭제
 function deleteSchedule(id){
   let deleteModal = document.getElementById("delete-modal");
   let confirmYes = deleteModal.querySelector(".del-confirm-yes");
@@ -260,7 +316,7 @@ function deleteSchedule(id){
 
 }//deleteSchedule end
 
-// 스케쥴 업데이트 로직
+// 스케쥴 업데이트
 function updateSchedule(id, schedule){
   if(id == null) return;
 

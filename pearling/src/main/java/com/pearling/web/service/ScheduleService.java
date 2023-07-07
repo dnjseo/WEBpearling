@@ -3,6 +3,7 @@ package com.pearling.web.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.pearling.web.entity.FriendTag;
 import com.pearling.web.entity.Schedule;
 
 public interface ScheduleService {
@@ -14,9 +15,7 @@ public interface ScheduleService {
 
     Schedule get(Integer id);
     Schedule findById(Integer id);
-    void addSchedule(Schedule schedule);
+    int addSchedule(Schedule schedule);
     void updateSchedule(Schedule schedule);
     int deleteSchedule(Schedule schedule);
-
-    
 }

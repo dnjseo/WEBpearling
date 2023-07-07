@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.pearling.web.entity.FriendTag;
 import com.pearling.web.entity.Schedule;
 
 @Mapper
@@ -20,5 +21,8 @@ public interface ScheduleRepository {
     int save(Schedule schedule);
     int update(Schedule schedule);
     int delete(Schedule schedule);
-
+    
+    void saveFriendTag(FriendTag friendTag);
+    List<FriendTag> findFriendTagsByScheduleId(Integer scheduleId);
+    void deleteFriendTag(FriendTag friendTag);
 }

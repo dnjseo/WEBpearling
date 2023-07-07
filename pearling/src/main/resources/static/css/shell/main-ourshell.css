@@ -276,7 +276,7 @@
     
     }
 
-    .profile-x{
+    .profile-x > a{
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -286,7 +286,7 @@
     }
 
 
-    .profile-x > img{
+    .profile-x > a > img{
         width: 45px;
         height: 45px;
         border-radius: 30px;
@@ -294,7 +294,7 @@
         object-position: center;
     }
 
-    .profile-x > p {
+    .profile-x > a > p {
         font-weight: 600;
         font-size: 16px;
         letter-spacing: 0.1em;

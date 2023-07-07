@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" 
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{inc/layout}">
 
 <head>
     <link href="/css/guestbook/guestbook-plus.css" type="text/css" rel="stylesheet">
     <script src="/js/guestbook/post.js"></script>
-    <title>방명록 추가</title>
+    <title>방명록</title>
 </head>
 
 <body>
@@ -15,15 +14,15 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         <input id="input-member-id" type="hidden" th:value="${#authentication.principal.id}">
         <input id="input-user-id" type="hidden" th:value="${userId}">
         
-        <!-- 방명록 등록 -->
+         <!-- 방명록 등록 -->
         <section th:case="1" id="d1">
-            <form class="guestbook-add-form">
+            <form class="add-form">
                 <section class="guestbook-plus">
                     <h1 class="d-none">방명록 입력</h1>
                     <div class="guestbook-write">
-                        <textarea placeholder="방명록을 입력하세요"></textarea>
+                        <textarea class="guestbook-input" name="content" placeholder="방명록을 입력하세요"></textarea>
                     </div>
-                    <button class="guestbook-add-btn">등록</button>
+                    <button class="add-btn">등록</button>
                 </section>
 
                 <div id="confirm-modal" class="modal">
@@ -38,21 +37,24 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 
 
         <!-- 방명록 수정 -->
-        <section th:case="2" id="d1">
-            <h1 class="guestbook-title">방명록 수정</h1>
-            <section class="guestbook-plus">
-                <h1 class="d-none">방명록 입력</h1>
-                <div class="guestbook-write">
-                    <textarea>하 지존 짱난다 코로나 걸림 ㅋ</textarea>
-                </div>
-            </section>
+        <section th:case="2" id="d2"> <!-- Change the ID of this section to "d2" -->
+            <form class="update-form">
+                <section class="guestbook-plus">
+                    <h1 class="d-none">방명록 수정</h1>
+                    <div class="guestbook-write">
+                        <textarea th:text="${guestbook.content}" name="content"></textarea>
+                    </div>
+                </section>
 
-            <section class="guestbook-btns">
-                <h1 class="d-none">방명록 수정</h1>
-                <button class="add-btn">등록</button>
-            </section>
+                <section class="guestbook-btns">
+                    <h1 class="d-none">방명록 수정</h1>
+                    <button class="cancle-btn">취소</button>
+                    <button class="update-btn">수정</button>
+                </section>
+            </form>
         </section>
     </main>
     <!-- /wrap ------------------------------->
 </body>
+
 </html>

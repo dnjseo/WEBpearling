@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pearling.web.entity.Guestbook;
+import com.pearling.web.entity.GuestbookView;
 import com.pearling.web.entity.Member;
 import com.pearling.web.security.MyUserDetails;
 import com.pearling.web.service.GuestbookService;
@@ -71,27 +72,33 @@ public class GuestbookController extends BaseController {
       return "guestbook/list";
    }
 
-   @GetMapping("post/{id}")
+   @GetMapping("post/{userId}")
    public String post(
-         @PathVariable("id") int userId,
-         @RequestParam(name = "s", required = false) boolean editShow,
-         @AuthenticationPrincipal MyUserDetails user,
-         Model model) {
+      @PathVariable("userId") int userId,
+      @RequestParam(name = "s", required = false) boolean editShow,
+      @RequestParam(name = "gid", required = false) Integer id,
+      @AuthenticationPrincipal MyUserDetails user,
+      Model model) {
 
-      String pageTitle = getPageTitle();
-      pageTitle = "방명록 입력";
+      String pageTitle;
+      GuestbookView guestbook = null;
+
+      if (editShow) {
+         pageTitle = "방명록 수정";
+         if (id != null) {
+            guestbook = service.getGuestbookById(id);
+         }
+      } else {
+         pageTitle = "방명록 입력";
+      }
 
       model.addAttribute("pageTitle", pageTitle);
       model.addAttribute("headerShow", false);
       model.addAttribute("userId", userId);
-
-      if (editShow)
-         model.addAttribute("editShow", 1);
-      else
-         model.addAttribute("editShow", 2);
+      model.addAttribute("editShow", editShow ? 2 : 1);
+      model.addAttribute("guestbook", guestbook); // 수정된 코드로 방명록을 추가
 
       return "guestbook/post";
    }
-
 
 }

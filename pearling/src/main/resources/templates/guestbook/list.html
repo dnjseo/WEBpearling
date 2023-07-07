@@ -6,7 +6,7 @@
 <head>
     <link href="/css/guestbook/guestbook.css" type="text/css" rel="stylesheet">
     <link href="/css/header/guestbook.css" type="text/css" rel="stylesheet">
-    <script src="/js/guestbook/guestbook.js"></script>
+    <script src="/js/guestbook/list.js"></script>
     <title>방명록</title>
 </head>
 
@@ -22,20 +22,20 @@
             </ul>
         </div>
 
-        <p><a class="plus" th:href="@{/guestbook/post/{id}(id=${userId}, s=true)}">+</a></p>
+        <p><a class="plus" th:href="@{/guestbook/post/{id}(id=${userId}, s=false)}">+</a></p>
 
         <section th:each="g, stat : ${list}" th:id="'b' + ${stat.index}"
             th:class="'guestbook guestbook-' + ${stat.index}" th:data-id="${g.id}">
             <h1 class="d-none">방명록</h1>
             <div class="book">
                 <div class="pearl">
-                    <p th:text="${g.content}">나 오늘 마라탕 먹으러 감 ㅋ</p>
+                    <p th:text="${g.content}"></p>
                 </div>
                 <div class="underline">
                     <p class="date" th:text="${#dates.format(g.regdate, 'yyyy-MM-dd')}">2023/12/21</p>
-                    <p class="btn delete-button">삭제</p>
-                    <p th:if="${g.fromId == loginId}" class="btn updateBtn">수정</p>
-                    <p th:if="${g.fromId == loginId}" class="btn deleteBtn">삭제</p>
+                    <p class="updateBtn"><a th:href="@{/guestbook/post/{id}(id=${userId}, s=true, gid=${g.id})}">수정</a></p> <!-- 수정 버튼 클릭 시 링크에 방명록 ID 포함 -->
+                    <p class="btn deleteBtn">삭제</p>
+                    <p id="from-id" type="hidden" th:text="${g.fromId}"></p>
                 </div>
             </div>
             <p class="guestbook-close">x</p>

@@ -13,10 +13,10 @@ public interface GuestbookRepository {
     List<Guestbook> findAll();
     List<Guestbook> findByAll(Integer toId);
 
-    GuestbookView findByViewId(Integer id, Integer memberId);
-    
+    GuestbookView findById(Integer id);
+
     int save(Guestbook guestbook);
     void addGuestbook(Guestbook guestbook);
-    int update(Guestbook guestbook);
+    void updateGuestbook(Guestbook guestbook);
     int delete(Integer id);
 }

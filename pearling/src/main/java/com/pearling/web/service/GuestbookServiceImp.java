@@ -28,8 +28,8 @@ public class GuestbookServiceImp implements GuestbookService{
     }
 
     @Override
-    public GuestbookView findByViewId(Integer id, Integer memberId) {
-        return repository.findByViewId(id, memberId);
+    public GuestbookView getGuestbookById(Integer id) {
+        return repository.findById(id);
     }
 
     @Override
@@ -39,6 +39,7 @@ public class GuestbookServiceImp implements GuestbookService{
 
     @Override
     public void updateGuestbook(Guestbook guestbook) {
+        repository.updateGuestbook(guestbook);
     }
 
     // 삭제 기능

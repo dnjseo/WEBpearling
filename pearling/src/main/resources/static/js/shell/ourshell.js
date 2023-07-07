@@ -51,11 +51,11 @@ async function printFriendScheduleList(osDate) {
   document.querySelector('#os-fl').innerHTML = '';
 
   try {
-    const response = await fetch('/api/follow/followerList');
-    const followerList = await response.json();
+    const response = await fetch('/api/follow/followingList');
+    const followingList = await response.json();
 
-    for (const follower of followerList) {
-      const userId = follower.id;
+    for (const following of followingList) {
+      const userId = following.id;
 
       //투두 리스트
       const todoResponse = await fetch(`/api/todos/ourshell/${userId}?date=${date}`);
@@ -92,9 +92,9 @@ async function printFriendScheduleList(osDate) {
         <ul class="friendScheduleList">
           <li class="fs1">
             <div class="profile-x">
-            <a href="/shell/myshell/${follower.id}">
-              <img src="/resources/img/${follower.profileImage}">
-              <p>${follower.nickname}</p>
+            <a href="/shell/myshell/${following.id}">
+              <img src="/resources/img/${following.profileImage}">
+              <p>${following.nickname}</p>
             </div>
             <div class="scheduleContents">
             <p>${todoItems ? '할 일.' : ''}</p>

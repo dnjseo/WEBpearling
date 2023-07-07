@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6" layout:decorate="~{inc/layout}">
+
+<head>
+    <title>알림 화면</title>
+    <script src="/js/system/notification.js"></script>
+    <link href="/css/notification/list.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <main layout:fragment="content">
+        <section>
+            <div id="notification-container">
+                <input id="input-member-id" type="hidden" th:value="${#authentication.principal.id}">
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

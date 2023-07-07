@@ -5,6 +5,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,9 +32,14 @@ public class GuestbookController {
       guestbook.setFromId(fromId); // Guestbook 객체에 fromId 설정
       guestbook.setToId(toId); // Guestbook 객체에 toId 설정
 
-      System.out.println("추가해보고 싶다... ㅎ");
-
       service.addGuestbook(guestbook);
+   }
+
+   @PutMapping("update/{id}")
+   public void update(@PathVariable("id") int id, @RequestBody Guestbook guestbook) {
+      guestbook.setId(id);
+      System.out.println("엥.. 대체 왜 수정이 안되는거임 ? ");
+      service.updateGuestbook(guestbook);
    }
 
    @DeleteMapping("delete/{id}") // 삭제 기능 추가

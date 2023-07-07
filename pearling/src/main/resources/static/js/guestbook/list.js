@@ -26,10 +26,15 @@ window.addEventListener('DOMContentLoaded', function(e) {
 
     let closeBtn = section.querySelector(".guestbook-close"); // 닫기 버튼
 
-    let deleteButton = section.querySelector(".delete-button"); // 삭제버튼
+    // let deleteButton = section.querySelector(".delete-button"); // 삭제버튼
     let deleteModal = document.getElementById("delete-modal");
     let deleteYes = deleteModal.querySelector(".delete-yes");
 
+    // 내버전
+    // let deleteButton = section.querySelector(".delete-button");
+
+    // 친구버전
+    let deleteBtn = section.querySelector(".deleteBtn"); // 삭제버튼
     let updateBtn = section.querySelector(".updateBtn"); // 수정버튼
 
     let plusBtn = document.querySelector(".plus"); // 추가하기 버튼
@@ -38,21 +43,31 @@ window.addEventListener('DOMContentLoaded', function(e) {
     clamImage.addEventListener("click", function() {
       section.style.display = "block";
       black.style.display = "block";
-      if(loginId == userId || userId == ""){
-        deleteButton.style.display = "block";
-      }else 
-        deleteButton.style.display = "none";
+
+      let fromId = section.querySelector("#from-id").textContent;
+
+      if(loginId == userId || userId == "" || loginId == fromId){
+        deleteBtn.style.display = "block";
+      }else if(loginId != fromId){
+        deleteBtn.style.display = "none";
+      }
+
+      if(fromId == loginId)
+        updateBtn.style.display = "block";
     });
 
-    if(userId != "")
+    if(userId != "" && userId != loginId)
       plusBtn.style.display = "block";
+    else{
+      plusBtn.style.display = "none";
+    }
 
     closeBtn.addEventListener("click", function() {
       section.style.display = "none";
       black.style.display = "none";
     });
 
-    deleteButton.addEventListener("click", function() {
+    deleteBtn.addEventListener("click", function() {
       deleteModal.style.display = "block";
       section.style.display = "none";
       deleteYes.setAttribute("data-id", section.getAttribute("data-id"));

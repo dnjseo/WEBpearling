@@ -10,7 +10,7 @@ public interface GuestbookService {
     List<Guestbook> getList();
     List<Guestbook> getGuestBookList(Integer toId);
 
-    GuestbookView findByViewId(Integer id, Integer memberId);
+    GuestbookView getGuestbookById(Integer id);
 
     void addGuestbook(Guestbook guestbook);
     void updateGuestbook(Guestbook guestbook);

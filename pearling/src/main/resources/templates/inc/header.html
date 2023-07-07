@@ -42,11 +42,12 @@
 
         <div id="s1"  style="display: none;">
             <h1 class="d-none">프로필</h1>
-            <div class = "profile-x">
+            <form class = "profile-x">
                 <img class="shell-image" src="/images/profile/profile_yr.png">
                 <p class="shell-name">탐정's shell</p>
                 <button class="follobutton">팔로우</button>
-            </div>
+            </form>
+            <input type="hidden" name="followingHiddenId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
         </div>
 
         <!-- 마이쉘 하위메뉴 -->

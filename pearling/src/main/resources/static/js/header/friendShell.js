@@ -51,7 +51,7 @@ window.addEventListener("DOMContentLoaded", function(e) {
                     // followBtn 선택 및 이벤트 리스너 등록
                     let followBtn = document.querySelector(".follobutton");
                     followBtn.addEventListener('click', function(e){
-                        // e.preventDefault(); // 주석 처리 또는 제거
+                        e.preventDefault();
                         
                         let followerId = uid;
                         console.log("친구의 id는 " + followerId);
@@ -74,7 +74,7 @@ window.addEventListener("DOMContentLoaded", function(e) {
                                     followBtn.innerText = '팔로잉';
                                     followBtn.style.backgroundColor = '#5A2E95';
                                     console.log("추가 완");
-                                    e.preventDefault(); 
+                                    // e.preventDefault(); 
                                 }
                             })
                         }
@@ -92,7 +92,7 @@ window.addEventListener("DOMContentLoaded", function(e) {
                                     followBtn.innerText = '팔로우';
                                     followBtn.style.backgroundColor = "";
                                     console.log("삭제 완" + id);
-                                    e.preventDefault();
+                                    // e.preventDefault();
                             
                                 }
                             });

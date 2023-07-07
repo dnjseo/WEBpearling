@@ -1,10 +1,12 @@
 package com.pearling.web.security;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
@@ -19,6 +21,7 @@ public class MyUserDetails implements UserDetails, OAuth2User{
 	private String password;
 	private String nickname;
 	private String profileImage;
+	private int roleId;	
 	private List<GrantedAuthority> authorities;
 	private Map<String, Object> attributes;
 	private Member member;
@@ -78,6 +81,15 @@ public class MyUserDetails implements UserDetails, OAuth2User{
 		this.profileImage = profileImage;
 	}
 
+	// 권한 아이디 getter setter
+	public int getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
+	}
+
 	// 권한 getter setter
 	public void setAuthorities(List<GrantedAuthority> authorities) {
 		this.authorities = authorities;
@@ -86,8 +98,14 @@ public class MyUserDetails implements UserDetails, OAuth2User{
 	public MyUserDetails(Member member, Map<String, Object> attributes, List<GrantedAuthority> authorities) {
 		this.member = member;
 		this.attributes = attributes;
-		this.authorities = authorities;
 		this.username = member.getEmail(); // 이메일 값을 주요 사용자 이름으로 설정
+
+		this.authorities = new ArrayList<>();
+        if (roleId == 1) {
+            this.authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        } else if (roleId == 2) {
+            this.authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
+        }
 	}
 
 	@Override

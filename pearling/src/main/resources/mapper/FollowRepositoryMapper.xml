@@ -15,7 +15,7 @@
 </select>
 
  <insert id="addFollow" parameterType="int">
-    insert into follow (follower_id, following_id)
+    insert ignore into follow (follower_id, following_id)
     values (#{followerId}, #{followingId})
  </insert>
 

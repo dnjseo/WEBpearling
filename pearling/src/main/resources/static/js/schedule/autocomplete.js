@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         option.addEventListener('click', function() {
           input.value = follower.nickname;
+          input.dataset.friendId = follower.id;
           autocompleteList.innerHTML = '';
 
         // 선택된 팔로워를 matchedFollowers 배열에서 제외
@@ -46,8 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
             matchedFollowers.splice(index, 1);
         }
 
-      });
-
+      })
         autocompleteList.appendChild(option);
       });
     }
@@ -60,38 +60,47 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 친구 태그 - 추가 버튼 클릭     
     document.querySelector('.add-friend-btn').onclick = (e) => {
-        let value = `@${input.value} `
-        let taged = `
-            <div class="taged-item">
-                <input class="complete-tag" type="text" value=${value}>
-                <button class="tag-del-btn" type=button> x </button>
-                <input type="hidden" name="">
-            <div>
-        `
-        if(input.value)
-        document.querySelector('.completed-tag-box').innerHTML += taged
-        
-        //친구 닉네임 입력창 비우기
-        input.value = ''
-
+      const tagInput = document.createElement('input');
+      tagInput.className = "taged-id-input"
+      tagInput.type = "hidden"
+      tagInput.name = "friendId"
+      tagInput.value = input.dataset.friendId;
+      
+      let value = `@${input.value} `;
+      let taged = `
+        <div class="taged-item">
+          <input class="complete-tag" type="text" value="${value}" disabled>
+          <button class="tag-del-btn" type="button"> x </button>
+        </div>
+      `;
+      
+      if (input.value) {
+        const completedTagBox = document.querySelector('.completed-tag-box');
+      
+        // taged 요소를 생성하여 completedTagBox에 추가
+        const tagedElement = document.createElement('div');
+        tagedElement.innerHTML = taged;
+        completedTagBox.appendChild(tagedElement);
+      
+        // tagInput 요소를 생성하여 taged 요소에 추가
+        const tagedItem = tagedElement.querySelector('.taged-item');
+        tagedItem.appendChild(tagInput);
+      
         // 태그 삭제 버튼 
-        let tagDels = document.querySelectorAll('.tag-del-btn');
-        tagDels.forEach (btn => 
-            btn.onclick = (e) => {
-                let tagedItem = e.target.closest('.taged-item');
-                if (tagedItem) {
-                    tagedItem.remove();
+        const tagDelBtn = tagedItem.querySelector('.tag-del-btn');
+        tagDelBtn.addEventListener('click', () => {
+          tagedElement.remove();
 
-                    // 삭제된 팔로워를 다시 followers 배열에 추가
-                    const deletedFollower = followers.find(follower => follower.nickname === deletedNickname);
-                    if (deletedFollower) {
-                        followers.push(deletedFollower);
-                    }
-
-                }
-            }  
-        )//tagDels forEach end
-
+          // 삭제된 팔로워를 다시 followers 배열에 추가
+          // const deletedFollower = followers.find(follower => follower.nickname === deletedNickname);
+          // if (deletedFollower) {
+          //   followers.push(deletedFollower);
+          // }
+        });
+      }
+      
+      // 친구 닉네임 입력창 비우기
+      input.value = '';
     };
 
     // 입력 창에 포커스가 가면 자동완성 기능을 활성화합니다.

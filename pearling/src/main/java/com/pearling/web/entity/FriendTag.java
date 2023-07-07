@@ -7,11 +7,9 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class FriendTag {
     private Integer id;
-    private Integer userId;
-    private Integer firendId;
+    private Integer memberId;
     private Integer scheduleId;
+    private Integer friendId;
 }

@@ -6,7 +6,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.pearling.web.entity.FriendTag;
 import com.pearling.web.entity.Schedule;
 import com.pearling.web.entity.Todo;
 import com.pearling.web.repository.ScheduleRepository;
@@ -53,10 +55,14 @@ public class ScheduleServiceImp implements ScheduleService {
         return repository.findById(id);
     }
 
+    @Transactional
     @Override
-    public void addSchedule(Schedule schedule) {
+    public int addSchedule(Schedule schedule) {
 
         repository.save(schedule);
+       
+        //등록 후 id 값 반환!!
+        return schedule.getId();
     }
 
     @Override

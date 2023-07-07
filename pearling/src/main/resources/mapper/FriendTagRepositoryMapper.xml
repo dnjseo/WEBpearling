@@ -9,7 +9,8 @@
     </select>
    
     <insert id="save" parameterType="com.pearling.web.entity.FriendTag">
-        insert into friend_tag(schedule_id, member_id, friend_id) values(#{scheduleId}, #{memberId}, #{freindId})
+        insert into friend_tag(schedule_id, member_id, friend_id)
+        values(#{scheduleId}, #{memberId}, #{friendId})
     </insert>
 
     <delete id="delete" parameterType="com.pearling.web.entity.FriendTag">

@@ -21,6 +21,7 @@ window.addEventListener("load", function(e) {
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get('id');
   const delScheduleBtn = document.querySelector('#schedule-del-btn-in-header')
+  const friendIds = [];
 
     // 삭제 버튼 클릭 시 스케쥴 삭제.
     delScheduleBtn.addEventListener("click", function () {
@@ -42,8 +43,12 @@ window.addEventListener("load", function(e) {
     const postBtn = this.document.querySelector('.confirm-yes')
     
     postBtn.addEventListener("click", function () {
+      const friends = document.querySelectorAll('.taged-id-input');
+      friends.forEach(friend => {
+        friendIds.push(friend.value);
+      });
       if(id==null){
-        postSchedule(id, schedule);
+        postSchedule(id, schedule, friendIds);
       }else{
         updateSchedule(id, schedule);
       }
@@ -141,7 +146,13 @@ function setOffsetDate(schedule){
     const currentKRDate = new Date().toLocaleString('en-US', options).replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2');
       
     schedule.startDate.value = currentKRDate;
-    schedule.endDate.value = currentKRDate;
+    schedule.endDate.value = schedule.startDate.value ;
+
+    // 시작 날짜가 바뀌면 끝나는 날짜 자동으로 변경
+    schedule.startDate.oninput = () =>{
+      schedule.endDate.value = schedule.startDate.value ;
+    }
+
 } //setOffsetDate end
 
 
@@ -215,7 +226,7 @@ function selectFriend() {
 
 
 // 스케쥴 등록
-function postSchedule(id, schedule){
+function postSchedule(id, schedule, friendIds){
   if(id != null) return;
 
   if(schedule.title.value.trim() == ''){
@@ -235,12 +246,18 @@ function postSchedule(id, schedule){
       longitude: document.querySelector('#longitude').value,
       place: schedule.place.value,
     }
+
+    const requestData = {
+      scheduleData: scheduleData,
+      tagData: friendIds
+    };
+ 
     fetch('/api/schedules', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(scheduleData) // 폼 데이터를 URL 인코딩하여 전송
+      body: JSON.stringify(requestData) // 폼 데이터를 URL 인코딩하여 전송
     })
       .then(response => {
         if (response.ok) {
@@ -250,6 +267,7 @@ function postSchedule(id, schedule){
         } else {
           // 요청이 실패한 경우의 동작
           console.error('폼 제출 실패');
+          console.log(requestData);
         }
       })
       .catch(error => {

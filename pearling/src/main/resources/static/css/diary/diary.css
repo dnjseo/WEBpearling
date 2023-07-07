@@ -194,6 +194,9 @@ form {
         pointer-events: none;
       } */
 
+    .diary-post-add-btn {
+        cursor: pointer;
+    }
 
 /* 하트, 댓글 아이콘 속성 */
 

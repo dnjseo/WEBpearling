@@ -133,7 +133,7 @@ window.addEventListener('DOMContentLoaded', function (e) {
     let userId = urlParams.get('uid');
 
     let id;
-    if(userId == null) {
+    if(userId == '') {
         id = memberId;
     } else if(memberId == userId) {
         id = memberId;

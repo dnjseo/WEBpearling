@@ -71,9 +71,9 @@
                         <div class="content">
                             <a class="sche-link" th:href="@{../schedule/detail(id=${s.id})}" 
                             th:data-id="${s.id}" th:text="${s.title}">비색의 탄환</a>
-                        </div>
-                        <div class="tag">
-                            <!-- <button></button> -->
+                            <div class="tag" th:if="${s.friendNicknames != null && s.friendNicknames.size() > 0}">
+                                <div th:each="nickname : ${s.friendNicknames}" th:text="'@'+${nickname}"></div>
+                            </div>
                         </div>
                     </li>
                 </ul>

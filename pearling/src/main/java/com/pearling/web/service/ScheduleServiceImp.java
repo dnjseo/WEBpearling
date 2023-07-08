@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pearling.web.entity.FriendTag;
 import com.pearling.web.entity.Schedule;
 import com.pearling.web.entity.Todo;
+import com.pearling.web.repository.FriendTagRepository;
 import com.pearling.web.repository.ScheduleRepository;
 
 @Service
@@ -18,6 +19,9 @@ public class ScheduleServiceImp implements ScheduleService {
 
     @Autowired
     private ScheduleRepository repository;
+
+    @Autowired
+    private FriendTagRepository tagRepository;
 
     @Override
     public List<Schedule> getList() {
@@ -35,14 +39,33 @@ public class ScheduleServiceImp implements ScheduleService {
 
     @Override
     public List<Schedule> getListByUserId(Integer memberId) {
+        List<Schedule> schedules = repository.findByUserId(memberId);
 
-        return repository.findByUserId(memberId);
+        for (Schedule schedule : schedules) {
+            if(tagRepository.findByScheduleId(schedule.getId()) == null){
+                return schedules;
+            }
+             List<String> friendTags = tagRepository.findNicknameByScheduleId(schedule.getId());
+            schedule.setFriendNicknames(friendTags);
+        }
+
+        return schedules;
     }
 
     @Override
     public List<Schedule> getListByDate(Integer memberId, LocalDate date) {
  
-        return repository.findByDate(memberId, date);
+        List<Schedule> schedules = repository.findByDate(memberId, date);
+
+       for (Schedule schedule : schedules) {
+            if(tagRepository.findByScheduleId(schedule.getId()) == null){
+                return schedules;
+            }
+             List<String> friendTags = tagRepository.findNicknameByScheduleId(schedule.getId());
+            schedule.setFriendNicknames(friendTags);
+        }
+
+        return schedules;
     }
 
     @Override
@@ -52,7 +75,7 @@ public class ScheduleServiceImp implements ScheduleService {
 
     @Override
     public Schedule findById(Integer id) {
-        
+
         return repository.findById(id);
     }
 

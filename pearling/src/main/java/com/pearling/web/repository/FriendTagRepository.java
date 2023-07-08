@@ -1,5 +1,7 @@
 package com.pearling.web.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.pearling.web.entity.FriendTag;
@@ -11,4 +13,7 @@ public interface FriendTagRepository {
     
     int save(FriendTag friendTag);
     int delete(FriendTag friendTag);
+
+    List<FriendTag> findByScheduleId(int scheduleId);
+    List<String> findNicknameByScheduleId(int friendId);
 }

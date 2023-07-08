@@ -55,6 +55,7 @@ public class ScheduleController{
         List<Schedule> scheduleList = new ArrayList<>();
 
         scheduleList = service.getListByUserId(userId);
+        
         //System.out.println(scheduleList);
 
         return scheduleList;
@@ -62,7 +63,9 @@ public class ScheduleController{
 
     @GetMapping("/{id}")
     public List<Schedule> scheduleList(@PathVariable("id") int userId) {
+
         List<Schedule> scheduleList = service.getListByUserId(userId);
+
         return scheduleList;
     }
 
@@ -79,6 +82,16 @@ public class ScheduleController{
     public Schedule detail(@RequestParam("id") int id){
 
             Schedule s = service.get(id);
+
+            if(tagService.getFriendNicknames(id) != null){
+                List<String> friendNicknames = tagService.getFriendNicknames(id);
+                s.setFriendNicknames(friendNicknames);
+
+                List<FriendTag> frList = tagService.getByScheduleId(id);
+                Map<Schedule, List<FriendTag>> scheduleWithFriends = new HashMap<>();
+                scheduleWithFriends.put(s,frList);
+                return s;
+            }
 
             return s;
     }

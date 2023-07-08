@@ -9,6 +9,8 @@ class ScheduleElements {
         this.place = s.querySelector("#keyword");
         this.backgroundColor = s.querySelector("#background-color");
         
+        this.tagedFr = s.querySelector(".taged-freind-nickname")
+        
         this.colBox = s.querySelector(".col-box");
         this.colBall = this.colBox.querySelectorAll(".col-ball");
         this.current = this.colBox.querySelector(".active");
@@ -74,14 +76,25 @@ function getDetail(id,schedule) {
     fetch(url)
       .then(response => response.json())
       .then(s => {
-
+   
         schedule.title.value = s.title;
         schedule.startDate.value = s.startDate;
         schedule.startTime.value = s.startTime;
         schedule.endDate.value = s.endDate;
         schedule.endTime.value = s.endTime;
         schedule.place.value = s.place;
-        schedule.backgroundColor.value = s.backgroundColor
+        schedule.backgroundColor.value = s.backgroundColor;
+
+      // ** 태그 된 친구 불러오기 **
+        s.friendNicknames.forEach((friendNickname) => {
+          let taged = `
+            <div class="taged-item">
+              <input class="complete-tag" type="text" value="${friendNickname}" disabled>
+              <button class="tag-del-btn" type="button"> x </button>
+            </div>
+          `;
+          schedule.tagedFr.innerHTML += taged;
+        });
 
         // ** 선택 된 컬러 표시하기 **
         let receivedColor = schedule.backgroundColor.value;

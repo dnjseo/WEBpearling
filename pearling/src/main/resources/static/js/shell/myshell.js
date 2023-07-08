@@ -531,7 +531,7 @@ function updateScheduleList(clickedDate) {
       for (let schedule of list) {
         let scheduleStartDate = new Date(schedule.startDate);
         let scheduleEndDate = new Date(schedule.endDate)
-
+        
         // 날짜 비교를 위해 clickedDate와 scheduleStartDate의 년, 월, 일을 비교
         if (
           clickedDate.getFullYear() >= scheduleStartDate.getFullYear() &&
@@ -543,7 +543,6 @@ function updateScheduleList(clickedDate) {
         ) {
 
           //스케쥴 출력하기
-
           let itemTemplate = '';
           if (userId) {
             // UserID가 있는 경우
@@ -551,18 +550,24 @@ function updateScheduleList(clickedDate) {
             <li class="scheduleList">
               <div class="content">
                 <span>${schedule.title}</span>
+                <div class ="tag">
+                  ${schedule.friendNicknames.map(nickname => `<div>@${nickname}</div>`).join('')}
+                </div>
               </div>
             </li>
           `;
           } else {
             // UserID가 null인 경우
             itemTemplate = `
-              <li class="scheduleList">
-                <div class="content">
-                  <a class="sche-link" href="../schedule/detail?id=${schedule.id}">${schedule.title}</a>
+            <li class="scheduleList">
+              <div class="content">
+                <a class="sche-link" href="../schedule/detail?id=${schedule.id}">${schedule.title}</a>
+                <div class ="tag">
+                 ${schedule.friendNicknames.map(nickname => `<div>@${nickname}</div>`).join('')}
                 </div>
-              </li>
-            `;
+              </div>
+            </li>
+          `;
           }
 
           scheduleElements.insertAdjacentHTML("beforeend", itemTemplate);

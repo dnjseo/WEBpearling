@@ -31,6 +31,11 @@
         FROM member
         WHERE login_id = #{loginId}
     </select>
+	<select id="findNicknameById" resultType="java.lang.String">
+		SELECT nickname
+		FROM member
+		WHERE id = #{id}
+	</select>
 	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="Member">
 		insert into member

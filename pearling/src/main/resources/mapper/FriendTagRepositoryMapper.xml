@@ -3,11 +3,19 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.pearling.web.repository.FriendTagRepository">
-    <select id="findById" resultType="com.pearling.web.entity.FriendTag"> 
-        select * from friend_tag
-        where member_id=#{memberId} and schedule_id=#{scheduleId}
+    <select id="findByScheduleId" resultType="com.pearling.web.entity.FriendTag"> 
+        select *
+        from friend_tag
+        where schedule_id = #{schedulefd};
     </select>
-   
+
+   <select id="findNicknameByScheduleId" resultType="java.lang.String">
+        SELECT m.nickname
+        FROM friend_tag ft
+        JOIN member m ON ft.friend_id = m.id
+        WHERE ft.schedule_id = #{schedulefd}
+    </select>
+    
     <insert id="save" parameterType="com.pearling.web.entity.FriendTag">
         insert into friend_tag(schedule_id, member_id, friend_id)
         values(#{scheduleId}, #{memberId}, #{friendId})

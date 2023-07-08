@@ -26,4 +26,6 @@ public interface MemberRepository {
     void delete(Member member);
 
     Optional<Member> findByLoginId(String loginId); // 추가된 메소드
+
+    String findNicknameById(int id); // 아이디로 닉네임 찾기
 }

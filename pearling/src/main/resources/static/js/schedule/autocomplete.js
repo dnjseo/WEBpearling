@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         option.appendChild(text);
 
         option.addEventListener('click', function() {
-          input.value = follower.nickname;
+          input.value = '@'+follower.nickname;
           input.dataset.friendId = follower.id;
           autocompleteList.innerHTML = '';
 
@@ -54,9 +54,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
     // 자동완성 목록에서 선택 시 입력 창에 추가
-    autocompleteList.addEventListener('change', function() {
-        input.value = autocompleteList.value;
-    });
+    // autocompleteList.addEventListener('change', function() {
+    //     input.value = autocompleteList.value;
+    // });
 
     // 친구 태그 - 추가 버튼 클릭     
     document.querySelector('.add-friend-btn').onclick = (e) => {
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
       tagInput.name = "friendId"
       tagInput.value = input.dataset.friendId;
       
-      let value = `@${input.value} `;
+      let value = `${input.value} `;
       let taged = `
         <div class="taged-item">
           <input class="complete-tag" type="text" value="${value}" disabled>
@@ -74,6 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       `;
       
+      
+      //인풋창의 친구가 유효할 경우
       if (input.value) {
         const completedTagBox = document.querySelector('.completed-tag-box');
       
@@ -88,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
         // 태그 삭제 버튼 
         const tagDelBtn = tagedItem.querySelector('.tag-del-btn');
+
         tagDelBtn.addEventListener('click', () => {
           tagedElement.remove();
 
@@ -98,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
           // }
         });
       }
-      
+     
       // 친구 닉네임 입력창 비우기
       input.value = '';
     };

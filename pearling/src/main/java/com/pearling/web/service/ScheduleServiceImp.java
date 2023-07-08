@@ -52,6 +52,7 @@ public class ScheduleServiceImp implements ScheduleService {
 
     @Override
     public Schedule findById(Integer id) {
+        
         return repository.findById(id);
     }
 

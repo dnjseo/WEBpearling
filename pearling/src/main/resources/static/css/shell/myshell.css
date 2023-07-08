@@ -270,6 +270,8 @@ input[type="checkbox"]:checked + p {
     bottom: 2%;
 
     z-index: 9999;
+
+    cursor: pointer;
 }
 
 .plus{
@@ -329,10 +331,14 @@ input[type="checkbox"]:checked + p {
 .plus-todo{
     bottom: 10%;
     right: 50%;
+
+    cursor: pointer;
 }
 
 .plus-schedule{
     bottom: 60%;
     right: 30%; 
+
+    cursor: pointer;
 }
 

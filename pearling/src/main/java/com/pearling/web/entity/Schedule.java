@@ -3,8 +3,9 @@
     import java.time.LocalDate;
     import java.time.LocalTime;
     import java.util.Date;
+import java.util.List;
 
-    import lombok.AllArgsConstructor;
+import lombok.AllArgsConstructor;
     import lombok.Builder;
     import lombok.Data;
     import lombok.NoArgsConstructor;
@@ -28,4 +29,5 @@ public class Schedule {
     private String place;
     private String profileImage;
     private String formattedDate; 
+    private List<String> friendNicknames;
 }

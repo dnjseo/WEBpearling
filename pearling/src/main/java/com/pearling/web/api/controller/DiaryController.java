@@ -129,7 +129,7 @@ public class DiaryController {
 			@RequestBody Diary diary) {
 
 		service.update(diary);
-		System.out.println("나는 diary-put 레스트컨트롤러");
+		System.out.println("나는 diary-put 레스트컨트롤러" + diary);
 
 	}
 

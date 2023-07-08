@@ -4,15 +4,37 @@
 
 <head>
     <title>알림 화면</title>
-    <script src="/js/system/notification.js"></script>
+    <script src="/js/notification/list.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <link href="/css/notification/list.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
     <main layout:fragment="content">
-        <section>
-            <div id="notification-container">
-                <input id="input-member-id" type="hidden" th:value="${#authentication.principal.id}">
+        <div class="noti-cate-box">
+            <div class="noread-noti-list">읽지 않은 알림</div>
+            <div class="pre-noti-list">이전 알림</div>
+        </div>
+        <section class="noti-section">
+            <div id="noti-container">
+                <div class="noti" th:each="n : ${notifications}">
+                    <div class="noti-box">
+                        <div>
+                            <img src="/images/logo/mainlogo.png">
+                            <div class="noti-logo">PEARLING</div>
+                        </div>
+                        <div class="noti-regdate">
+                            <span th:text="${n.regDate}"></span>
+                        </div>
+                    </div>
+                    <div class="noti-content" th:text="${n.message}">content</div>
+                    <div class="noti-btn-box">
+                        <button class="noti-up-btn" th:value="${n.id}">keep...</button>
+                        <button class="noti-del-btn" th:value="${n.id}">delete...</button>
+                        <input name="input-isread-value" type="hidden" th:value="${n.isRead}">
+                    </div>
+                </div>
+                <input id="input-member-id" name="input-user-id" type="hidden" th:value="${#authentication.principal.id}">
             </div>
         </section>
     </main>

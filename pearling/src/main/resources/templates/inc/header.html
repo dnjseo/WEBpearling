@@ -2,6 +2,7 @@
     xmlns:th="http://www.thymeleaf.org" 
     xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
 >
+
 <!--header-wrap-->
 <header class="header-wrap">
     <!--header-->
@@ -15,6 +16,8 @@
                 <img class="search-close" src="/images/header/close.svg"></img>
                 <input type="submit">
             </form>   
+            <div class="alert"><a href="/notification/list">
+                <img class="icon-alert" src="/images/header/alert.svg" alt="alret"></a></div>
             <img class="sub-close hb" src="/images/header/close.svg"></img>
             <div class="menu"><img class="hb" src="/images/header/hamburger.svg" alt="logo"/></div>
         </div>    
@@ -58,6 +61,16 @@
             <a class = "guestbook" href="/guestbook/list">🫧 방명록</a>
         </div>
         <!-- 마이쉘 하위메뉴 -->
+
+        <!-- 알림창 -->
+
+          <section>
+            <div id="notification-container">
+                <input id="input-member-id" type="hidden" th:value="${#authentication.principal.id}">
+            </div>
+        </section>
+
+        <!-- 알림창 -->
     
 </header>
  <!--header-wrap-->

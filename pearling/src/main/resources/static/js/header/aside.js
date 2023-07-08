@@ -1,4 +1,4 @@
-window.onload = function () {
+window.addEventListener("DOMContentLoaded", function(e){
     function countLoad(){
         let followCount = document.querySelector(".follow-list");
         let following = followCount.querySelector(".following-count");
@@ -14,4 +14,15 @@ window.onload = function () {
     
     countLoad();
 
-}
+    let loginId = document.querySelector("input[name='loginId']").value;
+    let roleStatus = document.querySelector(".nickname")
+    let followStatus = document.querySelector(".follow-list")
+
+    if(loginId == "1"){
+        roleStatus.innerText += " (관리자)";
+        followStatus.style.display = "none"; 
+    }
+
+});
+
+

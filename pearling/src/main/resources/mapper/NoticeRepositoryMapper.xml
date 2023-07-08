@@ -7,10 +7,31 @@
       select *
       from notice
    </select>
+
    <select id="findById" resultType="com.pearling.web.entity.Notice" parameterType="int">
       select *
       from notice
       where id=#{id}
-</select>
+   </select>
+
+   <insert id="save">
+      insert into notice (title, content, role_id)
+      values (#{title}, #{content}, #{roleId})
+   </insert>
+
+   <delete id="delete">
+      delete from notice
+      where id = #{id}
+   </delete>
+
+  	<update id="update">
+    update notice
+      <set>
+         <if test="title != null">title = #{title},</if>
+         <if test="content != null">content = #{content},</if>
+         <if test="roleId != null">role_id = #{roleId}</if>
+      </set>
+   where id = #{id}
+   </update>
 
 </mapper>

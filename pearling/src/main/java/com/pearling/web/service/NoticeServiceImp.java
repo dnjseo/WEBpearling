@@ -22,26 +22,23 @@ public class NoticeServiceImp implements NoticeService{
     }
 
     @Override
-    public int count() {
-        return 0;
-    }
-
-    @Override
     public Notice findById(int id) {
        return repository.findById(id);
     }
 
     @Override
     public void addNotice(Notice notice) {
-       
+        repository.save(notice);
+    }
+
+    @Override
+    public void deleteNotice(Notice notice) {
+        repository.delete(notice);
     }
 
     @Override
     public void updateNotice(Notice notice) {
-       }
-
-    @Override
-    public void deleteNotice(Notice notice) {
+        repository.update(notice);
     }
 
 }

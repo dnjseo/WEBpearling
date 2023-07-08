@@ -72,7 +72,6 @@ window.addEventListener("DOMContentLoaded", function(e) {
                             .then(function(response){
                                 if(response.ok){
                                     followBtn.innerText = '팔로잉';
-                                    followBtn.style.backgroundColor = '#5A2E95';
                                     console.log("추가 완");
                                     // e.preventDefault(); 
                                 }

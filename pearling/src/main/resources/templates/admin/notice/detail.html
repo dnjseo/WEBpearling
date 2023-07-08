@@ -4,9 +4,9 @@
 
 <head>
     <title>Document</title>
-    <link href="/css/admin/notice/post.css" type="text/css" rel="stylesheet">
+    <link href="/css/admin/notice/detail.css" type="text/css" rel="stylesheet">
     <!-- <script src="/js/header/header.js"></script> -->
-    <script src="/js/admin/notice/post.js"></script>
+    <script src="/js/admin/notice/delete-update.js"></script>
 </head>
 <body>
     <!-- header -->
@@ -18,15 +18,16 @@
                 <h2 class="d-none">공지사항 내용</h2>
                 <div class="notice-box">
                     <div class="notice-content">
-                        <input class="notice-title" name="title" type="text" placeholder="제목을 입력하세요">
-                        <textarea class="notice-context" name="content" placeholder="내용을 입력하세요" rows="20" cols="100"></textarea>
+                        <input type="text" class="notice-title" name="title"  th:value="${notice.title}"></input>
+                        <textarea class="notice-context" name="content" rows="20" cols="100" th:text="${notice.content}"></textarea>
                     </div>
                 </div>
             </div>
-            <div class="notice-post-btn">
+            <div class="notice-btn">
                 <input type="hidden" name="hiddenmemberId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}">
                 <input type="hidden" name="hiddenRoleId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.roleId}">
-                <button class="post-btn">등록</button>
+                <button class="delete-btn">삭제</button>
+                <button class="edit-btn">저장</button>
             </div>
         </form>
     </main>

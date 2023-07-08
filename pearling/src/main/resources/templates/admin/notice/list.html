@@ -4,9 +4,9 @@
 
 <head>
     <title>Document</title>
-    <link href="/css/notice/list.css" type="text/css" rel="stylesheet">
+    <link href="/css/admin/notice/list.css" type="text/css" rel="stylesheet">
+    <script src="/js/admin/notice/list.js"></script>
     <!-- <script src="/js/header/header.js"></script> -->
-    <script src="/js/notice/list.js"></script>
 </head>
 
 <body>
@@ -30,7 +30,7 @@
         <section>
             <div class="notice-write">
                 <button class="write-btn">
-                    <a href="../admin/notice/post">+</a>
+                    <a href="post">+</a>
                 </button>
                 <input type="hidden" name="loginId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
             </div>  

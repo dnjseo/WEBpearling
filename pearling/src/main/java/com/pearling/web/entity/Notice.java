@@ -12,4 +12,5 @@ public class Notice {
     private String title;
     private String content;
     private Date regdate;
+    private int roleId;
 }

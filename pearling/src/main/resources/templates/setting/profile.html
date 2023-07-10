@@ -6,8 +6,8 @@ layout:decorate="~{inc/layout}">
 
 <head>
     <link href="/css/system/profile.css" type="text/css" rel="stylesheet">
-    <script src="/js/setting/setting-profile.js"></script>
-    <title>Profile</title>
+    <script src="/js/setting/profile.js"></script>
+    <title>Pearl-ing 프로필 수정</title>
 </head>
 <body>
     <!-- header -->
@@ -36,6 +36,7 @@ layout:decorate="~{inc/layout}">
                 <li>🫧 닉네임</li>
                 <li>
                     <input type="text" placeholder="입력하세요" th:value="${#authentication.principal.nickname}" name="nickname" id="nickname" />
+                    <button class="btn-style" type="button" id="checkNickname">중복검사</button>
                 </li>
             </ul>
 
@@ -49,7 +50,25 @@ layout:decorate="~{inc/layout}">
                 <div class="modal-content">
                     <p>🫧 Message</p>
                     <p>수정이 완료되었습니다.</p>
-                    <button type="submit" class="modify-yes">확인</button> 
+                    <button type="submit" class="btn-style modify-yes">확인</button> 
+                </div>
+            </div>
+
+            <!-- 중복된 닉네임이 있다고 알려주는 창 -->
+            <div id="nickname-Modal" class="modal">
+                <div class="modal-content">
+                    <p>🫧 Message</p>
+                    <p>중복된 닉네임이 있습니다.</p>
+                    <button class="btn-style nickname-yes">확인</button>
+                </div>
+            </div>
+
+            <!-- 사용할수 있는 닉네임이 있다고 알려주는 창 -->
+            <div id="check-nickname-Modal" class="modal">
+                <div class="modal-content">
+                    <p>🫧 Message</p>
+                    <p>사용 가능한 닉네임입니다.</p>
+                    <button class="btn-style check-nickname-yes">확인</button>
                 </div>
             </div>
         </form>

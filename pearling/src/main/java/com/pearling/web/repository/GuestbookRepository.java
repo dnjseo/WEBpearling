@@ -15,8 +15,9 @@ public interface GuestbookRepository {
 
     GuestbookView findById(Integer id);
 
-    int save(Guestbook guestbook);
-    void addGuestbook(Guestbook guestbook);
-    void updateGuestbook(Guestbook guestbook);
+    int count(Integer toId); // 방명록 count
+    
+    void insert(Guestbook guestbook);
+    void update(Guestbook guestbook);
     int delete(Integer id);
 }

@@ -3,9 +3,9 @@
     layout:decorate="~{inc/layout}">
 
 <head>
-    <link href="/css/guestbook/guestbook-plus.css" type="text/css" rel="stylesheet">
+    <link href="/css/guestbook/post.css" type="text/css" rel="stylesheet">
     <script src="/js/guestbook/post.js"></script>
-    <title>방명록</title>
+    <title>Pearl-ing 방명록</title>
 </head>
 
 <body>
@@ -21,15 +21,23 @@
                     <h1 class="d-none">방명록 입력</h1>
                     <div class="guestbook-write">
                         <textarea class="guestbook-input" name="content" placeholder="방명록을 입력하세요"></textarea>
+                        <button class="add-btn post-btn">등록</button>
                     </div>
-                    <button class="add-btn">등록</button>
                 </section>
 
                 <div id="confirm-modal" class="modal">
                     <div class="modal-content">
                         <p>🫧 Message</p>
                         <p>방명록 등록이 완료되었습니다.</p>
-                        <button class="confirm-yes">확인</button>
+                        <button class="btn-style confirm-yes">확인</button>
+                    </div>
+                </div>
+
+                <div id="no-insert-modal" class="modal">
+                    <div class="modal-content">
+                        <p>🫧 Message</p>
+                        <p>내용을 입력해 주세요.</p>
+                        <button class="btn-style insert-yes">확인</button>
                     </div>
                 </div>
             </form>
@@ -43,14 +51,21 @@
                     <h1 class="d-none">방명록 수정</h1>
                     <div class="guestbook-write">
                         <textarea th:text="${guestbook.content}" name="content"></textarea>
+                        <div class="guestbook-btns">
+                            <button class="cancle-btn post-btn">취소</button>
+                            <button class="update-btn post-btn">수정</button>
+                        </div>
                     </div>
                 </section>
 
-                <section class="guestbook-btns">
-                    <h1 class="d-none">방명록 수정</h1>
-                    <button class="cancle-btn">취소</button>
-                    <button class="update-btn">수정</button>
-                </section>
+
+                <div id="modify-modal" class="modal">
+                    <div class="modal-content">
+                        <p>🫧 Message</p>
+                        <p>방명록 수정이 완료되었습니다.</p>
+                        <button class="btn-style modify-yes">확인</button>
+                    </div>
+                </div>
             </form>
         </section>
     </main>

@@ -1,14 +1,13 @@
-
 @font-face {
-    font-family: 'TAEBAEKmilkyway';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/TAEBAEKmilkyway.woff2') format('woff2');
+    font-family: 'omyu_pretty';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Cafe24Ssurround';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -19,7 +18,7 @@ body{
 }
 
 .wrap{
-    height: 50vh;
+    height: 100h;
 }
 
 .bgnone{
@@ -58,15 +57,51 @@ h1 img{
     flex-wrap: wrap;
 }
 
+.clam li{
+    position: relative;
+}
+
 .clam li img{
-    width: 150px;
-    margin-right: 10px;
+    width: 200px;
     cursor: pointer;
     transition: all 1s ease-in-out;
 }
 
 .clam li:hover {
     transform: rotate(10deg);
+}
+
+p.lock img{
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    width: 30px;
+}
+
+/* 페이징 */
+.pagination{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination li{
+    float: left;
+}
+
+.pagination li a{
+    font-size: 20px;
+    padding-right: 20px;
+}
+
+.my-paging,
+.friend-paging{
+    display: none;
+}
+
+.active{
+    text-decoration: underline;
 }
 
 /* 방명록 부분 */
@@ -76,64 +111,63 @@ section.guestbook {
 
 .book{
     position: fixed;
-    top: 5%;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
+
+    width: 50%;
+    height: 75%;
+    /* background: #BFBFBF;  */
+    background: linear-gradient(0deg,
+        rgba(0, 0, 0, 0.04), 
+        rgba(0, 0, 0, 0.04)), #FFFFFF;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 2;
+
+    font-family: "GangwonEdu_OTFBoldA";
+    font-size: 20px;
 } 
 
-.pearl{
-    width: 550px;
-    height: 480px;
-    background: url("/images/guestbook/pearling2.png") no-repeat center center/cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: black;
-}
-
-.pearl>p{
-    font-family: 'Cafe24Ssurround';
-    font-size: 18px;
-    font-weight: normal;
-    color: #676464db;
-}
-
-.date{
+.bar{
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
-    padding: 10px 0px;
+    gap: 10px;
+    width: 100%;
+    height: 50px;
+    color: white;
+    background: url("/images/guestbook/bar.png") no-repeat center center/cover;
+}
 
-    width: 108px;
-    height: 29px;
+.number{
+    padding: 0 10px 0 10px;
+}
 
-    background: rgba(252, 251, 251, 0.75);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05), inset 0px 3px 5px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
-
-    color: #A587E0;
+.from-id-nickname{
 }
 
 .guestbook-close{
-    color: white;
-    font-size: 30px;
-    position: fixed;
-    top: 5%;
-    right: 20%;
-    z-index: 2;
+    width: 30px;
+    height: 30px;
+    background: url("/images/guestbook/close.png") no-repeat center center/cover;
     cursor: pointer;
 }
 
-.underline{
+.btn-zip{
+    width: 30%;
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    padding-right: 5px;
+
+    position: absolute;
+    right: 0;
 }
 
 .btn{
@@ -141,15 +175,11 @@ section.guestbook {
     justify-content: center;
     flex-direction: row;
     align-items: center;
-    padding: 17px 0px 3px 0;
-    width: 108px;
-    height: 29px;
     text-align: center;
-    background: rgba(252, 251, 251, 0.75);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05), inset 0px 3px 5px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
-    color: crimson; 
     cursor: pointer;
+
+    background: url("/images/guestbook/button.png") no-repeat center center/cover;
+    color: black;
 }
 
 .deleteBtn,
@@ -157,20 +187,44 @@ section.guestbook {
     display: none;
 }
 
+.deleteBtn{
+    width: 70px;
+    height: 25px;
+    padding-top: 5px;
+    margin-right: 20px;
+}
+
 .updateBtn a{
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px 0px 10px 0;
-    width: 108px;
-    height: 29px;
-    text-align: center;
-    background: rgba(252, 251, 251, 0.75);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05), inset 0px 3px 5px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
-    color: lightseagreen;
-    cursor: pointer;
+    display: block;
+    width: 70px;
+    height: 25px;
+    padding-top: 5px;
+    color: black;
+}
+
+.pearl {
+    position: absolute; /* 부모 요소에 position 설정 추가 */
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 550px;
+    height: 480px;
+    background: url("/images/guestbook/pearling2.png") no-repeat center center/cover;
+}
+
+.pearl > p {
+    font-family: 'omyu_pretty';
+    font-size: 20px;
+    font-weight: normal;
+    color: black;
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+}
+
+.from-id-hidden{
+    display: none;
 }
 
 .plus{
@@ -178,7 +232,6 @@ section.guestbook {
     bottom: 15%;
     right: 5%;
 
-    font-family: 'Pretendard-Regular';
     color: rgba(97, 94, 94, 1);
     font-weight: bold;
     font-size: 18px;
@@ -196,4 +249,13 @@ section.guestbook {
     border-radius: 30px;
 
     z-index: 5;
+}
+
+/* 삭제모달 */
+.delete-btn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }

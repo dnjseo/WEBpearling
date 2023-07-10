@@ -7,7 +7,7 @@
     <link href="/css/guestbook/guestbook.css" type="text/css" rel="stylesheet">
     <link href="/css/header/guestbook.css" type="text/css" rel="stylesheet">
     <script src="/js/guestbook/list.js"></script>
-    <title>방명록</title>
+    <title>Pearl-ing 방명록</title>
 </head>
 
 <body>
@@ -17,9 +17,45 @@
             <ul class="clam" id="clam-list">
                 <li th:each="g, stat : ${list}" th:data-index="${stat.index}" th:data-id="${g.id}">
                     <img alt="Clam Image" 
-                    data-aos="zoom-in" data-aos-duration="1500"/>         
+                    data-aos="zoom-in" data-aos-duration="1500"/>
+                    <p class="lock"><img src="/images/guestbook/lock.svg" alt="잠금아이콘"></p>         
                 </li>
             </ul>
+
+            <!-- 페이징 처리 -->
+            <div class="pagination">
+                <ul class="my-paging">
+                <li>
+                    <a href="#" id="previous-page">&lt;&lt;</a>
+                </li>
+                <li th:each="page, i : ${#numbers.sequence(1, totalPages)}">
+                    <a th:href="@{/guestbook/list(uid=${userId}, page=${page})}"
+                    th:class="${currentPage == page ? 'active' : ''}"
+                    th:text="${page}"
+                    data-page="${page}"></a>
+                </li>
+                <li>
+                    <a href="#" id="next-page">&gt;&gt;</a>
+                </li>
+                </ul>
+
+                <!-- 친구용 -->
+                <ul class="friend-paging">
+                    <li>
+                        <a href="#" id="previous-page2">&lt;&lt;</a>
+                    </li>
+                    <li th:each="page, i : ${#numbers.sequence(1, totalPages)}">
+                        <a th:href="@{/guestbook/list/{id}(id=${userId}, page=${page})}"
+                        th:class="${currentPage == page ? 'active' : ''}"
+                        th:text="${page}"
+                        data-page="${page}"
+                        ></a>
+                    </li>
+                    <li>
+                        <a href="#" id="next-page2">&gt;&gt;</a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <p><a class="plus" th:href="@{/guestbook/post/{id}(id=${userId}, s=false)}">+</a></p>
@@ -28,17 +64,21 @@
             th:class="'guestbook guestbook-' + ${stat.index}" th:data-id="${g.id}">
             <h1 class="d-none">방명록</h1>
             <div class="book">
+                <div class="bar">
+                    <p class="number">no.<span th:text="${stat.index} + 1"></span></p>
+                    <p class="from-id-nickname" th:text="${g.fromNickname}"></p>
+                    <p>[<span class="date" th:text="${#dates.format(g.regdate, 'yyyy-MM-dd')}"></span>]</p>
+                    <div class="btn-zip">
+                        <p class="btn updateBtn"><a th:href="@{/guestbook/post/{id}(id=${userId}, s=true, gid=${g.id})}">수정</a></p> <!-- 수정 버튼 클릭 시 링크에 방명록 ID 포함 -->
+                        <p class="btn deleteBtn">삭제</p>
+                        <p class="guestbook-close"></p>
+                    </div>
+                </div>
                 <div class="pearl">
                     <p th:text="${g.content}"></p>
                 </div>
-                <div class="underline">
-                    <p class="date" th:text="${#dates.format(g.regdate, 'yyyy-MM-dd')}">2023/12/21</p>
-                    <p class="updateBtn"><a th:href="@{/guestbook/post/{id}(id=${userId}, s=true, gid=${g.id})}">수정</a></p> <!-- 수정 버튼 클릭 시 링크에 방명록 ID 포함 -->
-                    <p class="btn deleteBtn">삭제</p>
-                    <p id="from-id" type="hidden" th:text="${g.fromId}"></p>
-                </div>
+                <p id="from-id" class="from-id-hidden" type="hidden" th:text="${g.fromId}"></p>
             </div>
-            <p class="guestbook-close">x</p>
         </section>
 
         <!-- 뒤에 배경 어둡게 하기 -->
@@ -47,12 +87,25 @@
         <div id="delete-modal" class="modal">
             <div class="modal-content">
                 <p>🫧 Message</p>
-                <p>방명록 삭제가 완료되었습니다.</p>
-                <button class="delete-yes">확인</button>
+                <p>방명록을 삭제하시겠습니까?</p>
+                <div class="delete-btn">
+                    <button class="btn-style delete-no">취소</button>
+                    <button class="btn-style delete-yes">확인</button>
+                </div>
             </div>
         </div>
+
+        <div id="no-show-modal" class="modal">
+            <div class="modal-content">
+                <p>🫧 Message</p>
+                <p>방명록을 볼 수 있는 권한이 없습니다.</p>
+                <button class="btn-style no-show-yes">확인</button>
+            </div>
+        </div>
+
         <input id="input-member-id" type="hidden" th:value="${#authentication.principal.id}">
         <input id="input-user-id" type="hidden" th:value="${userId}">
+        <input id="current-page" type="hidden" th:value="${currentPage}">
     </main>
 </body>
 </html>

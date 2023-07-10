@@ -64,6 +64,18 @@
     font-weight: lighter;
 }
 
+.change li:last-child{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#nickname{
+    width: 210px;
+}
+
 /* 취소, 수정 */
 .pbtn{
     display: flex;

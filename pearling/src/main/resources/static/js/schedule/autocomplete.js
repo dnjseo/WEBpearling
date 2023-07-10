@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const input = document.querySelector("#friend-tag-input");
     const autocompleteList = document.querySelector('#autocomplete-list');
 
-    fetch('/api/follow/followerList')
+    fetch('/api/follow/followingList')
     .then(response => response.json())
-    .then(followerList => {
-      followers = followerList;
+    .then(followingList => {
+      followers = followingList;
     });
     
   // 입력 이벤트를 감지하여 자동완성 기능 활성화

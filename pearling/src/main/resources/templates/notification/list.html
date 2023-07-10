@@ -33,8 +33,8 @@
                         <button class="noti-del-btn" th:value="${n.id}">delete...</button>
                         <input name="input-isread-value" type="hidden" th:value="${n.isRead}">
                     </div>
+                    <input id="input-member-id" name="input-user-id" type="hidden" th:value="${#authentication.principal.id}">
                 </div>
-                <input id="input-member-id" name="input-user-id" type="hidden" th:value="${#authentication.principal.id}">
             </div>
         </section>
     </main>

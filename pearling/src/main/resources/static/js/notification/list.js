@@ -30,10 +30,6 @@ function getRelativeTime(dateString) {
     }
 }
 
-// 사용 예시
-// window.addEventListener('load', function(e) {
-// });
-
 /* ----------------- 알림 동적으로 조회 불러오기 ----------------- */
 
 function notificationListLoad(url) {
@@ -46,13 +42,6 @@ function notificationListLoad(url) {
             notiList.innerHTML = "";
 
             for (let notification of list) {
-
-                const regDateElements = document.querySelectorAll(".noti-regdate");
-                regDateElements.forEach(function (element) {
-                    const regDateString = element.textContent;
-                    const relativeTime = getRelativeTime(regDateString);
-                    element.textContent = relativeTime;
-                });
 
                 let itemTemplate = `
                 <div class="noti">
@@ -71,10 +60,21 @@ function notificationListLoad(url) {
             <button class="noti-del-btn" value=${notification.id}>delete...</button>
                 <input name="input-isread-value" type="hidden" value="${notification.isRead}">
             </div>
+            <input id="input-member-id" name="input-user-id" type="hidden">
             </div>`;
 
                 notiList.insertAdjacentHTML("beforeend", itemTemplate);
             }
+            
+            addClickEventListeners();
+            // const regDateElements = document.querySelectorAll(".noti-regdate");
+            // regDateElements.forEach(function (regDateElement) {
+            //     const regDateString = regDateElement.querySelector("span").textContent;
+            //     const relativeTime = getRelativeTime(regDateString);
+            //     regDateElement.querySelector("span").textContent = relativeTime;
+            // });
+
+
         })
         .catch((error) => {
             console.error('알림 리스트 호출 중 오류가 발생했습니다', error);
@@ -82,7 +82,7 @@ function notificationListLoad(url) {
 }
 
 /* ----------------- PUT 요청 처리 ----------------- */
-function handleNotiUpdate(id, jsonData) {
+function handleNotiUpdate(id, jsonData, userId) {
     let notiSection = document.querySelector(".noti-section");
     let notiList = notiSection.querySelector(".noti");
 
@@ -95,7 +95,7 @@ function handleNotiUpdate(id, jsonData) {
         },
         body: jsonData,
     })
-        .then(function (response) {
+        .then((response) => {
             if (response.ok) {
                 console.log("성공시 id" + id);
                 console.log("성공시 jsondata" + jsonData);
@@ -112,13 +112,11 @@ function handleNotiUpdate(id, jsonData) {
 }
 
 /* ----------------- Delete 요청 처리 ----------------- */
-function handleNotiDelete(id) {
+function handleNotiDelete(id, userId) {
     let notiSection = document.querySelector(".noti-section");
     let notiList = notiSection.querySelector(".noti");
 
     userId = document.querySelector('input[name="input-user-id"]').value;
-    // let notiIdInput = document.querySelector(".noti-up-btn");
-    // notiId = notiIdInput.value;
 
     fetch(`/api/notifications/${id}`, {
         method: 'DELETE',
@@ -159,13 +157,13 @@ function addClickEventListeners() {
                 let isRead = isReadValue;
                 let formData = { id, isRead };
                 let jsonData = JSON.stringify(formData);
-                handleNotiUpdate(id, jsonData);
+                handleNotiUpdate(id, jsonData, userId);
             }
 
             if (e.target.classList.contains('noti-del-btn')) {
                 let notiIdInput = notiItem.querySelector(".noti-del-btn");
                 let id = notiIdInput.value;
-                handleNotiDelete(id);
+                handleNotiDelete(id, userId);
             }
         });
     });

@@ -35,7 +35,7 @@
    <update id="update">
       UPDATE notification
       <set>
-         <if test="isRead != null">isRead = #{isRead}</if>
+         <if test="isRead != null">isRead = true</if>
       </set>
       WHERE id = #{id}
    </update>

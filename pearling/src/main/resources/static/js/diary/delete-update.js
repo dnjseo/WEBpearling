@@ -102,6 +102,17 @@ window.addEventListener('DOMContentLoaded', function (e) {
   let addBtn = editForm.querySelector(".confirm-yes");
 
   addBtn.addEventListener('click', (e) => {
+
+    let selectElement = document.querySelector('select[name="diary-scope-id"]');  
+    let diaryDateInput = document.querySelector(".diary-detail-date");
+    let diaryTitleInput = document.querySelector(".diary-detail-title");
+    let diaryContentInput = document.querySelector(".diary-detail-input");
+
+    selectElement.setAttribute("disabled");
+    diaryDateInput.setAttribute("disabled");
+    diaryTitleInput.setAttribute("disabled");
+    diaryContentInput.setAttribute("disabled");
+    
     e.preventDefault();
     showedBtns.style.display = "none";
 

@@ -540,5 +540,5 @@ input[type="time"]{
   /* justify-content: center; */
   flex-wrap: wrap;
   width: 380px;
-  gap:10px
+  gap:10px;
 }

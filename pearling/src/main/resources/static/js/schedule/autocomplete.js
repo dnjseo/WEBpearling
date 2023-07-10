@@ -5,7 +5,7 @@ let followers = [];
 document.addEventListener('DOMContentLoaded', function() {
     const input = document.querySelector("#friend-tag-input");
     const autocompleteList = document.querySelector('#autocomplete-list');
-
+    
 
     fetch('/api/follow/followingList')
     .then(response => response.json())
@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
     tagednicknames.forEach(function(element) {
       values.push(element.value);
     });
-    console.log('tagednicknames:::::', values);
     
     const inputText = input.value.toLowerCase();
     
@@ -137,3 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
 
   });
+
+  function deleteTag() {
+    
+  }

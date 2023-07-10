@@ -57,7 +57,6 @@ window.addEventListener("load", function(e) {
     });
 
 
-
 });//window.addEventListener end 
 
 function changeUpdateMode() {
@@ -87,15 +86,17 @@ function getDetail(id,schedule) {
 
       // ** 태그 된 친구 불러오기 **
         s.friendNicknames.forEach((friendNickname) => {
+
           let taged = `
             <div class="taged-item">
-              <input class="complete-tag" type="text" value="${friendNickname}" disabled>
+              <input class="complete-tag already-taged-nicknames" type="text" value="${friendNickname}" disabled>
               <button class="tag-del-btn" type="button"> x </button>
             </div>
           `;
           schedule.tagedFr.innerHTML += taged;
         });
 
+              
         // ** 선택 된 컬러 표시하기 **
         let receivedColor = schedule.backgroundColor.value;
         // 데이터 컬러와 일치하는 col-ball 찾기.
@@ -167,74 +168,6 @@ function setOffsetDate(schedule){
     }
 
 } //setOffsetDate end
-
-
-// 친구 태그
-function selectFriend() {
-  fetch('/api/follow/followerList')
-    .then(response => response.json())
-    .then(followerList => {
-      console.log('fetch확인', followerList);
-      const list = data.followerList.map(item => item.nickname);
-
-      const input = document.querySelector('#friend-tag-input');
-      const autoComplete = document.querySelector('.autocomplete');
-      let nowIndex = 0;
-
-      const showList = (data, value, currentIndex) => {
-        // 정규식으로 변환
-        const regex = new RegExp(`(${value})`, 'g');
-
-        autoComplete.innerHTML = data
-          .map((label, index) => `
-            <div class="${currentIndex === index ? 'active' : ''}">
-              ${label.replace(regex, '<mark>$1</mark>')}
-            </div>
-          `)
-          .join('');
-      };
-
-      input.onkeyup = (e) => {
-        const value = input.value.trim();
-
-        const matchDataList = value
-          ? list.filter((label) => label.includes(value))
-          : [];
-
-        switch (e.keyCode) {
-          // UP KEY
-          case 38:
-            nowIndex = Math.max(nowIndex - 1, 0);
-            break;
-
-          // DOWN KEY
-          case 40:
-            nowIndex = Math.min(nowIndex + 1, matchDataList.length - 1);
-            break;
-
-          // ENTER KEY
-          case 13:
-            document.querySelector("#search").value = matchDataList[nowIndex] || "";
-            // 초기화
-            nowIndex = 0;
-            matchDataList.length = 0;
-            break;
-
-          // 그외 다시 초기화
-          default:
-            nowIndex = 0;
-            break;
-        }
-
-        // 리스트 보여주기
-        showList(matchDataList, value, nowIndex);
-      };
-    })
-    .catch(error => {
-      console.log('팔로워 목록을 가져오는 동안 오류가 발생했습니다:', error);
-    });
-}
-
 
 
 

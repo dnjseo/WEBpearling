@@ -83,6 +83,9 @@ async function printFriendScheduleList(osDate) {
           <li>
             <div class="content sc-content">
               <p>${schedule.title}</p> 
+              <div class ="tag">
+                ${schedule.friendNicknames.map(nickname => `<div>@${nickname}</div>`).join('')}
+              </div>
             </div>
           </li>
         `;

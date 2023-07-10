@@ -137,6 +137,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
   });
 
-  function deleteTag() {
-    
-  }

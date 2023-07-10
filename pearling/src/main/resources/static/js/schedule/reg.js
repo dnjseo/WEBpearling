@@ -17,6 +17,7 @@ class ScheduleElements {
     }
 }// class end
 
+let isDeleted = false;
 window.addEventListener("load", function(e) {
   e.preventDefault;
   let schedule = new ScheduleElements();  
@@ -24,7 +25,6 @@ window.addEventListener("load", function(e) {
   const id = urlParams.get('id');
   const delScheduleBtn = document.querySelector('#schedule-del-btn-in-header')
   const friendIds = [];
-
     // 삭제 버튼 클릭 시 스케쥴 삭제.
     delScheduleBtn.addEventListener("click", function () {
         deleteSchedule(id);
@@ -52,7 +52,7 @@ window.addEventListener("load", function(e) {
       if(id==null){
         postSchedule(id, schedule, friendIds);
       }else{
-        updateSchedule(id, schedule);
+        updateSchedule(id, schedule, friendIds);
       }
     });
 
@@ -90,10 +90,28 @@ function getDetail(id,schedule) {
           let taged = `
             <div class="taged-item">
               <input class="complete-tag already-taged-nicknames" type="text" value="${friendNickname}" disabled>
-              <button class="tag-del-btn" type="button"> x </button>
+              <button class="already-taged-btn tag-del-btn" type="button"> x </button>
             </div>
           `;
           schedule.tagedFr.innerHTML += taged;
+        });
+
+        
+        // 이전 태그 삭제하기 
+        document.addEventListener('click', function(event) {
+          if (event.target.classList.contains('tag-del-btn')) {
+            // 클릭된 Delete 버튼의 부모 요소인 div를 찾음
+            let tagDiv = event.target.closest('.taged-item');
+            let tagedInput = tagDiv.querySelector('.already-taged-nicknames');
+            let tagedInputValue = tagedInput.value;
+            
+            // div가 존재하는 경우 삭제
+            if (tagDiv) { 
+              isDeleted = true;
+              tagDiv.remove();
+              //deleteFriendTag(id, tagedInputValue, isDeleted);
+            }
+          }
         });
 
               
@@ -263,7 +281,7 @@ function deleteSchedule(id){
 }//deleteSchedule end
 
 // 스케쥴 업데이트
-function updateSchedule(id, schedule){
+function updateSchedule(id, schedule, friendIds){
   if(id == null) return;
 
   if(schedule.title.value.trim() == ''){
@@ -284,7 +302,7 @@ function updateSchedule(id, schedule){
     latitude: document.querySelector('#latitude').value,
     longitude: document.querySelector('#longitude').value,
     place: schedule.place.value,
-    backgroundColor: schedule.backgroundColor.value
+    backgroundColor: schedule.backgroundColor.value,
   }
 
     // 서버로 데이터 전송
@@ -299,7 +317,7 @@ function updateSchedule(id, schedule){
 
         // 서버 응답 처리
         if (response.ok) {
-          window.location.href = "http://localhost:8080/shell/myshell";
+          updateFriendTag(id, friendIds, isDeleted)
 
         } else {
           console.error('스케쥴 업데이트 실패');
@@ -309,4 +327,58 @@ function updateSchedule(id, schedule){
         console.error('오류 발생:', error);
       });
 
+}//updateSchedule end
+
+function updateFriendTag(id, friendIds) {
+
+    const requestData = {
+    scheduleId: id,
+    tagData: friendIds
+  };
+
+  fetch('/api/friendtag', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(requestData) // 폼 데이터를 URL 인코딩하여 전송
+  })
+    .then(response => {
+      if (response.ok) {
+        // 성공적으로 요청이 처리된 경우의 동작
+        window.location.href = "http://localhost:8080/shell/myshell";
+      } else {
+        // 요청이 실패한 경우의 동작
+        console.error('폼 제출 실패');
+        console.log(requestData);
+      }
+    })
+    .catch(error => {
+      // 네트워크 오류 등 예외 처리
+      console.error('폼 제출 오류:', error);
+    })
+
+}
+
+function deleteFriendTag(id, tagedInputValue, isDeleted)
+{
+  if(isDeleted){
+    fetch(`/api/friendtag/${id}`, {
+    method: "DELETE"
+  })
+    .then(response => {
+      if (response.ok) {
+        // 성공적으로 요청이 처리된 경우의 동작
+        console.log('삭제 성공~!');
+        isDeleted = false;
+      } else {
+        // 요청이 실패한 경우의 동작
+        console.error('삭제 실패');
+      }
+    })
+    .catch(error => {
+      // 네트워크 오류 등 예외 처리
+      console.error('폼 제출 오류:', error);
+    })
+}
 }

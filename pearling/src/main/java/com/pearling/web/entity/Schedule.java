@@ -1,14 +1,14 @@
-    package com.pearling.web.entity;
+package com.pearling.web.entity;
 
-    import java.time.LocalDate;
-    import java.time.LocalTime;
-    import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
-    import lombok.Builder;
-    import lombok.Data;
-    import lombok.NoArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
@@ -23,11 +23,11 @@ public class Schedule {
     private Date regDate;
     private String title;
     private Integer memberId;
-    private String backgroundColor; 
+    private String backgroundColor;
     private Double latitude;
     private Double longitude;
     private String place;
     private String profileImage;
-    private String formattedDate; 
+    private String formattedDate;
     private List<String> friendNicknames;
 }

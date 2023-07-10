@@ -33,10 +33,9 @@ import com.pearling.web.service.ScheduleService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @RestController("apiScheduleController")
 @RequestMapping("api/schedules")
-public class ScheduleController{
+public class ScheduleController {
 
     @Autowired
     private ScheduleService service;
@@ -45,7 +44,7 @@ public class ScheduleController{
     private FriendTagService tagService;
 
     @GetMapping
-    public List<Schedule> scheduleList (){
+    public List<Schedule> scheduleList() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
 
@@ -55,8 +54,8 @@ public class ScheduleController{
         List<Schedule> scheduleList = new ArrayList<>();
 
         scheduleList = service.getListByUserId(userId);
-        
-        //System.out.println(scheduleList);
+
+        // System.out.println(scheduleList);
 
         return scheduleList;
     }
@@ -71,75 +70,73 @@ public class ScheduleController{
 
     @GetMapping("ourshell/{id}")
     public List<Schedule> friendScheduleList(
-        @PathVariable("id") int userId,
-        @RequestParam("date") LocalDate date) {
+            @PathVariable("id") int userId,
+            @RequestParam("date") LocalDate date) {
 
         List<Schedule> scheduleList = service.getListByDate(userId, date);
         return scheduleList;
     }
 
     @GetMapping("detail")
-    public Schedule detail(@RequestParam("id") int id){
+    public Schedule detail(@RequestParam("id") int id) {
 
-            Schedule s = service.get(id);
+        Schedule s = service.get(id);
 
-            if(tagService.getFriendNicknames(id) != null){
-                List<String> friendNicknames = tagService.getFriendNicknames(id);
-                s.setFriendNicknames(friendNicknames);
+        if (tagService.getFriendNicknames(id) != null) {
+            List<String> friendNicknames = tagService.getFriendNicknames(id);
+            s.setFriendNicknames(friendNicknames);
 
-                List<FriendTag> frList = tagService.getByScheduleId(id);
-                Map<Schedule, List<FriendTag>> scheduleWithFriends = new HashMap<>();
-                scheduleWithFriends.put(s,frList);
-                return s;
-            }
-
+            List<FriendTag> frList = tagService.getByScheduleId(id);
+            Map<Schedule, List<FriendTag>> scheduleWithFriends = new HashMap<>();
+            scheduleWithFriends.put(s, frList);
             return s;
+        }
+
+        return s;
     }
 
     @PutMapping("detail")
     public Schedule editSchedule(@RequestParam("id") int id,
-			@RequestBody Schedule schedule) {
+            @RequestBody Schedule schedule) {
 
         service.updateSchedule(schedule);
         Schedule updatedSchedule = service.get(schedule.getId());
-        
+
         return updatedSchedule;
     }
 
-
     @DeleteMapping("{id}")
     @PreAuthorize("@scheduleSecurity.checkOwnership(#id, authentication.principal.id)")
-    public ResponseEntity<?>  deleteSchedule
-    (@PathVariable("id") Integer id){
+    public ResponseEntity<?> deleteSchedule(@PathVariable("id") Integer id) {
 
         Schedule schedule = service.findById(id);
 
-            if (schedule != null) {
-          int deletedRows = service.deleteSchedule(schedule);
-          if (deletedRows > 0) {
-              return ResponseEntity.ok().build(); // 성공적으로 삭제된 경우 200 OK 반환
-          }
-      }
+        if (schedule != null) {
+            int deletedRows = service.deleteSchedule(schedule);
+            if (deletedRows > 0) {
+                return ResponseEntity.ok().build(); // 성공적으로 삭제된 경우 200 OK 반환
+            }
+        }
 
         return ResponseEntity.notFound().build();
     }
 
     @PostMapping
     public void addSchedule(@RequestBody Map<String, Object> requestData,
-        @AuthenticationPrincipal MyUserDetails user){
-            
+            @AuthenticationPrincipal MyUserDetails user) {
+
         Map<String, Object> scheduleRequest = (HashMap) requestData.get("scheduleData");
 
-        String startDateString = (String)scheduleRequest.get("startDate");
+        String startDateString = (String) scheduleRequest.get("startDate");
         LocalDate startDate = LocalDate.parse(startDateString);
-        String endDateString = (String)scheduleRequest.get("endDate");
+        String endDateString = (String) scheduleRequest.get("endDate");
         LocalDate endDate = LocalDate.parse(endDateString);
 
-        String startTimeString = (String)scheduleRequest.get("startTime");
+        String startTimeString = (String) scheduleRequest.get("startTime");
         LocalTime startTime = startTimeString != "" ? LocalTime.parse(startTimeString) : null;
         String endTimeString = (String) scheduleRequest.get("endTime");
         LocalTime endTime = endTimeString != "" ? LocalTime.parse(endTimeString) : null;
-       
+
         String latitudeString = (String) scheduleRequest.get("latitude");
         Double latitude = latitudeString != "" ? Double.parseDouble(latitudeString) : null;
 
@@ -147,37 +144,36 @@ public class ScheduleController{
         Double longitude = longitudeString != "" ? Double.parseDouble(longitudeString) : null;
 
         Schedule schedule = Schedule.builder()
-				.startDate(startDate)
-				.startTime(startTime)
-				.endDate(endDate)
-				.endTime(endTime)
-				.title((String)scheduleRequest.get("title"))
-				.memberId(user.getId())
-				.backgroundColor((String)scheduleRequest.get("backgroundColor"))
-				.latitude(latitude)
-				.longitude(longitude)
-                .place((String)scheduleRequest.get("place"))
-				.build();
+                .startDate(startDate)
+                .startTime(startTime)
+                .endDate(endDate)
+                .endTime(endTime)
+                .title((String) scheduleRequest.get("title"))
+                .memberId(user.getId())
+                .backgroundColor((String) scheduleRequest.get("backgroundColor"))
+                .latitude(latitude)
+                .longitude(longitude)
+                .place((String) scheduleRequest.get("place"))
+                .build();
 
-    int rtScheduleId = service.addSchedule(schedule);
+        int rtScheduleId = service.addSchedule(schedule);
 
-    System.out.println("rtScheduleId입니다:::::::"+rtScheduleId);
-    List<String> tagDataStringList = (List<String>) requestData.get("tagData");
-    List<Integer> tagDataList = tagDataStringList.stream().map(Integer::parseInt).collect(Collectors.toList());
+        System.out.println("rtScheduleId입니다:::::::" + rtScheduleId);
+        List<String> tagDataStringList = (List<String>) requestData.get("tagData");
+        List<Integer> tagDataList = tagDataStringList.stream().map(Integer::parseInt).collect(Collectors.toList());
 
-    System.out.println("태그데이터를 꺼냇읍니다:::::::"+tagDataList);
-    
-        if(!tagDataList.isEmpty()){
-            for (Integer friendId : tagDataList) {    
+        System.out.println("태그데이터를 꺼냇읍니다:::::::" + tagDataList);
+
+        if (!tagDataList.isEmpty()) {
+            for (Integer friendId : tagDataList) {
                 FriendTag friendTag = FriendTag.builder()
-                    .memberId(user.getId())
-                    .scheduleId(rtScheduleId)
-                    .friendId(friendId)
-                    .build();
+                        .memberId(user.getId())
+                        .scheduleId(rtScheduleId)
+                        .friendId(friendId)
+                        .build();
                 tagService.append(friendTag);
             }
         }
-    }    
+    }
 
-
-}//class end
+}// class end

@@ -67,15 +67,29 @@ body{
 }
 
   /* ==========(ms4) 스케쥴 섹션 ===================== */
-#ms4{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+
+
+  #ms4{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     gap: 30px; 
-
     width: 85%;
 
     position: relative;
+}
+
+@media (min-width: 400px) {
+    #ms4 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        gap: 30px; 
+    
+        width: 85%;
+    
+        position: relative;
+    }
 }
 
 .ms-today{
@@ -155,12 +169,23 @@ input[type="checkbox"]:checked + p {
     display: flex;
     flex-direction: row;
     padding-bottom: 5px;
-    gap: 5px;
+    justify-content: space-between;
     width: 100%;
+    /* flex-wrap: wrap; */
+    overflow-x: auto;
+}
+
+.content::-webkit-scrollbar {
+    width: 1px;
+    height: 0px;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background-color: #cbcbf7;
 }
 
 .scheduleListSection{
-    padding-top: 20px;
+    width: 100%;
 }
 
 .scheduleList:hover {
@@ -236,16 +261,11 @@ input[type="checkbox"]:checked + p {
 
 /* 친구 태그 아이콘 */
 .schedule > ul > li> div> .tag > div {
-
-
     color: rgba(97, 94, 94, 1);
 
     font-size: 10px;
     font-family: 'Pretendard-SemiBold';
-    /* font-style: italic; */
     padding-top: 3px;
-    width: auto;
-    /* letter-spacing: 0.15em; */
 
     border: none;
     padding: 3px 6px 3px 6px;
@@ -254,6 +274,8 @@ input[type="checkbox"]:checked + p {
     /* REAL 그림자 */
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset, 
     0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+
+    min-width: fit-content;
 }
 
 
@@ -341,3 +363,16 @@ input[type="checkbox"]:checked + p {
     cursor: pointer;
 }
 
+.tag{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 5px;
+    min-width: fit-content;
+}
+
+
+.sche-link{
+    min-width: fit-content;
+    padding-right: 5px;
+}

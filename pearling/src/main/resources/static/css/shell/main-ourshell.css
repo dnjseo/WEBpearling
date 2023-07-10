@@ -157,6 +157,8 @@
             justify-content: center;
             letter-spacing: 0.1em;
 
+            width: 85px;
+
         }
 
 /* ===================== 친구들 일정 피드 섹션 ===================== */
@@ -323,4 +325,10 @@
         /* REAL 그림자 */
         box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset, 
         0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .tag{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
     }

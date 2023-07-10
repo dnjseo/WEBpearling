@@ -27,10 +27,8 @@ function commentListLoad(url) {
                 let itemTemplate = `
                     <div class="comment" data-com-id="${comment.id}">
                     <div class="comment-deco-box">
-                        <div>
                         <span class="pearl-img"><img src="/images/profile/circle.png"></span>
                         <span>${comment.regMemberNickname}</span>
-                        </div>
                     </div>
                         <span class="content-span">${comment.content}</span>
                         <div class="up-del-box">
@@ -177,12 +175,9 @@ function handleCommentUpdate(updateBtnId, memberId, jsonData) {
     })
         .then(function (response) {
             if (response.ok) {
-                // commentInput.value = "";
                 commentList.innerHTML = "";
                 console.log('다이어리 댓글 업데이트가 완료되었습니다.');
                 commentListLoad(`/api/diaryComments/${diaryId}`);
-
-                // window.location.reload();
             } else {
                 console.error('다이어리 댓글 업데이트에 실패했습니다.');
             }
@@ -198,11 +193,16 @@ function addClickEventListeners() {
     let commentSection = document.querySelector(".diary-comment-section");
 
     let form = document.querySelector('.diary-comment-form');
-    let commentAddBtn = form.querySelector(".comment-add-btn");
+    let commentAddBtn = document.querySelector(".comment-add-btn");
+    let commentUpdateAddbtn = document.querySelector('.comment-update-add-btn');
 
     commentSection.addEventListener('click', function (event) {
         if (event.target.classList.contains('co-update-btn')) {
             event.preventDefault();
+            event.stopPropagation();
+
+            commentAddBtn.setAttribute('class', 'd-none');
+            commentUpdateAddbtn.classList.remove('d-none');
 
             // 수정 폼 표시
             let commentItem = event.target.closest('.comment');
@@ -222,16 +222,16 @@ function addClickEventListeners() {
             <textarea class="comment-update-input" name="update-content">${commentContent}</textarea>
             <input type="hidden" name="comment-id" value="${commentItem.dataset.comId}">
             <input type="hidden" name="reg-member-id" value="${memberId}">
-            <button class="comment-update-submit" type="submit">✓</button>
             `;
 
             commentItem.replaceWith(updateForm);
 
-            updateForm.addEventListener('submit', function (e) {
+            commentUpdateAddbtn.addEventListener('click', function (e) {
                 e.preventDefault();
+                commentUpdateAddbtn.setAttribute('class', 'd-none');
+                commentAddBtn.classList.remove('d-none');
 
                 let content = updateForm.querySelector('.comment-update-input').value;
-                console.log(updateForm.querySelector('.comment-update-input').value);
                 let commentId = updateForm.querySelector('input[name="comment-id"]').value;
                 let memberId = updateForm.querySelector('input[name="reg-member-id"]').value;
 
@@ -243,6 +243,22 @@ function addClickEventListeners() {
 
                 handleCommentUpdate(commentId, memberId, jsonData);
             });
+
+            updateForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                // 이벤트 리스너 내에서는 updateForm.submit()을 호출하지 않아도 폼이 서버로 전송되지 않는다.
+            });
+
+            // 이벤트 캡처링을 이용하여 폼 외부를 클릭한 경우 수정 폼이 사라지도록 처리
+            document.addEventListener('click', function (e) {
+                if (!updateForm.contains(e.target)) { // 이벤트 타겟이 폼 밖인 경우
+                    // 폼 외부를 클릭한 경우 폼을 제거하고 원래 댓글 아이템으로 복원
+                    updateForm.replaceWith(commentItem);
+                    // commentUpdateAddbtn.setAttribute('class', 'd-none');
+                    // commentAddBtn.classList.remove('d-none');
+                }
+            }, { capture: true });
+
         } else if (event.target.classList.contains('co-del-btn')) {
             // 삭제 버튼 클릭 처리
             let delBtnId = event.target.dataset.id;
@@ -280,7 +296,7 @@ function addClickEventListeners() {
 function notifyNotificationService(subMemberId, notificationData) {
 
     console.log("댓글은 이렇습니다" + JSON.stringify(notificationData));
-    
+
     fetch(`/api/notifications/notify/${subMemberId}`, {
         method: 'POST',
         headers: {
@@ -312,14 +328,13 @@ window.addEventListener('DOMContentLoaded', function (e) {
     let commentShowBtn = editForm.querySelector(".comment-btn");
 
     commentShowBtn.addEventListener('click', function (e) {
-        console.log("나 불렀엉?");
         e.preventDefault();
 
         if (commentForm.style.display === "block") {
             commentForm.style.display = "none";
         } else {
             commentForm.style.display = "block";
-        }                                                                                    
+        }
 
         commentListLoad(`/api/diaryComments/${diaryId}`);
 

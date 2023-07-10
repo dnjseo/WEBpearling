@@ -13,7 +13,6 @@
     <script src="/js/diary/post.js"></script>
     <script src="/js/diary/delete-update.js"></script>
     <script src="/js/diary/comment-detail.js"></script>
-    <script src="/js/diary/show.js"></script>
 
     <!-- <script src="/js/diary/comment-post.js"></script> -->
     <!-- <script src="/js/diary/comment-delete-update.js"></script> -->
@@ -160,11 +159,8 @@
                                         <div class="comment-list">
                                             <div class="comment" th:each="dc : ${diaryComment}">
                                                 <div class="comment-deco-box">
-                                                    <div>
-                                                    <span class="pearl-img"><img src="/images/profile/circle.png"></span>
+                                                    <span class="pearl-img"><img class="pearl-img-select" src="/images/profile/circle.png"></span>
                                                     <span th:text="${dc.regMemberNickname}"></span>
-                                                    </div>
-                                                    <!-- <span class="comment-show-btn">•••</span> -->
                                                 </div>
                                                 <span class="content-span" th:text="${dc.content}"></span>
                                                 <div class="up-del-box">
@@ -194,6 +190,7 @@
 
                                             <div class="comment-btns">
                                                 <button class="comment-add-btn">댓글작성</button>
+                                                <button class="comment-update-add-btn d-none">댓글작성</button>
                                             </div>
                                         </div>
                                     </li>

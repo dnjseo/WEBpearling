@@ -11,7 +11,16 @@
 
    <select id="findByUserId" resultType="Notification">
       select * from notification
-      where sub_member_id = #{subMemberId}
+      where sub_member_id = #{subMemberId} and
+      isRead = 0
+      order by reg_date desc
+   </select>
+
+   <select id="fingByUserIdAndIsRead" resultType="Notification">
+      select * from notification
+      where sub_member_id = #{subMemberId} and
+      isRead = 1
+      order by reg_date desc
    </select>
    
    <insert id="save" parameterType="notification">
@@ -23,12 +32,13 @@
 		delete from notification where id=#{id}
 	</delete>
 
-   <update id="update" parameterType="Notification">
-   UPDATE notification
-   <set>
-      <if test="message != null">message = #{message}</if>
-   </set>
+   <update id="update">
+      UPDATE notification
+      <set>
+         <if test="isRead != null">isRead = true</if>
+      </set>
       WHERE id = #{id}
    </update>
+
    
 </mapper>

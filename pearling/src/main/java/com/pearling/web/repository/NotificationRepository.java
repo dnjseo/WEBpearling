@@ -14,5 +14,5 @@ public interface NotificationRepository {
     void update(Notification notification);
     void delete(Integer id);
     List<Notification> findByUserId(Integer userId);
-    
+    List<Notification> fingByUserIdAndIsRead(Integer userId);
 }

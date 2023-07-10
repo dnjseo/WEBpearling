@@ -65,18 +65,18 @@ public class NotificationService {
     //     }
     // }
 
-	private void sendToClient(Integer userId, String message) {
-		SseEmitter emitter = emitterRepository.get(userId);
-		if (emitter != null) {
-			try {
-				String eventData = new String(message.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1);
-				emitter.send(SseEmitter.event().id(String.valueOf(userId)).name("sse").data(eventData));
-			} catch (IOException exception) {
-				emitterRepository.deleteById(userId);
-				emitter.completeWithError(exception);
-			}
-		}
-	}
+	// private void sendToClient(Integer userId, String message) {
+	// 	SseEmitter emitter = emitterRepository.get(userId);
+	// 	if (emitter != null) {
+	// 		try {
+	// 			String eventData = new String(message.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1);
+	// 			emitter.send(SseEmitter.event().id(String.valueOf(userId)).name("sse").data(eventData));
+	// 		} catch (IOException exception) {
+	// 			emitterRepository.deleteById(userId);
+	// 			emitter.completeWithError(exception);
+	// 		}
+	// 	}
+	// }
 
 	/**
      * 사용자 아이디를 기반으로 이벤트 Emitter를 생성
@@ -126,4 +126,20 @@ public class NotificationService {
         // 사용자 아이디에 해당하는 알림 목록을 조회하여 반환합니다.
         return notificationRepository.findByUserId(userId);
     }
+
+	public List<Notification> getNotificationsByUserIdAndIsRead(Integer userId) {
+        // 사용자 아이디에 해당하는 알림 목록을 조회하여 반환합니다.
+        return notificationRepository.fingByUserIdAndIsRead(userId);
+    }
+
+	public void update(Notification notification) {
+
+		notificationRepository.update(notification);
+	}
+
+	public void delete(Integer id) {
+
+		notificationRepository.delete(id);
+
+	}
 }

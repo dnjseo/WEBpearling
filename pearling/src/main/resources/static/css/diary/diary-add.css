@@ -356,31 +356,22 @@
     .comment > .comment-deco-box {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-start;
+        align-items: center;
     } 
 
-    .comment-deco-box > :nth-child(1) {
-        justify-self: flex-start;
-    }
-
-    .comment-deco-box > :nth-child(4) {
+    .comment-deco-box > span:nth-child(2) {
         font-weight: bold;
     }
 
-    .comment-deco-box > span:nth-child(3) { 
-        justify-self: flex-end;
-        color: #D9D9D9;
-    }
-
     .pearl-img > :nth-child(1) {
-        width: 15px;
-        height: 15px;
+        width: 20px;
+        height: 20px;
     }
 
     .comment > .content-span {
-        padding-left: 18px;
+        padding-left: 20px;
     }
-
     
     .up-del-box {
         display: flex;
@@ -390,7 +381,7 @@
     
     .up-del-box > span {
         justify-self: flex-start;
-        padding-left: 18px;
+        padding-left: 20px;
     }
     
     .up-del-btns {
@@ -493,10 +484,7 @@ select {
 }
 
 /* 유효성 검사용 */
-/* .alert{
-    border: 3px solid rgb(247, 150, 150);
-  } */
   
-  .alert::placeholder{
-    color: rgb(247, 150, 150); 
-  }
+.alert::placeholder{
+color: rgb(247, 150, 150); 
+}

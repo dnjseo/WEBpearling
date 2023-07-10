@@ -494,3 +494,50 @@ input[type="time"]{
   object-fit: cover; 
   object-position: center;
 }
+
+.completed-tag-box {
+  padding-top: 15px;
+  display: flex;
+  /* justify-content: center; */
+  flex-wrap: wrap;
+  width: 380px;
+  gap:10px
+}
+
+ .taged-item{
+  padding: 5px;
+  border: 1px solid #A587E0;
+  border-radius: 30px;
+  padding-right: 10px;
+  width: auto;
+  display: flex;
+  align-items: center;
+ }
+
+
+.taged-item > input {
+    color: #A587E0;
+    border: none;
+    text-align: center;
+    text-justify: center;
+    width: 100px;
+    font-size: 10px;
+    font-family: 'Pretendard-SemiBold';
+    letter-spacing: 0.15em;
+    /* 
+    padding-left: 30px;
+    padding-top: 3px;
+    width: auto;
+
+    border: 2px solid #A587E0;;
+    border-radius: 50px;
+    background-color: none; */
+}
+
+.tag-del-btn{
+  border: none;
+  background-color: transparent;
+  color: #A587E0;
+
+}
+

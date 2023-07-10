@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let followers = [];
     const input = document.querySelector("#friend-tag-input");
     const autocompleteList = document.querySelector('#autocomplete-list');
+    let matchedFollowers = [];
 
     fetch('/api/follow/followingList')
     .then(response => response.json())
@@ -41,12 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
           input.dataset.friendId = follower.id;
           autocompleteList.innerHTML = '';
 
-        // 선택된 팔로워를 matchedFollowers 배열에서 제외
-        const index = matchedFollowers.indexOf(follower);
-        if (index > -1) {
-            matchedFollowers.splice(index, 1);
-        }
-
+      
+          
       })
         autocompleteList.appendChild(option);
       });
@@ -60,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 친구 태그 - 추가 버튼 클릭     
     document.querySelector('.add-friend-btn').onclick = (e) => {
+
       const tagInput = document.createElement('input');
       tagInput.className = "taged-id-input"
       tagInput.type = "hidden"
@@ -76,8 +74,14 @@ document.addEventListener('DOMContentLoaded', function() {
       
       
       //인풋창의 친구가 유효할 경우
-      if (input.value) {
+      if (followers.some(follower => follower.nickname.toLowerCase() === input.value.toLowerCase().replace('@', ''))) {
+
         const completedTagBox = document.querySelector('.completed-tag-box');
+
+        // 추가 된 팔로워 리스트에서 삭제
+        const deletedNickname = input.value.toLowerCase().replace('@', '');
+        const deletedFollower = followers.find(follower => follower.nickname.toLowerCase() === deletedNickname);
+        followers = followers.filter(follower => follower.nickname.toLowerCase() !== deletedNickname);
       
         // taged 요소를 생성하여 completedTagBox에 추가
         const tagedElement = document.createElement('div');
@@ -90,23 +94,23 @@ document.addEventListener('DOMContentLoaded', function() {
       
         // 태그 삭제 버튼 
         const tagDelBtn = tagedItem.querySelector('.tag-del-btn');
-
+        
         tagDelBtn.addEventListener('click', () => {
           tagedElement.remove();
+          
+          // 삭제한 친구를 다시 리스트에 추가
+          if (deletedFollower) {
+            followers.push(deletedFollower);
+          }
 
-          // 삭제된 팔로워를 다시 followers 배열에 추가
-          // const deletedFollower = followers.find(follower => follower.nickname === deletedNickname);
-          // if (deletedFollower) {
-          //   followers.push(deletedFollower);
-          // }
-        });
-      }
-     
+          });
+        }
+          
       // 친구 닉네임 입력창 비우기
       input.value = '';
     };
 
-    // 입력 창에 포커스가 가면 자동완성 기능을 활성화합니다.
+    // 입력 창에 포커스가 가면 자동완성 기능을 활성화.
     input.addEventListener('focus', function() {
       if(input.value.trim() != '')
       return
@@ -114,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#autocomplete-list').classList.add('active')
     });
     
-    // 입력 창에서 포커스가 벗어나면 자동완성 목록을 비활성화합니다.
+    // 입력 창에서 포커스가 벗어나면 자동완성 목록을 비활성화.
     input.addEventListener('blur', function() {
         setTimeout(function() {
           autocompleteList.innerHTML = '';

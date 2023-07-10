@@ -39,34 +39,38 @@ function notificationListLoad(url) {
     fetch(url)
         .then(response => response.json())
         .then(list => {
-            notiList.innerHTML = "";
 
-            for (let notification of list) {
+            if (list.length === 0) {
+                notiList.innerHTML = "<div class='noti-empty'><span>알림이 없습니다.<span></div>";
+            } else {
+                notiList.innerHTML = "";
 
-                let itemTemplate = `
-                <div class="noti">
-                <div class="noti-box">
-                <div>
-                    <img src="/images/logo/mainlogo.png">
-                    <div class="noti-logo">PEARLING</div>
-                </div>
-                <div class="noti-regdate">
-                    <span>${notification.regDate}</span>
-                </div>
-            </div>
-            <div class="noti-content">${notification.message}</div>
-            <div class="noti-btn-box">
-            <button class="noti-up-btn" value=${notification.id}>keep...</button>
-            <button class="noti-del-btn" value=${notification.id}>delete...</button>
-                <input name="input-isread-value" type="hidden" value="${notification.isRead}">
-            </div>
-            <input id="input-member-id" name="input-user-id" type="hidden">
-            </div>`;
+                for (let notification of list) {
+                    let itemTemplate = `
+                        <div class="noti">
+                            <div class="noti-box">
+                                <div>
+                                    <img src="/images/logo/mainlogo.png">
+                                    <div class="noti-logo">PEARLING</div>
+                                </div>
+                                <div class="noti-regdate">
+                                    <span>${notification.regDate}</span>
+                                </div>
+                            </div>
+                            <div class="noti-content">${notification.message}</div>
+                            <div class="noti-btn-box">
+                                <button class="noti-up-btn" value=${notification.id}>keep...</button>
+                                <button class="noti-del-btn" value=${notification.id}>delete...</button>
+                                <input name="input-isread-value" type="hidden" value="${notification.isRead}">
+                            </div>
+                            <input id="input-member-id" name="input-user-id" type="hidden">
+                        </div>`;
 
-                notiList.insertAdjacentHTML("beforeend", itemTemplate);
-                addClickEventListeners();
+                    notiList.insertAdjacentHTML("beforeend", itemTemplate);
+                }
             }
-            
+
+            addClickEventListeners();
 
         })
         .catch((error) => {
@@ -75,11 +79,13 @@ function notificationListLoad(url) {
 }
 
 /* ----------------- PUT 요청 처리 ----------------- */
-function handleNotiUpdate(id, jsonData, userId) {
+function handleNotiUpdate(id, jsonData) {
     let notiSection = document.querySelector(".noti-section");
     let notiList = notiSection.querySelector(".noti");
 
-    userId = document.querySelector('input[name="input-user-id"]').value;
+    let userIdInput = document.querySelector("#input-member-id");
+    let userId = userIdInput.value;
+    console.log("update 할 시" + userId);
 
     fetch(`/api/notifications/${id}`, {
         method: 'PUT',
@@ -92,8 +98,8 @@ function handleNotiUpdate(id, jsonData, userId) {
             if (response.ok) {
                 console.log("성공시 id" + id);
                 console.log("성공시 jsondata" + jsonData);
-                notiList.innerHTML = "";
                 console.log('알림 업데이트가 완료되었습니다.');
+                notiList.innerHTML = "";
                 notificationListLoad(`/api/notifications/list/${userId}`);
             } else {
                 console.error('알림 업데이트에 실패했습니다.');
@@ -105,11 +111,15 @@ function handleNotiUpdate(id, jsonData, userId) {
 }
 
 /* ----------------- Delete 요청 처리 ----------------- */
-function handleNotiDelete(id, userId) {
+function handleNotiDelete(id) {
+    let notiCateBox = document.querySelector(".noti-cate-box");
     let notiSection = document.querySelector(".noti-section");
     let notiList = notiSection.querySelector(".noti");
 
-    userId = document.querySelector('input[name="input-user-id"]').value;
+    let userIdInput = document.querySelector("#input-member-id");
+    let userId = userIdInput.value;
+
+    console.log("delete 할 시" + userId);
 
     fetch(`/api/notifications/${id}`, {
         method: 'DELETE',
@@ -117,9 +127,21 @@ function handleNotiDelete(id, userId) {
     })
         .then((response) => {
             if (response.ok) {
-                notiList.innerHTML = ""
                 console.log('알림 삭제가 완료되었습니다.');
-                notificationListLoad(`/api/notifications/list/${userId}`);
+                // notiList.innerHTML = "";
+                notiList.remove();
+                
+                // Pre-Noti 버튼을 눌렀을 경우
+                if (notiCateBox.querySelector(".pre-noti-list").classList.contains("active")) {
+                    // if(notiList.children.length === 0)
+                    //     notiList.remove();
+                    notificationListLoad(`/api/notifications/${userId}`);
+                } 
+                // No-Read Noti 버튼을 눌렀을 경우
+                else if (notiCateBox.querySelector(".noread-noti-list").classList.contains("active")) {
+                    notificationListLoad(`/api/notifications/list/${userId}`);
+                }
+                
                 // 추가적인 동작이 필요하다면 여기에서 처리합니다.
             } else {
                 console.error('알림 삭제에 실패했습니다.');
@@ -138,27 +160,22 @@ function addClickEventListeners() {
     let notiList = notiContainer.querySelectorAll(".noti"); // 여러 개의 알림 요소를 선택해야 하므로 querySelectorAll을 사용합니다.
     let isReadInput = document.querySelector('input[name="input-isread-value"]');
     let isReadValue = isReadInput.value;
-    let userId = document.querySelector('input[name="input-user-id"]').value;
-
 
     notiList.forEach(function (notiItem) {
         notiItem.addEventListener('click', function (e) {
+            let notiIdInput = notiItem.querySelector(".noti-up-btn");
+            let id = notiIdInput.value;
 
             if (e.target.classList.contains('noti-up-btn')) {
-                let notiIdInput = notiItem.querySelector(".noti-up-btn");
-                let id = notiIdInput.value;
-
                 isReadValue = true;
                 let isRead = isReadValue;
                 let formData = { id, isRead };
                 let jsonData = JSON.stringify(formData);
-                handleNotiUpdate(id, jsonData, userId);
+                handleNotiUpdate(id, jsonData);
             }
 
             if (e.target.classList.contains('noti-del-btn')) {
-                let notiIdInput = notiItem.querySelector(".noti-del-btn");
-                let id = notiIdInput.value;
-                handleNotiDelete(id, userId);
+                handleNotiDelete(id);
             }
         });
     });
@@ -178,7 +195,18 @@ window.addEventListener('load', function (e) {
 
     let preNotiListBtn = document.querySelector(".pre-noti-list");
     let noReadNotiListBtn = document.querySelector(".noread-noti-list");
-    let userId = document.querySelector('input[name="input-user-id"]').value;
+    let userIdInput = document.querySelector('input[name="input-user-id"]');
+    let loginIdInput = document.querySelector('input[name="input-login-id"]');
+
+    let userId = "";
+
+    if (userIdInput && userIdInput.value !== "") {
+        userId = userIdInput.value;
+    } else if (loginIdInput && loginIdInput.value !== "") {
+        userId = loginIdInput.value;
+    }
+
+    notificationListLoad(`/api/notifications/list/${userId}`);
 
     preNotiListBtn.addEventListener('click', function (e) {
         e.preventDefault();

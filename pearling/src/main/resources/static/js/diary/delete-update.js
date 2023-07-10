@@ -102,19 +102,12 @@ window.addEventListener('DOMContentLoaded', function (e) {
   let addBtn = editForm.querySelector(".confirm-yes");
 
   addBtn.addEventListener('click', (e) => {
-
+    e.preventDefault();
+    showedBtns.style.display = "none";
     let selectElement = document.querySelector('select[name="diary-scope-id"]');  
     let diaryDateInput = document.querySelector(".diary-detail-date");
     let diaryTitleInput = document.querySelector(".diary-detail-title");
     let diaryContentInput = document.querySelector(".diary-detail-input");
-
-    selectElement.setAttribute("disabled");
-    diaryDateInput.setAttribute("disabled");
-    diaryTitleInput.setAttribute("disabled");
-    diaryContentInput.setAttribute("disabled");
-    
-    e.preventDefault();
-    showedBtns.style.display = "none";
 
     let inputs = editForm.elements;
     let id = inputs["id"].value;
@@ -127,6 +120,12 @@ window.addEventListener('DOMContentLoaded', function (e) {
     let jsonData = JSON.stringify(formData);
 
     handleUpdate(id, jsonData);
+    
+    selectElement.disabled = true;
+    diaryDateInput.disabled = true;
+    diaryTitleInput.disabled = true;
+    diaryContentInput.disabled = true;
+
   });
 
   let diaryEditForm = document.querySelector(".diary-edit-form");

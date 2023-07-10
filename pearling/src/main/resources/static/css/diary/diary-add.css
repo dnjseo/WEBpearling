@@ -403,6 +403,7 @@
     font-size: 12px;
     color: #797979;
 
+    border:solid 1px rgba(107, 107, 107, 0.759);
     margin-top: 10px;
     padding: 10px 10px;
 }

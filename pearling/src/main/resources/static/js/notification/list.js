@@ -64,16 +64,9 @@ function notificationListLoad(url) {
             </div>`;
 
                 notiList.insertAdjacentHTML("beforeend", itemTemplate);
+                addClickEventListeners();
             }
             
-            addClickEventListeners();
-            // const regDateElements = document.querySelectorAll(".noti-regdate");
-            // regDateElements.forEach(function (regDateElement) {
-            //     const regDateString = regDateElement.querySelector("span").textContent;
-            //     const relativeTime = getRelativeTime(regDateString);
-            //     regDateElement.querySelector("span").textContent = relativeTime;
-            // });
-
 
         })
         .catch((error) => {
@@ -145,6 +138,8 @@ function addClickEventListeners() {
     let notiList = notiContainer.querySelectorAll(".noti"); // 여러 개의 알림 요소를 선택해야 하므로 querySelectorAll을 사용합니다.
     let isReadInput = document.querySelector('input[name="input-isread-value"]');
     let isReadValue = isReadInput.value;
+    let userId = document.querySelector('input[name="input-user-id"]').value;
+
 
     notiList.forEach(function (notiItem) {
         notiItem.addEventListener('click', function (e) {

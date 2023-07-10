@@ -9,7 +9,14 @@
         where schedule_id = #{schedulefd};
     </select>
 
-   <select id="findNicknameByScheduleId" resultType="java.lang.String">
+   <select id="findByIdandNickname" resultType="com.pearling.web.entity.FriendTag">
+        select ft.*
+        FROM friend_tag ft
+        JOIN member m ON ft.friend_id = m.id
+        WHERE ft.schedule_id = #{scheduleId} and m.nickname = #{nickname}
+    </select>
+
+    <select id="findNicknameByScheduleId" resultType="java.lang.String">
         SELECT m.nickname
         FROM friend_tag ft
         JOIN member m ON ft.friend_id = m.id
@@ -23,6 +30,6 @@
 
     <delete id="delete" parameterType="com.pearling.web.entity.FriendTag">
         delete from friend_tag
-        where member_id=#{memberId} and schedule_id=#{scheduleId}
+        where id=#{id}
     </delete>
 </mapper>

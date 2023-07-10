@@ -5,7 +5,8 @@ import java.util.List;
 import com.pearling.web.entity.FriendTag;
 
 public interface FriendTagService {
-    
+    FriendTag getByNickname(int scheduleId, String nickname);
+
     int append(FriendTag friendTag);
     int delete(FriendTag friendTag);
 

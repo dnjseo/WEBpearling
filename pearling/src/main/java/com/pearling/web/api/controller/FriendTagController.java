@@ -20,20 +20,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pearling.web.entity.FriendTag;
+import com.pearling.web.entity.Member;
 import com.pearling.web.entity.Schedule;
 import com.pearling.web.security.MyUserDetails;
 import com.pearling.web.service.FriendTagService;
+import com.pearling.web.service.MemberService;
 
 @RestController
 @RequestMapping("api/friendtag")
 public class FriendTagController {
 
     @Autowired
-    FriendTagService service;
+    FriendTagService service; 
 
     @GetMapping
     public List<FriendTag> friendtagList(
-
     ) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
@@ -67,13 +68,17 @@ public class FriendTagController {
     }
 
 
-    @DeleteMapping("{id}")
-    public void deleteFriendtag(@PathVariable("id") Integer id) {
-        List<FriendTag> lists = service.getByScheduleId(id);
-        System.out.println(lists);
+    @DeleteMapping
+    public void deleteFriendtag(
+         @RequestBody Map<String, Object> requestData ) {
 
-        for (FriendTag list : lists){
-            service.delete(list);
+        String scheduleIdString = (String)requestData.get("id");
+        Integer scheduleId = Integer.parseInt(scheduleIdString);
+
+        List<String> friendNicknames = (List<String>) requestData.get("value");
+        for (String nickname : friendNicknames){
+            FriendTag tag = service.getByNickname(scheduleId, nickname);
+            service.delete(tag);
         }
     }
 }

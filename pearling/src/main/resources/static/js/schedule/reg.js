@@ -18,6 +18,7 @@ class ScheduleElements {
 }// class end
 
 let isDeleted = false;
+let tagedInputValues = [];
 window.addEventListener("load", function(e) {
   e.preventDefault;
   let schedule = new ScheduleElements();  
@@ -52,6 +53,7 @@ window.addEventListener("load", function(e) {
       if(id==null){
         postSchedule(id, schedule, friendIds);
       }else{
+        deleteFriendTag(id, tagedInputValues, isDeleted);
         updateSchedule(id, schedule, friendIds);
       }
     });
@@ -96,6 +98,7 @@ function getDetail(id,schedule) {
           schedule.tagedFr.innerHTML += taged;
         });
 
+
         
         // 이전 태그 삭제하기 
         document.addEventListener('click', function(event) {
@@ -107,9 +110,9 @@ function getDetail(id,schedule) {
             
             // div가 존재하는 경우 삭제
             if (tagDiv) { 
-              isDeleted = true;
               tagDiv.remove();
-              //deleteFriendTag(id, tagedInputValue, isDeleted);
+              isDeleted = true;
+              tagedInputValues.push(tagedInputValue); // 배열에 값 추가
             }
           }
         });
@@ -360,12 +363,21 @@ function updateFriendTag(id, friendIds) {
 
 }
 
-function deleteFriendTag(id, tagedInputValue, isDeleted)
+function deleteFriendTag(id, tagedInputValues, isDeleted)
 {
+  const requestData = {
+    id: id,
+    value: tagedInputValues
+  };
+
   if(isDeleted){
-    fetch(`/api/friendtag/${id}`, {
-    method: "DELETE"
-  })
+      fetch("/api/friendtag", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(requestData)
+    })
     .then(response => {
       if (response.ok) {
         // 성공적으로 요청이 처리된 경우의 동작

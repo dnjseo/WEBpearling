@@ -10,7 +10,8 @@ import com.pearling.web.entity.FriendTag;
 public interface FriendTagRepository {
 
     FriendTag findById(int memberId, int scheduleId);
-    
+    FriendTag findByIdandNickname(int scheduleId, String nickname);
+  
     int save(FriendTag friendTag);
     int delete(FriendTag friendTag);
 

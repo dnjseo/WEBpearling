@@ -42,6 +42,12 @@ public class FriendTagServiceImp implements FriendTagService{
   
         return repository.findNicknameByScheduleId(id);
     }
+
+    @Override
+    public FriendTag getByNickname(int scheduleId, String nickname) {
+       
+        return repository.findByIdandNickname(scheduleId, nickname);
+    }
    
     
 }

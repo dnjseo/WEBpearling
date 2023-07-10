@@ -33,18 +33,23 @@ public class GuestbookServiceImp implements GuestbookService{
     }
 
     @Override
-    public void addGuestbook(Guestbook guestbook) {
-        repository.addGuestbook(guestbook);
+    public void add(Guestbook guestbook) {
+        repository.insert(guestbook);
     }
 
     @Override
-    public void updateGuestbook(Guestbook guestbook) {
-        repository.updateGuestbook(guestbook);
+    public void update(Guestbook guestbook) {
+        repository.update(guestbook);
     }
 
     // 삭제 기능
     @Override
-    public void deleteGuestbook(Integer id) {
+    public void delete(Integer id) {
         repository.delete(id);
+    }
+
+    @Override
+    public int count(Integer toId) {
+        return repository.count(toId);
     }
 }

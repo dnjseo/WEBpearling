@@ -21,11 +21,17 @@
       from guestbook
       where id = #{id}
    </select>
-   <insert id="addGuestbook" parameterType="com.pearling.web.entity.Guestbook">
+   <select id="count" resultType="int">
+      SELECT COUNT(*) FROM guestbook
+      <if test="toId != null">
+         WHERE to_id = #{toId}
+      </if>
+   </select>
+   <insert id="insert" parameterType="com.pearling.web.entity.Guestbook">
       insert into guestbook (content, regdate, from_id, to_id)
       values (#{content}, #{regdate}, #{fromId}, #{toId})
    </insert>
-   <update id="updateGuestbook" parameterType="com.pearling.web.entity.Guestbook">
+   <update id="update" parameterType="com.pearling.web.entity.Guestbook">
       update guestbook
       set content = #{content}
       where id = #{id}

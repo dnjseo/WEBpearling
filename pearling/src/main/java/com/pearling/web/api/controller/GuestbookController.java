@@ -32,18 +32,18 @@ public class GuestbookController {
       guestbook.setFromId(fromId); // Guestbook 객체에 fromId 설정
       guestbook.setToId(toId); // Guestbook 객체에 toId 설정
 
-      service.addGuestbook(guestbook);
+      service.add(guestbook);
    }
 
    @PutMapping("update/{id}")
    public void update(@PathVariable("id") int id, @RequestBody Guestbook guestbook) {
       guestbook.setId(id);
       System.out.println("엥.. 대체 왜 수정이 안되는거임 ? ");
-      service.updateGuestbook(guestbook);
+      service.update(guestbook);
    }
 
    @DeleteMapping("delete/{id}") // 삭제 기능 추가
    public void delete(@PathVariable("id") int id) {
-      service.deleteGuestbook(id);
+      service.delete(id);
    }
 }

@@ -1,0 +1,54 @@
+.guestbook-plus{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.guestbook-write{
+    position: relative;
+    width: 55%;
+}
+
+/* 방명록 입력하는 부분 */
+.guestbook-plus textarea{
+    margin: 10px 0 20px 0;
+
+    width: 100%;
+    height: 500px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+    border: none;
+
+    padding: 20px 0 20px 15px;
+}
+
+/* 버튼 공통 스타일 */
+.post-btn{
+    width: 80px;
+    height: 30px;
+    
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    border: none;
+
+    color: #797979;
+    font-size: 12px;
+}
+
+/* 등록부분 */
+.add-btn{
+    position: absolute;
+    right: 0;
+}
+
+/* 수정부분 */
+.guestbook-btns{
+    position: absolute;
+    right: 0;
+}
+
+.guestbook-btns button{
+    margin-left: 10px;
+}

@@ -30,8 +30,12 @@ public class GuestbookController extends BaseController {
    @Autowired
    private GuestbookService service;
 
+   // 페이징 처리
+   int pageSize = 20; // 페이지당 이미지 개수
+
    @GetMapping("/list")
    public String list(@RequestParam(name = "uid", required = false) Integer userId,
+                     @RequestParam(name = "page", defaultValue = "1") int page,
                      @AuthenticationPrincipal MyUserDetails user,
                      Model model) {
 
@@ -42,14 +46,30 @@ public class GuestbookController extends BaseController {
       if(user != null)
          toId = user.getId();
 
+      int totalCount = service.count(toId); // 전체 방명록 개수
+      int totalPages = (int) Math.ceil((double) totalCount / pageSize); // 전체 페이지 수
+      
+      // 현재 페이지 번호가 유효한 범위를 벗어나는 경우 첫 페이지로 설정
+      if (page < 1 || page > totalPages) 
+         page = 1;
+
       List<Guestbook> list = service.getGuestBookList(toId);
+
+      for (Guestbook guestbook : list) {
+         Member member = memberService.getById(guestbook.getFromId());
+         guestbook.setFromNickname(member.getNickname());
+      }
+
       model.addAttribute("list", list);
+      model.addAttribute("totalPages", totalPages);
+      model.addAttribute("currentPage", page);
       
       return "guestbook/list";
    }
 
    @GetMapping("/list/{id}")
    public String otherlist(@PathVariable("id") int userId,
+                           @RequestParam(name = "page", defaultValue = "1") int page,
                            @AuthenticationPrincipal MyUserDetails user,
                            Model model) {
                      
@@ -64,10 +84,26 @@ public class GuestbookController extends BaseController {
          loginId = user.getId();
       }
 
+      int totalCount = service.count(otherUser.getId()); // 전체 방명록 개수
+      int totalPages = (int) Math.ceil((double) totalCount / pageSize); // 전체 페이지 수
+      
+      // 현재 페이지 번호가 유효한 범위를 벗어나는 경우 첫 페이지로 설정
+      if (page < 1 || page > totalPages) {
+         page = 1;
+      }
+
       List<Guestbook> list = service.getGuestBookList(otherUser.getId());
+
+      for (Guestbook guestbook : list) {
+         Member member = memberService.getById(guestbook.getFromId());
+         guestbook.setFromNickname(member.getNickname());
+      }
+
       model.addAttribute("list", list);
       model.addAttribute("userId", userId);
       model.addAttribute("loginId", loginId);
+      model.addAttribute("totalPages", totalPages);
+      model.addAttribute("currentPage", page);
 
       return "guestbook/list";
    }

@@ -1,8 +1,11 @@
+let matchedFollowers = [];
+let followers = [];
+
+
 document.addEventListener('DOMContentLoaded', function() {
-    let followers = [];
     const input = document.querySelector("#friend-tag-input");
     const autocompleteList = document.querySelector('#autocomplete-list');
-    let matchedFollowers = [];
+
 
     fetch('/api/follow/followingList')
     .then(response => response.json())
@@ -13,47 +16,54 @@ document.addEventListener('DOMContentLoaded', function() {
   // 입력 이벤트를 감지하여 자동완성 기능 활성화
   input.addEventListener('input', function() {
     document.querySelector('#autocomplete-list').classList.add('active')
+    
+    // 태그되어 있는 친구 조회.
+    let tagednicknames = document.querySelectorAll(".already-taged-nicknames");
+    let values = [];
 
+    tagednicknames.forEach(function(element) {
+      values.push(element.value);
+    });
+    console.log('tagednicknames:::::', values);
+    
     const inputText = input.value.toLowerCase();
-    const matchedFollowers = followers.filter(follower =>
+    
+    matchedFollowers = followers.filter(follower =>
       follower.nickname.toLowerCase().startsWith(inputText)
-    );
+      );
+      
+      // 자동완성 목록 초기화
+      autocompleteList.innerHTML = '';
+      
+      if (matchedFollowers.length > 0) { 
 
-    // 자동완성 목록 초기화
-    autocompleteList.innerHTML = '';
-
-    if (matchedFollowers.length > 0) { 
         matchedFollowers.forEach(follower => {
 
-        const option = document.createElement('div');
-        option.className = 'autocomplete-item';
+          if(!values.includes(follower.nickname)){
+          const option = document.createElement('div');
+          option.className = 'autocomplete-item';
 
-        const img = document.createElement('img');
-        img.src = `/resources/img/${follower.profileImage}`;
-        img.className= "tag-img"
-        option.appendChild(img);
+          const img = document.createElement('img');
+          img.src = `/resources/img/${follower.profileImage}`;
+          img.className= "tag-img"
+          option.appendChild(img);
 
-        const text = document.createElement('span');
-        text.textContent = follower.nickname;
-        option.appendChild(text);
+          const text = document.createElement('span');
+          text.textContent = follower.nickname;
+          option.appendChild(text);
 
-        option.addEventListener('click', function() {
-          input.value = '@'+follower.nickname;
-          input.dataset.friendId = follower.id;
-          autocompleteList.innerHTML = '';
-
-      
-          
-      })
-        autocompleteList.appendChild(option);
+          option.addEventListener('click', function() {
+            input.value = '@'+follower.nickname;
+            input.dataset.friendId = follower.id;
+            autocompleteList.innerHTML = '';
+            
+          })
+          autocompleteList.appendChild(option);
+          }
       });
-    }
+      }
   });
 
-    // 자동완성 목록에서 선택 시 입력 창에 추가
-    // autocompleteList.addEventListener('change', function() {
-    //     input.value = autocompleteList.value;
-    // });
 
     // 친구 태그 - 추가 버튼 클릭     
     document.querySelector('.add-friend-btn').onclick = (e) => {

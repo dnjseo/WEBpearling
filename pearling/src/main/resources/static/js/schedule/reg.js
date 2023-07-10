@@ -87,14 +87,17 @@ function getDetail(id,schedule) {
 
       // ** 태그 된 친구 불러오기 **
         s.friendNicknames.forEach((friendNickname) => {
+
           let taged = `
             <div class="taged-item">
-              <input class="complete-tag" type="text" value="${friendNickname}" disabled>
+              <input class="complete-tag already-taged-nicknames" type="text" value="${friendNickname}" disabled>
               <button class="tag-del-btn" type="button"> x </button>
             </div>
           `;
           schedule.tagedFr.innerHTML += taged;
         });
+
+     
 
         // ** 선택 된 컬러 표시하기 **
         let receivedColor = schedule.backgroundColor.value;

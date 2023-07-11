@@ -133,8 +133,6 @@ function handleNotiDelete(id) {
                 
                 // Pre-Noti 버튼을 눌렀을 경우
                 if (notiCateBox.querySelector(".pre-noti-list").classList.contains("active")) {
-                    // if(notiList.children.length === 0)
-                    //     notiList.remove();
                     notificationListLoad(`/api/notifications/${userId}`);
                 } 
                 // No-Read Noti 버튼을 눌렀을 경우

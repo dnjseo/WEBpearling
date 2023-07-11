@@ -116,7 +116,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
         // calendar.gotoDate( clickedDate );
         document.querySelector('.fc-daygrid-day-frame').style.background = 'rgba(244, 180, 214, 0.609)';
         let id = (userId == null || loginId == userId) ? loginId : userId;
-        diaryListLoad(`http://localhost:8080/api/diary/${formattedDate}/${id}`);
+        diaryListLoad(`/api/diary/${formattedDate}/${id}`);
       });
       
       preDateBtn.addEventListener('click', function(info) {
@@ -125,7 +125,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
         let id = (userId == null || loginId == userId) ? loginId : userId;
         document.querySelector('.fc-daygrid-day-frame').style.background = 'rgba(244, 180, 214, 0.609)';
         // console.log(formattedDate);
-        diaryListLoad(`http://localhost:8080/api/diary/${formattedDate}/${id}`);
+        diaryListLoad(`/api/diary/${formattedDate}/${id}`);
       });
 
     calendar.on('dateClick', function(info) {
@@ -143,7 +143,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
 
         console.log(clickedDate);
         document.querySelector('.fc-daygrid-day-frame').style.background = 'none';
-        diaryListLoad(`http://localhost:8080/api/diary/${clickedDate}/${id}`);
+        diaryListLoad(`/api/diary/${clickedDate}/${id}`);
     });
     
     let diaryListSection = document.querySelector(".diary-list-section");

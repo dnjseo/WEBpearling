@@ -54,7 +54,7 @@ window.addEventListener('load', function (e) {
 
     if(content.trim() == '') {
       contentInput.placeholder = "다이어리 내용을 입력하셔야 합니다.";
-      contentInput.classList.add('alert');
+      contentInput.classList.add('diary-value-alert');
       confirmModal.style.display = "none";
       return;
     }

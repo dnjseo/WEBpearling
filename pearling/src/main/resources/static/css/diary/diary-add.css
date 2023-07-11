@@ -486,6 +486,6 @@ select {
 
 /* 유효성 검사용 */
   
-.alert::placeholder{
+.diary-value-alert::placeholder{
 color: rgb(247, 150, 150); 
 }

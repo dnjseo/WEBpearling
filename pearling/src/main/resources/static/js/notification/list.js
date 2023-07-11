@@ -1,6 +1,6 @@
 function getRelativeTime(dateString) {
     const now = moment(); // 현재 시간
-    const date = moment(dateString, "ddd MMM DD HH:mm:ss z YYYY"); // 등록일시
+    const date = moment(dateString, "YYYY-MM-DDTHH:mm:ss.SSSZ"); // 등록일시
 
     const elapsed = now.diff(date);
     const duration = moment.duration(elapsed);
@@ -45,9 +45,13 @@ function notificationListLoad(url) {
             } else {
                 notiList.innerHTML = "";
 
-                for (let notification of list) {
+                for (let i=0; i<list.length; i++) {
+                    let notification = list[i];
+                    let delay = 300 * i; 
+
                     let itemTemplate = `
-                        <div class="noti">
+                        <div class="noti" data-aos="fade-down-right" data-aos-duration="3000" data-aos-delay="${delay}"
+                        data-aos-anchor-placement="top-bottom">
                             <div class="noti-box">
                                 <div>
                                     <img src="/images/logo/mainlogo.png">
@@ -71,6 +75,17 @@ function notificationListLoad(url) {
             }
 
             addClickEventListeners();
+
+            const regDateElements = document.querySelectorAll(".noti-regdate");
+            regDateElements.forEach(function (element) {
+                const regDateString = element.textContent;
+                console.log("regDateString : " + element.textContent)
+                const relativeTime = getRelativeTime(regDateString);
+                console.log("relativeTime : " + relativeTime)
+                element.textContent = relativeTime;
+
+                console.log(element.textContent);
+            });
 
         })
         .catch((error) => {
@@ -184,12 +199,15 @@ function addClickEventListeners() {
 
 window.addEventListener('load', function (e) {
 
-    const regDateElements = document.querySelectorAll(".noti-regdate");
-    regDateElements.forEach(function (element) {
-        const regDateString = element.textContent;
-        const relativeTime = getRelativeTime(regDateString);
-        element.textContent = relativeTime;
-    });
+    // const regDateElements = document.querySelectorAll(".noti-regdate");
+    // regDateElements.forEach(function (element) {
+    //     const regDateString = element.textContent;
+    //     const relativeTime = getRelativeTime(regDateString);
+    //     element.textContent = relativeTime;
+    // });
+
+    let getTitleSpan = document.querySelector('.title');
+    getTitleSpan.textContent = "알림 센터";
 
     let preNotiListBtn = document.querySelector(".pre-noti-list");
     let noReadNotiListBtn = document.querySelector(".noread-noti-list");

@@ -95,20 +95,23 @@ async function printFriendScheduleList(osDate) {
         <ul class="friendScheduleList">
           <li class="fs1">
             <div class="profile-x">
-            <a href="/shell/myshell/${following.id}">
+              <a href="/shell/myshell/${following.id}">
               <img src="/resources/img/${following.profileImage}">
               <p>${following.nickname}</p>
             </div>
             <div class="scheduleContents">
-            <p>${todoItems ? '할 일.' : ''}</p>
+              <p>${todoItems ? '할 일.' : ''}</p>
               <ul>
                 ${todoItems}
               </ul>
             </div>
-            <div class="scheduleContents">
-            <p>${scheduleItems ? '일정.' : ''}</p>
+
+            <div class="${todoItems ? 'os-sche-title' : 'd-none'}"></div>
+
+            <div class="scheduleContents ">
+              <p>${scheduleItems ? '일정.' : ''}</p>
               <ul>
-                ${scheduleItems}
+                  ${scheduleItems}
               </ul>
             </div>
           </li>

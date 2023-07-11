@@ -14,12 +14,13 @@
     aspect-ratio: 4/2;
     opacity: 0;
     animation: fadeIn 1s ease forwards;
+    -webkit-text-fill-color: #797979;
   }
-
- :root {
+  
+  
+:root {
     --fc-border-color: rgba(165, 135, 224, 1);
     --fc-daygrid-event-dot-width: 5px;
-    -webkit-text-fill-color: #797979;
   
     /* 캘린더 버튼 */
     --fc-button-text-color:rgba(165, 135, 224, 1);

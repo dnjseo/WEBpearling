@@ -298,11 +298,12 @@ input[type="checkbox"]:checked + p {
 }
 
 .plus{
+    color: #797979;
     position: absolute;
     bottom: 5%;
     right: 5%;
 
-    color: white;
+    /* color: white; */
     font-weight: semi-bold;
     font-size: 25px;
     

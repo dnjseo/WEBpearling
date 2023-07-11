@@ -63,7 +63,8 @@ body{
   /* ==========(ms3) 다이어리 섹션 ===================== */
 
 #ms3{
-    width: 90%
+    width: 90%;
+    min-width: 350px;
 }
 
   /* ==========(ms4) 스케쥴 섹션 ===================== */
@@ -377,3 +378,4 @@ input[type="checkbox"]:checked + p {
     min-width: fit-content;
     padding-right: 5px;
 }
+

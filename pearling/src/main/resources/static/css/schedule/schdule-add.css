@@ -66,7 +66,7 @@ input[type="time"]{
 }
 
 #d1>div>input {
-  width: 280px;
+  width: 275px;
   height: 30px;
 
   background: rgba(255, 255, 255, 0.7);
@@ -542,4 +542,92 @@ input[type="time"]{
   flex-wrap: wrap;
   width: 380px;
   gap:10px;
+}
+
+
+
+/* 작은 화면을 대상으로하는 미디어 쿼리를 추가합니다. */
+@media screen and (max-width: 400px) {
+  /* 작은 화면에 대한 조정 */
+
+  /* 여백과 간격 제거 */
+  #d1 {
+    margin-top: 10px;
+    margin-bottom: 40px;
+    gap: 3px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 입력 필드 너비 조정 */
+  #d1 > div > input {
+    width: 200px;
+  }
+
+  /* 글꼴 크기 조정 */
+  #d1>div>p {
+    font-size: 10px;
+
+  }
+
+  #d1>.schedule-add-date-box>input{
+    width: 140px;
+  }
+
+  #d1>.schedule-add-title>input{
+    width: 300px;
+  }
+
+  .taged-freind-nickname{
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    gap:10px;
+  }
+  
+
+  /* 제출 버튼 너비 조정 */
+  #d1>div>.schedule-btn-style {
+    width: 90px;
+  }
+
+  /* 친구 목록 레이아웃 조정 */
+  .schedule-add-freind-box > .friendList {
+    overflow-x: scroll;
+    max-width: 300px;
+  }
+
+  /* 친구 프로필 이미지 조정 */
+  .schedule-add-freind-box > .friendList > li > img {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* 색상 팔레트 레이아웃 조정 */
+  .category-wrap > .col-box {
+    height: 80px;
+    gap: 4px;
+  }
+
+  /* 지도 크기 조정 */
+  #map {
+    height: 200px;
+  }
+
+  /* 자동완성 목록 너비 조정 */
+  #autocomplete-list {
+    width: 210px;
+  }
+
+  /* 완료된 태그 상자 레이아웃 조정 */
+  .completed-tag-box {
+    width: 300px;
+  }
+
+  .category-wrap{
+    width: 300px;
+  }
 }

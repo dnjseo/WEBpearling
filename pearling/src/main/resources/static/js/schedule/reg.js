@@ -72,7 +72,7 @@ function changeUpdateMode() {
 // schedule Detail 가져오기
 function getDetail(id,schedule) {
 
-    let url = `http://localhost:8080/api/schedules/detail?id=${id}`;
+    let url = `/api/schedules/detail?id=${id}`;
     
     fetch(url)
       .then(response => response.json())
@@ -230,7 +230,7 @@ function postSchedule(id, schedule, friendIds){
         if (response.ok) {
           // 성공적으로 요청이 처리된 경우의 동작
           console.log('폼 제출 성공');
-          window.location.href = "http://localhost:8080/shell/myshell";
+          window.location.href = "/shell/myshell";
         } else {
           // 요청이 실패한 경우의 동작
           console.error('폼 제출 실패');
@@ -267,7 +267,7 @@ function deleteSchedule(id){
           if (response.ok) {
             // 성공적으로 요청이 처리된 경우의 동작
             console.log('삭제 성공~!');
-            window.location.href = "http://localhost:8080/shell/myshell";
+            window.location.href = "/shell/myshell";
     
           } else {
             // 요청이 실패한 경우의 동작
@@ -293,7 +293,7 @@ function updateSchedule(id, schedule, friendIds){
     return;
     }
 
-  let url = `http://localhost:8080/api/schedules/detail?id=${id}`;
+  let url = `/api/schedules/detail?id=${id}`;
 
   const scheduleData = {
     id : id,
@@ -349,7 +349,7 @@ function updateFriendTag(id, friendIds) {
     .then(response => {
       if (response.ok) {
         // 성공적으로 요청이 처리된 경우의 동작
-        window.location.href = "http://localhost:8080/shell/myshell";
+        window.location.href = "/shell/myshell";
       } else {
         // 요청이 실패한 경우의 동작
         console.error('폼 제출 실패');

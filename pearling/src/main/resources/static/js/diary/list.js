@@ -105,8 +105,10 @@ function printCalendar(calendar){
         title : diaryTitle,
         start : diaryDate,
         end : diaryDate,
+        description : diaryContent,
         color : "#E6E6FA",
         allDay: true
+
         }
 
     calendar.addEvent(diaryEvent);
@@ -143,18 +145,18 @@ window.addEventListener('DOMContentLoaded', function(e) {
         eventDidMount: function(info) {
             tippy(info.el, {
                 content:  `<div style="padding:5px">
-                <div class="tippy-title">
+                <div class="tippy-title tw">
                   <p>${info.event.title}</p>
                 </div>
-                <p class="tippy-content">${info.event.content}</p>
+                <p class="tippy-content">${info.event.extendedProps.description}</p>
                 </div>`
                //이벤트 타이틀을 툴팁으로 가져옵니다. 
                 ,placement: 'top'
-                ,theme: 'lavendar'
+                ,theme: 'grey'
                 ,animation: 'scale'
                 , delay: [500,0]
                 ,allowHTML: true
-                //content:  info.event.extendedProps.description,//이벤트 디스크립션을 툴팁으로
+                //, content:  info.event.extendedProps.description,//이벤트 디스크립션을 툴팁으로
                 });
 
         },

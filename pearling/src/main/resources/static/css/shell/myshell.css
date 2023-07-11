@@ -217,6 +217,8 @@ input[type="checkbox"]:checked + p {
 }
 
 .show-del-btn{
+    color: #797979;
+
     border-style: none;
     background: none;
     border-radius: 20px;
@@ -360,11 +362,13 @@ input[type="checkbox"]:checked + p {
 }
 
 .plus-schedule{
+
     bottom: 60%;
     right: 30%; 
 
     cursor: pointer;
 }
+
 
 .tag{
     display: flex;
@@ -378,5 +382,6 @@ input[type="checkbox"]:checked + p {
 .sche-link{
     min-width: fit-content;
     padding-right: 5px;
+    letter-spacing: 0.15em;
 }
 

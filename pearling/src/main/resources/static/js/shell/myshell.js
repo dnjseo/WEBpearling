@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
       
       tippy(info.el, {
           content:  `<div style="padding:5px">
-          <div class="tippy-title" style="background-color:${info.event.backgroundColor}">
+          <div class="tippy-title tg" style="background-color:${info.event.backgroundColor}">
             <p>${info.event.title}</p>
           </div>
           <p class="tippy-content"> 🕓 : ${time}</p>

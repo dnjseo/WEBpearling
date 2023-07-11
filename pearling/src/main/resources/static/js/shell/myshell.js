@@ -56,7 +56,8 @@ function printCalendarEvent(calendar) {
   const pathArray = path.split("/");
   const userId = (pathArray[1] === "shell" && pathArray[2] === "myshell") ? pathArray[3] || null : null;
 
-  const urlWithId = userId ? `http://localhost:8080/api/schedules/${userId}` : 'http://localhost:8080/api/schedules';
+
+  const urlWithId = userId ? `/api/schedules/${userId}` : '/api/schedules';
 
   fetch(urlWithId)
     .then(response => response.json())
@@ -452,7 +453,7 @@ function updateTodoList(clickedDate, checkboxes) {
     const pathArray = path.split("/");
     const userId = (pathArray[1] === "shell" && pathArray[2] === "myshell") ? pathArray[3] || null : null;
 
-    const urlWithId = userId ? `http://localhost:8080/api/todos/${userId}` : 'http://localhost:8080/api/todos';
+    const urlWithId = userId ? `/api/schedules/${userId}` : '/api/schedules';
 
     fetch(urlWithId)    
     .then(response => response.json())
@@ -519,7 +520,7 @@ function updateScheduleList(clickedDate) {
     const pathArray = path.split("/");
     const userId = (pathArray[1] === "shell" && pathArray[2] === "myshell") ? pathArray[3] || null : null;
 
-    const urlWithId = userId ? `http://localhost:8080/api/schedules/${userId}` : 'http://localhost:8080/api/schedules';
+    const urlWithId = userId ? `/api/schedules/${userId}` : '/api/schedules';
 
     fetch(urlWithId)    
     .then(response => response.json())

@@ -39,7 +39,7 @@
 .modal-content>p {
     margin-bottom: 30px;
 }
-
+.confirm-yes, 
 .btn-style{
     display: flex;
     flex-direction: row;

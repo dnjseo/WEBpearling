@@ -115,13 +115,11 @@ section.guestbook {
     left: 50%;
     transform: translate(-50%, -50%);
 
-    width: 50%;
-    height: 75%;
-    /* background: #BFBFBF;  */
-    background: linear-gradient(0deg,
-        rgba(0, 0, 0, 0.04), 
-        rgba(0, 0, 0, 0.04)), #FFFFFF;
-
+    width: 35%;
+    height: 60%;
+    background-color: rgba(255, 255, 255, 0.5);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04)), rgba(255, 255, 255, 1.0);
+    border-radius: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -136,17 +134,11 @@ section.guestbook {
     flex-direction: row;
     align-items: center;
     gap: 10px;
-    width: 100%;
+    width: 90%;
     height: 50px;
-    color: white;
-    background: url("/images/guestbook/bar.png") no-repeat center center/cover;
-}
-
-.number{
-    padding: 0 10px 0 10px;
-}
-
-.from-id-nickname{
+    margin-top: 20px;
+    color: black;
+    font-size: 23px;
 }
 
 .guestbook-close{
@@ -157,17 +149,14 @@ section.guestbook {
 }
 
 .btn-zip{
-    width: 30%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 10px;
-
     padding-right: 5px;
-
     position: absolute;
-    right: 0;
+    right: 15px;
 }
 
 .btn{
@@ -191,7 +180,6 @@ section.guestbook {
     width: 70px;
     height: 25px;
     padding-top: 5px;
-    margin-right: 20px;
 }
 
 .updateBtn a{
@@ -213,7 +201,7 @@ section.guestbook {
 }
 
 .pearl > p {
-    font-family: 'omyu_pretty';
+    font-family: "GangwonEdu_OTFBoldA";
     font-size: 20px;
     font-weight: normal;
     color: black;

@@ -186,6 +186,7 @@ input[type="checkbox"]:checked + p {
 
 .scheduleListSection{
     width: 100%;
+    padding-top: 15px;
 }
 
 .scheduleList:hover {

@@ -8,7 +8,8 @@ import com.pearling.web.entity.DiaryView;
 public interface DiaryService {
     List<Diary> getList();
     List<Diary> getListByDate(String date, Integer memberId);
-
+    List<Diary> getListByUserId(Integer memberId);
+    
     List<DiaryView> getViewList();
     List<DiaryView> getViewListByDate(String date, Integer memberId);
 

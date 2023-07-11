@@ -80,6 +80,45 @@ function formatDate(date) {
     return `${year}-${month}-${day}`;
   }
 
+
+function printCalendar(calendar){
+    let urlParams = new URLSearchParams(window.location.search);
+
+    let id = null;
+    if(urlParams.get('uid')){
+        id = urlParams.get('uid');
+    }
+
+    const url = id ? `/api/diary?uid=${id}` : `/api/diary`;
+    console.log("캘린더url:::"+id)
+
+    fetch(url)
+    .then(response => response.json())
+    .then(list => {
+        for (let diary of list) {
+
+        let diaryTitle = diary.title;
+        let diaryDate = diary.date;
+        let diaryContent = diary.content;
+
+    diaryEvent = {
+        title : diaryTitle,
+        start : diaryDate,
+        end : diaryDate,
+        color : "#E6E6FA",
+        allDay: true
+        }
+
+    calendar.addEvent(diaryEvent);
+    }
+});
+
+    calendar.render();
+    calendar.setOption('contentHeight', 350);
+
+}
+
+
 window.addEventListener('DOMContentLoaded', function(e) {
     // css 파일이 js 파일보다 먼저 로드될 수 있도록 DOMContentLoaded 사용 
 
@@ -97,12 +136,31 @@ window.addEventListener('DOMContentLoaded', function(e) {
         
     let calendarEl = document.getElementById('calendar');
     let calendar = new FullCalendar.Calendar(calendarEl, {
+
         editable: true,
         initialView: 'dayGridWeek',
+
+        eventDidMount: function(info) {
+            tippy(info.el, {
+                content:  `<div style="padding:5px">
+                <div class="tippy-title">
+                  <p>${info.event.title}</p>
+                </div>
+                <p class="tippy-content">${info.event.content}</p>
+                </div>`
+               //이벤트 타이틀을 툴팁으로 가져옵니다. 
+                ,placement: 'top'
+                ,theme: 'lavendar'
+                ,animation: 'scale'
+                , delay: [500,0]
+                ,allowHTML: true
+                //content:  info.event.extendedProps.description,//이벤트 디스크립션을 툴팁으로
+                });
+
+        },
     });
 
-    calendar.render();
-    calendar.setOption('contentHeight', 350);
+    printCalendar(calendar);
 
     let clickedDate = null;
     let formattedDate = null;

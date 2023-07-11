@@ -2,10 +2,13 @@ package com.pearling.web.api.controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pearling.web.entity.Diary;
 import com.pearling.web.entity.DiaryView;
 import com.pearling.web.entity.Member;
+import com.pearling.web.entity.Schedule;
 import com.pearling.web.security.MyUserDetails;
 import com.pearling.web.service.DiaryService;
 import com.pearling.web.service.MemberService;
@@ -32,6 +36,39 @@ public class DiaryController {
 
 	@Autowired
 	private MemberService memberService;
+
+
+	@GetMapping
+	public List <Diary> diaryListforMyCalendar(
+		@RequestParam(name = "uid", required = false) Integer uid,
+		@AuthenticationPrincipal MyUserDetails user
+		){
+
+			if(uid == null){
+			Integer	userId = user.getId();
+			List<Diary> diaryList = service.getListByUserId(userId);
+			
+			return diaryList;
+			} else {
+			System.out.println("uid 확인:::" +uid);
+			List<Diary> diaryList = service.getListByUserId(uid);
+
+			return diaryList;
+			}
+		}
+		
+
+
+	@GetMapping("uid")
+	public List<Diary> diaryListforCalendar(
+	@RequestParam(name = "uid", required = false) Integer uid
+	) {
+
+		System.out.println("uid 확인:::" +uid);
+		List<Diary> diaryList = service.getListByUserId(uid);
+
+		return diaryList;
+	}		
 
 	@GetMapping("list")
 	public List<Diary> list(

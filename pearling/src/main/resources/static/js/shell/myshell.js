@@ -453,7 +453,7 @@ function updateTodoList(clickedDate, checkboxes) {
     const pathArray = path.split("/");
     const userId = (pathArray[1] === "shell" && pathArray[2] === "myshell") ? pathArray[3] || null : null;
 
-    const urlWithId = userId ? `/api/schedules/${userId}` : '/api/schedules';
+    const urlWithId = userId ? `/api/todos/${userId}` : '/api/todos';
 
     fetch(urlWithId)    
     .then(response => response.json())

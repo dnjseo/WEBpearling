@@ -11,6 +11,7 @@ import com.pearling.web.entity.DiaryView;
 public interface DiaryRepository {
     List<Diary> findAll();
     List<Diary> findByDate(String date, Integer memberId);
+    List<Diary> findByUserid(Integer memberId);
 
     List<DiaryView> findViewAll();
     List<DiaryView> findViewAll(String date, Integer memberId);

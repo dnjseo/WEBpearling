@@ -77,6 +77,14 @@
 		order by date
 	</select>
 
+
+	<select id="findByUserid" resultType="com.pearling.web.entity.Diary">
+		select *
+		from diary
+		where member_id = #{memberId}
+	</select>
+
+
 	<select id="findViewAll" resultType="DiaryView">
    select dv.*
    from (

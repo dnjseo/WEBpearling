@@ -16,6 +16,10 @@ public class SpringSecurityConfig {
 
     @Autowired
     private MemberOauth2UserService memberOauth2UserService;
+
+	@Autowired
+    private CustomLoginSuccessHandler customLoginSuccessHandler;
+
 	
     @Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -31,23 +35,22 @@ public class SpringSecurityConfig {
 				auth->auth
 					.requestMatchers( "/diary/**", "/follow/**", "/guestbook/**", "/notice/**", "/qa/**", 
 													"/schedule/**", "/search/**", "/setting/**", "/shell/**").hasAnyRole("ADMIN", "MEMBER")
-					.requestMatchers("/api/diaryComments").permitAll()
-					.requestMatchers("/shell/**").hasAnyRole("ADMIN", "MEMBER")
 					.requestMatchers("/admin/**").hasAnyRole("ADMIN")
+					.requestMatchers("/api/diaryComments").permitAll()
 					.anyRequest().permitAll()
 				)
 				.formLogin(
 						form->form
 							.loginPage("/login")
 							.loginProcessingUrl("/login")
-                            .defaultSuccessUrl("/shell/ourshell")
+                            .successHandler(customLoginSuccessHandler)
                         	)
                             .logout(logout->logout.logoutUrl("/logout")
 							.logoutSuccessUrl("/")
                         	)
                     .oauth2Login(customizer -> customizer
                             .loginPage("/login")
-                            .defaultSuccessUrl("/shell/ourshell")
+                            .successHandler(customLoginSuccessHandler)
                             .userInfoEndpoint()
                             .userService(memberOauth2UserService)
                     );

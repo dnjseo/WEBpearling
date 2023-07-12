@@ -1,4 +1,4 @@
-package com.pearling.web.adminController;
+package com.pearling.web.controller.admin;
 
 import java.util.List;
 

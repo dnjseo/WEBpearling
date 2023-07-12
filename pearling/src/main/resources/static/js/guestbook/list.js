@@ -50,7 +50,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
 
   if (totalPages > 1) {
     // 이전 페이지로 이동
-    if (currentPage > 0) {
+    if (currentPage > 1) {
       let previousPageLink = document.createElement("li");
       let previousPageBtn = document.createElement("a");
       previousPageBtn.href = "#";
@@ -186,6 +186,14 @@ window.addEventListener('DOMContentLoaded', function(e) {
     } else {
       listItem.style.display = "none";
     }
+  }
+
+  // 링크 이동
+  if(loginId != userId  && userId != ""){
+    //: 마이쉘 하위메뉴 a링크 값 변경
+    document.querySelector('#myshell-menu .monthly').href = "/shell/myshell/" + userId
+    document.querySelector('#myshell-menu .diary').href = "/diary/list?uid=" + userId
+    document.querySelector('#myshell-menu .guestbook').href = "/guestbook/list/" + userId
   }
 
   // 이전 페이지로 이동

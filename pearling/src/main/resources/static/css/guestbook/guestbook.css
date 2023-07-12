@@ -115,8 +115,8 @@ section.guestbook {
     left: 50%;
     transform: translate(-50%, -50%);
 
-    width: 35%;
-    height: 60%;
+    width: 700px;
+    height: 600px;
     background-color: rgba(255, 255, 255, 0.5);
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04)), rgba(255, 255, 255, 1.0);
     border-radius: 10%;
@@ -142,10 +142,16 @@ section.guestbook {
 }
 
 .guestbook-close{
-    width: 30px;
-    height: 30px;
-    background: url("/images/guestbook/close.png") no-repeat center center/cover;
+    font-family: "omyu_pretty";
+    font-size: 40px;
+    text-align: center;
     cursor: pointer;
+
+    transition: all 0.3s ease-in-out;
+}
+
+.guestbook-close:hover{
+    transform: rotate(15deg);
 }
 
 .btn-zip{
@@ -154,9 +160,8 @@ section.guestbook {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    padding-right: 5px;
     position: absolute;
-    right: 15px;
+    right: 50px;
 }
 
 .btn{
@@ -166,10 +171,8 @@ section.guestbook {
     align-items: center;
     text-align: center;
     cursor: pointer;
-
-    background: url("/images/guestbook/button.png") no-repeat center center/cover;
-    color: black;
 }
+
 
 .deleteBtn,
 .updateBtn{
@@ -180,21 +183,31 @@ section.guestbook {
     width: 70px;
     height: 25px;
     padding-top: 5px;
+    transition: all 0.5s ease;
+}
+
+.deleteBtn:hover{
+    color: red;
 }
 
 .updateBtn a{
     display: block;
-    width: 70px;
+    width: 40px;
     height: 25px;
     padding-top: 5px;
     color: black;
+    transition: all 0.3s linear;
+}
+
+.updateBtn a:hover{
+    color: seagreen;
 }
 
 .pearl {
     position: absolute; /* 부모 요소에 position 설정 추가 */
-    top: 55%;
+    top: 15%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translatex(-50%);
     width: 550px;
     height: 480px;
     background: url("/images/guestbook/pearling2.png") no-repeat center center/cover;
@@ -209,6 +222,7 @@ section.guestbook {
     top: 50%; 
     left: 50%; 
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .from-id-hidden{
@@ -246,4 +260,8 @@ section.guestbook {
     align-items: center;
     justify-content: center;
     gap: 10px;
+}
+
+#delete-modal p{
+    color: #797979;
 }

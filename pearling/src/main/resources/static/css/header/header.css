@@ -384,3 +384,13 @@ input.submit-btn {
 .notification-content {
     color: rgba(255, 255, 255, 0.7);
 }
+
+.admin-setting{
+    display: none;
+
+    margin-right: 10px;
+}
+
+.admin-setting a img{
+    width: 25px;
+}

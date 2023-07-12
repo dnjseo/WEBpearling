@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" 
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
     layout:decorate="~{inc/layout}">
 
 <head>
@@ -13,7 +14,6 @@
 <body>
     <main layout:fragment="content" id="wrap" class="wrap guestbook">
         <div class="img-list">
-            <!-- <h1><img src="/images/guestbook/count3.png" ><span th:text="${#lists.size(list)}">개</span><img src="/images/guestbook/count3.png" ></h1> -->
             <ul class="clam" id="clam-list">
                 <li th:each="g, stat : ${list}" th:data-index="${stat.index}" th:data-id="${g.id}">
                     <img alt="Clam Image" 
@@ -71,7 +71,7 @@
                     <div class="btn-zip">
                         <p class="btn updateBtn"><a th:href="@{/guestbook/post/{id}(id=${userId}, s=true, gid=${g.id})}">수정</a></p> <!-- 수정 버튼 클릭 시 링크에 방명록 ID 포함 -->
                         <p class="btn deleteBtn">삭제</p>
-                        <p class="guestbook-close"></p>
+                        <p class="guestbook-close">x</p>
                     </div>
                 </div>
                 <div class="pearl">

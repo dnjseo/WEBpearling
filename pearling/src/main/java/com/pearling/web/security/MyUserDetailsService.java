@@ -28,6 +28,7 @@ public class MyUserDetailsService implements UserDetailsService{
 		Member member = memberService.getByUsername(username);
 		Role role = roleService.getRoleById(member.getRoleId());
 		MyUserDetails userDetails = new MyUserDetails(member, null, null);
+		
 		userDetails.setId(member.getId());
 		userDetails.setEmail(member.getEmail());
 		userDetails.setUsername(username);

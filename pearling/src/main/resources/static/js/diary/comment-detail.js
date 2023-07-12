@@ -24,11 +24,21 @@ function commentListLoad(url) {
 
                 let formattedDate = `${year}/${formattedMonth}/${formattedDay} ${formattedHour}:${formattedMinute}`;
 
+                let diaryHostIdInput = document.querySelector('input[name="diary-reg-member-id"]');
+                let diaryHostId = diaryHostIdInput.value;
+            
+                let memberIdInput = document.querySelector('input[name="reg-member-id"]');
+                let memberId = memberIdInput.value;
+
+                let tf = diaryHostId == memberId;
+                console.log(tf);
+
                 let itemTemplate = `
                     <div class="comment" data-com-id="${comment.id}">
                     <div class="comment-deco-box">
                         <span class="pearl-img"><img src="/images/profile/circle.png"></span>
                         <span>${comment.regMemberNickname}</span>
+                        <span class="${comment.regMemberId == diaryHostId ? 'comment-owner-differ' : 'comment-owner-differ d-none'}">작성자</span>
                     </div>
                         <span class="content-span">${comment.content}</span>
                         <div class="up-del-box">
@@ -323,17 +333,35 @@ window.addEventListener('DOMContentLoaded', function (e) {
     let diaryPostIdInput = document.querySelector('input[name="diary-post-id"]');
     let diaryId = diaryPostIdInput.value;
 
+    // let diaryHostIdInput = document.querySelector('input[name="diary-reg-member-id"]');
+    // let diaryHostId = diaryHostIdInput.value;
+
+    // let memberIdInput = document.querySelector('input[name="reg-member-id"]');
+    // let memberId = memberIdInput.value;
+
     let editForm = document.querySelector(".diary-edit-form");
     let commentForm = document.querySelector(".diary-comment-form");
     let commentShowBtn = editForm.querySelector(".comment-btn");
 
+    // console.log("지금 diaryId, memberId : " + diaryHostId + ", " + memberId );
     commentShowBtn.addEventListener('click', function (e) {
         e.preventDefault();
 
+        // console.log(diaryHostId == memberId);
+
         if (commentForm.style.display === "block") {
             commentForm.style.display = "none";
+
         } else {
             commentForm.style.display = "block";
+            // let commentOwnerBadges = document.querySelectorAll(".comment-owner-differ");
+            
+            // console.log("얍" + commentOwnerBadges.item);
+
+            // commentOwnerBadges.forEach(badge => {
+            //     badge.style.display = 'none';
+            // // }
+            // });
         }
 
         commentListLoad(`/api/diaryComments/${diaryId}`);

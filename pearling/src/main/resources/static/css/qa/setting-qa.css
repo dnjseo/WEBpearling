@@ -45,8 +45,16 @@
     flex-direction: row;
     align-items: flex-start;
     padding: 22px;
-    gap: 10px;
+    justify-content: space-between;
     border-bottom: 0.5px solid #797979;
+}
+
+.updateAndDelete > button{
+    border: none;
+    background-color: transparent;
+    font-family: 'Pretendard-Regular';
+    font-size: 12px;
+    color: #797979;
 }
 
 .q-logo > div{
@@ -58,7 +66,7 @@
 .q-logo{
     display: flex;
     flex-direction: row;
-   align-items: center;
+    align-items: center;
     padding: 15px 0px 5px 22px;
     gap: 8px;
 
@@ -69,34 +77,52 @@
 }
 
 .admin-a{
-    padding: 10px 0px 80px 22px;
-    color: rgba(0, 0, 0, 0.7);
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   margin: 0px 20px;
+   font-family: 'Pretendard-Regular';
 }
 
-.write-button{
+
+.admin-a > button {
+    width: 50px;
+    height: 25px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 10px;
+
+    color: #797979;
+    font-family: 'Pretendard-Regular';
+    font-size: 12px;
+    margin-left: auto;
+}
+
+#wrap .write-button{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 0px 12px;
 
-    width:20px;
+    width: 40px;
     height: 20px;
 
-    position: fixed;
-    bottom:20px;
-    right: 20px;
-    
+    margin: 40px 0px;
+    margin-left: auto;
+
 
 
     background: #615E5E;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25), inset 0px 2px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 55px #FFFFFF, inset 0px 32px 16px rgba(199, 192, 196, 0.09), inset 0px 16px 8px rgba(199, 192, 196, 0.09), inset 0px -79px 40px rgba(199, 192, 196, 0.1), inset 0px -36px 30px rgba(199, 192, 196, 0.15), inset 0px -23px 25px rgba(199, 192, 196, 0.17);
     border-radius: 10px;
     transform: rotate(0.28deg);
+    border: none;
 
     /* Inside auto layout */
 
-    flex: none;
+    flex: 1;
     order: 1;
     flex-grow: 0;
 }

@@ -27,7 +27,7 @@ function followingListLoad(url) {
     }); 
 }
 
-let url = 'http://localhost:8080/api/follow/followingList';
+let url = '/api/follow/followingList';
 
 window.addEventListener("DOMContentLoaded", function(e){
     e.preventDefault(); // 새로고침 방지

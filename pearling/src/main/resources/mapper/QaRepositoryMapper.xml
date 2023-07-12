@@ -4,15 +4,42 @@
 
 <mapper namespace="com.pearling.web.repository.QaRepository">
    <select id="findAll" resultType="com.pearling.web.entity.Qa">
-   SELECT
-      qa.*,
-      ROW_NUMBER() OVER (ORDER BY qa.regdate ASC) AS new_id,
-      qc.name qa_category_name
-   FROM
-      qa
-   JOIN
-      qa_category qc ON qa.qa_category_id = qc.id
-   ORDER BY
-      qa.regdate ASC;
+     SELECT
+         qa.*,
+         ROW_NUMBER() OVER (ORDER BY qa.regdate ASC) AS new_id,
+         qc.name qa_category_name
+      FROM
+         qa
+      JOIN
+         qa_category qc ON qa.qa_category_id = qc.id
+      LEFT JOIN   
+         qa_comment qcm ON qa.qa_comment_id = qcm.id
+      ORDER BY
+         qa.regdate ASC;
    </select>
+
+    <select id="findById" resultType="com.pearling.web.entity.Qa" parameterType="int">
+     select * from qa
+     where id = #{id}
+   </select>
+
+   <insert id="save">
+      insert into qa(title, content, member_id, qa_category_id, security_check)
+      values (#{title}, #{content}, #{memberId}, 2, #{securityCheck});
+   </insert>
+
+   <delete id="delete">
+      delete from qa
+      where id = #{id}
+   </delete>
+   
+   <update id="update">
+      update qa
+      <set>
+         <if test="title != null">title = #{title},</if>
+         <if test="content != null">content = #{content},</if>
+         <if test="securityCheck != null">security_check = #{securityCheck}</if>
+      </set>
+   where id = #{id}
+   </update>
 </mapper>

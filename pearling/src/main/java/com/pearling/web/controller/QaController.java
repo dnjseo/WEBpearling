@@ -33,6 +33,8 @@ public class QaController extends BaseController {
 		List<Qa> list = service.getList();
 		model.addAttribute("list", list);
 
+		System.out.println(list);
+
 		return "qa/list";
 	}
 
@@ -54,6 +56,21 @@ public class QaController extends BaseController {
 			model.addAttribute("editShow", 2);
 		}
 		return "qa/post";
+	}
+
+	@GetMapping("detail")
+	public String detail(Model model, @RequestParam Integer id){
+
+		String pageTitle = getPageTitle();
+		pageTitle = "문의하기";
+
+		model.addAttribute("pageTitle", pageTitle);
+		model.addAttribute("headerShow", false);
+		
+		Qa qa = service.findById(id);
+		model.addAttribute("qa", qa);
+
+		return "qa/detail";
 	}
 
 }

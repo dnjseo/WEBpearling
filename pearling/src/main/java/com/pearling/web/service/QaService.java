@@ -6,10 +6,9 @@ import com.pearling.web.entity.Qa;
 
 public interface QaService {
     List<Qa> getList();
-    int count();
 
-    Qa findById(int id);
+    Qa findById(Integer id);
     void addQa(Qa qa);
     void updateQa(Qa qa);
-    void deleteQa(Qa qa);
+    Integer deleteQa(Integer id);
 }

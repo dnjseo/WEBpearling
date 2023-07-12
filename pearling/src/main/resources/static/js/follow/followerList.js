@@ -33,7 +33,7 @@ function followerListLoad(url){
         })
 }
 
-let url = 'http://localhost:8080/api/follow/followerList';
+let url = '/api/follow/followerList';
 
 window.addEventListener("DOMContentLoaded", function(e){
     let deleteBtns = document.querySelectorAll(".follower-delete");

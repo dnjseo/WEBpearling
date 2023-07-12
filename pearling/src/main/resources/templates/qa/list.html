@@ -9,13 +9,14 @@
     <title>qa</title>
     <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/qa/setting-qa.css" type="text/css" rel="stylesheet">
-    <script src="/js/qa/qa.js"></script>
+    <script src="/js/qa/list.js"></script>
+    <!-- <script src="/js/qa/delete.js"></script> -->
 </head>
 
 <body>
     <!-- wrap -->
     <main layout:fragment="content" id="wrap" class="wrap">
-        <div class="qa-list">
+        <form class="qa-list">
             <h2 class="d-none">문의 목록</h2>
             <div class="qa-list-head">
                 <div class="all-qa">
@@ -27,25 +28,46 @@
                 <div class="item">
                     <div class="num" th:text="${q.newId}">150</div>
                     <div class="answer" th:text="${q.qaCategoryName}">답변 예정</div>
-                    <div class="secret"></div>
-                    <div class="titles" th:text="${q.title}"><a th:href="@{./list(${q.id})}">저희 조장을 신고합니다</a></div>
+                    <div>
+                        <div class="secret"></div>
+                    </div>
+                    <div class="titles" th:text="${q.title}">저희 조장을 신고합니다</div>
                     <div class="date" th:text="${#dates.format(q.regdate, 'yyyy-MM-dd')}">23.05.03</div>
+                    <input type="hidden" name="writerId" th:value="${q.memberId}"/>
+                    <input type="hidden" name="loginId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
+                    <input type="hidden" name="roleId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.roleId}" />
+                    <input type="hidden" name="isCheckedId" th:value="${q.securityCheck}" />
                 </div>
                 <div class="dropdown-answer" id="dropdown-answer-${stat.index}">
-                    <div class="member-q" th:text="${q.content}">금요일 발표 전까지 회원가입 끝낼 수 있을까요?? 저희 sql문 join도 할 수 있을까요??</div>
-                    <div class="q-logo">
-                        <div></div>
-                        <p>답변</p>
-                        <p>Pearling 관리자</p>
+                    <div class="member-q">
+                        <div th:text="${q.content}">
+                            금요일 발표 전까지 회원가입 끝낼 수 있을까요?? 저희 sql문 join도 할 수 있을까요??
+                        </div>
+                        <div class="updateAndDelete">
+                            <button class="updateBtn" th:data-id="${q.id}">
+                                <a href="detail" th:href="@{../qa/detail(id=${q.id})}">수정</a>
+                            </button>
+                            <span>|</span>
+                            <button class="deleteBtn" th:data-id="${q.id}">삭제</button>
+                        </div>
                     </div>
-                    <div class="admin-a">
-                        안녕하세요, Pearling입니다. 금요일 전까지 저도 회원가입 끝내고 싶어요. 
-                        join으로 검색창도 하고 싶어요. 일단... 열심히 해 봅시다! 감사합니다.
+                    <div class="answerForUser">
+                        <div class="q-logo">
+                            <div></div>
+                            <p>답변</p>
+                            <p>Pearling 관리자</p>
+                        </div>
+                        <div class="admin-a">
+                            <textarea rows="5" cols="100"></textarea>
+                            <button>등록</button>
+                        </div>
                     </div>
                 </div>
             </div>
+        </form>
+        <div>
+            <button class="write-button"><a href="post">📝</a></button>
         </div>
-        <div class="write-button"><a href="./post?s=1">📝</a></div>
     </main>
     <!-- wrap -->
 </body>

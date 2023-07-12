@@ -10,8 +10,9 @@ import com.pearling.web.entity.Qa;
 public interface QaRepository {
     List<Qa> findAll();
 
-    Qa findById(int id);
+    Qa findById(Integer id);
     int save(Qa qa);
     int update(Qa qa);
-    int delete(Qa qa);
+    int delete(Integer id);
 }
+

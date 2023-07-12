@@ -22,28 +22,27 @@ public class QaServiceImp implements QaService{
     }
 
     @Override
-    public int count() {
-        return 0;    
-    }
-
-    @Override
-    public Qa findById(int id) {
-        return null;
-    }
-
-    @Override
     public void addQa(Qa qa) {
        
+        repository.save(qa);
     }
 
     @Override
     public void updateQa(Qa qa) {
+
+        repository.update(qa);
     
     }
 
     @Override
-    public void deleteQa(Qa qa) {
-    
+    public Integer deleteQa(Integer id) {
+        return repository.delete(id);
     }
+
+    @Override
+    public Qa findById(Integer id) {
+        return repository.findById(id);
+    }
+
     
 }

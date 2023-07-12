@@ -5,34 +5,34 @@
 <head>
     <title>qa_write</title>
     <link href="/css/qa/setting-qa-write.css" type="text/css" rel="stylesheet">
-    <script src="/js/qa/post.js"></script>
+    <script src="/js/qa/update.js"></script>
 </head>
 
 <body>
     <!-- header -->
     <!-- wrap -->
     <main class="wrap" layout:fragment="content">
-        <div class="tico">
+        <div class="tico" th:data-id="${qa.id}">
             <form>
                 <div class="qa-title">
                         <h2 class="d-none">문의 제목</h3>
                         <p>문의 제목<p>
-                        <input type="text" name="title" maxlength="50">
+                        <input type="text" name="title" maxlength="50" th:value="${qa.title}">
                     <div class="qa-lock">
                         <label for="checkbox">비밀글</label>
-                        <input type="checkbox" name="lock">
+                        <input type="checkbox" name="lock" th:checked="${qa.securityCheck}">
                     </div>
                 </div>
                 <div class="qa-context">
                     <h2 class="d-none">문의 내용</h3>
                     <p>문의 내용</p>
-                    <textarea name="content" rows="20" cols="100"></textarea>
+                    <textarea name="content" rows="20" cols="100" th:text="${qa.content}"></textarea>
                 </div>
-                <input type="hidden" name="memberId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
+                <input type="hidden" name="userId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
             </form>
         </div>
 
-        <!-- 등록 -->
+        <!-- 수정 -->
         <div>
             <h2 class="d-none">등록</h2>
             <div class="btn">

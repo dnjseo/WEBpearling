@@ -1,4 +1,4 @@
-window.addEventListener('load', function (e) {
+window.addEventListener('DOMContentLoaded', function (e) {
     let subMemberIdInput = document.querySelector("#input-member-id");
     let subMemberId = subMemberIdInput.value; // input 요소의 값 가져오기
 
@@ -9,7 +9,7 @@ window.addEventListener('load', function (e) {
 
     eventSource.addEventListener('open', function (e) {
         // SSE 연결이 열린 후 실행할 코드
-        connected = true;
+        // connected = true;
     });
 
     eventSource.addEventListener("sse", function (event) {
@@ -47,12 +47,12 @@ window.addEventListener('load', function (e) {
 
 
     eventSource.addEventListener("error", function (event) {
-        connected = false;
+        // connected = false;
         eventSource.close();
     });
 
     eventSource.onerror = function (error) {
-        connected = false;
+        // connected = false;
         console.error('SSE error:', error);
         eventSource.close(); // 에러가 발생하면 SSE 연결 종료
     };

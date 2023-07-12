@@ -128,11 +128,14 @@ public class GuestbookController extends BaseController {
          pageTitle = "방명록 입력";
       }
 
+      Member member = memberService.getById(user.getId());
+
       model.addAttribute("pageTitle", pageTitle);
       model.addAttribute("headerShow", false);
       model.addAttribute("userId", userId);
       model.addAttribute("editShow", editShow ? 2 : 1);
       model.addAttribute("guestbook", guestbook); // 수정된 코드로 방명록을 추가
+      model.addAttribute("member", member);
 
       return "guestbook/post";
    }

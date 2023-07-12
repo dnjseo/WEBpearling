@@ -51,6 +51,7 @@
                 <button class="follobutton">팔로우</button>
             </form>
             <input type="hidden" name="followingHiddenId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
+            <input type="hidden" name="followingHiddenNickname" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.nickname}" />
         </div>
 
         <!-- 마이쉘 하위메뉴 -->

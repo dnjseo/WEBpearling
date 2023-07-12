@@ -50,7 +50,7 @@ function notificationListLoad(url) {
                     let delay = 300 * i; 
 
                     let itemTemplate = `
-                        <div class="noti" data-aos="fade-down-right" data-aos-duration="3000" data-aos-delay="${delay}"
+                        <div class="noti" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="${delay}"
                         data-aos-anchor-placement="top-bottom">
                             <div class="noti-box">
                                 <div>

@@ -1,82 +1,121 @@
 // 모달 보여주는 함수
 function showModal(modalId) {
-    let modal = document.getElementById(modalId);
-    modal.style.display = "block";
-  }
-  
-  // 모달 확인 버튼 누르면 모달 사라지는 함수
-  function noneModal(modalId, buttonClass) {
-    let modal = document.getElementById(modalId);
-    let button = document.querySelector(buttonClass);
-  
-    button.addEventListener("click", function () {
-      modal.style.display = "none";
-    });
-  }
-  
-  window.addEventListener('DOMContentLoaded', function (e) {
-    let form = document.querySelector('.add-form');
-    let guestbookAddBtn = document.querySelector(".add-btn");
-  
-    let confirmModal = document.querySelector("#confirm-modal");
-    let confirmBtn = confirmModal.querySelector(".confirm-yes");
-  
-    let inputs = form.elements;
-    let contentInput = inputs["content"];
-    let content = contentInput.value;
-  
-    let memberId = document.querySelector("#input-member-id").value;
-    let userId = document.querySelector("#input-user-id").value;
-    let toId = userId;
-    let fromId = memberId;
-  
-    guestbookAddBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      if (contentInput.value.trim() === "") {
-        showModal("no-insert-modal");
-        noneModal("no-insert-modal", ".insert-yes");
-      } else if (contentInput.value.length > 300) {
-        alert("입력한 내용이 300자를 초과하였습니다.");
-      } else {
-        confirmModal.style.display = "block";
-      }
-    });
-  
-    // 방명록 등록
-    confirmBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-  
-      let formData = {
-        content: contentInput.value,
-        fromId: fromId,
-        toId: toId
-      };
-  
-      let jsonData = JSON.stringify(formData);
-  
-      fetch('/api/guestbook/add/' + userId, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonData,
-      })
-        .then(function (response) {
-          if (response.ok) {
-            console.log('방명록 등록이 완료되었습니다.');
-            form.submit();
-            window.location.href = '/guestbook/list/' + userId;
-          } else {
-            console.error('방명록 등록에 실패했습니다.');
-          }
-        })
-        .catch(function (error) {
-          console.error('방명록 등록 중 오류가 발생했습니다.', error);
-        });
-    });
-  
+  let modal = document.getElementById(modalId);
+  modal.style.display = "block";
+}
+
+// 모달 확인 버튼 누르면 모달 사라지는 함수
+function noneModal(modalId, buttonClass) {
+  let modal = document.getElementById(modalId);
+  let button = document.querySelector(buttonClass);
+
+  button.addEventListener("click", function () {
+    modal.style.display = "none";
   });
-  
+}
+
+window.addEventListener('DOMContentLoaded', function (e) {
+  let form = document.querySelector('.add-form');
+  let guestbookAddBtn = document.querySelector(".add-btn");
+
+  let confirmModal = document.querySelector("#confirm-modal");
+  let confirmBtn = confirmModal.querySelector(".confirm-yes");
+
+  let inputs = form.elements;
+  let contentInput = inputs["content"];
+  let content = contentInput.value;
+
+  let memberId = document.querySelector("#input-member-id").value;
+  let userId = document.querySelector("#input-user-id").value;
+  let toId = userId; // 주인 아이디
+  let fromId = memberId; // 등록한 사람
+
+  guestbookAddBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    if (contentInput.value.trim() === "") {
+      showModal("no-insert-modal");
+      noneModal("no-insert-modal", ".insert-yes");
+    } else if (contentInput.value.length > 300) {
+      alert("입력한 내용이 300자를 초과하였습니다.");
+    } else {
+      confirmModal.style.display = "block";
+    }
+  });
+
+  // 방명록 등록
+  confirmBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    let formData = {
+      content: contentInput.value,
+      fromId: fromId,
+      toId: toId
+    };
+
+    let jsonData = JSON.stringify(formData);
+
+    fetch('/api/guestbook/add/' + userId, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonData,
+    })
+      .then(function (response) {
+        if (response.ok) {
+          console.log('방명록 등록이 완료되었습니다.');
+          form.submit();
+          window.location.href = '/guestbook/list/' + userId;
+          
+          // 방명록 등록 성공 시 알림 등록
+          const guestbookData = JSON.parse(jsonData);
+          let pubMemberId = guestbookData.fromId; // 등록한 사람: memberId
+          let pubMemberNicknameInput = document.querySelector("#input-member-nickname");
+          let pubMemberNickname = pubMemberNicknameInput.value;
+          let subMemberId = guestbookData.toId; // 수신할 사람: userId
+          let message = pubMemberNickname + '님이 방명록에 글을 남겼습니다.';
+          let type = 1;
+          console.log(message);
+          
+          let notificationData = { pubMemberId, subMemberId, message, type };
+          
+          notifyNotificationService(subMemberId, notificationData);
+          
+        } else {
+          console.error('방명록 등록에 실패했습니다.');
+        }
+      })
+      .catch(function (error) {
+        console.error('방명록 등록 중 오류가 발생했습니다.', error);
+      });
+  });
+
+});
+
+/* ----------------- 댓글 알림 등록 함수 ----------------- */
+function notifyNotificationService(subMemberId, notificationData) {
+
+  console.log("댓글은 이렇습니다" + JSON.stringify(notificationData));
+
+  fetch(`/api/notifications/notify/${subMemberId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(notificationData),
+  })
+    .then(function (response) {
+      if (response.ok) {
+        console.log('알림 등록이 완료되었습니다.');
+      } else {
+        console.error('알림 등록에 실패했습니다.');
+      }
+    })
+    .catch(function (error) {
+      console.error('알림 등록 중 오류가 발생했습니다.', error);
+    });
+}
+
 window.addEventListener('DOMContentLoaded', function (e) {
   let userId = document.querySelector("#input-user-id").value;
 

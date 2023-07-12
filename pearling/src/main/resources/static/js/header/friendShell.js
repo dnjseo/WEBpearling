@@ -3,7 +3,7 @@ window.addEventListener("DOMContentLoaded", function(e) {
     let path = realUrl.pathname;
     let pathArray = path.split("/");
     let uid = pathArray[pathArray.length - 1];
-    let urlwithId = `http://localhost:8080/api/shell/myshell/${uid}`;
+    let urlwithId = `/api/shell/myshell/${uid}`;
     let Btn = document.querySelector(".follobutton");
     
     // 친구 쉘 header 로드
@@ -56,9 +56,11 @@ window.addEventListener("DOMContentLoaded", function(e) {
                         let followerId = uid;
                         console.log("친구의 id는 " + followerId);
                         let followingIdInput = document.querySelector("input[name='followingHiddenId']");
+                        let followingNicknameInput = document.querySelector("input[name='followingHiddenNickname']");
                         console.log(followingIdInput);
                         
                         let followingId = followingIdInput.value;
+                        let followingNickname = followingNicknameInput.value;
                         console.log("내 id는 " + followingId);
                         
                         if(followBtn.innerText == "팔로우"){
@@ -73,6 +75,19 @@ window.addEventListener("DOMContentLoaded", function(e) {
                                 if(response.ok){
                                     followBtn.innerText = '팔로잉';
                                     console.log("추가 완");
+
+                                    // 팔로우 등록 성공 시 알림 등록
+                                    let pubMemberId = followingId; // 등록한 사람: memberId
+                                    let pubMemberNickname = followingNickname;
+                                    let subMemberId = followerId; // 수신할 사람: userId
+                                    let message = pubMemberNickname + '님이 팔로우 신청을 했습니다.';
+                                    let type = 2;
+                                    console.log(message);
+                                    
+                                    let notificationData = { pubMemberId, subMemberId, message, type };
+                                    
+                                    notifyNotificationService(subMemberId, notificationData);
+
                                     // e.preventDefault(); 
                                 }
                             })
@@ -103,4 +118,26 @@ window.addEventListener("DOMContentLoaded", function(e) {
     friendShellLoad(urlwithId);
 });
 
+/* ----------------- 댓글 알림 등록 함수 ----------------- */
+function notifyNotificationService(subMemberId, notificationData) {
 
+    console.log("댓글은 이렇습니다" + JSON.stringify(notificationData));
+  
+    fetch(`/api/notifications/notify/${subMemberId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(notificationData),
+    })
+      .then(function (response) {
+        if (response.ok) {
+          console.log('알림 등록이 완료되었습니다.');
+        } else {
+          console.error('알림 등록에 실패했습니다.');
+        }
+      })
+      .catch(function (error) {
+        console.error('알림 등록 중 오류가 발생했습니다.', error);
+      });
+  }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pearling.web.entity.Guestbook;
 import com.pearling.web.security.MyUserDetails;
 import com.pearling.web.service.GuestbookService;
+import com.pearling.web.service.MemberService;
 
 @RestController("apiGuestbookController")
 @RequestMapping("api/guestbook")

@@ -13,6 +13,7 @@
     <main layout:fragment="content" th:switch="${editShow}" id="wrap" class="wrap">
         <input id="input-member-id" type="hidden" th:value="${#authentication.principal.id}">
         <input id="input-user-id" type="hidden" th:value="${userId}">
+        <input id="input-member-nickname" type="hidden" th:value="${member.nickname}">
         
          <!-- 방명록 등록 -->
         <section th:case="1" id="d1">

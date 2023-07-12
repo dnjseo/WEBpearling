@@ -1,10 +1,8 @@
 package com.pearling.web.api.controller;
 
-import java.io.Console;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,19 +17,20 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pearling.web.entity.Diary;
 import com.pearling.web.entity.FriendTag;
+import com.pearling.web.entity.Notification;
 import com.pearling.web.entity.Schedule;
 import com.pearling.web.security.MyUserDetails;
 import com.pearling.web.service.FriendTagService;
+import com.pearling.web.service.NotificationService;
 import com.pearling.web.service.ScheduleService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController("apiScheduleController")
 @RequestMapping("api/schedules")
@@ -42,6 +41,9 @@ public class ScheduleController {
 
     @Autowired
     private FriendTagService tagService;
+
+    @Autowired
+    private NotificationService notificationService;
 
     @GetMapping
     public List<Schedule> scheduleList() {
@@ -172,6 +174,19 @@ public class ScheduleController {
                         .friendId(friendId)
                         .build();
                 tagService.append(friendTag);
+
+                String scheduleTitle = (String) scheduleRequest.get("title");
+                String notiMessage = user.getNickname() + "님의 '" + scheduleTitle + "' 일정에 태그되었습니다.";
+
+                Notification notification = Notification.builder()
+                .pubMemberId(user.getId())
+                .subMemberId(friendId)
+                .message(notiMessage)
+                .type((int)3)
+                .build();
+
+                notificationService.notify(friendId, notification);
+                
             }
         }
     }

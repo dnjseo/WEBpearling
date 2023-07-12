@@ -16,14 +16,16 @@
 
 .noread-noti-list, .pre-noti-list {
     font-size: 16px;
-    font-weight: bold;
     letter-spacing: -0.01em;
+    color: #9b9b9b;
 
     width: 150px;
 }
 
 .noread-noti-list:hover, .pre-noti-list:hover {
-    opacity: 0.8;
+    font-style: italic;
+    font-weight: bold;
+    color: #797979;
 }
 
 #noti-container {

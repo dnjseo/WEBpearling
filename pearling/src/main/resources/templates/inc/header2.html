@@ -4,15 +4,23 @@
     <!--header-wrap-->
     <div class="header-wrap">
         <!--header-->
-        <div class="header2">
+        <div id="header" class="header2">
             <h1 class="d-none">펄링</h1>
             <a class="back" id="back1"><img src="/images/back.png" alt="logo" /></a>
             <p class="title" th:text="${pageTitle}">문의하기</p>
             <div class="alert-del-btn-box">
             <div class="alert"><a href="/notification/list">
             <img class="icon-alert" src="/images/header/alert.svg" alt="alert"></a></div>
-            <button id="schedule-del-btn-in-header" class="d-none">
-            </button></div>
+            <button id="schedule-del-btn-in-header" class="d-none"></button>
+            <img class="sub-close hb" src="/images/header/close.svg"></img>
+            <div class="menu"><img class="hb" src="/images/header/hamburger.svg" alt="logo"/></div></div>
+            <form action="/search/list" method="get" class="find" style="display: none;">
+                <p class="admin-setting"><a href="/admin/index"><img src="/images/header/setting.svg"></a></p>
+                <img class="hb searchIcon" src="/images/header/search.svg" alt="logo"/>
+                <input class="searchInput" type="text" name="q">
+                <img class="search-close" src="/images/header/close.svg"></img>
+                <input type="submit">
+            </form>   
         </div>
         <p class="gray_border"></p>
         <!-- header-->

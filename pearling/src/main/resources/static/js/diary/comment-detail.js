@@ -82,10 +82,13 @@ function showCommenteBtns() {
         console.log("유저 : " + loginId + "멤버 : " + regMemberId);
         console.log("조건식 결과: " + i + (loginId == regMemberId) + (userId == null) + (loginId == diaryHostId));
 
-        if (loginId == regMemberId || userId == null || loginId == diaryHostId) {
+        if(regMemberId == loginId || (userId == null && regMemberId == diaryHostId)) { // 수정, 삭제 둘 다 가능
             commentUpdateBtns[i].classList.remove("d-none");
             commentDeleteBtns[i].classList.remove("d-none");
-        } else {
+        } else if((loginId == diaryHostId && regMemberId != diaryHostId) || 
+                (userId == null && regMemberId != diaryHostId) ) { // 삭제만 가능한 경우
+            commentUpdateBtns[i].classList.add("d-none");
+        } else { // 수정, 삭제 둘 다 불가능
             commentUpdateBtns[i].classList.add("d-none");
             commentDeleteBtns[i].classList.add("d-none");
         }
@@ -147,6 +150,8 @@ function handleCommentPost(jsonData) {
                 console.log('다이어리 댓글 등록이 완료되었습니다.');
                 commentListLoad(`/api/diaryComments/${diaryId}`);
 
+                
+
                 // 다이어리 댓글 등록 성공 시 알림 등록
                 const commentData = JSON.parse(jsonData);
                 let pubMemberId = commentData.regMemberId;
@@ -157,7 +162,8 @@ function handleCommentPost(jsonData) {
 
                 let notificationData = { pubMemberId, subMemberId, message, type };
 
-                notifyNotificationService(subMemberId, notificationData);
+               if(pubMemberId != subMemberId)
+                    notifyNotificationService(subMemberId, notificationData);            
 
             } else {
                 console.error('다이어리 댓글 등록에 실패했습니다.');
@@ -333,35 +339,18 @@ window.addEventListener('DOMContentLoaded', function (e) {
     let diaryPostIdInput = document.querySelector('input[name="diary-post-id"]');
     let diaryId = diaryPostIdInput.value;
 
-    // let diaryHostIdInput = document.querySelector('input[name="diary-reg-member-id"]');
-    // let diaryHostId = diaryHostIdInput.value;
-
-    // let memberIdInput = document.querySelector('input[name="reg-member-id"]');
-    // let memberId = memberIdInput.value;
-
     let editForm = document.querySelector(".diary-edit-form");
     let commentForm = document.querySelector(".diary-comment-form");
     let commentShowBtn = editForm.querySelector(".comment-btn");
 
-    // console.log("지금 diaryId, memberId : " + diaryHostId + ", " + memberId );
     commentShowBtn.addEventListener('click', function (e) {
         e.preventDefault();
-
-        // console.log(diaryHostId == memberId);
 
         if (commentForm.style.display === "block") {
             commentForm.style.display = "none";
 
         } else {
             commentForm.style.display = "block";
-            // let commentOwnerBadges = document.querySelectorAll(".comment-owner-differ");
-            
-            // console.log("얍" + commentOwnerBadges.item);
-
-            // commentOwnerBadges.forEach(badge => {
-            //     badge.style.display = 'none';
-            // // }
-            // });
         }
 
         commentListLoad(`/api/diaryComments/${diaryId}`);

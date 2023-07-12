@@ -294,6 +294,7 @@ function updateSchedule(id, schedule, friendIds){
     }
 
   let url = `/api/schedules/detail?id=${id}`;
+  let titlefornoti = schedule.title.value;
 
   const scheduleData = {
     id : id,
@@ -308,6 +309,7 @@ function updateSchedule(id, schedule, friendIds){
     backgroundColor: schedule.backgroundColor.value,
   }
 
+
     // 서버로 데이터 전송
     fetch(url, {
       method: 'PUT',
@@ -320,7 +322,7 @@ function updateSchedule(id, schedule, friendIds){
 
         // 서버 응답 처리
         if (response.ok) {
-          updateFriendTag(id, friendIds, isDeleted)
+          updateFriendTag(id, friendIds, titlefornoti)
 
         } else {
           console.error('스케쥴 업데이트 실패');
@@ -332,10 +334,11 @@ function updateSchedule(id, schedule, friendIds){
 
 }//updateSchedule end
 
-function updateFriendTag(id, friendIds) {
+function updateFriendTag(id, friendIds, titlefornoti) {
 
     const requestData = {
     scheduleId: id,
+    scheduleTitle: titlefornoti,
     tagData: friendIds
   };
 

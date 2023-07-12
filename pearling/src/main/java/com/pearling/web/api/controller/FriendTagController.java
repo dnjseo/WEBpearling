@@ -52,12 +52,14 @@ public class FriendTagController {
         String scheduleIdString = (String)requestData.get("scheduleId");
         Integer scheduleId = Integer.parseInt(scheduleIdString);
         
+        String scheduleTitle = (String)requestData.get("scheduleTitle");
+
         System.out.println("scheduleId:::"+scheduleId);
         List<String> tagDataStringList = (List<String>) requestData.get("tagData");
         List<Integer> tagDataList = tagDataStringList.stream().map(Integer::parseInt).collect(Collectors.toList());
 
         
-
+            
         for (Integer friendId : tagDataList) {
             FriendTag friendTag = FriendTag.builder()
                     .memberId(user.getId())
@@ -66,7 +68,7 @@ public class FriendTagController {
                     .build();
             service.append(friendTag);
 
-            String notiMessage = user.getNickname() + "님의 일정에 태그되었습니다. ";
+            String notiMessage = user.getNickname() + "님의 '" + scheduleTitle + "' 일정에 태그되었습니다.";
 
             Notification notification = Notification.builder()
             .pubMemberId(user.getId())

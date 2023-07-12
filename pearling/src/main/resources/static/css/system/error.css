@@ -25,6 +25,8 @@
         padding: 15px;
         width: 150px;
         border-radius: 15px;
+
+        cursor: pointer;
     }
 
     .btn1{
@@ -49,7 +51,7 @@
     }
 
     .logoimg{
-        width: 230px;
+        width: 345px;
     }
 
     .logotext{
@@ -120,7 +122,7 @@
     }
 
     .logoimg{
-        width: 280px;
+        width: 410px;
     }
 
     .logotext{

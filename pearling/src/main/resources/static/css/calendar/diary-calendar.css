@@ -57,6 +57,11 @@
     font-weight: bold;
 }
 
+/* 이벤트 */
+.fc-event-title {
+    min-height: 20px;
+}
+
 
 
 

@@ -6,16 +6,17 @@
    <select id="findAll" resultType="com.pearling.web.entity.Qa">
      SELECT
          qa.*,
-         ROW_NUMBER() OVER (ORDER BY qa.regdate ASC) AS new_id,
-         qc.name qa_category_name
+	ROW_NUMBER() OVER (ORDER BY qa.regdate ASC) AS new_id,
+         qc.name qa_category_name,
+         qcm.answer qa_comment_content
       FROM
          qa
-      JOIN
+      LEFT JOIN
          qa_category qc ON qa.qa_category_id = qc.id
       LEFT JOIN   
-         qa_comment qcm ON qa.qa_comment_id = qcm.id
-      ORDER BY
-         qa.regdate ASC;
+         qa_comment qcm ON qa.id = qcm.qa_id
+  ORDER BY
+         qa.regdate ASC
    </select>
 
     <select id="findById" resultType="com.pearling.web.entity.Qa" parameterType="int">

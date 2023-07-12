@@ -36,11 +36,6 @@ window.addEventListener("load", function (e) {
       if(loginId != userId){
         updateAndDelete.style.display = "none";
       }
-      
-      let adminAnswer = qaListBody.querySelector(".answerForUser");
-      if(roleId != 1){
-        adminAnswer.style.display = "none";
-      }
 
     });
 

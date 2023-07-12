@@ -18,8 +18,8 @@ public class Qa {
     private Date regdate;
     private Integer memberId;
     private Integer qaCategoryId;
-    private Integer newId;
     private Integer securityCheck;
-    private Integer qaCommentId;
+    private Integer newId;
     private String qaCategoryName;
+    private String qaCommentContent;
 }

@@ -36,6 +36,30 @@
 		FROM member
 		WHERE id = #{id}
 	</select>
+	<!-- findAll 쿼리에 검색 조건 추가 -->
+	<select id="findAllAdmin" resultType="Member">
+		select *
+		from member
+		limit #{offset}, #{pageSize}
+	</select>
+	<select id="findAllWithQuery" resultType="Member">
+		select *
+		from member
+		<where>
+			<if test="query != null and query != ''">
+				and name like concat('%', #{query}, '%')
+			</if>
+		</where>
+		limit #{offset}, #{pageSize}
+	</select>
+	<select id="getTotalCountWithQuery" resultType="int">
+      SELECT COUNT(*) FROM member
+      <where>
+         <if test="query != null and query != ''">
+            and name like concat('%', #{query}, '%')
+         </if>
+      </where>
+   </select>
 	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="Member">
 		insert into member
@@ -80,4 +104,10 @@
 	<delete id="delete" parameterType="Member">
 		delete from member where id = #{id}
 	</delete>
+	<delete id="deleteById" parameterType="int">
+        DELETE FROM member WHERE id = #{id}
+    </delete>
+	<select id="allCount" resultType="int">
+      SELECT COUNT(*) FROM member
+   </select>
 </mapper>

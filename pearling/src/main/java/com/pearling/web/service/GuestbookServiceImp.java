@@ -16,10 +16,13 @@ public class GuestbookServiceImp implements GuestbookService{
     private GuestbookRepository repository;
 
     @Override
-    public List<Guestbook> getList() {
-        List<Guestbook> list = repository.findAll();
+    public List<Guestbook> getList(int offset, int pageSize) {
+        return repository.findAll(offset, pageSize);
+    }
 
-        return list;
+    @Override
+    public List<Guestbook> getList(int offset, int pageSize, String query) {
+        return repository.findAllWithQuery(offset, pageSize, query);
     }
 
      @Override
@@ -52,4 +55,15 @@ public class GuestbookServiceImp implements GuestbookService{
     public int count(Integer toId) {
         return repository.count(toId);
     }
+
+    @Override
+    public int allCount() {
+        return repository.allCount();
+    }
+
+    @Override
+    public int getTotalCountWithQuery(String query) {
+        return repository.getTotalCountWithQuery(query);
+    }
+      
 }

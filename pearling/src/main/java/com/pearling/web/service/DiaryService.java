@@ -7,6 +7,8 @@ import com.pearling.web.entity.DiaryView;
 
 public interface DiaryService {
     List<Diary> getList();
+    List<Diary> getList(int offset, int pageSize);
+    List<Diary> getList(int offset, int pageSize, String query);
     List<Diary> getListByDate(String date, Integer memberId);
     List<Diary> getListByUserId(Integer memberId);
     
@@ -19,4 +21,8 @@ public interface DiaryService {
     void append(Diary diary);
     void update(Diary diary);
     void delete(Diary diary);
+    void delete(Integer id);
+
+    int allCount();
+    int getTotalCountWithQuery(String query);
 }

@@ -62,6 +62,29 @@
 	</trim>
 	limit 1
 	</select>
+	<select id="findAllAdmin" resultType="Diary">
+      select *
+      from diary
+      limit #{offset}, #{pageSize}
+   </select>
+   <select id="findAllWithQuery" resultType="Diary">
+      select *
+      from diary
+      <where>
+         <if test="query != null and query != ''">
+            and title like concat('%', #{query}, '%')
+         </if>
+      </where>
+      limit #{offset}, #{pageSize}
+   </select>
+   <select id="getTotalCountWithQuery" resultType="int">
+      SELECT COUNT(*) FROM diary
+      <where>
+         <if test="query != null and query != ''">
+            and title like concat('%', #{query}, '%')
+         </if>
+      </where>
+   </select>
 
 	<select id="findByDate" resultType="com.pearling.web.entity.Diary">
 		select *
@@ -150,5 +173,12 @@
 	<delete id="delete">
 		delete from diary where id=#{id}
 	</delete>
+   <delete id="deleteAdmin" parameterType="int">
+      delete from diary
+      where id = #{id}
+   </delete>
+	<select id="allCount" resultType="int">
+      SELECT COUNT(*) FROM diary
+   </select>
    
 </mapper>

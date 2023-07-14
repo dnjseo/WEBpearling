@@ -1,0 +1,9 @@
+.admin-list li:first-child{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.board-list li:first-child{
+    font-weight: normal;
+    text-decoration: none;
+}

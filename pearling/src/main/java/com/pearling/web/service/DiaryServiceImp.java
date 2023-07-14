@@ -1,6 +1,5 @@
 package com.pearling.web.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,17 @@ public class DiaryServiceImp implements DiaryService {
     @Override
     public List<Diary> getList() {
         List<Diary> list = repository.findAll();
-
         return list;
+    }
+
+    @Override
+    public List<Diary> getList(int offset, int pageSize) {
+        return repository.findAllAdmin(offset, pageSize);
+    }
+
+    @Override
+    public List<Diary> getList(int offset, int pageSize, String query) {
+        return repository.findAllWithQuery(offset, pageSize, query);
     }
 
     @Override
@@ -52,6 +60,11 @@ public class DiaryServiceImp implements DiaryService {
     }
 
     @Override
+    public void delete(Integer id) {
+        repository.deleteAdmin(id);
+    }
+
+    @Override
     public List<DiaryView> getViewList() {
         return repository.findViewAll();
     }
@@ -70,6 +83,16 @@ public class DiaryServiceImp implements DiaryService {
     public List<Diary> getListByUserId(Integer memberId) {
        
         return repository.findByUserid(memberId);
+    }
+
+    @Override
+    public int allCount() {
+        return repository.allCount();
+    }
+
+    @Override
+    public int getTotalCountWithQuery(String query) {
+        return repository.getTotalCountWithQuery(query);
     }
 
 }

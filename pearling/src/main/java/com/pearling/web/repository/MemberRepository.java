@@ -4,12 +4,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.pearling.web.entity.Member;
 
 @Mapper
 public interface MemberRepository {
     List<Member> findAll(String query);
+    List<Member> findAllAdmin(@Param("offset") int offset, @Param("pageSize") int pageSize);
+    List<Member> findAllWithQuery(@Param("offset") int offset, @Param("pageSize") int pageSize, @Param("query") String query);
     List<Member> findByUserId(int memberId);
     List<Member> findByQuery(String query);
     List<Member> findAll();
@@ -24,6 +27,9 @@ public interface MemberRepository {
     int updateMember(Member existingMember); // 업데이트하기
     int updatePwd(Member member); // 비밀번호 업데이트하기
     void delete(Member member);
+    void deleteById(int id); // 수정된 부분
+    int allCount();
+    int getTotalCountWithQuery(@Param("query") String query);
 
     Optional<Member> findByLoginId(String loginId); // 추가된 메소드
 

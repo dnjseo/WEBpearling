@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pearling.web.entity.Diary;
 import com.pearling.web.entity.FriendTag;
 import com.pearling.web.entity.Schedule;
 import com.pearling.web.entity.Todo;
@@ -26,14 +27,21 @@ public class ScheduleServiceImp implements ScheduleService {
     @Override
     public List<Schedule> getList() {
         List<Schedule> list = repository.findAll();
-
-        // System.out.println(list);
         return list;
     }
+    
+    @Override
+    public List<Schedule> getList(int offset, int pageSize) {
+        return repository.findAllAdmin(offset, pageSize);
+    }
 
-      @Override
+    @Override
+    public List<Schedule> getList(int offset, int pageSize, String query) {
+        return repository.findAllWithQuery(offset, pageSize, query);
+    }
+
+    @Override
     public List<Schedule> getListByQuery(String query) {
-
         return repository.findAllSch(query);
     }
 
@@ -75,39 +83,44 @@ public class ScheduleServiceImp implements ScheduleService {
 
     @Override
     public Schedule findById(Integer id) {
-
         return repository.findById(id);
     }
 
     @Transactional
     @Override
     public int addSchedule(Schedule schedule) {
-
         repository.save(schedule);
-       
         //등록 후 id 값 반환!!
         return schedule.getId();
     }
 
     @Override
     public void updateSchedule(Schedule schedule) {
-
         repository.update(schedule);
     }
 
-
     @Override
     public int deleteSchedule(Schedule schedule) {
-        
         return repository.delete(schedule);
     }
-
+    
+    @Override
+    public void delete(Integer id) {
+        repository.deleteAdmin(id);
+    }
 
     @Override
     public List<Schedule> getListByCurDate(Integer memberId, LocalDate date) {
-        
         return repository.findByCurDate(memberId, date);
     }
-  
-  
+
+    @Override
+    public int allCount() {
+        return repository.allCount();
+    }
+
+    @Override
+    public int getTotalCountWithQuery(String query) {
+        return repository.getTotalCountWithQuery(query);
+    }
 }

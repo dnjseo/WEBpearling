@@ -1,11 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="/css/import.css" type="text/css" rel="stylesheet">
+    <link href="/css/admin/index.css" rel="stylesheet">
+    <link href="/css/admin/member/member.css" rel="stylesheet">
+    <script src="/js/admin/member/member.js"></script>
+    <script src="/js/admin/reset.js"></script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <title>Pear-ling 관리자</title>
 </head>
 <body>
-    <h1>회원 리스트 입니다용 ㅎ</h1>
+<header>
+
+</header>
+<main class="wrap">
+    <nav class="admin-menu">
+        <h1 class="admin-logo"><a href="/admin/index"><img src="/images/logo/realLogo.svg" alt="logo"></a></h1>
+        <ul class="admin-list">
+            <li><a href="/admin/member/admin-member">회원관리</a></li>
+            <li>게시판관리<span>></span>
+                <ul class="board-list">
+                    <li><a href="/admin/board/admin-schedule">스케줄 관리</a></li>
+                    <li><a href="/admin/board/admin-diary">다이어리 관리</a></li>
+                    <li><a href="/admin/board/admin-guestbook">방명록 관리</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="list">
+        <div class="list-content">
+            <div class="list-header">
+                <h1>회원 관리</h1>
+                <div class="last-header">
+                    <form id="search-form" method="GET" action="/admin/member/admin-member">
+                        <input id="search-input" type="text" name="query" placeholder="검색 내용을 입력하세요.">
+                        <button type="submit" id="search-button">검색</button>
+                    </form>
+                    <button id="delete-button">삭제</button>
+                </div>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>이름</th>
+                    <th>닉네임</th>
+                    <th>이메일</th>
+                    <th>생일</th>
+                </tr>
+                </thead>
+                <tbody id="table-body">
+                    <tr th:each="list : ${list}">
+                        <td><input type="checkbox" class="list-checkbox" th:data-id="${list.id}"></td>
+                        <td th:text="${list.name}"></td>
+                        <td th:text="${list.nickname}"></td>
+                        <td th:text="${list.email}"></td>
+                        <td th:text="${list.birth}"></td>
+                    </tr>
+                    </tbody>
+                </tbody>
+            </table>
+            <div class="pagination">
+                <button id="prev-button" data-total-pages="10">&laquo;</button>
+                <th:block th:each="pageNumber : ${#numbers.sequence(1, totalPages)}" th:if="${pageNumber % 5 == 1}">
+                  <th:block th:each="subPageNumber : ${#numbers.sequence(pageNumber, pageNumber + 4)}" th:if="${subPageNumber <= totalPages}">
+                    <a th:href="@{/admin/member/admin-member(page=${subPageNumber})}" th:text="${subPageNumber}"></a>
+                  </th:block>
+                </th:block>
+                <button id="next-button" data-total-pages="10">&raquo;</button>
+            </div>
+        </div>
+        <input id="current-page" type="hidden" th:value="${currentPage}">
+    </section>
+</main>
 </body>
 </html>

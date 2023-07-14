@@ -6,8 +6,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/css/import.css" type="text/css" rel="stylesheet">
     <link href="/css/admin/index.css" rel="stylesheet">
-    <link href="/css/admin/board/diary.css" rel="stylesheet">
-    <script src="/js/admin/board/admin-diary.js"></script>
+    <link href="/css/admin/board/schedule.css" rel="stylesheet">
+    <script src="/js/admin/board/admin-schedule.js"></script>
     <script src="/js/admin/reset.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <title>Pear-ling 관리자</title>
@@ -34,9 +34,9 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <section class="list">
         <div class="list-content">
             <div class="list-header">
-                <h1>다이어리 관리</h1>
+                <h1>방명록 관리</h1>
                 <div class="last-header">
-                    <form id="search-form" method="GET" action="/admin/board/admin-diary">
+                    <form id="search-form" method="GET" action="/admin/board/admin-schedule">
                         <input id="search-input" type="text" name="query" placeholder="검색 내용을 입력하세요.">
                         <button type="submit" id="search-button">검색</button>
                     </form>
@@ -47,19 +47,21 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
                 <thead>
                 <tr>
                     <th></th>
-                    <th>날짜</th>
                     <th>제목</th>
-                    <th>내용</th>
+                    <th>시작날짜</th>
+                    <th>종료날짜</th>
+                    <th>작성자</th>
                     <th>등록일</th>
                 </tr>
                 </thead>
                 <tbody id="table-body">
                 <tr th:each="list : ${list}">
                     <td><input type="checkbox" class="list-checkbox" th:data-id="${list.id}"></td>
-                    <td th:text="${list.date}" style="text-align: center;"></td>
-                    <td th:text="${list.title}" style="text-align: center;"></td>
-                    <td th:text="${list.content}" style="text-align: center;"></td>
-                    <td th:text="${#dates.format(list.regdate, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${list.title}" ></td>
+                    <td th:text="${list.startDate}" ></td>
+                    <td th:text="${list.endDate}"></td>
+                    <td th:text="${list.memberId}"></td>
+                    <td th:text="${#dates.format(list.regDate, 'yyyy-MM-dd')}"></td>
                 </tr>
                 </tbody>
             </table>
@@ -67,7 +69,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
                 <button id="prev-button" data-total-pages="10">&laquo;</button>
                 <th:block th:each="pageNumber : ${#numbers.sequence(1, totalPages)}" th:if="${pageNumber % 5 == 1}">
                   <th:block th:each="subPageNumber : ${#numbers.sequence(pageNumber, pageNumber + 4)}" th:if="${subPageNumber <= totalPages}">
-                    <a th:href="@{/admin/board/admin-diary(page=${subPageNumber})}" th:text="${subPageNumber}"></a>
+                    <a th:href="@{/admin/board/admin-schedule(page=${subPageNumber})}" th:text="${subPageNumber}"></a>
                   </th:block>
                 </th:block>
                 <button id="next-button" data-total-pages="10">&raquo;</button>

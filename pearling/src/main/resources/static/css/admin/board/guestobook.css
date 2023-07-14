@@ -1,0 +1,12 @@
+.admin-list li:nth-child(2) li:nth-child(3){
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.content{
+    display: block;
+    width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

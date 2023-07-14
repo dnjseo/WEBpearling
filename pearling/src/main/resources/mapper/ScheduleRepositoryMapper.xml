@@ -33,11 +33,6 @@
 		from schedule 
 		WHERE member_id = #{memberId};
 	</select>
-	<!-- <select id="findByDate" resultType="Schedule">
-		select * 
-		from schedule 
-		WHERE member_id = #{memberId} and start_date = '${date.toString()}';
-	</select> -->
 	<select id="findByDate" resultType="Schedule">
 		select *
 		FROM schedule
@@ -54,6 +49,29 @@
 			AND str_to_date(#{date}, '%Y-%m-%d') BETWEEN s.start_date AND s.end_date
 			AND s.member_id = m.id
 	</select>
+		<select id="findAllAdmin" resultType="Schedule">
+      select *
+      from schedule
+      limit #{offset}, #{pageSize}
+   </select>
+   <select id="findAllWithQuery" resultType="Schedule">
+      select *
+      from schedule
+      <where>
+         <if test="query != null and query != ''">
+            and title like concat('%', #{query}, '%')
+         </if>
+      </where>
+      limit #{offset}, #{pageSize}
+   </select>
+   <select id="getTotalCountWithQuery" resultType="int">
+      SELECT COUNT(*) FROM schedule
+      <where>
+         <if test="query != null and query != ''">
+            and title like concat('%', #{query}, '%')
+         </if>
+      </where>
+   </select>
 	<insert id="save" parameterType="Schedule" useGeneratedKeys="true" keyProperty="id">
 		insert into
 		schedule(start_date, start_time, end_date, end_time, title, member_id, background_color, latitude, longitude, place)		
@@ -82,5 +100,12 @@
 		delete from schedule 
 		where id = #{id}
 	</delete>
+	<delete id="deleteAdmin" parameterType="int">
+      delete from schedule
+      where id = #{id}
+   </delete>
+	<select id="allCount" resultType="int">
+      SELECT COUNT(*) FROM schedule
+   </select>
 
 </mapper>

@@ -7,8 +7,10 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.pearling.web.entity.Guestbook;
 import com.pearling.web.entity.Member;
 import com.pearling.web.repository.MemberRepository;
 
@@ -25,6 +27,16 @@ public class MemberServiceImp implements MemberService{
     public List<Member> getList() {
         List<Member> list = repository.findAll();
         return list;
+    }
+
+    @Override
+    public List<Member> getList(int offset, int pageSize) {
+        return repository.findAllAdmin(offset, pageSize);
+    }
+
+    @Override
+    public List<Member> getList(int offset, int pageSize, String query) {
+        return repository.findAllWithQuery(offset, pageSize, query);
     }
     
     @Override
@@ -127,9 +139,32 @@ public class MemberServiceImp implements MemberService{
         repository.delete(member);
     }
 
+    @Override
+    @Transactional
+    public void deleteMembers(Integer[] memberIds) {
+        for (Integer memberId : memberIds) {
+            Member member = repository.findById(memberId);
+            if (member != null) {
+                repository.delete(member);
+            } else {
+                System.out.println("망함 진짜 못찾음 ㅋㅋ");
+            }
+        }
+    }
+
     // 로그인 api 아이디 찾기
     @Override
     public Member getByProviderId(String providerId) {
         return repository.findByProviderId(providerId);
+    }
+
+    @Override
+    public int allCount() {
+        return repository.allCount();
+    }
+
+    @Override
+    public int getTotalCountWithQuery(String query) {
+        return repository.getTotalCountWithQuery(query);
     }
 }

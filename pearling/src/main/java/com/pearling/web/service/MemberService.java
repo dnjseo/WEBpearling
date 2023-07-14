@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpServletRequest;
 public interface MemberService {
     
     List<Member> getList(); // 멤버 리스트 
+    List<Member> getList(int offset, int pageSize);
+    List<Member> getList(int offset, int pageSize, String query);
     List<Member> getListByQuery(String query);
     List<Member> getListByUserId(int userId);
     
@@ -28,9 +30,12 @@ public interface MemberService {
     int updateMember(Member member); // 회원 수정을 위한 메서드 추가
     void updatePwd(Member member); // 
     String uploadProfileImage(MultipartFile file, HttpServletRequest request) throws IOException;
+    int allCount();
+    int getTotalCountWithQuery(String query);
 
     // 회원 삭제
     void delete(Member member);
+    void deleteMembers(Integer[] memberIds);
 
     // 로그인 api
     Member getByProviderId(String providerId);

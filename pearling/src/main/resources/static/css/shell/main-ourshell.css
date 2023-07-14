@@ -65,8 +65,7 @@
         justify-content: center;
         align-items: center;
 
-        width: 80%;   
-        max-width: 800px;
+       
 
         padding-bottom: 20px;
 
@@ -245,18 +244,27 @@
 
      
   /* 모바일 규격 */
- @media screen and (max-width: 1023px) {
+ @media screen and (max-width: 768px) {
     
- 
+    #m4-friendSchedule{
+        width: 80%;   
+        max-width: 800px;   
+     }
+
 }
 
 
   /* PC 규격 */
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 769px) {
 
-
-    .mobile-nev{
-        display: none;
+    .wrap{
+        width: 100%;
     }
+
+    #m4-friendSchedule{
+        width: 100%;
+    }
+
+
   }
   

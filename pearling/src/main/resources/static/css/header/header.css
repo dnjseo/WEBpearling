@@ -56,7 +56,6 @@
     padding-right: 30px;
     box-sizing: border-box;
 
-    margin-bottom: 20px;
 }
 
 .logo {
@@ -404,6 +403,8 @@ input.submit-btn {
       display: flex;
       justify-content: center;
       align-items: flex-start;
+      padding-top: 30px;
+      gap: 5%;
     }
     
     main {
@@ -416,17 +417,17 @@ input.submit-btn {
     }
     
     aside {
-        border: 5px solid red;
+        /* border: 5px solid red; */
         display: flex;
         flex-direction: column;
         justify-content: center;
         width: 25vw;
-        margin-left: 5%;
+        margin-left: 5vw;
     }
     
 
     #dmf{
-        border: 5px solid red;
+        /* border: 5px solid red; */
         width: 65vw;
         margin-right: 5%;
     }
@@ -434,6 +435,11 @@ input.submit-btn {
     #shell-menu{
         width: 90%;
     }
+
+    .menu{
+        display: none;
+    }
+
      
 }
 
@@ -447,6 +453,9 @@ input.submit-btn {
         z-index: 9999;
     }
 
+    .header{
+        margin-bottom: 20px;
+    }
 
     #shell-menu {
         backdrop-filter: blur(5px);

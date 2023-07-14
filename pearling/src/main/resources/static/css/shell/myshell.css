@@ -10,6 +10,47 @@
     }
   }
 
+   
+  /* 모바일 규격 */
+ @media screen and (max-width: 768px) {
+    #ms4 {
+        width: 90%;
+    }
+}
+
+  /* PC 규격 */
+  @media screen and (min-width: 769px) {
+
+    .wrap, 
+    #calendar, #ms3 {
+        width: 100%;
+    }
+
+    #ms4{
+        width: 100%;
+    }
+
+    aside {
+        margin-left: 12vw;
+    }
+
+}
+
+/* 화면 너무 작을 경우 대비 */
+/* @media screen and (min-width: 350px) {
+    #ms4 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        gap: 30px; 
+    
+        width: 85%;
+    
+        position: relative;
+    }
+} */
+
+
 
 .flip-effect{
     transform-style: preserve-3d;
@@ -75,25 +116,10 @@ body{
     flex-direction: column;
     justify-content: center;
     gap: 30px; 
-    width: 90%;
 
     position: relative;
 }
 
-
-/* 화면 너무 작을 경우 대비 */
-@media (min-width: 400px) {
-    #ms4 {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        justify-content: center;
-        gap: 30px; 
-    
-        width: 85%;
-    
-        position: relative;
-    }
-}
 
 .ms-today{
     grid-column: 1 / span 2;

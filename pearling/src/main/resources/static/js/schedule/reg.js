@@ -98,7 +98,6 @@ function getDetail(id,schedule) {
           schedule.tagedFr.innerHTML += taged;
         });
 
-
         
         // 이전 태그 삭제하기 
         document.addEventListener('click', function(event) {

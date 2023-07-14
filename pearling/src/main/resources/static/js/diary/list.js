@@ -129,11 +129,17 @@ window.addEventListener('DOMContentLoaded', function(e) {
     let loginId = document.querySelector("#input-member-id").value;
     let postAddBtn = document.querySelector(".add-btn");
 
-    if(userId == loginId || urlParams == "") 
+    if(userId == loginId || urlParams == "") {
         postAddBtn.style.display = "block";
-    else
+    } else {
         postAddBtn.style.display = "none";
+        //: 마이쉘 하위메뉴 a링크 값 변경
+        document.querySelector('#myshell-menu .monthly').href = "/shell/myshell/" + userId
+        document.querySelector('#myshell-menu .diary').href = "/diary/list?uid=" + userId
+        document.querySelector('#myshell-menu .guestbook').href = "/guestbook/list/" + userId
+    }
 
+    
     // 캘린더 호출
         
     let calendarEl = document.getElementById('calendar');

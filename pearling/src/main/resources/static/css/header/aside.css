@@ -1,18 +1,27 @@
 /* ======================= aside =======================*/
-#sub-menu{
-    overflow: scroll;
-    position: fixed;
-    top: 65px;
-    right: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(0deg, 
-    rgba(0, 0, 0, 0.04), 
-    rgba(0, 0, 0, 0.04)), #FFFFFF;
+ /* PC 규격 */
+ @media screen and (min-width: 769px) {
+ }
 
-    transition: right 0.4s ease-in-out;
-    z-index: 2;
+/* 모바일 규격 */
+ @media screen and (max-width: 768px) {
+
+    #sub-menu{
+        overflow: scroll;
+        position: fixed;
+        top: 65px;
+        right: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(0deg, 
+        rgba(0, 0, 0, 0.04), 
+        rgba(0, 0, 0, 0.04)), #FFFFFF;
+
+        transition: right 0.4s ease-in-out;
+        z-index: 2;
+    }
 }
+
 
 .moveRight{
     position: fixed;
@@ -131,47 +140,7 @@
     margin-right: 10%;
 }
 
-.paragraph{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;   
-    flex-direction: column; 
-    padding-top: 5px;
-    padding-bottom: 40px; 
-    gap: 10px;
-}
 
-.paragraphBox{
-    width: 70%;
-    display: flex;
-    flex-direction: row-reverse; 
-    justify-content: center;
-    align-items: center;   
-
-    padding: 40px;
-    background: #FFFFFF;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 40px;
-
-    /* 폰트 레이아웃 */
-    text-align: center;
-    font-size: 16px;
-}
-
-.todayAside{
-    font-family: 'Pretendard-Bold';
-    padding-top: 15px;
-    font-size: 24px;
-}
-
-.textBox{
-    display: flex;
-    flex-direction: column;
-    text-align: start;
-    padding-left: 20px;
-    height: 100%;
-}
 
 /* back */
 .title{
@@ -193,7 +162,7 @@
     font-size: 26px;
     padding-top: 20px;
     padding-bottom: 10px;
-    padding-left: 20px;
+    padding-left: 40px;
 }
 
 .aside-menu >div > ul > li > a{ 

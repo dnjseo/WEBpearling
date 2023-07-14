@@ -36,7 +36,7 @@ body{
    
     padding-top: 10px;
     padding-bottom: 30px;
-    gap: 20px;
+    gap: 10px;
  }
 
 .ms-hidden {
@@ -75,11 +75,13 @@ body{
     flex-direction: column;
     justify-content: center;
     gap: 30px; 
-    width: 85%;
+    width: 90%;
 
     position: relative;
 }
 
+
+/* 화면 너무 작을 경우 대비 */
 @media (min-width: 400px) {
     #ms4 {
         display: grid;
@@ -99,6 +101,13 @@ body{
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    width: fit-content;
+    padding-bottom: 50px;
+}
+
+.ms-today > img{
+    position: absolute;
+    left: -15px;
 }
 
 input[type=checkbox],
@@ -120,7 +129,7 @@ input[type="checkbox"]:checked + p {
 
     position: absolute;
     height: 30px;
-    left: 45px;
+    left: 20px;
     top: 35px;
 
     display: flex;

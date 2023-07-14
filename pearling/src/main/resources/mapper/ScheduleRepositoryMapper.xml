@@ -73,8 +73,8 @@
 			<if test="title != null">title = #{title},</if>
 			<if test="backgroundColor != null">background_color = #{backgroundColor},</if>
 			<if test="latitude != null">latitude = #{latitude},</if>
-			<if test="longitude != null">longitude = #{longitude}</if>
-			<if test="place != null">place = #{place}</if>
+			<if test="longitude != null">longitude = #{longitude},</if>
+			<if test="place != null">place = #{place},</if>
 		</set>
 		where id = #{id};
 	</update>

@@ -38,6 +38,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // : 프로필 변경 
         changeProfile(userId);
 
+
+        // (본인 쉘이 아닌 경우)스케쥴 디테일 a링크 막기
         schedules.forEach(function (schedule) {
       
           schedule.href = '#';
@@ -48,8 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         
         
-
-
       }
 
     })//fetch

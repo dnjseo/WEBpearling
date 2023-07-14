@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/css/import.css" type="text/css" rel="stylesheet" >
+    <link href="/css/setting/layout.css" type="text/css" rel="stylesheet" >
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
     <script src="/js/header/header.js"></script> 
@@ -24,17 +25,21 @@
 	<!-- header 부분 -->
     <th:block th:if="${headerShow}" th:insert="~{inc/header}"></th:block>
     <th:block th:unless="${headerShow}" th:insert="~{inc/header2}"></th:block>
+
     <!-- <p th:text="${headerShow}"></p> -->
-	<!-- aside 부분 -->
-		<div th:replace="~{inc/aside}"></div>
-	<!-- main 부분 -->
-  <div id="dmf">
-		<div layout:fragment="content"></div>
-    <!-- footer 부분 -->
-    <th:block th:if="${headerShow}" th:insert="~{inc/footer}"></th:block>
-    <!-- <div th:replace="~{inc/footer}"></div> -->
+    <!-- aside 부분 -->
+    <div class="box-container">
+    <div th:replace="~{inc/aside}"></div>
+    <!-- main 부분 -->
+    <div id="dmf">
+      <div layout:fragment="content"></div>
+      <!-- footer 부분 -->
+      <!-- <div th:replace="~{inc/footer}"></div> -->
+    </div>
   </div>
+    <th:block th:if="${headerShow}" th:insert="~{inc/footer}"></th:block>
   </body>
+
     <script>
         AOS.init();
     </script>

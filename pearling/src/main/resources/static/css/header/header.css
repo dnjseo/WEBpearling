@@ -394,3 +394,72 @@ input.submit-btn {
 .admin-setting a img{
     width: 25px;
 }
+
+
+
+ /* PC 규격 */
+ @media screen and (min-width: 769px) {
+    
+    .box-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    
+    main {
+        width: calc(100% - 250px);
+        float: right;
+    }
+
+    #header-warp{
+        position: sticky;
+    }
+    
+    aside {
+        border: 5px solid red;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 25vw;
+        margin-left: 5%;
+    }
+    
+
+    #dmf{
+        border: 5px solid red;
+        width: 65vw;
+        margin-right: 5%;
+    }
+
+    #shell-menu{
+        width: 90%;
+    }
+     
+}
+
+ 
+  /* 모바일 규격 */
+  @media screen and (max-width: 768px) {
+    
+    .header-wrap{
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+    }
+
+
+    #shell-menu {
+        backdrop-filter: blur(5px);
+        height: 40px;
+    }
+
+    #myshell-menu > a{
+        backdrop-filter: blur(24px);
+    }
+    
+    #myshell-menu {
+        padding-top: 10px;
+        position:static;
+        top: 30px;
+    }
+}

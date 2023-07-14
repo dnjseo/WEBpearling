@@ -184,6 +184,8 @@ document.addEventListener('DOMContentLoaded', function () {
     addCheckboxEventListener(checkbox);
   });
 
+
+
   //캘린더에서 날짜 클릭
   calendar.on('dateClick', (info) => {
     console.log('clicked on ' + info.dateStr);
@@ -203,6 +205,7 @@ document.addEventListener('DOMContentLoaded', function () {
     updateTodoList(clickedDate, checkboxes);
     updateScheduleList(clickedDate);
 
+   
     checkboxes = document.querySelectorAll('.todoListSection input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
       addCheckboxEventListener(checkbox);
@@ -239,6 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
   //     }
   //   }
   // };
+
 
   //투두의 편집 버튼 클릭
   showDelBtn.onclick =(e)=> {
@@ -550,7 +554,7 @@ function updateScheduleList(clickedDate) {
             itemTemplate = `
             <li class="scheduleList">
               <div class="content">
-                <span>${schedule.title}</span>
+                <span class="sche-link">${schedule.title}</span>
                 <div class ="tag">
                   ${schedule.friendNicknames.map(nickname => `<div>@${nickname}</div>`).join('')}
                 </div>
@@ -572,6 +576,7 @@ function updateScheduleList(clickedDate) {
           }
 
           scheduleElements.insertAdjacentHTML("beforeend", itemTemplate);
+          tippySchedule(schedule);
 
         }
       }
@@ -581,5 +586,18 @@ function updateScheduleList(clickedDate) {
     });
 }//updateScheduleList end
 
+function tippySchedule(schedule){
+  let sches = document.querySelectorAll('.sche-link')
+  for (let sche of sches) {
+    sche.addEventListener("mouseenter", function(event) {
+      console.log("마우스엔터")
+      tippy(event.target,{
+        content: schedule.title
+        ,delay: [500,0]
+        ,allowHTML: true
+      })
+    });
+  }
+  }
 
 

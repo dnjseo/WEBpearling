@@ -1,0 +1,233 @@
+.qa-post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.qa-list{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.qa-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.qa-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 20px;
+    gap: 8px;
+    
+    width: 80%;
+    height: auto;
+       
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.qa-title input[type="text"] {
+    height: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+    border: none;
+    outline: none;
+    background: transparent;
+
+    
+    font-family: 'Pretendard-Regular';
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.qa-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.three-btn{
+   text-align: right;
+   padding-right: 10px;
+   padding-bottom: 5px;
+}
+
+.edit-btn{
+    width: 130px;
+    height: 25px;
+    background: rgba(252, 251, 251, 0.75);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05), inset 0px 3px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    border: none;
+    color: #797979;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+    margin-left: auto;
+}
+
+.edit-btn> button{
+   border: 0;
+   outline: 0;
+    background-color: transparent;
+    color: #797979;
+    font-size: 12px;
+    width: 40px;
+    height: 25px;
+    padding: 0px;
+}
+
+.edit-btn> button:hover {
+    background-color: rgba(165, 135, 224, 0.2);
+    border-radius: 30px;
+    color: #FFFFFF;
+  }
+
+.qa-secret{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-right: 10px;
+}
+
+.qa-content textarea {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+    border: none;
+    outline: none;
+    background: transparent;
+
+    padding-top: 16px;
+    
+    font-family: 'Pretendard-Regular';
+    font-size: 14px;
+
+    overflow: hidden;
+
+}
+
+.admin-part > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.admin-part > div > div > button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: 'Pretendard-Regular';
+    font-size: 12px;
+    color: #797979;
+}
+
+.admin-part > div > span {
+    padding-top: 20px;
+    padding-left: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: bolder;
+    color: rgba(165, 135, 224, 0.877);
+}
+
+.admin-part > textarea:nth-child(3) {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+
+    border-top: 1px solid #e4e4e4;
+
+    border: 1px solid #d6d2d2;
+    border-radius: 12px;
+
+    padding-top: 16px;
+    margin-top: 5px;
+
+    font-family: 'Pretendard-Regular';
+    font-size: 14px;
+}
+
+.answer-input{
+    display: flex;
+    flex-direction: column;
+}
+
+.answer-input > div{
+    border-top: dashed 0.2px #dbdbdb;
+}
+
+.answer-input > p{
+    padding-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 10px;
+}
+
+.edit-part{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+.pearl-logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.pearl-logo > :first-child {
+    width: 20px;
+    height: 20px;
+}
+
+.pearl-logo > :nth-child(2){
+    font-weight: bolder;
+}
+
+.edit-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-btn {
+    display: flex;
+    justify-content: end;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+.write-btn{
+    
+    width: 45px;
+    height: 25px;
+
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    border: none;
+    margin-left: 10px;
+    color: #797979;
+
+    font-family: 'Pretendard-Regular';
+    font-size: 12px;
+}
+
+

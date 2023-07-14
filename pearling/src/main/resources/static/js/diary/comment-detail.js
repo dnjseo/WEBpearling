@@ -12,6 +12,9 @@ function commentListLoad(url) {
             for (let comment of list) {
 
                 let commentDate = new Date(comment.regDate);
+
+
+                
                 let year = commentDate.getFullYear();
                 let month = commentDate.getMonth() + 1; // getMonth()는 0부터 시작하므로 1을 더해줍니다.
                 let formattedMonth = month < 10 ? `0${month}` : month;

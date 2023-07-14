@@ -8,15 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>qa</title>
     <link href="/css/import.css" type="text/css" rel="stylesheet">
-    <link href="/css/qa/setting-qa.css" type="text/css" rel="stylesheet">
+    <link href="/css/qa/list.css" type="text/css" rel="stylesheet">
     <script src="/js/qa/list.js"></script>
-    <!-- <script src="/js/qa/delete.js"></script> -->
+    <script src="/js/qa/post.js"></script>
 </head>
 
 <body>
     <!-- wrap -->
     <main layout:fragment="content" id="wrap" class="wrap">
-        <form class="qa-list">
+        <div class="qa-list">
             <h2 class="d-none">문의 목록</h2>
             <div class="qa-list-head">
                 <div class="all-qa">
@@ -24,47 +24,29 @@
                     <p th:text="'(' + ${#lists.size(list)} + ')'"></p>
                 </div>
             </div>
-            <div class="qa-list-body qa" th:each="q, stat : ${list}">
-                <div class="item">
-                    <div class="num" th:text="${q.id}">150</div>
-                    <div class="answer" th:text="${q.qaCategoryName}">답변 예정</div>
-                    <div>
-                        <div class="secret"></div>
-                    </div>
-                    <div class="titles" th:text="${q.title}">저희 조장을 신고합니다</div>
-                    <div class="date" th:text="${#dates.format(q.regdate, 'yyyy-MM-dd')}">23.05.03</div>
-                    <input type="hidden" name="writerId" th:value="${q.memberId}"/>
-                    <input type="hidden" name="loginId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
-                    <input type="hidden" name="roleId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.roleId}" />
-                    <input type="hidden" name="isCheckedId" th:value="${q.securityCheck}" />
-                </div>
-                <div class="dropdown-answer" id="dropdown-answer-${stat.index}">
-                    <div class="member-q">
-                        <div th:text="${q.content}">
-                            금요일 발표 전까지 회원가입 끝낼 수 있을까요?? 저희 sql문 join도 할 수 있을까요??
-                        </div>
-                        <div class="updateAndDelete">
-                            <button class="updateBtn" th:data-id="${q.id}">
-                                <a href="detail" th:href="@{../qa/detail(id=${q.id})}">수정</a>
-                            </button>
-                            <span>|</span>
-                            <button class="deleteBtn" th:data-id="${q.id}">삭제</button>
-                        </div>
-                    </div>
-                    <div class="answerForUser">
-                        <div class="q-logo">
-                            <div></div>
-                            <p>답변</p>
-                            <p>Pearling 관리자</p>
-                        </div>
-                        <div class="admin-a">
-                            <textarea rows="5" cols="100"></textarea>
-                            <button>등록</button>
-                        </div>
-                    </div>
+            <div class="qa-list-body" th:each="q, stat : ${list}">
+                <div>
+                        <a class="item" a href="detail" th:href="@{../qa/detail(id=${q.id})}">
+                            <div class="num" th:text="${q.newId}">150</div>
+                            <div class="answer"></div>
+                            <input type="hidden" name="qaStatus" th:value="${q.qaStatus}">
+                            <div>
+                                <div class="secret"></div>
+                            </div>
+                            <div class="titles" th:text="${q.title}">저희 조장을 신고합니다</div>
+                            <div class="nickname" th:text="${q.memberNickname}">예린짱짱123</div>
+                            <div class="date" th:text="${#dates.format(q.regdate, 'yyyy-MM-dd')}">23.05.03</div>
+                            <input type="hidden" name="writerId" th:value="${q.memberId}"/>
+                            <input type="hidden" name="writerNickname" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.nickname}" />
+                            <input type="hidden" name="loginId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
+                            <input type="hidden" name="roleId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.roleId}" />
+                            <input type="hidden" name="isCheckedId" th:value="${q.securityCheck}" />
+                            <input type="hidden" name="qaId" th:value="${q.id}" />
+                            
+                        </a>
                 </div>
             </div>
-        </form>
+        </div>
     </main>
     <!-- wrap -->
 </body>

@@ -4,19 +4,16 @@
 
 <mapper namespace="com.pearling.web.repository.QaRepository">
    <select id="findAll" resultType="com.pearling.web.entity.Qa">
-     SELECT
-         qa.*,
-	ROW_NUMBER() OVER (ORDER BY qa.regdate ASC) AS new_id,
-         qc.name qa_category_name,
-         qcm.answer qa_comment_content
-      FROM
-         qa
-      LEFT JOIN
-         qa_category qc ON qa.qa_category_id = qc.id
-      LEFT JOIN   
-         qa_comment qcm ON qa.id = qcm.qa_id
-  ORDER BY
-         qa.regdate ASC
+    SELECT *,
+      ROW_NUMBER() OVER (ORDER BY regdate ASC) AS new_id
+      FROM (
+      SELECT qa.*, 
+         CASE WHEN qa_comment.answer IS NOT NULL THEN 1 ELSE 0 END AS qaStatus
+      FROM qa
+      LEFT JOIN qa_comment ON qa.id = qa_comment.qa_id
+      GROUP BY qa.id
+      ) AS subquery
+      ORDER BY regdate ASC;
    </select>
 
     <select id="findById" resultType="com.pearling.web.entity.Qa" parameterType="int">
@@ -25,8 +22,8 @@
    </select>
 
    <insert id="save">
-      insert into qa(title, content, member_id, qa_category_id, security_check)
-      values (#{title}, #{content}, #{memberId}, 2, #{securityCheck});
+      insert into qa(title, content, member_id, security_check, member_nickname)
+      values (#{title}, #{content}, #{memberId}, #{securityCheck}, #{memberNickname});
    </insert>
 
    <delete id="delete">

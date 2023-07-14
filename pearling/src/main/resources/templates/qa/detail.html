@@ -3,45 +3,59 @@
     layout:decorate="~{inc/layout}">
 
 <head>
-    <title>qa_write</title>
-    <link href="/css/qa/setting-qa-write.css" type="text/css" rel="stylesheet">
-    <script src="/js/qa/update.js"></script>
+    <title>Document</title>
+    <link href="/css/qa/detail.css" type="text/css" rel="stylesheet">
+    <script src="/js/qa/update-delete.js"></script>
 </head>
-
 <body>
     <!-- header -->
     <!-- wrap -->
     <main class="wrap" layout:fragment="content">
-        <div class="tico" th:data-id="${qa.id}">
-            <form>
-                <div class="qa-title">
-                        <h2 class="d-none">문의 제목</h3>
-                        <p>문의 제목<p>
-                        <input type="text" name="title" maxlength="50" th:value="${qa.title}">
-                    <div class="qa-lock">
-                        <label for="checkbox">비밀글</label>
-                        <input type="checkbox" name="lock" th:checked="${qa.securityCheck}">
-                    </div>
+        <div class="qa-icon"></div>
+        <form class="qa-post-form">
+            <div class="qa-list">
+                <h2 class="d-none">공지사항 내용</h2>
+                <div class="qa-box">
+                    <div class="qa-content">
+                        <div>
+                            <p class="three-btn">•••</p>
+                            <div class="edit-btn" style="display: none;">
+                                <button class="update-btn" type="button">수정</button>
+                                <button class="deleteBtn" type="button" onClick="location.href='list'">삭제</button>
+                                <button class="addBtn" type="button" onClick="location.href='list'">등록</button>
+                            </div>
+                        </div>
+                        <div class="qa-title">
+                            <input type="text" class="qa-titles" name="title" maxlength="80"  th:value="${qa.title}" disabled></input>
+                            <div class="qa-secret">
+                                <label for="checkbox">비밀글</label>
+                                <input type="checkbox" name="lock" th:checked="${qa.securityCheck}" disabled>
+                            </div>
+                        </div>
+                        <textarea class="qa-context" name="content" rows="20" cols="100" th:text="${qa.content}" disabled></textarea>
+                        <div class="answer-contesxt">
+                            <div class="admin-part">
+                                <div>
+                                    <span>답변</span>
+                                </div>
+                            </div>
+                            <div class="answer-input">
+                                <div class="edit-part">
+                                    <div class="pearl-logo">
+                                        <img src="/images/profile/circle.png">
+                                        <p> PEARLING </p>
+                                    </div>
+                                </div>
+                                <textarea disabled></textarea>
+                                <p></p>
+                            </div>
+                        </div>
+                        <input type="hidden" name="writerId" th:value="${qa.memberId}"/>
+                        <input type="hidden" name="loginId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
                 </div>
-                <div class="qa-context">
-                    <h2 class="d-none">문의 내용</h3>
-                    <p>문의 내용</p>
-                    <textarea name="content" rows="20" cols="100" th:text="${qa.content}"></textarea>
-                </div>
-                <input type="hidden" name="userId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
-            </form>
-        </div>
-
-        <!-- 수정 -->
-        <div>
-            <h2 class="d-none">등록</h2>
-            <div class="btn">
-                <button class="write-btn" onclick="location.href='list'">등록</button>
             </div>
-        </div>
-
+        </form>
     </main>
     <!-- /wrap -->
 </body>
-
 </html>

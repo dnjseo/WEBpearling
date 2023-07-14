@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{inc/layout}">
+
+<head>
+    <title>Document</title>
+    <link href="/css/admin/qa/detail.css" type="text/css" rel="stylesheet">
+    <script src="/js/admin/qa/comment-detail.js"></script>
+</head>
+<body>
+    <!-- header -->
+    <!-- wrap -->
+    <main class="wrap" layout:fragment="content">
+        <div class="qa-icon"></div>
+        <form class="qa-post-form">
+            <div class="qa-list">
+                <h2 class="d-none">공지사항 내용</h2>
+                <div class="qa-box">
+                    <div class="qa-content">
+                        <div>
+                            <div class="qa-title">
+                                <input type="text" class="qa-title" name="title" maxlength="80"  th:value="${qa.title}" disabled></input>
+                                <input type="hidden" name="roleId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.roleId}">
+                                <input type="hidden" name="qaId" th:value="${qa.id}">
+                                <div class="qa-secret">
+                                    <label for="checkbox">비밀글</label>
+                                    <input type="checkbox" name="lock" th:checked="${qa.securityCheck}" disabled>
+                                </div>
+                            </div>
+                            <textarea class="qa-context" name="content" rows="20" cols="100" th:text="${qa.content}" disabled></textarea>
+                        </div>
+                        <div class="answer-context">
+                            <div class="admin-part">
+                                <div>
+                                    <span>답변</span>
+                                </div>
+                                <textarea name="QaAnswer" rows="5" cols="70" placeholder="답변을 작성해 보세요"></textarea>
+                                <div class="add-btn">
+                                    <button class="write-btn" type="button">등록</button>
+                                </div>
+                                <div class="answer-input">
+                                    <div class="edit-part">
+                                        <div class="pearl-logo">
+                                            <img src="/images/profile/circle.png">
+                                            <p> PEARLING </p>
+                                        </div>
+                                        <div class="edit-btn">
+                                            <button class="update-btn" >수정</button>
+                                            <p> </p>
+                                            <button class="delete-btn" type="button">삭제</button>
+                                            <p> </p>
+                                            <button class="put-btn" type="button">삭제</button>
+                                        </div>
+                                    </div>
+                                    <textarea class="admin-text"></textarea>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+                </div>
+            </div>
+        </form>
+    </main>
+    <!-- /wrap -->
+</body>
+</html>

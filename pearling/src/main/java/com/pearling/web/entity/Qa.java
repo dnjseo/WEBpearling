@@ -17,9 +17,8 @@ public class Qa {
     private String content;
     private Date regdate;
     private Integer memberId;
-    private Integer qaCategoryId;
     private Integer securityCheck;
+    private String memberNickname;
+    private Integer qaStatus;
     private Integer newId;
-    private String qaCategoryName;
-    private String qaCommentContent;
 }

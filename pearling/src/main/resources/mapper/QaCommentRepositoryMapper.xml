@@ -1,0 +1,30 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pearling.web.repository.QaCommentRepository">
+      
+   <select id="findAll" resultType="com.pearling.web.entity.QaComment">
+      select * from qa_comment
+      where qa_id = #{qaId}
+   </select>
+      
+   <insert id="save">
+      insert into qa_comment (answer, qa_id, role_id) 
+      values(#{answer}, #{qaId}, #{roleId})
+   </insert>
+
+   <delete id="delete">
+      delete from qa_comment
+      where id = #{id}
+   </delete>
+
+   <update id="update">
+   update qa_comment
+   <set>
+      <if test="answer != null">answer = #{answer}</if>
+   </set>
+   where id = #{id}
+   </update>
+
+</mapper>

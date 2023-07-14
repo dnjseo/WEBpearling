@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pearling.web.controller.BaseController;
+import com.pearling.web.entity.Notice;
 import com.pearling.web.entity.Qa;
 import com.pearling.web.service.QaService;
 
@@ -20,7 +21,7 @@ public class QaController extends BaseController {
     @Autowired
     private QaService service;
 
-@GetMapping("list")
+	@GetMapping("list")
 	public String list(
 			@RequestParam(name = "s", required = false) boolean editShow,
 			Model model) {
@@ -38,4 +39,18 @@ public class QaController extends BaseController {
 
 		return "admin/qa/list";
     }
+
+	@GetMapping("detail")
+	public String detail(Model model, @RequestParam int id,
+						@RequestParam(name = "s", required = false) boolean editShow) {
+		
+		model.addAttribute("headerShow", false);
+		
+		Qa qa = service.findById(id);
+		model.addAttribute("qa", qa);
+
+		return "admin/qa/detail";
+	}
+	
 }
+

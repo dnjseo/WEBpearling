@@ -3,45 +3,37 @@
     layout:decorate="~{inc/layout}">
 
 <head>
-    <title>qa_write</title>
-    <link href="/css/qa/setting-qa-write.css" type="text/css" rel="stylesheet">
+    <title>Document</title>
+    <link href="/css/qa/detail.css" type="text/css" rel="stylesheet">
     <script src="/js/qa/post.js"></script>
 </head>
-
 <body>
     <!-- header -->
     <!-- wrap -->
     <main class="wrap" layout:fragment="content">
-        <div class="tico">
-            <form>
-                <div class="qa-title">
-                        <h2 class="d-none">문의 제목</h3>
-                        <p>문의 제목<p>
-                        <input type="text" name="title" maxlength="50">
-                    <div class="qa-lock">
-                        <label for="checkbox">비밀글</label>
-                        <input type="checkbox" name="lock">
+        <form class="qa-post-form">
+            <div class="qa-list">
+                <h2 class="d-none">공지사항 내용</h2>
+                <div class="qa-box">
+                    <div class="qa-content">
+                        <div class="qa-title">
+                            <input type="text" class="qa-title" name="title" placeholder="제목을 입력하세요" maxlength="80"></input>
+                            <div class="qa-secret">
+                                <label for="checkbox">비밀글</label>
+                                <input type="checkbox" name="lock">
+                            </div>
+                        </div>
+                        <textarea class="qa-context" name="content" rows="20" cols="100" placeholder="내용을 입력하세요"></textarea>
+                        <div class="add-btn">
+                            <button class="write-btn" onClick="location.href='list'">등록</button>
+                        </div>
                     </div>
                 </div>
-                <div class="qa-context">
-                    <h2 class="d-none">문의 내용</h3>
-                    <p>문의 내용</p>
-                    <textarea name="content" rows="20" cols="100"></textarea>
-                </div>
-                <input type="hidden" name="memberId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
-            </form>
-        </div>
-
-        <!-- 등록 -->
-        <div>
-            <h2 class="d-none">등록</h2>
-            <div class="btn">
-                <button class="write-btn" onclick="location.href='list'">등록</button>
+                <input type="hidden" name="memberId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}">
+                <input type="hidden" name="writerNickname" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.nickname}" />
             </div>
-        </div>
-
+        </form>
     </main>
     <!-- /wrap -->
 </body>
-
 </html>

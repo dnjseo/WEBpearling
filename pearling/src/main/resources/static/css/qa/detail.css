@@ -36,6 +36,7 @@
 }
 
 .qa-title input[type="text"] {
+    width: 50%;
     height: 100%;
     box-sizing: border-box;
     padding: 5px;

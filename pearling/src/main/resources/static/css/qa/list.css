@@ -30,7 +30,7 @@
 
 .item{
     display: grid;
-    grid-template-columns: 1fr 1fr 0.5fr 2fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 0.5fr 1.5fr 1.5fr;
     text-align: center;
     padding: 12px 5px 12px 5px;
     border-top: 1px solid #ccc;
@@ -49,13 +49,13 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-align: start;
+    text-align: center;
     
 }
 
 .nickname{
     font-size: 12px;
-    font-family: 'Pretendard-Regular';
+    color:#b4b4b4
 }
 
 .btn {

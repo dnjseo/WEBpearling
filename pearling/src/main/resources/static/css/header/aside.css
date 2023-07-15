@@ -22,21 +22,26 @@
     }
 
     .nickname{
-        font-size: 24px;
+        color: #b4b4b4;
+        font-size: 18px;
     }
 
     .name{
-        font-size: 14px;
+        font-size: 12px;
+    }
+
+    .aside-menu{
+        backdrop-filter: blur(5px);
     }
 
     .aside-menu > div > p {
         font-weight: bolder;
-        font-size: 24px;
+        font-size: 18px;
         text-align: center;
     }
 
     .aside-menu >div > ul{
-        padding: 20px;
+        padding: 14px;
     }
 
     .aside-menu >div > ul > li{
@@ -49,7 +54,7 @@
     }
     
     .aside-menu >div > ul > li > a{ 
-        font-size: 16px;
+        font-size: 14px;
 
         border-bottom: 1px solid #D9D9D9;
         padding: 10px;
@@ -96,6 +101,10 @@
 
     .name{
         font-size: 18px;
+    }
+
+    .aside-menu{
+        background-color: #FFFFFF;
     }
 
     .aside-menu > div > p {
@@ -277,7 +286,6 @@
     padding-top: 20px;
     padding-bottom: 70px;
     width: 100%;
-    background-color: #FFFFFF;
 }
 
 

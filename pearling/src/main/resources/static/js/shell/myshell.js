@@ -70,7 +70,19 @@ function printCalendarEvent(calendar) {
         let scheduleStartTime = schedule.startTime;
         let scheduleEndTime = schedule.endTime;
 
+        let schedulePlace = schedule.place;
+        let scheduleFriends = schedule.friendNicknames;
+        let scDescription = "";
         let event = null;
+        let deP; let deF;
+
+        if(schedulePlace)
+        deP =  `${schedulePlace?  "🔖 : "+schedule.place : ''}`
+
+        if(scheduleFriends && scheduleFriends != '')
+        deF = `${scheduleFriends? "🩶 : "+ scheduleFriends : ''}`
+
+        scDescription = `${deP? deP+"<br>" : ''}${deF? deF:''}`
 
         if (!scheduleStartTime && !scheduleEndTime && scheduleStartDate == scheduleEndDate) {
           event = {
@@ -78,6 +90,7 @@ function printCalendarEvent(calendar) {
             start: scheduleStartDate,
             end: scheduleEndDate,
             color: scheduleColor,
+            description: scDescription,
             allDay: true
           };
         } else if (!scheduleStartTime && !scheduleEndTime && scheduleStartDate != scheduleEndDate) {
@@ -89,6 +102,7 @@ function printCalendarEvent(calendar) {
             start: scheduleStartDate,
             end: endDate,
             color: scheduleColor,
+            description: scDescription,
             allDay: true,
           };
         } else {
@@ -97,6 +111,7 @@ function printCalendarEvent(calendar) {
             start: scheduleStartDate + 'T' + scheduleStartTime,
             end: scheduleEndDate + 'T' + scheduleEndTime,
             color: scheduleColor,
+            description: scDescription,
             allDay: false
           };
         }
@@ -123,6 +138,11 @@ document.addEventListener('DOMContentLoaded', function () {
     
     eventDidMount: function(info) {
       let time = null;
+      let des = '';
+
+      if(info.event.extendedProps.description != undefined){
+        des = info.event.extendedProps.description 
+      }
 
       if( info.event.end && info.event.start != info.event.end) {
         time =  info.event.startStr.slice(0, 10)+' '+info.event.startStr.slice(11, 16)
@@ -141,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class="tippy-title tg" style="background-color:${info.event.backgroundColor}">
             <p>${info.event.title}</p>
           </div>
-          <p class="tippy-content"> 🕓 : ${time}</p>
+          <p class="tippy-content"> 🕓 : ${time} <br> ${des}</p>
           </div>`
          //이벤트 타이틀을 툴팁으로 가져옵니다. 
           ,placement: 'top'

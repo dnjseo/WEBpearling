@@ -16,6 +16,8 @@ window.addEventListener("load", function(e) {
     dmf.style.display="none";
     header.classList.remove('bgnone');
     header.classList.add('bgshow');
+    document.querySelector('#shell-menu').style.opacity="0";
+    document.querySelector('#myshell-menu').style.opacity="0";
     console.log("클릭");
   });
 
@@ -27,7 +29,8 @@ window.addEventListener("load", function(e) {
     dmf.style.display="block";
     header.classList.remove('bgshow');
     header.classList.add('bgnone');
-
+    document.querySelector('#shell-menu').style.opacity="1";
+    document.querySelector('#myshell-menu').style.opacity="1";
   
   });
   

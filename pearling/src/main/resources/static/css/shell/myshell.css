@@ -16,22 +16,29 @@
     #ms4 {
         width: 90%;
     }
+
+    #ms3{
+        width: 90%;
+        min-width: 350px;
+    }
+
 }
 
   /* PC 규격 */
   @media screen and (min-width: 769px) {
 
-    .wrap, 
-    #calendar, #ms3 {
+    #dmf{
+        width: 60vw;
+        margin-right: 0vw;
+    } 
+
+    .wrap
+    , #calendar, #ms3, #ms4 {
         width: 100%;
     }
 
-    #ms4{
-        width: 100%;
-    }
-
-    aside {
-        margin-left: 12vw;
+    .box-container{
+        justify-content: normal;
     }
 
 }
@@ -101,12 +108,6 @@ body{
     color : rgba(165, 135, 224, 1)!important;
 }
 
-  /* ==========(ms3) 다이어리 섹션 ===================== */
-
-#ms3{
-    width: 90%;
-    min-width: 350px;
-}
 
   /* ==========(ms4) 스케쥴 섹션 ===================== */
 

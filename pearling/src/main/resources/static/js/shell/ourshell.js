@@ -99,21 +99,25 @@ async function printFriendScheduleList(osDate) {
               <img src="/resources/img/${following.profileImage}">
               <p>${following.nickname}</p>
             </div>
-            <div class="scheduleContents">
-              <p>${todoItems ? '할 일.' : ''}</p>
-              <ul>
-                ${todoItems}
-              </ul>
+
+            <div class = sc-contents>
+              <div class="scheduleContents">
+                <p>${todoItems ? '할 일.' : ''}</p>
+                <ul>
+                  ${todoItems}
+                </ul>
+              </div>
+
+              <div class="${todoItems ? 'os-sche-title' : 'd-none'}"></div>
+
+              <div class="scheduleContents ">
+                <p>${scheduleItems ? '일정.' : ''}</p>
+                <ul>
+                    ${scheduleItems}
+                </ul>
+              </div>
             </div>
 
-            <div class="${todoItems ? 'os-sche-title' : 'd-none'}"></div>
-
-            <div class="scheduleContents ">
-              <p>${scheduleItems ? '일정.' : ''}</p>
-              <ul>
-                  ${scheduleItems}
-              </ul>
-            </div>
           </li>
         </ul>
       `;

@@ -6,43 +6,44 @@
 <!--header-wrap-->
 <header class="header-wrap">
 
-    <!--header-->
-    <div id="header" class="header bgnone">
-        <h1 class="d-none">펄링</h1>
-        <a class="logo" href="/shell/ourshell"><img class=headerLogoimg src="/images/logo/realLogo.svg" alt="logo"/></a>
-        <div class="left">
-            <form action="/search/list" method="get" class="find">
-                <p class="admin-setting"><a href="/admin/index"><img src="/images/header/setting.svg"></a></p>
-                <img class="hb searchIcon" src="/images/header/search.svg" alt="logo"/>
-                <input class="searchInput" type="text" name="q">
-                <img class="search-close" src="/images/header/close.svg"></img>
-                <input type="submit">
-            </form>   
-            <div class="alert"><a href="/notification/list">
-                <img class="icon-alert" src="/images/header/alert.svg" alt="alret"></a></div>
-            <img class="sub-close hb" src="/images/header/close.svg"></img>
-            <div class="menu"><img class="hb" src="/images/header/hamburger.svg" alt="logo"/></div>
-        </div>    
-    </div>  
-   <!-- header-->
+        <!--header-->
+        <div id="header" class="header bgnone">
+            <h1 class="d-none">펄링</h1>
+            <a class="logo" href="/shell/ourshell"><img class=headerLogoimg src="/images/logo/logotext2.png" alt="logo"/></a>
+            <div class="left">
+                <form action="/search/list" method="get" class="find">
+                    <p class="admin-setting"><a href="/admin/index"><img src="/images/header/setting.svg"></a></p>
+                    <img class="hb searchIcon" src="/images/header/search.svg" alt="logo"/>
+                    <input class="searchInput" type="text" name="q">
+                    <img class="search-close" src="/images/header/close.svg"></img>
+                    <input type="submit">
+                </form>   
+                <div class="alert"><a href="/notification/list">
+                    <img class="icon-alert" src="/images/header/alert.svg" alt="alret"></a></div>
+                <img class="sub-close hb" src="/images/header/close.svg"></img>
+                <div class="menu"><img class="hb" src="/images/header/hamburger.svg" alt="logo"/></div>
+            </div>    
+        </div>  
+    <!-- header-->
+    
 
-    <!-- 쉘 메뉴 -->
-    <div id ="shell-menu">
-        <h1 class="d-none">쉘 메뉴</h1>
-        <div class="ourShell notselected" >
-            <a href="/shell/ourshell">
-                <!-- <img src="images/main/s1/clamOpen.png"> -->
-                <p class="osfont">our shell</p>
-            </a>
+        <!-- 쉘 메뉴 -->
+        <div id ="shell-menu">
+            <h1 class="d-none">쉘 메뉴</h1>
+            <div class="ourShell notselected" >
+                <a href="/shell/ourshell">
+                    <!-- <img src="images/main/s1/clamOpen.png"> -->
+                    <p class="osfont">our shell</p>
+                </a>
+            </div>
+            |
+            <div class="myShell notselected">
+                <a href="/shell/myshell">
+                    <!-- <img src="images/main/s1/clamClose.png"> -->
+                    <p class="msfont">my shell</p>
+                </a>
+            </div>
         </div>
-        |
-        <div class="myShell notselected">
-            <a href="/shell/myshell">
-                <!-- <img src="images/main/s1/clamClose.png"> -->
-                <p class="msfont">my shell</p>
-            </a>
-        </div>
-    </div>
         <!-- 쉘 메뉴 -->
 
         <div id="s1"  style="display: none;">
@@ -57,7 +58,7 @@
         </div>
 
         <!-- 마이쉘 하위메뉴 -->
-        <div id="myshell-menu">
+        <div id="myshell-menu" class="no-sticky">
             <h1 class="d-none">마이쉘 하위메뉴</h1>
             <a class = "monthly" href="/shell/myshell">🌙 먼슬리</a>
             <a class = "diary" href="/diary/list">📓 다이어리</a>

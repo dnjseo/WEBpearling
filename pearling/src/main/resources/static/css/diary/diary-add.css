@@ -501,3 +501,84 @@ select {
 .diary-value-alert::placeholder{
 color: rgb(247, 150, 150); 
 }
+ 
+  /* 모바일 규격 */
+  @media screen and (max-width: 768px) {
+
+    .diary-edit-del-wrap >:nth-child(1) {
+        background: #FFFFFF;
+    }
+
+    .diary-add-detail-span {
+        background: #FFFFFF;
+    }
+}
+
+  /* PC 규격 */
+  @media screen and (min-width: 769px) {
+
+    .wrap {
+        width: 100%;
+    }
+
+    .diary-edit-del-wrap {
+        width: 100%;
+    }
+
+        .diary-edit-del-wrap >:nth-child(1) {
+            width: 100%;
+            margin-top: 0;
+            max-width: 1500px;
+
+            background: none;
+        }
+
+    .diary-edit-form,
+    .diary-add-form {
+        width: 100%;
+    }
+
+        .diary-edit-form > :nth-child(1) {
+            margin-right: 0;
+        }
+
+    .diary-detail-span,
+    .diary-add-detail-span {
+        width: 100%;
+        max-width: inherit;
+    }
+
+    .diary-add-detail-span {
+        margin-top: 0;
+        background: none;
+    }
+
+    .diary-detail-input {
+        min-height: 500px;
+    }
+
+    .diary-btns {
+        width: 100%;
+        max-width: inherit;
+    }
+
+    .diary-post-btns {
+        width: 100%;
+        max-width: inherit;        
+    }
+
+    .diary-comment-section {
+        width: 100%;
+        max-width: inherit;
+    }
+
+    .diary-detail-date,
+    .diary-detail-title,
+    .diary-detail-input {
+        border-radius: 12px;
+        padding: 5px;
+    }
+
+}
+
+

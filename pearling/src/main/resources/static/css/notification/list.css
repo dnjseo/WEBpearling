@@ -145,3 +145,14 @@
 
 }
 
+  /* 모바일 규격 */
+  @media screen and (max-width: 768px) {
+}
+
+  /* PC 규격 */
+  @media screen and (min-width: 769px) {
+
+    main {
+        width: 100%;
+    }
+}

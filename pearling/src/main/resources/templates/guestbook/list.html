@@ -65,18 +65,19 @@
             <h1 class="d-none">방명록</h1>
             <div class="book">
                 <div class="bar">
-                    <p class="number">no.<span th:text="${stat.index} + 1"></span></p>
+                    <div class="info-zip">
+                    <!-- <p class="number">NO<span th:text="${stat.index} + 1"></span></p> -->
                     <p class="from-id-nickname" th:text="${g.fromNickname}"></p>
-                    <p>[<span class="date" th:text="${#dates.format(g.regdate, 'yyyy-MM-dd')}"></span>]</p>
+                    <p><span class="date" th:text="${#dates.format(g.regdate, 'yyyy-MM-dd')}"></span></p>
+                </div>
                     <div class="btn-zip">
-                        <p class="btn updateBtn"><a th:href="@{/guestbook/post/{id}(id=${userId}, s=true, gid=${g.id})}">수정</a></p> <!-- 수정 버튼 클릭 시 링크에 방명록 ID 포함 -->
-                        <p class="btn deleteBtn">삭제</p>
-                        <p class="guestbook-close">x</p>
+                        <p class="btn updateBtn"><a th:href="@{/guestbook/post/{id}(id=${userId}, s=true, gid=${g.id})}"></a></p> <!-- 수정 버튼 클릭 시 링크에 방명록 ID 포함 -->
+                        <p class="btn deleteBtn"></p>
+                        <p class="guestbook-close"></p>
                     </div>
                 </div>
-                <div class="pearl">
-                    <p th:text="${g.content}"></p>
-                </div>
+                <div class="guestbook-pearl-content"><p th:text="${g.content}"></p></div>
+                <div class="pearl"></div>
                 <p id="from-id" class="from-id-hidden" type="hidden" th:text="${g.fromId}"></p>
             </div>
         </section>

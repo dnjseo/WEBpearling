@@ -65,3 +65,34 @@
 .add-btn:active {
     opacity: 0.8;
 }
+
+  /* 모바일 규격 */
+  @media screen and (max-width: 768px) {
+
+}
+
+  /* PC 규격 */
+  @media screen and (min-width: 769px) {
+
+    .wrap {
+        width: 100%;
+    }
+
+    #d1 {
+        width: 100%;
+    }
+
+    .pwd1-box, .pwd2-box, .pwd3-box {
+        max-width: 800px;
+    }
+
+    .pw1-box > label,
+    .pw2-box > label,
+    .pw2-box > label {
+        max-width: 800px;
+    }
+
+    .pwd-change-box>div>input {
+        min-width: 800px;
+    }
+}

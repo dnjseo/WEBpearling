@@ -44,5 +44,10 @@ public class QaServiceImp implements QaService{
         return repository.findById(id);
     }
 
+    @Override
+    public List<Qa> getListByQuery(String query) {
+        return repository.findAllQa(query);
+    }
+
     
 }

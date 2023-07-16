@@ -15,28 +15,30 @@
    <!-- header -->
     <!-- wrap -->
     <main class="following-wrap" layout:fragment="content">
-        <div class="following-follower">
-            <h2 class="d-none">메뉴</h2>
-            <div class="following-selection">
-                <p class="following">팔로잉</p>
-                <p>|</p>
-                <p class="follower"><a href="followerList">팔로워</a></p>
+        <div class="ffing-list">
+            <div class="following-follower">
+                <h2 class="d-none">메뉴</h2>
+                <div class="following-selection">
+                    <p class="following">팔로잉</p>
+                    <p>|</p>
+                    <p class="follower"><a href="followerList">팔로워</a></p>
+                </div>
             </div>
+            <form class="following-list">
+                <div>
+                    <h2 class="d-none">목록</h2>
+                    <ul class="followings">
+                        <li th:each="f : ${followings}">
+                            <img src = "/images/profile/profile_yj.png" th:src="@{'/resources/img/' + ${f.profileImage}}">
+                            <a th:text="${f.nickname}" th:href="@{/shell/myshell/{id}(id=${f.id})}">예린</a>
+                            <button class="following-statement" th:data-id="${f.statusId}">팔로잉</butoon>
+                            <input type="hidden" name="hideFollowingId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
+                            <input type="hidden" name="hideFollowerId" sec:authorize="isAuthenticated()" th:value="${f.id}"/>
+                        </li>
+                    </ul>
+                </div>     
+            </form>    
         </div>
-        <form class="following-list">
-            <div>
-                <h2 class="d-none">목록</h2>
-                <ul class="followings">
-                    <li th:each="f : ${followings}">
-                        <img src = "/images/profile/profile_yj.png" th:src="@{'/resources/img/' + ${f.profileImage}}">
-                        <a th:text="${f.nickname}" th:href="@{/shell/myshell/{id}(id=${f.id})}">예린</a>
-                        <button class="following-statement" th:data-id="${f.statusId}">팔로잉</butoon>
-                        <input type="hidden" name="hideFollowingId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
-                        <input type="hidden" name="hideFollowerId" sec:authorize="isAuthenticated()" th:value="${f.id}"/>
-                    </li>
-                </ul>
-            </div>     
-        </form>    
     </main> 
     <!-- wrap -->    
 </body>

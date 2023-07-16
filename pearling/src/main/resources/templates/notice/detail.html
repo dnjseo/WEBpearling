@@ -24,6 +24,8 @@
                 </div>
             </div>
             <div class="notice-btn">
+
+                
                 <input type="hidden" name="hiddenmemberId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}">
                 <input type="hidden" name="hiddenRoleId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.roleId}">
             </div>

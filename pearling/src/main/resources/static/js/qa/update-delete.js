@@ -99,6 +99,7 @@ window.addEventListener("DOMContentLoaded", function(e){
 
 })
 
+// 댓글 목록 불러오기
 function qaCommentListLoad(url){
     let qaCommentList = document.querySelector(".answer-input");
 

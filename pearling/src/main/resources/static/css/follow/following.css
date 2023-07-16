@@ -1,4 +1,32 @@
+/* PC 규격 */
+@media screen and (min-width: 769px) {
+
+    .following-wrap, .ffing-list, .following-follower, .following-selection, .following-list, .following-list>div>ul {
+        width: 100%;
+  
+    }
+   
+}
+
+
+/* 모바일 규격 */
+@media screen and (max-width: 768px) {
+    
+    .following-follower, .following-selection, .following-list, .following-list>div>ul {
+        width: 80%;
+    }    
+}
+
+.ffing-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
 .following-wrap{
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,12 +39,12 @@
     flex-direction: column;
     align-items: center;
     margin: auto;
-    width: 80%;
+    /* width: 80%; */
     height: 47px;
 }
 
 .following-selection{
-    width: 80%;
+    /* width: 80%; */
     height: 47px;
     background: rgba(165, 135, 224, 0.2);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -41,7 +69,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
+    /* width: 80%; */
 }
 
 .following-list > div{
@@ -52,7 +80,7 @@
 }
 
 .following-list>div>ul{
-    width: 80%;
+    /* width: 80%; */
 }
 
 .following-list>div>ul>li{

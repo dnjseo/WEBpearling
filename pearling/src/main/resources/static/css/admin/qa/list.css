@@ -1,16 +1,11 @@
-/* .a{
-    align-items: center;
-    justify-self: start;
-} */
-
-.wrap{
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
-}
-
+/* PC 규격 */
 @media screen and (min-width: 769px) {
+
+    .wrap{
+        width: 100%;
+    }
 }
+
 
 .qa-list{
     display: flex;
@@ -31,6 +26,7 @@
     padding-bottom: 20px;
 }
 
+
 .item{
     display: grid;
     grid-template-columns: 1fr 1fr 0.5fr 1.5fr 1.5fr;
@@ -38,6 +34,7 @@
     padding: 12px 5px 12px 5px;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
+    align-items: center;
 }
 
 .secret{

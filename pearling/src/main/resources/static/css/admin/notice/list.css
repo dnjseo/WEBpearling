@@ -1,3 +1,14 @@
+
+  /* PC 규격 */
+  @media screen and (min-width: 769px) {
+
+    .wrap{
+        width: 100%;
+    }
+  }
+
+/* ---------------------------------------- */
+
 .notice-icon{
     display: flex;
     width: 40px;
@@ -46,7 +57,9 @@
 }
 
 .notice-date{
-    margin-left: 77%;
+    display: flex;
+    justify-content: end;
+    width: 90%;
     color: #A3A3A3;
 }
 

@@ -15,6 +15,13 @@
 <body>
     <!-- wrap -->
     <main layout:fragment="content" id="wrap" class="wrap">
+        <form class="qa-search" method="get" action="list">
+            <div class="search-input">
+                <image src="/images/qa/search.svg"></image>
+                <input type="text" placeholder="궁금한 질문을 검색해 보세요!" name="q"> 
+            </div>
+            <button type="submit">검색</button>
+        </form>
         <div class="qa-list">
             <h2 class="d-none">문의 목록</h2>
             <div class="qa-list-head">
@@ -33,7 +40,7 @@
                                 <div class="secret"></div>
                             </div>
                             <div class="titles" th:text="${q.title}">저희 조장을 신고합니다</div>
-                            <div clas="two-option">
+                            <div class="two-option">
                                 <div class="nickname" th:text="${q.memberNickname}">예린짱짱123</div>
                                 <div class="date" th:text="${#dates.format(q.regdate, 'yyyy-MM-dd')}">23.05.03</div>
                             </div>
@@ -47,6 +54,14 @@
                 </div>
             </div>
         </div>
+        <div class="non-result" th:unless="${not #lists.isEmpty(list)}">
+            <div>
+                <p th:text="${searchResult}"></p>
+                <p>  에 대한 검색 결과가 없습니다.</p>
+            </div>
+            <p>첫 글을 남겨 주세요!</p>
+        </div>
+                
         <div class="btn">
             <button class="write-btn"><a href="post">📝</a></button>
         </div>

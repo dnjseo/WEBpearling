@@ -300,6 +300,8 @@
     left: 50%;
     transform: translateX(-50%);
 
+    justify-content: center;
+    align-items: center;
 }
 
 .logoutBtn > a{

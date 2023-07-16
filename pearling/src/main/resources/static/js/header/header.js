@@ -52,6 +52,16 @@ window.addEventListener("load", function(e) {
     }
   });
 
+  let roleId = document.querySelector('input[name="roleId"]').value;
+  let adminHeader1 = this.document.querySelector("#shell-menu");
+  let adminHeader2 = this.document.querySelector(".no-sticky"); 
+  console.log(roleId);
+
+  if(roleId == 1){
+    adminHeader1.style.display = "none";
+    adminHeader2.style.display = "none";
+  }
+  
 });
 
 window.addEventListener("DOMContentLoaded", function() {

@@ -42,7 +42,15 @@ window.addEventListener("DOMContentLoaded", function(e) {
     writeBtn.addEventListener("click", function(e){
         e.preventDefault();
         
-        let answer = document.querySelector("textarea[name='QaAnswer']").value;
+        let answerTextarea = document.querySelector("textarea[name='QaAnswer']");
+        let answer = answerTextarea.value;
+
+        if (answer.trim() === "") {
+            answerTextarea.placeholder = "내용은 필수로 작성해야 합니다.";
+            return; 
+        }
+
+
         let roleId = document.querySelector("input[name='roleId']").value;
         
         console.log(answer);

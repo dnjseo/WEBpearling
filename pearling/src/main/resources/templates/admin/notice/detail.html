@@ -19,7 +19,8 @@
                 <div class="notice-box">
                     <div class="notice-content">
                         <input type="text" class="notice-title" name="title"  th:value="${notice.title}"></input>
-                        <textarea class="notice-context" name="content" rows="20" cols="100" th:text="${notice.content}"></textarea>
+                        <textarea class="notice-context" name="content" cols="100" rows="20" th:text="${notice.content}">
+                        </textarea>
                     </div>
                 </div>
             </div>

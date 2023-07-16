@@ -19,24 +19,48 @@ public class QaController extends BaseController {
 	@Autowired
 	private QaService service;
 
+	//페이징 처리
+	int pageSize = 10;
+
 	@GetMapping("list")
 	public String list(
 			@RequestParam(name = "s", required = false) boolean editShow,
+			@RequestParam(name = "p", defaultValue = "1") int page,
+			@RequestParam(name = "q", required = false) String query,
 			Model model) {
 
 		// if (editShow)
 		// model.addAttribute("editShow", 1);
 		// else
 		// model.addAttribute("editShow", 2);
+		
+		// int totalCount = service.count();
+		// int totalPages = (int) Math.ceil((double) totalCount / pageSize);
 
-		model.addAttribute("headerShow", true);
-		List<Qa> list = service.getList();
+		// if (page < 1 || page > totalPages) 
+		// 	page = 1;
+		
+		List<Qa> list = null;
+		String searchResult = "";
+		
+		if(query == null)
+		list = service.getList();
+		else{
+			list = service.getListByQuery(query);
+			searchResult = query;
+		}
+		
 		model.addAttribute("list", list);
+		model.addAttribute("searchResult", searchResult);
+		// model.addAttribute("totalPages", totalPages);
+		// model.addAttribute("currentPage", page);
+		
+		model.addAttribute("headerShow", true);
 
 		System.out.println(list);
 
 		return "qa/list";
-	}
+    }
 
 	@GetMapping("post")
 	public String post(

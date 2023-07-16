@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>qa</title>
     <link href="/css/import.css" type="text/css" rel="stylesheet">
-    <link href="/css/qa/list.css" type="text/css" rel="stylesheet">
+    <link href="/css/admin/qa/list.css" type="text/css" rel="stylesheet">
     <script src="/js/qa/list.js"></script>
     <script src="/js/qa/post.js"></script>
 </head>
@@ -24,7 +24,7 @@
                     <p th:text="'(' + ${#lists.size(list)} + ')'"></p>
                 </div>
             </div>
-            <div class="qa-list-body" th:each="q, stat : ${list}">
+            <div class="qa-list-body" th:each="q : ${list}">
                 <div>
                         <a class="item" a href="detail" th:href="@{../qa/detail(id=${q.id})}">
                             <div class="num" th:text="${q.newId}">150</div>

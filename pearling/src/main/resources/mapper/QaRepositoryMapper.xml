@@ -16,7 +16,32 @@
       ORDER BY regdate ASC;
    </select>
 
-    <select id="findById" resultType="com.pearling.web.entity.Qa" parameterType="int">
+  <select id="findAllQa" resultType="com.pearling.web.entity.Qa">
+   SELECT *,
+      ROW_NUMBER() OVER (ORDER BY regdate ASC) AS newId
+   FROM qa
+   <trim prefix="WHERE" prefixOverrides="AND|OR">
+      <if test="query != null">
+         <choose>
+         <when test="type == 'title'">
+            title LIKE CONCAT('%', #{query}, '%')
+         </when>
+         <when test="type == 'content'">
+            content LIKE CONCAT('%', #{query}, '%')
+         </when>
+         <when test="type == 'member_nickname'">
+            member_nickname LIKE CONCAT('%', #{query}, '%')
+         </when>
+         <otherwise>
+            title LIKE CONCAT('%', #{query}, '%') OR content LIKE CONCAT('%', #{query}, '%') OR member_nickname LIKE CONCAT('%', #{query}, '%')
+         </otherwise>
+         </choose>
+      </if>
+   </trim>
+   ORDER BY regdate ASC
+   </select>
+
+   <select id="findById" resultType="com.pearling.web.entity.Qa" parameterType="int">
      select * from qa
      where id = #{id}
    </select>

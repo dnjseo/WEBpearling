@@ -9,10 +9,13 @@ import com.pearling.web.entity.Qa;
 @Mapper
 public interface QaRepository {
     List<Qa> findAll();
+    List<Qa> findAllQa(String query);
 
     Qa findById(Integer id);
     int save(Qa qa);
     int update(Qa qa);
     int delete(Integer id);
+
+
 }
 

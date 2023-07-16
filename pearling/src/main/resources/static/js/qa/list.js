@@ -1,4 +1,5 @@
 window.addEventListener("load", function (e) {
+
   let qaListBodies = document.querySelectorAll('.qa-list-body');
 
   qaListBodies.forEach(function (qaListBody) {

@@ -32,7 +32,9 @@ public class QaController extends BaseController {
 		// model.addAttribute("editShow", 2);
 
 		model.addAttribute("headerShow", true);
+		
 		List<Qa> list = service.getList();
+			
 		model.addAttribute("list", list);
 
 		System.out.println(list);

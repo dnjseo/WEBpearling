@@ -1,18 +1,68 @@
-/* .a{
-    align-items: center;
-    justify-self: start;
-} */
+/* PC 규격 */
+@media screen and (min-width: 769px) {
 
-.wrap{
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
+    .wrap{
+        width: 100%;
+    }
 }
+
+.qa-search{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.search-input{
+    display: flex;
+    flex-direction: row;
+
+    letter-spacing: -.3px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background-color: #fff;
+
+    padding: 10px 12px;
+    width: 100%;
+    height: 25px;
+    align-items: center;
+    gap: 5px;
+    border-radius: 40px;
+
+}
+
+.search-input img{
+    width: 20px;
+    height: 20px;
+}
+
+.search-input input[type="text"]{
+    line-height: 1.43;
+    letter-spacing: -.3px;
+    border: 0;
+    background: none;
+    width: 100%;
+}
+
+.qa-search > button {
+    width: 55px;
+    height: 35px;
+    box-shadow: 0px 2px 2px rgba(12, 12, 12, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    border: none;
+    color: #797979;
+    font-family: 'Pretendard-Regular';
+    font-size: 12px;
+}
+
 
 .qa-list{
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 
@@ -35,6 +85,7 @@
     padding: 12px 5px 12px 5px;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
+    align-items: center;
 }
 
 .secret{
@@ -56,6 +107,21 @@
 .nickname{
     font-size: 12px;
     color:#b4b4b4
+}
+
+.non-result{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    margin: 40px 0px;
+    font-weight: bold;
+}
+
+.non-result > div{
+    display: flex;
+    flex-direction: row;
 }
 
 .btn {

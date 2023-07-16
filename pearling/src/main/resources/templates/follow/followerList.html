@@ -12,31 +12,33 @@
     <!-- header -->
     <!-- wrap -->
     <main class="follower-wrap" layout:fragment="content">
-        <div class="follower-following">
-            <h2 class="d-none">메뉴</h2>
-            <div class="follower-selection">
-                <p class="following"><a href="followingList">팔로잉</a></p>
-                <p>|</p>
-                <p class="follower">팔로워</p>
-            </div>
-        </div>
-        <form class="follower-list">
-            <div>
-                <h2 class="d-none">목록</h2>
-                <ul class="followers">
-                    <li th:each="f : ${followers}">
-                        <img src="/images/profile/profile_yj.png" th:src="@{'/resources/img/' + ${f.profileImage}}">
-                        <div>
-                            <a th:text="${f.nickname}" th:href="@{/shell/myshell/{id}(id=${f.id})}">예린</a>
-                            <button class= "follow-follower" th:if="${f.isFollower} == 0" th:data-id="${f.statusId}"> 팔로우 </button>
-                        </div>
-                        <button class="follower-delete" th:data-id="${f.statusId}">삭제</button>
-                        <input type="hidden" name="hideFollowingId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
-                        <input type="hidden" name="hideFollowerId" sec:authorize="isAuthenticated()" th:value="${f.id}"/>
-                    </li> 
-                </ul>
-            </div>
-        </form>
+       <div class="ffer-list">
+           <div class="follower-following">
+               <h2 class="d-none">메뉴</h2>
+               <div class="follower-selection">
+                   <p class="following"><a href="followingList">팔로잉</a></p>
+                   <p>|</p>
+                   <p class="follower">팔로워</p>
+               </div>
+           </div>
+           <form class="follower-list">
+               <div>
+                   <h2 class="d-none">목록</h2>
+                   <ul class="followers">
+                       <li th:each="f : ${followers}">
+                           <img src="/images/profile/profile_yj.png" th:src="@{'/resources/img/' + ${f.profileImage}}">
+                           <div>
+                               <a th:text="${f.nickname}" th:href="@{/shell/myshell/{id}(id=${f.id})}">예린</a>
+                               <button class= "follow-follower" th:if="${f.isFollower} == 0" th:data-id="${f.statusId}"> •  팔로우 </button>
+                           </div>
+                           <button class="follower-delete" th:data-id="${f.statusId}">삭제</button>
+                           <input type="hidden" name="hideFollowingId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
+                           <input type="hidden" name="hideFollowerId" sec:authorize="isAuthenticated()" th:value="${f.id}"/>
+                       </li> 
+                   </ul>
+               </div>
+           </form>
+       </div>
     </main>
     <!-- wrap -->
 </body>

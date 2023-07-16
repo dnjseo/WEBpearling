@@ -49,34 +49,49 @@ window.addEventListener('DOMContentLoaded', function (e) {
   let showBtn = delForm.querySelector(".show-btn");
   let showedBtns = delForm.querySelector(".show-diary-del-edit-btn");
   let delBtn = delForm.querySelector(".del-confirm-yes");
-  
-  let urlParams = new URLSearchParams(window.location.search);
-  // console.log("url : " + urlParams);
-  let userId = urlParams.get('uid');
-  // console.log("uid : " + userId);
-  let loginId = document.querySelector("#input-login-id").value;
-  // console.log("loginId : " + loginId);
-  let selectElement = document.querySelector('select[name="diary-scope-id"]');
-  // console.log("selectShow : " + selectElement);
 
+  let urlParams = new URLSearchParams(window.location.search);
+  let userId = urlParams.get('uid');
+  let loginId = document.querySelector("#input-login-id").value;
+
+  let selectElement = document.querySelector('select[name="diary-scope-id"]');
   let diaryDateInput = document.querySelector(".diary-detail-date");
   let diaryTitleInput = document.querySelector(".diary-detail-title");
   let diaryContentInput = document.querySelector(".diary-detail-input");
- 
-  let updateBtn = document.querySelector(".update-btn");
 
-  if(userId == loginId || userId == "") {
-      showBtn.style.display = "block";
-  } else {
-      showBtn.style.display = "none";
-  }
-
-  updateBtn.addEventListener("click", function() {
+  function disabledRemove() {
     selectElement.removeAttribute("disabled");
     diaryDateInput.removeAttribute("disabled");
     diaryTitleInput.removeAttribute("disabled");
     diaryContentInput.removeAttribute("disabled");
+  }
+
+  function disabledAdd() {
+    selectElement.disabled = true;
+    diaryDateInput.disabled = true;
+    diaryTitleInput.disabled = true;
+    diaryContentInput.disabled = true;
+  }
+
+  let updateBtn = document.querySelector(".update-btn");
+
+  if (userId == loginId || userId == "") {
+    showBtn.style.display = "block";
+  } else {
+    showBtn.style.display = "none";
+  }
+
+  updateBtn.addEventListener("click", function () {
+    disabledRemove();
   });
+
+  document.addEventListener('click', function (e) {
+    if (!delForm.contains(e.target)) { // 이벤트 타겟이 폼 밖인 경우
+      // 폼 외부를 클릭한 경우 다시 diabled 속성 true 값으로 변환.
+      disabledAdd();
+      showedBtns.style.display = "none";
+    }
+  }, { capture: true });
 
   showBtn.addEventListener('click', function (e) {
     e.preventDefault();
@@ -104,10 +119,6 @@ window.addEventListener('DOMContentLoaded', function (e) {
   addBtn.addEventListener('click', (e) => {
     e.preventDefault();
     showedBtns.style.display = "none";
-    let selectElement = document.querySelector('select[name="diary-scope-id"]');  
-    let diaryDateInput = document.querySelector(".diary-detail-date");
-    let diaryTitleInput = document.querySelector(".diary-detail-title");
-    let diaryContentInput = document.querySelector(".diary-detail-input");
 
     let inputs = editForm.elements;
     let id = inputs["id"].value;
@@ -120,11 +131,8 @@ window.addEventListener('DOMContentLoaded', function (e) {
     let jsonData = JSON.stringify(formData);
 
     handleUpdate(id, jsonData);
-    
-    selectElement.disabled = true;
-    diaryDateInput.disabled = true;
-    diaryTitleInput.disabled = true;
-    diaryContentInput.disabled = true;
+
+    disabledAdd();
 
   });
 
@@ -143,12 +151,12 @@ window.addEventListener('DOMContentLoaded', function (e) {
     let userId = urlParams.get('uid');
 
     let id;
-    if(userId == '') {
-        id = memberId;
-    } else if(memberId == userId) {
-        id = memberId;
+    if (userId == '') {
+      id = memberId;
+    } else if (memberId == userId) {
+      id = memberId;
     } else {
-        id = userId;
+      id = userId;
     }
 
     console.log("이것이죠" + userId);

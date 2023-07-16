@@ -1,17 +1,17 @@
-.guestbook-plus{
+.guestbook-plus {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.guestbook-write{
+.guestbook-write {
     position: relative;
-    width: 55%;
+    width: 80%;
 }
 
 /* 방명록 입력하는 부분 */
-.guestbook-plus textarea{
+.guestbook-plus textarea {
     margin: 10px 0 20px 0;
 
     width: 100%;
@@ -25,10 +25,10 @@
 }
 
 /* 버튼 공통 스타일 */
-.post-btn{
+.post-btn {
     width: 80px;
     height: 30px;
-    
+
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
     border: none;
@@ -38,17 +38,48 @@
 }
 
 /* 등록부분 */
-.add-btn{
+.add-btn {
     position: absolute;
     right: 0;
 }
 
 /* 수정부분 */
-.guestbook-btns{
+.guestbook-btns {
     position: absolute;
     right: 0;
 }
 
-.guestbook-btns button{
+.guestbook-btns button {
     margin-left: 10px;
+}
+
+/* 모바일 규격 */
+@media screen and (max-width: 768px) {}
+
+/* PC 규격 */
+@media screen and (min-width: 769px) {
+
+    .wrap {
+        width: 100%;
+    }
+
+    .guestbook-write {
+        width: 100%;
+        max-width: inherit;
+    }
+
+    .guestbook-plus textarea {
+        margin-top: 0;
+    }
+
+    .add-btn {
+        position: absolute;
+        right: -15px;
+    }
+
+    .guestbook-btns {
+        position: absolute;
+        right: -15px;
+    }
+
 }

@@ -62,7 +62,7 @@ h1 img {
 }
 
 .clam li img {
-    width: 200px;
+    width: 100px;
     cursor: pointer;
     transition: all 1s ease-in-out;
 }
@@ -75,7 +75,7 @@ p.lock img {
     position: absolute;
     top: 20px;
     right: 10px;
-    width: 30px;
+    width: 20px;
 }
 
 /* 페이징 */
@@ -115,8 +115,9 @@ section.guestbook {
     left: 50%;
     transform: translate(-50%, -50%);
 
-    width: 600px;
-    height: 350px;
+    width: 80%;
+    max-width: 600px;
+    height: 35%;
 
     display: flex;
     flex-direction: column;
@@ -136,7 +137,7 @@ section.guestbook {
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    width: 550px;
+    width: 95%;
     height: 50px;
     margin-top: 20px;
     color: #797979;
@@ -248,7 +249,7 @@ section.guestbook {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 550px;
+    width: 95%;
     padding: 10px;
     transform: translate(-50%, -50%);
     text-align: justify;
@@ -295,3 +296,18 @@ section.guestbook {
 #delete-modal p {
     color: #797979;
 }
+
+  /* 모바일 규격 */
+  @media screen and (max-width: 768px) {
+
+}
+
+  /* PC 규격 */
+  @media screen and (min-width: 769px) {
+
+    .wrap {
+        width: 100%;
+    }
+
+    
+  }

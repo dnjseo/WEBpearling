@@ -36,7 +36,7 @@
                             <input class="diary-detail-date" type="date" name="date">
                             <input class="diary-detail-title" name="title" type="text" placeholder="타이틀을 입력하세요.">
                             <input class="d-none" type="image">
-                            <textarea class="diary-detail-input" name="content" rows="15"></textarea>
+                            <textarea class="diary-detail-input" name="content" rows="15" placeholder="내용을 입력하세요."></textarea>
                             <div class="btns">
                                 <!-- <button>🔒</button> -->
                                 <!-- <input class="file-btn" name="image" type="file"> -->
@@ -45,8 +45,7 @@
                         <div class="diary-post-btns">
                             <select type="submit" name="diary-scope-id">
                                 <option value="1">전체공개</option>
-                                <option value="2">친구공개</option>
-                                <option value="3">비공개</option>
+                                <option value="2">비공개</option>
                             </select>
                             <input type="hidden" name="member-id" sec:authorize="isAuthenticated()"
                                 th:value="${#authentication.principal.id}">
@@ -119,8 +118,7 @@
                                 <div class="diary-scope-summit-btns">
                                     <select type="submit" name="diary-scope-id" disabled>
                                         <option value="1">전체공개</option>
-                                        <option value="2">친구공개</option>
-                                        <option value="3">비공개</option>
+                                        <option value="2">비공개</option>
                                     </select>
                                     <!-- <button class="del-btn">삭제</button>
                                 <button class="add-btn">등록</button> -->

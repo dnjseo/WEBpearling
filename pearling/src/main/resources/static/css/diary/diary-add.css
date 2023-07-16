@@ -106,6 +106,8 @@
 
     .diary-detail-date:disabled {
         background-color: transparent;
+        color: #797979;
+        opacity: 1;
     }
 
 .diary-detail-title {
@@ -119,7 +121,9 @@
 
     .diary-detail-title:disabled {
     background-color: transparent;
-    }
+    opacity: 1;
+    -webkit-text-fill-color: inherit;
+}
 
 
 .diary-detail-input {
@@ -129,8 +133,16 @@
     line-height: 25px;
 }
 
+.diary-detail-input::placeholder {
+    font-style: italic;
+    color: #d0cfcf;
+}
+
     .diary-detail-input:disabled {
     background-color: transparent;
+    opacity: 1;
+    -webkit-text-fill-color: inherit;
+
     }
 
 
@@ -246,6 +258,8 @@
 
             color: #797979;
             font-size: 12px;
+
+            appearance: 0;
         }
 
         .diary-scope-summit-btns>button {
@@ -422,7 +436,7 @@
 
 .comment-update-form {
     display: flex;
-flex-direction: column;
+    flex-direction: column;
 }
 
     .comment-update-form > .comment-update-input {
@@ -512,6 +526,7 @@ color: rgb(247, 150, 150);
     .diary-add-detail-span {
         background: #FFFFFF;
     }
+
 }
 
   /* PC 규격 */
@@ -565,6 +580,10 @@ color: rgb(247, 150, 150);
     .diary-post-btns {
         width: 100%;
         max-width: inherit;        
+    }
+
+    .diary-edit-form > :nth-child(2) {
+        margin-right: 0;
     }
 
     .diary-comment-section {

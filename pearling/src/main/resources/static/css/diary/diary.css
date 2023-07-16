@@ -128,7 +128,6 @@ form {
     align-items: center;
 
     margin-top: 10px;
-    margin-right: 20px;
 
     gap: 10px;
 }
@@ -141,6 +140,13 @@ form {
     align-items: center;
 
     gap: 5px;
+}
+
+.diary-lock {
+    background-image: url(/images/guestbook/lock.svg);
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
 }
 
 /* 플러스 버튼 속성 */

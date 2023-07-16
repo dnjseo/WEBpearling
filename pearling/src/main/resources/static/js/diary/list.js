@@ -61,6 +61,8 @@ function diaryListLoad(url) {
                             class="icon icon-comment"  ${diary.comment ? 'icon-comment-fill' : ''}"></svg>
                             <span>${diary.commentCount}</span>
                         </div>
+                        <div class="${diary.diaryScopeId == 2 ? 'diary-lock' : 'diary-lock d-none'}" value="${diary.diaryScopeId}"></div>
+                        <input type="hidden" data-diary-post-id="${diary.memberId}">
                     </div>
                 </form>
                 </li>`
@@ -68,8 +70,33 @@ function diaryListLoad(url) {
 
                 diaryList.insertAdjacentHTML("beforeend", itemTemplate);
 
+                let diaryLinks = document.querySelectorAll(".diary-href");
+                let diaryScopeIds = document.querySelectorAll(".diary-lock");
+                let diaryMemberIds = document.querySelectorAll("[data-diary-post-id]");
+
+                disabledDiaryList(diaryLinks, diaryScopeIds, diaryMemberIds, mid);
+
             }
         });
+}
+
+function disabledDiaryList(diaryLinks, diaryScopeIds, diaryMemberIds, mid) {
+    for (let i = 0; i < diaryLinks.length; i++) {
+        let diaryLink = diaryLinks[i];
+        let diaryScopeId = diaryScopeIds[i].getAttribute("value");
+        let diaryMemberId = diaryMemberIds[i].getAttribute("data-diary-post-id");
+
+        console.log(diaryMemberId);
+
+        if (diaryScopeId == 2 && !(mid == diaryMemberId)) {
+            diaryLink.style.pointerEvents = "none";
+            diaryLink.setAttribute("aria-disabled", "true");
+
+            diaryLink.addEventListener("click", function(event) {
+                event.preventDefault();
+            });
+        }
+    }
 }
 
 function formatDate(date) {
@@ -79,6 +106,14 @@ function formatDate(date) {
     const day = String(dateObj.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   }
+
+function loadDate() {
+    const dateObj = new Date();
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
 
 
 function printCalendar(calendar){
@@ -139,7 +174,13 @@ window.addEventListener('DOMContentLoaded', function(e) {
         document.querySelector('#myshell-menu .guestbook').href = "/guestbook/list/" + userId
     }
 
-    
+    let id = (userId == null || loginId == userId) ? loginId : userId;
+
+    diaryListLoad(`/api/diary/${loadDate()}/${id}`);
+
+    // for (let scope of diaryScopeIdInputs) {
+    //     console.log("스코프 값은 " + scope.value);
+    // }
     // 캘린더 호출
         
     let calendarEl = document.getElementById('calendar');
@@ -211,6 +252,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
         document.querySelector('.fc-daygrid-day-frame').style.background = 'none';
         diaryListLoad(`/api/diary/${clickedDate}/${id}`);
     });
+
     
     let diaryListSection = document.querySelector(".diary-list-section");
     let diaryList = diaryListSection.querySelector(".diary-list");

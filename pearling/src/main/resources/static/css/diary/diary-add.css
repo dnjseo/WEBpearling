@@ -102,12 +102,14 @@
     border: none;
     margin-top: 10px;
     margin-bottom: 30px;
+    font-family: monospace;
 }
 
     .diary-detail-date:disabled {
         background-color: transparent;
         color: #797979;
         opacity: 1;
+        font-family: monospace;
     }
 
 .diary-detail-title {

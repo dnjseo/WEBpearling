@@ -73,24 +73,34 @@ function diaryListLoad(url) {
                 let diaryLinks = document.querySelectorAll(".diary-href");
                 let diaryScopeIds = document.querySelectorAll(".diary-lock");
                 let diaryMemberIds = document.querySelectorAll("[data-diary-post-id]");
+                let diaryHeartIcons = document.querySelectorAll(".diary-emog");
+                let diaryCommentIcons = document.querySelectorAll(".diary-comment");
 
-                disabledDiaryList(diaryLinks, diaryScopeIds, diaryMemberIds, mid);
+                disabledDiaryList(diaryLinks, diaryScopeIds, diaryMemberIds, diaryHeartIcons, diaryCommentIcons, mid);
 
             }
         });
 }
 
-function disabledDiaryList(diaryLinks, diaryScopeIds, diaryMemberIds, mid) {
+function disabledDiaryList(diaryLinks, diaryScopeIds, diaryMemberIds, diaryHeartIcons, diaryCommentIcons, mid) {
     for (let i = 0; i < diaryLinks.length; i++) {
         let diaryLink = diaryLinks[i];
         let diaryScopeId = diaryScopeIds[i].getAttribute("value");
         let diaryMemberId = diaryMemberIds[i].getAttribute("data-diary-post-id");
+        let diaryHeartIcon = diaryHeartIcons[i];
+        let diaryCommentIcon = diaryCommentIcons[i];
 
         console.log(diaryMemberId);
 
         if (diaryScopeId == 2 && !(mid == diaryMemberId)) {
             diaryLink.style.pointerEvents = "none";
             diaryLink.setAttribute("aria-disabled", "true");
+            diaryLink.innerText = "[비밀글] 작성자만 열람할 수 있습니다.";
+            diaryLink.style.fontSize = "20px";
+            diaryLink.style.fontWeight = "700";
+            diaryLink.style.letterSpacing = "0.2em";
+            diaryHeartIcon.setAttribute("class", "d-none");
+            diaryCommentIcon.setAttribute("class", "d-none");
 
             diaryLink.addEventListener("click", function(event) {
                 event.preventDefault();
@@ -130,25 +140,32 @@ function printCalendar(calendar){
     fetch(url)
     .then(response => response.json())
     .then(list => {
-        for (let diary of list) {
-
+    //   let diaryScopeIds = document.querySelectorAll(".diary-lock");
+  
+      for (let diary of list) {
         let diaryTitle = diary.title;
         let diaryDate = diary.date;
         let diaryContent = diary.content;
-
-    diaryEvent = {
-        title : diaryTitle,
-        start : diaryDate,
-        end : diaryDate,
-        description : diaryContent,
-        color : "#E6E6FA",
-        allDay: true
-
+        let diaryScopeId = diary.diaryScopeId;
+  
+        let diaryEvent = {
+          title: diaryTitle,
+          start: diaryDate,
+          end: diaryDate,
+          description: diaryContent,
+          color: "#E6E6FA",
+          allDay: true
         }
-
-    calendar.addEvent(diaryEvent);
-    }
-});
+  
+        // for (let i = 0; i < diaryScopeIds.length; i++) {
+        //   let diaryScopeId = diaryScopeIds[i].getAttribute("value");
+  
+          if (diaryScopeId == 1) {
+            calendar.addEvent(diaryEvent);
+          }
+          
+      }
+    });
 
     calendar.render();
     calendar.setOption('contentHeight', 350);

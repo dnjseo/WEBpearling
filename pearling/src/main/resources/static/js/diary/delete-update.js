@@ -59,21 +59,15 @@ window.addEventListener('DOMContentLoaded', function (e) {
   let diaryTitleInput = document.querySelector(".diary-detail-title");
   let diaryContentInput = document.querySelector(".diary-detail-input");
 
-  let selectElementValue = selectElement.value;
-  let diaryDateInputValue = diaryDateInput.value;
-  let diaryTitleInputValue = diaryTitleInput.value;
-  let diaryContentInputValue = diaryContentInput.value;
+  let selectElementInput = document.querySelector(".diaryScopeHiddenId");
+  let selectElementId = selectElementInput.value;
+  console.log("밸류값" + selectElementId);
 
-  function contentInit() {
-    const selectElementValue = selectElement.value;
-    const diaryDateInputValue = diaryDateInput.value;
-    const diaryTitleInputValue = diaryTitleInput.value;
-    const diaryContentInputValue = diaryContentInput.value;
-
-    selectElement.value = selectElementValue;
-    diaryDateInput.value = diaryDateInputValue;
-    diaryTitleInput.value = diaryTitleInputValue;
-    diaryContentInput.value = diaryContentInputValue;
+  // 전체공개, 비공개 값 저장
+  if (selectElementId === "1") {
+    selectElement.selectedIndex = 0; // 전체공개 옵션 선택
+  } else {
+    selectElement.selectedIndex = 1; // 비공개 옵션 선택
   }
 
   function disabledRemove() {
@@ -106,7 +100,6 @@ window.addEventListener('DOMContentLoaded', function (e) {
     if (!delForm.contains(e.target)) { // 이벤트 타겟이 폼 밖인 경우
       // 폼 외부를 클릭한 경우 다시 diabled 속성 true 값으로 변환.
       disabledAdd();
-      contentInit();
       showedBtns.style.display = "none";
     }
   }, { capture: true });

@@ -10,23 +10,39 @@
     width: 80%;
 }
 
+.pearl {
+    position: absolute;
+    /* 부모 요소에 position 설정 추가 */
+    top: 75%;
+    left: 97%;
+    transform: translatex(-50%);
+    width: 50px;
+    height: 50px;
+    background: url("/images/guestbook/pearling2.png") no-repeat center center/cover;
+    opacity: 0.5;
+}
+
 /* 방명록 입력하는 부분 */
 .guestbook-plus textarea {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,     system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",     "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    color: #797979;
     margin: 10px 0 20px 0;
 
     width: 100%;
-    height: 500px;
-    background: #FFFFFF;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 14px;
+    min-height: 300px;
+
+    border-radius: 40px;
+    background: #FFF;
+    box-shadow: 0px -23px 25px 0px rgba(199, 192, 196, 0.17) inset, 0px -36px 30px 0px rgba(199, 192, 196, 0.15) inset, 0px -79px 40px 0px rgba(199, 192, 196, 0.10) inset, 0px 16px 8px 0px rgba(199, 192, 196, 0.09) inset, 0px 32px 16px 0px rgba(199, 192, 196, 0.09) inset, 0px 0px 55px 0px #FFF inset;
+
     border: none;
 
-    padding: 20px 0 20px 15px;
+    padding: 50px 0 20px 15px;
 }
 
 /* 버튼 공통 스타일 */
 .post-btn {
-    width: 80px;
+    width: 50px;
     height: 30px;
 
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
@@ -70,6 +86,7 @@
 
     .guestbook-plus textarea {
         margin-top: 0;
+        padding: 50px 0 20px 30px;
     }
 
     .add-btn {

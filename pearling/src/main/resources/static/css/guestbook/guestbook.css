@@ -84,6 +84,7 @@ p.lock img {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-top: 100px;
 }
 
 .pagination li {
@@ -91,7 +92,7 @@ p.lock img {
 }
 
 .pagination li a {
-    font-size: 20px;
+    font-size: 12px;
     padding-right: 20px;
 }
 
@@ -295,6 +296,14 @@ section.guestbook {
 
 #delete-modal p {
     color: #797979;
+}
+
+.modal-content > p:nth-child(1) {
+    color: #797979 !important;
+}
+
+.modal-content {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,     system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",     "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
   /* 모바일 규격 */

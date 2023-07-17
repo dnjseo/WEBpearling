@@ -54,6 +54,18 @@
                     </ul>
                 </div>
 
+                <div class="aside-etc-list">
+                    <p>etc</p>
+                    <ul>
+                        <li><a th:href="${#authorization.expression('hasRole(''ROLE_ADMIN'')')} ? '/admin/notice/list' : '/notice/list'">
+                            공지사항
+                          </a>
+                        </li>
+                        <li><a th:href="${#authorization.expression('hasRole(''ROLE_ADMIN'')')} ? '/admin/qa/list' : '/qa/list'">
+                            QA</a></li>
+                    </ul>
+                </div>
+
                 <div class="logout">
                     <button class="logoutBtn">
                         <a

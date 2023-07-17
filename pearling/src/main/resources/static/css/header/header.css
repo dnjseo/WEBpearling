@@ -39,7 +39,7 @@
 }
 
 .header {
-    width: 95%;
+    width: 90%;
     height: 65px;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.04),
             rgba(0, 0, 0, 0.04)), #FFFFFF;
@@ -52,8 +52,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 30px;
-    padding-right: 30px;
     box-sizing: border-box;
     z-index: 999;
 
@@ -149,7 +147,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    height: 30px;
+    height: 30px;   
 }
 
 .find input[type="submit"] {
@@ -342,7 +340,7 @@ input[type="text"]::placeholder{
 }
 
 .searchIcon{
-    padding-left: 10px;
+    /* padding-left: 10px; */
     height: 27px;
     cursor: pointer;
 }
@@ -419,7 +417,9 @@ input[type="text"]::placeholder{
     display: none;
 
     /* margin-left: 10px; */
-    margin-right: 10px;
+    margin-right: 5px;
+    justify-self: center;
+    align-self: center;
 }
 
 .admin-setting a img{
@@ -499,7 +499,7 @@ input[type="text"]::placeholder{
     }
     
     #myshell-menu {
-        padding-top: 10px;
+        padding-top: 15px;
         position:static;
         top: 30px;
     }
@@ -520,6 +520,10 @@ input[type="text"]::placeholder{
         height: 30px;
         width: 60%;
         /* min-width: 220px; */
+    }
+
+    #s1{
+        width: 80%;
     }
     
 }

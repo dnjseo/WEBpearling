@@ -48,6 +48,27 @@
    WHERE f.follower_id = #{memberId}                 
  </select>
 
+ <select id="findFollowingsListByQuery" resultType="com.pearling.web.entity.Follow">
+   select m.*, f.id status_id
+   from member m
+   join follow f on f.follower_id = m.id
+   where f.following_id = #{memberId}
+   AND m.nickname LIKE CONCAT('%', #{query}, '%')  
+ </select>
+
+ <select id="findFollowersListByQuery" resultType="com.pearling.web.entity.Follow">
+   SELECT m.*, f.id AS status_id,
+      EXISTS (
+         SELECT 1
+         FROM follow
+         WHERE following_id = #{memberId} AND follower_id = m.id
+      ) AS is_follower
+   FROM member m
+   JOIN follow f ON f.following_id = m.id
+   WHERE f.follower_id = #{memberId} 
+   AND m.nickname LIKE CONCAT('%', #{query}, '%')
+ </select>
+
   <select id="findFollowingsList" resultType="com.pearling.web.entity.Follow">
    select m.*, f.id status_id
    from member m

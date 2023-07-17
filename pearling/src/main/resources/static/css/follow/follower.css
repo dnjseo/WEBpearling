@@ -1,7 +1,7 @@
  /* PC 규격 */
  @media screen and (min-width: 769px) {
 
-    .follower-wrap, .ffer-list, .follower-following, .follower-selection, .follower-list, .follower-list>div>ul{
+    .follower-wrap, .ffer-list, .follower-search, .follower-following, .follower-selection, .follower-list, .follower-list>div>ul{
         width: 100%;
   
     }
@@ -11,18 +11,15 @@
 /* 모바일 규격 */
 @media screen and (max-width: 768px) {
     
-    .follower-following, .follower-selection, .follower-list, .follower-list>div>ul {
-        width: 80%;
-    }    
+    .follower-following, .ffer-list, .follower-selection, .follower-list, .follower-list>div>ul {
+        width: 90%;
+    }
+    
+    .follower-search{
+        width: 79%;
+    }
 }
 
-.ffer-list{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-}
 
 
 .follower-wrap{
@@ -34,6 +31,14 @@
     gap: 60px;
 }
 
+.ffer-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
 .follower-following{
     display: flex;
     flex-direction: column;
@@ -42,6 +47,52 @@
     /* width: 80%; */
     height: 47px;
 }
+
+.follower-search{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    padding-bottom: 30px;
+    border-bottom: solid 1px #dddbdb;
+
+}
+
+.search-input{
+    display: flex;
+    flex-direction: row;
+
+    letter-spacing: -.3px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background-color: #fff;
+
+    padding: 10px 12px;
+    width: 100%;
+    height: 18px;
+    align-items: center;
+    gap: 5px;
+    border-radius: 40px;
+
+}
+
+.search-input img{
+    width: 20px;
+    height: 20px;
+}
+
+.search-input input[type="text"]{
+    line-height: 1.43;
+    letter-spacing: -.3px;
+    border: 0;
+    background: none;
+    width: 100%;
+}
+
 
 .follower-selection{
     /* width: 80%; */
@@ -62,7 +113,7 @@
     grid-template-columns: 1fr 0.3fr 1fr;
     place-items: center;
 
-    margin: 22px 22px 35px 22px;
+    margin: 0px 22px 35px 22px;
 }
 
 .follower{
@@ -110,6 +161,8 @@
     display: flex;
     flex-direction: row;
     gap: 2px;
+    justify-content: center;
+    align-items: center;
 }
 
 .follower-list > div> ul > li > div > :nth-child(2){
@@ -157,4 +210,19 @@ button{
     flex-grow: 0;
 
     font-size: 10px;
+}
+
+.non-result{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    margin: 40px 0px;
+    font-weight: bold;
+}
+
+.non-result > div{
+    display: flex;
+    flex-direction: row;
 }

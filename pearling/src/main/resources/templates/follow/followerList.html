@@ -12,15 +12,21 @@
     <!-- header -->
     <!-- wrap -->
     <main class="follower-wrap" layout:fragment="content">
-       <div class="ffer-list">
-           <div class="follower-following">
-               <h2 class="d-none">메뉴</h2>
-               <div class="follower-selection">
-                   <p class="following"><a href="followingList">팔로잉</a></p>
-                   <p>|</p>
-                   <p class="follower">팔로워</p>
-               </div>
-           </div>
+        <div class="ffer-list">
+            <div class="follower-following">
+                <h2 class="d-none">메뉴</h2>
+                <div class="follower-selection">
+                    <p class="following"><a href="followingList">팔로잉</a></p>
+                    <p>|</p>
+                    <p class="follower">팔로워</p>
+                </div>
+            </div>
+            <form class="follower-search" method="get" action="">
+                <div class="search-input">
+                    <image src="/images/qa/search.svg"></image>
+                    <input type="text" placeholder="검색" name="q" th:value="${param.q}"> 
+                </div>
+            </form>
            <form class="follower-list">
                <div>
                    <h2 class="d-none">목록</h2>
@@ -38,6 +44,12 @@
                    </ul>
                </div>
            </form>
+           <div class="non-result" th:unless="${not #lists.isEmpty(followers)}">
+                <div>
+                    <p th:text="${searchResult}"></p>
+                    <p>  에 대한 검색 결과가 없습니다.</p>
+                </div>
+            </div>
        </div>
     </main>
     <!-- wrap -->

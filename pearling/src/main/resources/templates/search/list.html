@@ -27,12 +27,14 @@
                     <h3 class="d-none">검색 결과</h3>
                     <div>
                         <div th:each="m : ${memList}" class="account-box">
-                            <img class="profile_img"
-                                th:src="@{${m.profileImage} != null ? '/resources/img/' + ${m.profileImage} : '/images/profile/basic.png'}" 
-                                alt="프로필" />
-                            <div class="account-name" th:data-member-id="${m.id}">
-                                <a th:text="${m.nickname}" th:href="@{/shell/myshell/{id}(id=${m.id})}">연주의 점심</a>
-                            </div>
+                            <a th:href="@{/shell/myshell/{id}(id=${m.id})}">
+                                <img class="profile_img"
+                                    th:src="@{${m.profileImage} != null ? '/resources/img/' + ${m.profileImage} : '/images/profile/basic.png'}" 
+                                    alt="프로필" />
+                                <div class="account-name" th:data-member-id="${m.id}">
+                                    <div th:text="${m.nickname}">연주의 점심</div>
+                                </div>
+                            </a>
                         </div>
                         <div class="non-result" th:unless="${not #lists.isEmpty(memList)}">
                             <p th:text="${searchResults}"></p>

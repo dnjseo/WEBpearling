@@ -59,6 +59,23 @@ window.addEventListener('DOMContentLoaded', function (e) {
   let diaryTitleInput = document.querySelector(".diary-detail-title");
   let diaryContentInput = document.querySelector(".diary-detail-input");
 
+  let selectElementValue = selectElement.value;
+  let diaryDateInputValue = diaryDateInput.value;
+  let diaryTitleInputValue = diaryTitleInput.value;
+  let diaryContentInputValue = diaryContentInput.value;
+
+  function contentInit() {
+    const selectElementValue = selectElement.value;
+    const diaryDateInputValue = diaryDateInput.value;
+    const diaryTitleInputValue = diaryTitleInput.value;
+    const diaryContentInputValue = diaryContentInput.value;
+
+    selectElement.value = selectElementValue;
+    diaryDateInput.value = diaryDateInputValue;
+    diaryTitleInput.value = diaryTitleInputValue;
+    diaryContentInput.value = diaryContentInputValue;
+  }
+
   function disabledRemove() {
     selectElement.removeAttribute("disabled");
     diaryDateInput.removeAttribute("disabled");
@@ -89,6 +106,7 @@ window.addEventListener('DOMContentLoaded', function (e) {
     if (!delForm.contains(e.target)) { // 이벤트 타겟이 폼 밖인 경우
       // 폼 외부를 클릭한 경우 다시 diabled 속성 true 값으로 변환.
       disabledAdd();
+      contentInit();
       showedBtns.style.display = "none";
     }
   }, { capture: true });

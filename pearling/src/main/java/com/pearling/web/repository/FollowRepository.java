@@ -22,4 +22,7 @@ public interface FollowRepository {
     List<Member> findFollowingsList(int memberId);
 
     boolean checkFollow(int followingId, int followerId);
+
+    List<Member> findFollowersListByQuery(int memberId, String query);
+    List<Member> findFollowingsListByQuery(int memberId, String query);
 }

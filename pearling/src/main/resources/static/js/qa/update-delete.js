@@ -18,12 +18,15 @@ window.addEventListener("DOMContentLoaded", function(e){
         }
     })
 
+    let qaSecret = document.querySelector(".qa-secret")
+
     // 로그인 유저랑 작성자가 다를 때는 수정 버튼 안 보이게 하기
     let loginId = document.querySelector("input[name='loginId']").value;
     let writerId = document.querySelector("input[name='writerId']").value;
 
     if(loginId != writerId){
         threeBtn.style.display = "none";
+        qaSecret.style.display = "none";
     }
 
     let updateBtn = document.querySelector(".update-btn");

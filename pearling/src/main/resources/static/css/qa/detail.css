@@ -73,6 +73,7 @@
    text-align: right;
    padding-right: 10px;
    padding-bottom: 5px;
+   cursor: pointer;
 }
 
 .edit-btn{
@@ -103,6 +104,7 @@
     background-color: rgba(165, 135, 224, 0.2);
     border-radius: 30px;
     color: #FFFFFF;
+    cursor: pointer;
   }
 
 .qa-secret{

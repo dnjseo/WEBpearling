@@ -18,6 +18,7 @@ import com.pearling.web.service.DiaryService;
 import com.pearling.web.service.GuestbookService;
 import com.pearling.web.service.MemberService;
 import com.pearling.web.service.ScheduleService;
+import com.pearling.web.service.TodoService;
 
 @Controller("")
 @RequestMapping("/admin")
@@ -25,6 +26,10 @@ public class AdminController extends BaseController {
 
 	@Autowired
 	private MemberService memberService;
+
+
+	@Autowired
+	private TodoService todoService;
 
 	@Autowired
 	private ScheduleService scheduleService;
@@ -36,13 +41,25 @@ public class AdminController extends BaseController {
 	private GuestbookService guestbookService;
 
 	// 페이징 처리
-	int pageSize = 15; // 페이지당 이미지 개수
+	int pageSize = 20; // 페이지당 이미지 개수
 	int totalCount;
 	int totalPages;
 
 	// 인덱스
 	@GetMapping("/index")
 	public String list(Model model) {
+
+		int totalMembers = memberService.allCount();
+        int totalTodoPosts = todoService.allCount();
+        int totalSchedulePosts = scheduleService.allCount();
+        int totalDiaryPosts = diaryService.allCount();
+        int totalGuestbookPosts = guestbookService.allCount();
+
+		model.addAttribute("totalMembers", totalMembers);
+        model.addAttribute("totalTodoPosts", totalTodoPosts);
+        model.addAttribute("totalSchedulePosts", totalSchedulePosts);
+        model.addAttribute("totalDiaryPosts", totalDiaryPosts);
+        model.addAttribute("totalGuestbookPosts", totalGuestbookPosts);
 
 		return "admin/index";
 	}
@@ -111,6 +128,11 @@ public class AdminController extends BaseController {
 			list = scheduleService.getList(offset, pageSize);
 		}
 
+		for (Schedule schedule : list) {
+			Member memberId = memberService.getById(schedule.getMemberId());
+			schedule.setMemberNickname(memberId.getNickname());
+		}
+
 		model.addAttribute("list", list); // list 변수를 모델에 추가
 
 		model.addAttribute("totalPages", totalPages);
@@ -147,6 +169,11 @@ public class AdminController extends BaseController {
 			list = diaryService.getList(offset, pageSize, query);
 		} else {
 			list = diaryService.getList(offset, pageSize);
+		}
+
+		for (Diary diary : list) {
+			Member memberId = memberService.getById(diary.getMemberId());
+			diary.setMemberNickname(memberId.getNickname());
 		}
 
 		model.addAttribute("list", list); // list 변수를 모델에 추가
@@ -187,6 +214,13 @@ public class AdminController extends BaseController {
 			list = guestbookService.getList(offset, pageSize);
 		}
 
+		for (Guestbook guestbook : list) {
+			Member memberFromId = memberService.getById(guestbook.getFromId());
+			Member memberToId = memberService.getById(guestbook.getToId());
+			guestbook.setFromNickname(memberFromId.getNickname());
+			guestbook.setToNickname(memberToId.getNickname());
+		 }
+
 		model.addAttribute("list", list); // list 변수를 모델에 추가
 
 		model.addAttribute("totalPages", totalPages);
@@ -195,8 +229,4 @@ public class AdminController extends BaseController {
 
 		return "admin/board/admin-guestbook";
 	}
-
-
-
-
 }

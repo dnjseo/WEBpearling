@@ -17,4 +17,5 @@ public interface TodoService {
     int addTodo(Todo todo);
     int updateTodo(Todo todo);
     int deleteTodo(Todo todo);
+    int allCount();
 }

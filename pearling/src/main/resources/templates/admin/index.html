@@ -1,36 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/import.css" type="text/css" rel="stylesheet" >
-    <link href="/css/admin/index.css" rel="stylesheet" />
+    <link href="/css/import.css" type="text/css" rel="stylesheet">
+    <link href="/css/admin/index.css" rel="stylesheet">
+    <link href="/css/admin/admin.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <title>Pear-ling 관리자</title>
 </head>
 <body>
-    <header>
-
-    </header>
-    <main class="wrap">
-        <nav class="admin-menu">
-            <h1 class="admin-logo"><a href="/admin/index"><img src="/images/logo/realLogo.svg" alt="logo" ></a></h1>
-            <ul class="admin-list">
-                <li><a href="/admin/member/admin-member">회원관리</a></li>
-                <li>게시판관리<span>></span>
-                    <ul class="board-list">
-                        <li><a href="/admin/board/admin-schedule">스케줄 관리</a></li>
-                        <li><a href="/admin/board/admin-diary">다이어리 관리</a></li>
-                        <li><a href="/admin/board/admin-guestbook">방명록 관리</a></li>
-                    </ul>
-                </li>
+<div class="admin-wrap">
+    <nav class="admin-menu">
+        <h1 class="admin-logo"><a href="/shell/ourshell"><img src="/images/logo/realLogo.svg" alt="logo"></a></h1>
+        <ul class="admin-list">
+            <li><a href="/admin/index">DashBoard</a></li>
+            <li><a href="/admin/member/admin-member">회원관리</a></li>
+            <li class="admin-board">게시판관리<span>></span></li>
+            <ul class="board-list">
+                <li><a href="/admin/board/admin-schedule">스케줄 관리</a></li>
+                <li><a href="/admin/board/admin-diary">다이어리 관리</a></li>
+                <li><a href="/admin/board/admin-guestbook">방명록 관리</a></li>
             </ul>
-        </nav>
-    
-        <section class="member-list">
-            <h1>회원 관리</h1>
-            
-        </section>
-    </main>
+            <li><a a href="/admin/notice/list">공지사항</a></li>
+            <li><a a href="/admin/qa/list">Q&A</a></li>
+            <li><a
+                sec:authorize="isAuthenticated()"
+                href="/logout">로그아웃</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="list">
+        <div class="list-content">
+            <div class="all-count">
+                <div class="count-board">
+                    <p class="count-title">총 회원수</p>
+                    <div class="count-number">
+                        <p th:text="${totalMembers}"></p>
+                        <p><img src="/images/admin/people.svg"></p>
+                    </div>
+                </div>
+                <section class="all-board">
+                    <div class="count-board">
+                        <p class="count-title">총 할일 게시물</p>
+                        <div class="count-number">
+                            <p th:text="${totalTodoPosts}"></p>
+                            <p><img src="/images/admin/todo.svg"></p>
+                        </div>
+                    </div>
+                    <div class="count-board">
+                        <p class="count-title">총 스케줄 게시물</p>
+                        <div class="count-number">
+                            <p th:text="${totalSchedulePosts}"></p>
+                            <p><img src="/images/admin/schedule.svg"></p>
+                        </div>
+                    </div>
+                    <div class="count-board">
+                        <p class="count-title">총 다이어리 게시물</p>
+                        <div class="count-number">
+                            <p th:text="${totalDiaryPosts}"></p>
+                            <p><img src="/images/admin/diary.svg"></p>
+                        </div>
+                    </div>
+                    <div class="count-board">
+                        <p class="count-title">총 방명록 게시물</p>
+                        <div class="count-number">
+                            <p th:text="${totalGuestbookPosts}"></p>
+                            <p><img src="/images/admin/guestbook.svg"></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</div>
 </body>
 </html>

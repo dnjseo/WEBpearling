@@ -1,0 +1,10 @@
+.admin-list .board-list li:nth-child(1){
+    background-color: #c3c3c3;
+}
+
+/* 테이블 내용 tr */
+table tr td:nth-child(2){
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

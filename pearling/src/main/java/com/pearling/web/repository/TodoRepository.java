@@ -20,5 +20,5 @@ public interface TodoRepository {
     int save(Todo todo);
     int update(Todo todo);
     int delete(Todo todo);
-
+    int allCount();
 }

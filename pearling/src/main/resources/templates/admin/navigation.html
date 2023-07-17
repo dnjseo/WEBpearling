@@ -1,0 +1,16 @@
+<nav class="admin-menu">
+    <h1 class="admin-logo"><a href="/shell/ourshell"><img src="/images/logo/realLogo.svg" alt="logo"></a></h1>
+    <ul class="admin-list">
+        <li><a href="/admin/index">DashBoard</a></li>
+        <li><a href="/admin/member/admin-member">회원관리</a></li>
+        <li class="admin-board">게시판관리<span>></span></li>
+        <ul class="board-list">
+            <li><a href="/admin/board/admin-schedule">스케줄 관리</a></li>
+            <li><a href="/admin/board/admin-diary">다이어리 관리</a></li>
+            <li><a href="/admin/board/admin-guestbook">방명록 관리</a></li>
+        </ul>
+        <li><a a href="/admin/notice/list">공지사항</a></li>
+        <li><a a href="/admin/qa/list">Q&A</a></li>
+        <li><a sec:authorize="isAuthenticated()" href="/logout">로그아웃</a></li>
+    </ul>
+</nav>

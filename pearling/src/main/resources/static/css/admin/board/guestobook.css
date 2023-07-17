@@ -1,12 +1,10 @@
-.admin-list li:nth-child(2) li:nth-child(3){
-    font-weight: bold;
-    text-decoration: underline;
+.admin-list .board-list li:nth-child(3){
+    background-color: #c3c3c3;
 }
 
-.content{
-    display: block;
-    width: 400px;
+/* 테이블 내용 tr */
+table tr td:nth-child(2) {
     overflow: hidden;
-    text-overflow: ellipsis;
     white-space: nowrap;
+    text-overflow: ellipsis;
 }

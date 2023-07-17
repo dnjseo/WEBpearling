@@ -30,4 +30,6 @@ public class Schedule {
     private String profileImage;
     private String formattedDate;
     private List<String> friendNicknames;
+
+    private String memberNickname;
 }

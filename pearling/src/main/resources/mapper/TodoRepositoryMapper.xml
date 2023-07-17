@@ -53,6 +53,8 @@
 	<delete id="delete">
 		delete from to_do where id=#{id}
 	</delete>
-
+	<select id="allCount" resultType="int">
+      SELECT COUNT(*) FROM to_do
+   </select>
 
 </mapper>

@@ -21,4 +21,5 @@ public class Guestbook {
     // 추가된 entity
     private String imageUrl; // 이미지 URL 속성 추가
     private String fromNickname; // 닉네임 추가
+    private String toNickname;
 }

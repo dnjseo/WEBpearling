@@ -1,9 +1,7 @@
-.admin-list li:first-child{
-    font-weight: bold;
-    text-decoration: underline;
+.admin-list li:nth-child(2){
+    background-color: #c3c3c3;
 }
 
-.board-list li:first-child{
-    font-weight: normal;
-    text-decoration: none;
+.board-list li:nth-child(2){
+    background: none;
 }

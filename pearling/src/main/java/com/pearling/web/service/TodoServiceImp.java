@@ -69,5 +69,9 @@ public class TodoServiceImp implements TodoService{
         return repository.findByCurDate(userId, date);
     }
 
+    @Override
+    public int allCount() {
+        return repository.allCount();
+    }
     
 }

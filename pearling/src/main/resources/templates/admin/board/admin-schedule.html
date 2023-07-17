@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,20 +15,23 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <title>Pear-ling 관리자</title>
 </head>
 <body>
-<header>
-
-</header>
-<main class="wrap">
+<div class="admin-wrap">
     <nav class="admin-menu">
-        <h1 class="admin-logo"><a href="/admin/index"><img src="/images/logo/realLogo.svg" alt="logo"></a></h1>
+        <h1 class="admin-logo"><a href="/shell/ourshell"><img src="/images/logo/realLogo.svg" alt="logo"></a></h1>
         <ul class="admin-list">
+            <li><a href="/admin/index">DashBoard</a></li>
             <li><a href="/admin/member/admin-member">회원관리</a></li>
-            <li>게시판관리<span>></span>
-                <ul class="board-list">
-                    <li><a href="/admin/board/admin-schedule">스케줄 관리</a></li>
-                    <li><a href="/admin/board/admin-diary">다이어리 관리</a></li>
-                    <li><a href="/admin/board/admin-guestbook">방명록 관리</a></li>
-                </ul>
+            <li class="admin-board">게시판관리<span>></span></li>
+            <ul class="board-list">
+                <li><a href="/admin/board/admin-schedule">스케줄 관리</a></li>
+                <li><a href="/admin/board/admin-diary">다이어리 관리</a></li>
+                <li><a href="/admin/board/admin-guestbook">방명록 관리</a></li>
+            </ul>
+            <li><a a href="/admin/notice/list">공지사항</a></li>
+            <li><a a href="/admin/qa/list">Q&A</a></li>
+            <li><a
+                sec:authorize="isAuthenticated()"
+                href="/logout">로그아웃</a>
             </li>
         </ul>
     </nav>
@@ -34,10 +39,10 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <section class="list">
         <div class="list-content">
             <div class="list-header">
-                <h1>방명록 관리</h1>
+                <h1>스케줄 관리</h1>
                 <div class="last-header">
                     <form id="search-form" method="GET" action="/admin/board/admin-schedule">
-                        <input id="search-input" type="text" name="query" placeholder="검색 내용을 입력하세요.">
+                        <input id="search-input" type="text" name="query" placeholder="제목을 입력하세요.">
                         <button type="submit" id="search-button">검색</button>
                     </form>
                     <button id="delete-button">삭제</button>
@@ -60,7 +65,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
                     <td th:text="${list.title}" ></td>
                     <td th:text="${list.startDate}" ></td>
                     <td th:text="${list.endDate}"></td>
-                    <td th:text="${list.memberId}"></td>
+                    <td th:text="${list.memberNickname}"></td>
                     <td th:text="${#dates.format(list.regDate, 'yyyy-MM-dd')}"></td>
                 </tr>
                 </tbody>
@@ -77,6 +82,6 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
         </div>
         <input id="current-page" type="hidden" th:value="${currentPage}">
     </section>
-</main>
+</div>
 </body>
 </html>

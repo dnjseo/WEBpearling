@@ -21,6 +21,7 @@
                         </p>                    
                         <div class="names">
                             <p class="nickname"><span sec:authentication="principal.nickname"></span></p>
+                            <p class="admin-name"></p>
                             <p class="name"><span sec:authentication="principal.name"></span> 님</p>
                             <input type="hidden" name="loginId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
                         </div>

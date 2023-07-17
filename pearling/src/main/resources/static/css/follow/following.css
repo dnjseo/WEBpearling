@@ -1,7 +1,7 @@
 /* PC 규격 */
 @media screen and (min-width: 769px) {
 
-    .following-wrap, .ffing-list, .following-follower, .following-selection, .following-list, .following-list>div>ul {
+    .following-wrap, .ffing-list, .following-search, .following-follower, .following-selection, .following-list, .following-list>div>ul {
         width: 100%;
   
     }
@@ -12,18 +12,15 @@
 /* 모바일 규격 */
 @media screen and (max-width: 768px) {
     
-    .following-follower, .following-selection, .following-list, .following-list>div>ul {
-        width: 80%;
-    }    
+    .following-follower, .ffing-list, .following-selection, .following-list, .following-list>div>ul {
+        width: 90%;
+    }
+    
+    .following-search{
+        width: 79%;
+    }
 }
 
-.ffing-list{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-}
 
 .following-wrap{
     width: 100%;
@@ -34,6 +31,15 @@
     gap: 60px;
 }
 
+.ffing-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+
 .following-follower{
     display: flex;
     flex-direction: column;
@@ -41,6 +47,51 @@
     margin: auto;
     /* width: 80%; */
     height: 47px;
+}
+
+.following-search{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    padding-bottom: 30px;
+    border-bottom: solid 1px #dddbdb;
+
+}
+
+.search-input{
+    display: flex;
+    flex-direction: row;
+
+    letter-spacing: -.3px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background-color: #fff;
+
+    padding: 10px 12px;
+    width: 100%;
+    height: 18px;
+    align-items: center;
+    gap: 5px;
+    border-radius: 40px;
+
+}
+
+.search-input img{
+    width: 20px;
+    height: 20px;
+}
+
+.search-input input[type="text"]{
+    line-height: 1.43;
+    letter-spacing: -.3px;
+    border: 0;
+    background: none;
+    width: 100%;
 }
 
 .following-selection{
@@ -58,7 +109,7 @@
     grid-template-columns: 1fr 0.3fr 1fr;
     place-items: center;
 
-    margin: 22px 22px 35px 22px;
+    margin: 0px 22px 35px 22px;
 }
 
 .following{
@@ -141,4 +192,19 @@ button{
     flex-grow: 0;
 
     font-size: 10px;
+}
+
+.non-result{
+    display: flex;
+    flex-direction: crow;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    margin: 10px 0px;
+    font-weight: bold;
+}
+
+.non-result > div{
+    display: flex;
+    flex-direction: row;
 }

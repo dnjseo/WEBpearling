@@ -24,6 +24,12 @@
                     <p class="follower"><a href="followerList">팔로워</a></p>
                 </div>
             </div>
+            <form class="following-search" method="get" action="">
+                <div class="search-input">
+                    <image src="/images/qa/search.svg"></image>
+                    <input type="text" placeholder="검색" name="q" th:value="${param.q}"> 
+                </div>
+            </form>
             <form class="following-list">
                 <div>
                     <h2 class="d-none">목록</h2>
@@ -37,7 +43,13 @@
                         </li>
                     </ul>
                 </div>     
-            </form>    
+            </form>
+            <div class="non-result" th:unless="${not #lists.isEmpty(followings)}">
+                <div>
+                    <p th:text="${searchResult}"></p>
+                    <p>  에 대한 검색 결과가 없습니다.</p>
+                </div>
+            </div>    
         </div>
     </main> 
     <!-- wrap -->    

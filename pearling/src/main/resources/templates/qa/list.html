@@ -18,7 +18,7 @@
         <form class="qa-search" method="get" action="list">
             <div class="search-input">
                 <image src="/images/qa/search.svg"></image>
-                <input type="text" placeholder="궁금한 질문을 검색해 보세요!" name="q"> 
+                <input type="text" placeholder="궁금한 질문을 검색해 보세요!" name="q" th:value="${param.q}"> 
             </div>
             <button type="submit">검색</button>
         </form>

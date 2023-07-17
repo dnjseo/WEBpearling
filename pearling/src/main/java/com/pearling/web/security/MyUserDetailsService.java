@@ -40,7 +40,7 @@ public class MyUserDetailsService implements UserDetailsService {
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority(role.getName()));
 		userDetails.setAuthorities(authorities);
-
+		System.out.println(authorities);
 		return userDetails;
 	}
 }

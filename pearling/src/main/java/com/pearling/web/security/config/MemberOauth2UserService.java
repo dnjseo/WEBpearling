@@ -82,12 +82,13 @@ public class MemberOauth2UserService extends DefaultOAuth2UserService {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(role.getName()));
 
-        MyUserDetails userDetails = new MyUserDetails(member, oAuth2User.getAttributes(), authorities);
+        MyUserDetails userDetails = new MyUserDetails(member, oAuth2User.getAttributes(), authorities, member.getRoleId());
         userDetails.setEmail(member.getEmail());
         userDetails.setName(member.getName());
         userDetails.setNickname(member.getNickname());
         userDetails.setProfileImage(member.getProfileImage());
-
+        System.out.println(authorities);
+        System.out.println(new SimpleGrantedAuthority(role.getName()));
         return userDetails;
     }
 }

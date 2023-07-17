@@ -108,6 +108,14 @@ public class MyUserDetails implements UserDetails, OAuth2User {
 		}
 	}
 
+	public MyUserDetails(Member member, Map<String, Object> attributes, List<GrantedAuthority> authorities, int roleId) {
+        this.member = member;
+        this.attributes = attributes;
+        this.username = member.getEmail();
+        this.authorities = authorities;
+        this.roleId = roleId;
+    }
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;

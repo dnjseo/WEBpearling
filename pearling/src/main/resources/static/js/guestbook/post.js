@@ -14,8 +14,8 @@ function noneModal(modalId, buttonClass) {
   });
 }
 
-window.addEventListener('DOMContentLoaded', function (e) {
-  let form = document.querySelector('.add-form');
+window.addEventListener("DOMContentLoaded", function (e) {
+  let form = document.querySelector(".add-form");
   let guestbookAddBtn = document.querySelector(".add-btn");
 
   let confirmModal = document.querySelector("#confirm-modal");
@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', function (e) {
   let toId = userId; // 주인 아이디
   let fromId = memberId; // 등록한 사람
 
-  guestbookAddBtn.addEventListener('click', function (e) {
+  guestbookAddBtn.addEventListener("click", function (e) {
     e.preventDefault();
     if (contentInput.value.trim() === "") {
       showModal("no-insert-modal");
@@ -43,95 +43,90 @@ window.addEventListener('DOMContentLoaded', function (e) {
   });
 
   // 방명록 등록
-  confirmBtn.addEventListener('click', function (e) {
+  confirmBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
     let formData = {
       content: contentInput.value,
       fromId: fromId,
-      toId: toId
+      toId: toId,
     };
 
     let jsonData = JSON.stringify(formData);
 
-    fetch('/api/guestbook/add/' + userId, {
-      method: 'POST',
+    fetch("/api/guestbook/add/" + userId, {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: jsonData,
     })
       .then(function (response) {
         if (response.ok) {
-          console.log('방명록 등록이 완료되었습니다.');
           form.submit();
-          window.location.href = '/guestbook/list/' + userId;
-          
+          window.location.href = "/guestbook/list/" + userId;
+
           // 방명록 등록 성공 시 알림 등록
           const guestbookData = JSON.parse(jsonData);
           let pubMemberId = guestbookData.fromId; // 등록한 사람: memberId
-          let pubMemberNicknameInput = document.querySelector("#input-member-nickname");
+          let pubMemberNicknameInput = document.querySelector(
+            "#input-member-nickname"
+          );
           let pubMemberNickname = pubMemberNicknameInput.value;
           let subMemberId = guestbookData.toId; // 수신할 사람: userId
-          let message = pubMemberNickname + '님이 방명록에 글을 남겼습니다.';
+          let message = pubMemberNickname + "님이 방명록에 글을 남겼습니다.";
           let type = 1;
-          console.log(message);
-          
+
           let notificationData = { pubMemberId, subMemberId, message, type };
-          
+
           notifyNotificationService(subMemberId, notificationData);
-          
         } else {
-          console.error('방명록 등록에 실패했습니다.');
+          console.error("방명록 등록에 실패했습니다.");
         }
       })
       .catch(function (error) {
-        console.error('방명록 등록 중 오류가 발생했습니다.', error);
+        console.error("방명록 등록 중 오류가 발생했습니다.", error);
       });
   });
-
 });
 
-/* ----------------- 댓글 알림 등록 함수 ----------------- */
+/* ----------------- 알림 등록 함수 ----------------- */
 function notifyNotificationService(subMemberId, notificationData) {
-
-  console.log("댓글은 이렇습니다" + JSON.stringify(notificationData));
-
   fetch(`/api/notifications/notify/${subMemberId}`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(notificationData),
   })
     .then(function (response) {
       if (response.ok) {
-        console.log('알림 등록이 완료되었습니다.');
+        console.log("알림 등록이 완료되었습니다.");
       } else {
-        console.error('알림 등록에 실패했습니다.');
+        console.error("알림 등록에 실패했습니다.");
       }
     })
     .catch(function (error) {
-      console.error('알림 등록 중 오류가 발생했습니다.', error);
+      console.error("알림 등록 중 오류가 발생했습니다.", error);
     });
 }
 
-window.addEventListener('DOMContentLoaded', function (e) {
+window.addEventListener("DOMContentLoaded", function (e) {
   let userId = document.querySelector("#input-user-id").value;
 
   // 방명록 수정
-  let updateBtn = document.querySelector('.update-btn');
+  let updateBtn = document.querySelector(".update-btn");
   let cancleBtn = document.querySelector(".cancle-btn");
-  let modifyYes = document.querySelector('.modify-yes');
+  let modifyYes = document.querySelector(".modify-yes");
 
-  updateBtn.addEventListener('click', function (e) {
+  updateBtn.addEventListener("click", function (e) {
     e.preventDefault();
-    let form = document.querySelector('.update-form');
+    let form = document.querySelector(".update-form");
     let inputs = form.elements;
     let contentInput = inputs["content"];
 
     if (contentInput.value.trim() === "") {
-      alert("내용을 입력하세요."); // 내용을 입력하라는 알림 표시
+      alert("내용을 입력하세요.");
     } else if (contentInput.value.length > 300) {
       alert("입력한 내용이 300자를 초과하였습니다.");
     } else {
@@ -139,20 +134,20 @@ window.addEventListener('DOMContentLoaded', function (e) {
     }
   });
 
-  cancleBtn.addEventListener('click', function (e) {
+  cancleBtn.addEventListener("click", function (e) {
     e.preventDefault();
-    window.location.href = '/guestbook/list/' + userId;
+    window.location.href = "/guestbook/list/" + userId;
   });
 
-  modifyYes.addEventListener('click', function (e) {
+  modifyYes.addEventListener("click", function (e) {
     e.preventDefault();
 
-    let form = document.querySelector('.update-form');
+    let form = document.querySelector(".update-form");
     let inputs = form.elements;
     let contentInput = inputs["content"];
     let content = contentInput.value;
     let urlParams = new URLSearchParams(window.location.search);
-    let guestbookId = urlParams.get('gid');
+    let guestbookId = urlParams.get("gid");
 
     if (contentInput.value.trim() === "") {
       alert("내용을 입력하세요."); // 내용을 입력하라는 알림 표시
@@ -165,22 +160,22 @@ window.addEventListener('DOMContentLoaded', function (e) {
 
       let jsonData = JSON.stringify(formData);
 
-      fetch('/api/guestbook/update/' + guestbookId, {
-        method: 'PUT',
+      fetch("/api/guestbook/update/" + guestbookId, {
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: jsonData,
       })
         .then(function (response) {
           if (response.ok) {
-            window.location.href = '/guestbook/list/' + userId;
+            window.location.href = "/guestbook/list/" + userId;
           } else {
-            console.error('방명록 수정에 실패했습니다.');
+            console.error("방명록 수정에 실패했습니다.");
           }
         })
         .catch(function (error) {
-          console.error('방명록 수정 중 오류가 발생했습니다.', error);
+          console.error("방명록 수정 중 오류가 발생했습니다.", error);
         });
     }
   });

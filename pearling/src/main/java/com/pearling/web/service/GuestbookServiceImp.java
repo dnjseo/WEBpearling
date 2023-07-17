@@ -10,8 +10,8 @@ import com.pearling.web.entity.GuestbookView;
 import com.pearling.web.repository.GuestbookRepository;
 
 @Service
-public class GuestbookServiceImp implements GuestbookService{
-    
+public class GuestbookServiceImp implements GuestbookService {
+
     @Autowired
     private GuestbookRepository repository;
 
@@ -25,7 +25,7 @@ public class GuestbookServiceImp implements GuestbookService{
         return repository.findAllWithQuery(offset, pageSize, query);
     }
 
-     @Override
+    @Override
     public List<Guestbook> getGuestBookList(Integer toId) {
         return repository.findByAll(toId);
     }
@@ -65,5 +65,5 @@ public class GuestbookServiceImp implements GuestbookService{
     public int getTotalCountWithQuery(String query) {
         return repository.getTotalCountWithQuery(query);
     }
-      
+
 }

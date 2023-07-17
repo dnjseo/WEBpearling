@@ -9,12 +9,12 @@ function noneModal(modalId, buttonClass) {
   let modal = document.getElementById(modalId);
   let button = document.querySelector(buttonClass);
 
-  button.addEventListener("click", function() {
-      modal.style.display = "none";
+  button.addEventListener("click", function () {
+    modal.style.display = "none";
   });
 }
 
-window.addEventListener('DOMContentLoaded', function(e) {
+window.addEventListener("DOMContentLoaded", function (e) {
   let clamList = document.getElementById("clam-list");
   let black = document.querySelector(".black");
   let paginationLinks = document.querySelectorAll(".pagination a");
@@ -28,7 +28,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
   let imageUrls = [
     "/images/guestbook/clam1.png",
     "/images/guestbook/clam2.png",
-    "/images/guestbook/clam3.png"
+    "/images/guestbook/clam3.png",
   ];
 
   let listItems = clamList.getElementsByTagName("li");
@@ -84,7 +84,6 @@ window.addEventListener('DOMContentLoaded', function(e) {
       pagingContainer.appendChild(nextPageLink);
     }
   }
-  
 
   // 현재 페이지 번호가 유효한 범위를 벗어나는 경우 첫 페이지로 설정
   if (currentPage < 1 || currentPage > totalPages) {
@@ -124,15 +123,14 @@ window.addEventListener('DOMContentLoaded', function(e) {
       let fromId = section.querySelector("#from-id").textContent;
 
       clamImage.src = imageUrl;
-      clamImage.addEventListener("click", function() {
-
+      clamImage.addEventListener("click", function () {
         if (loginId == userId || userId == "" || loginId == fromId) {
           section.style.display = "block";
           black.style.display = "block";
           deleteBtn.style.display = "block";
         } else if (loginId != fromId) {
           showModal("no-show-modal");
-          noneModal("no-show-modal",".no-show-yes");
+          noneModal("no-show-modal", ".no-show-yes");
           section.style.display = "none";
           black.style.display = "none";
           deleteBtn.style.display = "none";
@@ -141,67 +139,72 @@ window.addEventListener('DOMContentLoaded', function(e) {
         if (fromId == loginId) updateBtn.style.display = "block";
       });
 
-      if(userId != "" && userId != loginId){
+      if (userId != "" && userId != loginId) {
         plusBtn.style.display = "block";
         friendPaging.style.display = "block";
         myPaging.style.display = "none";
-      }
-      else{
+      } else {
         plusBtn.style.display = "none";
         friendPaging.style.display = "none";
-        myPaging.style.display = "block" 
+        myPaging.style.display = "block";
       }
 
-      closeBtn.addEventListener("click", function() {
+      closeBtn.addEventListener("click", function () {
         section.style.display = "none";
         black.style.display = "none";
       });
 
-      deleteBtn.addEventListener("click", function() {
+      deleteBtn.addEventListener("click", function () {
         deleteModal.style.display = "block";
         section.style.display = "none";
         deleteYes.setAttribute("data-id", section.getAttribute("data-id"));
       });
 
-      deleteYes.addEventListener("click", function() {
+      deleteYes.addEventListener("click", function () {
         let guestbookId = deleteYes.getAttribute("data-id");
         deleteGuestbook(guestbookId);
       });
 
-      deleteNo.addEventListener("click", function() {
+      deleteNo.addEventListener("click", function () {
         deleteModal.style.display = "none";
         black.style.display = "none";
       });
 
       // .lock 요소 처리
       let lock = listItem.querySelector(".lock");
-      if (loginId != fromId)
-        lock.style.display = "block";
-      else
-        lock.style.display = "none";
+      if (loginId != fromId) lock.style.display = "block";
+      else lock.style.display = "none";
 
-      if(loginId == userId || userId == "")
-        lock.style.display = "none";
-
+      if (loginId == userId || userId == "") lock.style.display = "none";
     } else {
       listItem.style.display = "none";
     }
   }
 
   // 링크 이동
-  if(loginId != userId  && userId != ""){
+  if (loginId != userId && userId != "") {
+    document.getElementById("s1").style.display = "block";
+    document.getElementById("s1").style.display = "flex";
+    document.getElementById("shell-menu").style.display = "none";
+
     //: 마이쉘 하위메뉴 a링크 값 변경
-    document.querySelector('#myshell-menu .monthly').href = "/shell/myshell/" + userId
-    document.querySelector('#myshell-menu .diary').href = "/diary/list?uid=" + userId
-    document.querySelector('#myshell-menu .guestbook').href = "/guestbook/list/" + userId
+    document.querySelector("#myshell-menu .monthly").href =
+      "/shell/myshell/" + userId;
+    document.querySelector("#myshell-menu .diary").href =
+      "/diary/list?uid=" + userId;
+    document.querySelector("#myshell-menu .guestbook").href =
+      "/guestbook/list/" + userId;
+
+    // : 프로필 변경
+    changeProfile(userId);
   }
 
   // 이전 페이지로 이동
   let previousPageBtn = document.getElementById("previous-page");
   let previousPageBtn2 = document.getElementById("previous-page2");
-  
+
   // 내버전
-  previousPageBtn.addEventListener("click", function(e) {
+  previousPageBtn.addEventListener("click", function (e) {
     e.preventDefault();
     let previousPage = currentPage - 1;
     if (previousPage >= 1) {
@@ -210,7 +213,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
   });
 
   // 친구버전
-  previousPageBtn2.addEventListener("click", function(e) {
+  previousPageBtn2.addEventListener("click", function (e) {
     e.preventDefault();
     let previousPage = currentPage - 1;
     if (previousPage >= 1) {
@@ -219,38 +222,38 @@ window.addEventListener('DOMContentLoaded', function(e) {
   });
 
   // 다음 페이지로 이동
-  let nextPageBtn = document.getElementById("next-page"); 
-  let nextPageBtn2 = document.getElementById("next-page2"); 
+  let nextPageBtn = document.getElementById("next-page");
+  let nextPageBtn2 = document.getElementById("next-page2");
 
   // 내버전
-  nextPageBtn.addEventListener("click", function(e) {
+  nextPageBtn.addEventListener("click", function (e) {
     e.preventDefault();
     let nextPage = currentPage + 1;
     if (nextPage <= totalPages) {
       goToPage(nextPage);
     }
-  })
+  });
 
-  // 
-  nextPageBtn2.addEventListener("click", function(e) {
+  //
+  nextPageBtn2.addEventListener("click", function (e) {
     e.preventDefault();
     let nextPage = currentPage + 1;
     if (nextPage <= totalPages) {
       goToPageFriend(nextPage);
     }
-  })
+  });
 
   // 페이징 링크 이벤트 처리
-  paginationLinks.forEach(function(link) {
-    link.addEventListener("click", function(e) {
-      console.log('페이징....');
+  paginationLinks.forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      console.log("페이징....");
       let page = parseInt(this.getAttribute("data-page"));
       if (page) {
         currentPage = page;
         setActivePage(page); // 활성화된 페이지로 변경
-        if(userId == ""){
+        if (userId == "") {
           goToPage(page);
-        }else{
+        } else {
           goToPageFriend(page);
         }
       }
@@ -259,7 +262,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
 
   // 활성화된 페이지로 변경하는 함수
   function setActivePage(page) {
-    paginationLinks.forEach(function(link) {
+    paginationLinks.forEach(function (link) {
       link.classList.remove("active");
       if (parseInt(link.getAttribute("data-page")) === page) {
         link.classList.add("active");
@@ -277,7 +280,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
     let url = `/guestbook/list/${userId}?id=${userId}&page=${page}`;
     window.location.href = url;
   }
-  
+
   // 방명록 삭제 요청을 서버로 보내는 함수
   function deleteGuestbook(guestbookId) {
     fetch("/api/guestbook/delete/" + guestbookId, {
@@ -299,3 +302,20 @@ window.addEventListener('DOMContentLoaded', function(e) {
       });
   }
 });
+
+// 쉘 프로필 변경하는 로직.
+function changeProfile(userId) {
+  fetch(`/api/member/${userId}`)
+    .then((response) => response.json())
+    .then((member) => {
+      console.log("member확인:" + member);
+
+      let userProfile = document.getElementById("s1");
+      userProfile.querySelector(
+        ".shell-name"
+      ).innerHTML = `${member.nickname}의 Shell`;
+      userProfile.querySelector(
+        ".shell-image"
+      ).src = `/resources/img/${member.profileImage}`;
+    });
+}

@@ -27,7 +27,6 @@ public class AdminController extends BaseController {
 	@Autowired
 	private MemberService memberService;
 
-
 	@Autowired
 	private TodoService todoService;
 
@@ -50,34 +49,34 @@ public class AdminController extends BaseController {
 	public String list(Model model) {
 
 		int totalMembers = memberService.allCount();
-        int totalTodoPosts = todoService.allCount();
-        int totalSchedulePosts = scheduleService.allCount();
-        int totalDiaryPosts = diaryService.allCount();
-        int totalGuestbookPosts = guestbookService.allCount();
+		int totalTodoPosts = todoService.allCount();
+		int totalSchedulePosts = scheduleService.allCount();
+		int totalDiaryPosts = diaryService.allCount();
+		int totalGuestbookPosts = guestbookService.allCount();
 
 		model.addAttribute("totalMembers", totalMembers);
-        model.addAttribute("totalTodoPosts", totalTodoPosts);
-        model.addAttribute("totalSchedulePosts", totalSchedulePosts);
-        model.addAttribute("totalDiaryPosts", totalDiaryPosts);
-        model.addAttribute("totalGuestbookPosts", totalGuestbookPosts);
+		model.addAttribute("totalTodoPosts", totalTodoPosts);
+		model.addAttribute("totalSchedulePosts", totalSchedulePosts);
+		model.addAttribute("totalDiaryPosts", totalDiaryPosts);
+		model.addAttribute("totalGuestbookPosts", totalGuestbookPosts);
 
 		return "admin/index";
 	}
-	
+
 	// 회원 관리
 	@GetMapping("/member/admin-member")
 	public String mlist(
-					@RequestParam(name = "page", defaultValue = "1") int page,
-					@RequestParam(name = "query", required = false) String query,
-					Model model) {
+			@RequestParam(name = "page", defaultValue = "1") int page,
+			@RequestParam(name = "query", required = false) String query,
+			Model model) {
 
 		if (query != null && !query.isEmpty()) {
-			totalCount = memberService.getTotalCountWithQuery(query); 
+			totalCount = memberService.getTotalCountWithQuery(query);
 		} else {
 			totalCount = memberService.allCount();
 		}
 
-		totalPages = (int) Math.ceil((double) totalCount / pageSize); 
+		totalPages = (int) Math.ceil((double) totalCount / pageSize);
 
 		if (page < 1 || page > totalPages)
 			page = 1;
@@ -102,9 +101,9 @@ public class AdminController extends BaseController {
 	// 일정 관리
 	@GetMapping("/board/admin-schedule")
 	public String slist(
-					@RequestParam(name = "page", defaultValue = "1") int page,
-					@RequestParam(name = "query", required = false) String query,
-					Model model) {
+			@RequestParam(name = "page", defaultValue = "1") int page,
+			@RequestParam(name = "query", required = false) String query,
+			Model model) {
 
 		if (query != null && !query.isEmpty()) {
 			totalCount = scheduleService.getTotalCountWithQuery(query); // 검색어에 따른 전체 방명록 개수
@@ -138,16 +137,16 @@ public class AdminController extends BaseController {
 		model.addAttribute("totalPages", totalPages);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("query", query); // 검색어를 view로 전달
-	
+
 		return "admin/board/admin-schedule";
 	}
 
 	// 다이어리 관리
 	@GetMapping("/board/admin-diary")
 	public String dlist(
-					@RequestParam(name = "page", defaultValue = "1") int page,
-					@RequestParam(name = "query", required = false) String query,
-					Model model) {
+			@RequestParam(name = "page", defaultValue = "1") int page,
+			@RequestParam(name = "query", required = false) String query,
+			Model model) {
 
 		if (query != null && !query.isEmpty()) {
 			totalCount = diaryService.getTotalCountWithQuery(query); // 검색어에 따른 전체 방명록 개수
@@ -181,16 +180,16 @@ public class AdminController extends BaseController {
 		model.addAttribute("totalPages", totalPages);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("query", query); // 검색어를 view로 전달
-	
+
 		return "admin/board/admin-diary";
 	}
 
 	// 방명록 관리
 	@GetMapping("/board/admin-guestbook")
 	public String glist(
-					@RequestParam(name = "page", defaultValue = "1") int page,
-					@RequestParam(name = "query", required = false) String query,
-					Model model) {
+			@RequestParam(name = "page", defaultValue = "1") int page,
+			@RequestParam(name = "query", required = false) String query,
+			Model model) {
 
 		if (query != null && !query.isEmpty()) {
 			totalCount = guestbookService.getTotalCountWithQuery(query); // 검색어에 따른 전체 방명록 개수
@@ -219,7 +218,7 @@ public class AdminController extends BaseController {
 			Member memberToId = memberService.getById(guestbook.getToId());
 			guestbook.setFromNickname(memberFromId.getNickname());
 			guestbook.setToNickname(memberToId.getNickname());
-		 }
+		}
 
 		model.addAttribute("list", list); // list 변수를 모델에 추가
 

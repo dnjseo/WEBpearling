@@ -17,14 +17,14 @@ import com.pearling.web.service.GuestbookService;
 @RestController("apiGuestbookController")
 @RequestMapping("api/guestbook")
 public class GuestbookController {
-   
-    @Autowired
-    private GuestbookService service;
+
+   @Autowired
+   private GuestbookService service;
 
    @PostMapping("add/{id}") // 추가 기능 추가
-   public void add(@RequestBody Guestbook guestbook, 
-                  @AuthenticationPrincipal MyUserDetails user, 
-                  @PathVariable("id") int userId) {
+   public void add(@RequestBody Guestbook guestbook,
+         @AuthenticationPrincipal MyUserDetails user,
+         @PathVariable("id") int userId) {
 
       Integer fromId = user.getId(); // 현재 사용자의 ID를 fromId로 지정
       Integer toId = guestbook.getToId(); // 전송된 toId 사용

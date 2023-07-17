@@ -15,20 +15,20 @@ import com.pearling.web.entity.Role;
 import com.pearling.web.service.MemberService;
 import com.pearling.web.service.RoleService;
 
-public class MyUserDetailsService implements UserDetailsService{
+public class MyUserDetailsService implements UserDetailsService {
 
-    @Autowired
+	@Autowired
 	private MemberService memberService;
 
 	@Autowired
 	private RoleService roleService;
 
-    @Override
+	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Member member = memberService.getByUsername(username);
 		Role role = roleService.getRoleById(member.getRoleId());
 		MyUserDetails userDetails = new MyUserDetails(member, null, null);
-		
+
 		userDetails.setId(member.getId());
 		userDetails.setEmail(member.getEmail());
 		userDetails.setUsername(username);
@@ -40,7 +40,7 @@ public class MyUserDetailsService implements UserDetailsService{
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority(role.getName()));
 		userDetails.setAuthorities(authorities);
-		
+
 		return userDetails;
 	}
 }

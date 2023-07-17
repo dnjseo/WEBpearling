@@ -9,7 +9,7 @@ public class ControllerExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	public String error(Exception e) {
 		
-		System.err.println("에러 밣셍");
+		System.err.println("에러 발생!!!!!!!!!!!!!!!!!!!!!!");
 		
 		return "";
 	}

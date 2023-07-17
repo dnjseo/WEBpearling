@@ -22,7 +22,7 @@ public interface GuestbookRepository {
     void update(Guestbook guestbook);
     
     int delete(Integer id);
-    int count(Integer toId); // 방명록 count
+    int count(Integer toId);
     int allCount();
     int getTotalCountWithQuery(@Param("query") String query);
 }

@@ -16,7 +16,6 @@ import jakarta.servlet.http.HttpSession;
 @Component
 public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException {

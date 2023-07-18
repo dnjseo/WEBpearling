@@ -44,47 +44,6 @@ window.addEventListener("DOMContentLoaded", function (e) {
   let endPage = Math.min(startPage + maxPageLinks - 1, totalPages);
   startPage = Math.max(endPage - maxPageLinks + 1, 1);
 
-  // 페이징 링크 생성
-  let pagingContainer = document.querySelector(".my-paging");
-  pagingContainer.innerHTML = ""; // 기존의 페이징 링크 제거
-
-  if (totalPages > 1) {
-    // 이전 페이지로 이동
-    if (currentPage > 1) {
-      let previousPageLink = document.createElement("li");
-      let previousPageBtn = document.createElement("a");
-      previousPageBtn.href = "#";
-      previousPageBtn.id = "previous-page";
-      previousPageBtn.innerHTML = "&lt;&lt;";
-      previousPageLink.appendChild(previousPageBtn);
-      pagingContainer.appendChild(previousPageLink);
-    }
-
-    // 페이지 링크 생성
-    for (let page = startPage; page <= endPage; page++) {
-      let pageLink = document.createElement("li");
-      let pageBtn = document.createElement("a");
-      pageBtn.href = `/guestbook/list?uid=${userId}&page=${page}`;
-      pageBtn.innerHTML = page;
-      if (currentPage === page) {
-        pageBtn.classList.add("active");
-      }
-      pageLink.appendChild(pageBtn);
-      pagingContainer.appendChild(pageLink);
-    }
-
-    // 다음 페이지로 이동
-    if (currentPage < totalPages) {
-      let nextPageLink = document.createElement("li");
-      let nextPageBtn = document.createElement("a");
-      nextPageBtn.href = "#";
-      nextPageBtn.id = "next-page";
-      nextPageBtn.innerHTML = "&gt;&gt;";
-      nextPageLink.appendChild(nextPageBtn);
-      pagingContainer.appendChild(nextPageLink);
-    }
-  }
-
   // 현재 페이지 번호가 유효한 범위를 벗어나는 경우 첫 페이지로 설정
   if (currentPage < 1 || currentPage > totalPages) {
     currentPage = 1;
@@ -182,7 +141,7 @@ window.addEventListener("DOMContentLoaded", function (e) {
   }
 
   // 이전 페이지로 이동
-  let previousPageBtn1 = document.getElementById("previous-page1");
+  let previousPageBtn1 = document.getElementById("previous-page");
   let previousPageBtn2 = document.getElementById("previous-page2");
 
   // 내버전
@@ -216,7 +175,7 @@ window.addEventListener("DOMContentLoaded", function (e) {
     }
   });
 
-  //
+  // 친구버전
   nextPageBtn2.addEventListener("click", function (e) {
     e.preventDefault();
     let nextPage = currentPage + 1;
@@ -284,20 +243,3 @@ window.addEventListener("DOMContentLoaded", function (e) {
       });
   }
 });
-
-// 쉘 프로필 변경하는 로직.
-function changeProfile(userId) {
-  fetch(`/api/member/${userId}`)
-    .then((response) => response.json())
-    .then((member) => {
-      console.log("member확인:" + member);
-
-      let userProfile = document.getElementById("s1");
-      userProfile.querySelector(
-        ".shell-name"
-      ).innerHTML = `${member.nickname}의 Shell`;
-      userProfile.querySelector(
-        ".shell-image"
-      ).src = `/resources/img/${member.profileImage}`;
-    });
-}

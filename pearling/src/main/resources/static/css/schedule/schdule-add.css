@@ -1,3 +1,11 @@
+/* header 햄버거 버튼 none */
+
+.hb {
+  display: none;
+}
+
+/*  */
+
 input[type="text"]{
   font-style: italic;
   font-size: 12px;
@@ -97,6 +105,7 @@ input[type="time"]{
 
 #d1>.schedule-add-date-box>input{
   width: 180px;
+  font-family: 'Pretendard-Regular';
 }
 
 /* 유효성 검사용 */
@@ -575,6 +584,7 @@ input[type="time"]{
 
   #d1>.schedule-add-date-box>input{
     width: 140px;
+    font-family: 'Pretendard-Regular';
   }
 
   #d1>.schedule-add-title>input{

@@ -39,8 +39,8 @@ public class AdminController {
         List<Integer> membersIds = new ArrayList<>();
 
         for (String memberId : memberIds) {
-        Integer id = Integer.parseInt(memberId);
-        membersIds.add(id);
+            Integer id = Integer.parseInt(memberId);
+            membersIds.add(id);
         }
 
         for (Integer memberId : membersIds) {
@@ -96,5 +96,4 @@ public class AdminController {
             guestbookService.delete(guestbookId);
         }
     }
-
 }

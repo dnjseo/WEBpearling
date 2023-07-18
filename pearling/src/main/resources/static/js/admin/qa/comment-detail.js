@@ -19,7 +19,7 @@ function qaCommentListLoad(url){
                         <p> </p>
                         <button class="delete-btn" type="button">삭제</button>
                         <p> </p>
-                        <button class="put-btn" type="button">등록</button>
+                        <button class="put-btn" type="button">저장</button>
                     </div>
                 </div>
                 <textarea disabled class="admin-text">${qaComment.answer}</textarea>

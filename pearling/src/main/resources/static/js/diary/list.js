@@ -73,24 +73,34 @@ function diaryListLoad(url) {
                 let diaryLinks = document.querySelectorAll(".diary-href");
                 let diaryScopeIds = document.querySelectorAll(".diary-lock");
                 let diaryMemberIds = document.querySelectorAll("[data-diary-post-id]");
+                let diaryHeartIcons = document.querySelectorAll(".diary-emog");
+                let diaryCommentIcons = document.querySelectorAll(".diary-comment");
 
-                disabledDiaryList(diaryLinks, diaryScopeIds, diaryMemberIds, mid);
+                disabledDiaryList(diaryLinks, diaryScopeIds, diaryMemberIds, diaryHeartIcons, diaryCommentIcons, mid);
 
             }
         });
 }
 
-function disabledDiaryList(diaryLinks, diaryScopeIds, diaryMemberIds, mid) {
+function disabledDiaryList(diaryLinks, diaryScopeIds, diaryMemberIds, diaryHeartIcons, diaryCommentIcons, mid) {
     for (let i = 0; i < diaryLinks.length; i++) {
         let diaryLink = diaryLinks[i];
         let diaryScopeId = diaryScopeIds[i].getAttribute("value");
         let diaryMemberId = diaryMemberIds[i].getAttribute("data-diary-post-id");
+        let diaryHeartIcon = diaryHeartIcons[i];
+        let diaryCommentIcon = diaryCommentIcons[i];
 
         console.log(diaryMemberId);
 
         if (diaryScopeId == 2 && !(mid == diaryMemberId)) {
             diaryLink.style.pointerEvents = "none";
             diaryLink.setAttribute("aria-disabled", "true");
+            diaryLink.innerText = "[비밀글] 작성자만 열람할 수 있습니다.";
+            diaryLink.style.fontSize = "20px";
+            diaryLink.style.fontWeight = "700";
+            diaryLink.style.letterSpacing = "0.2em";
+            diaryHeartIcon.setAttribute("class", "d-none");
+            diaryCommentIcon.setAttribute("class", "d-none");
 
             diaryLink.addEventListener("click", function(event) {
                 event.preventDefault();
@@ -130,30 +140,50 @@ function printCalendar(calendar){
     fetch(url)
     .then(response => response.json())
     .then(list => {
-        for (let diary of list) {
-
+    //   let diaryScopeIds = document.querySelectorAll(".diary-lock");
+  
+      for (let diary of list) {
         let diaryTitle = diary.title;
         let diaryDate = diary.date;
         let diaryContent = diary.content;
-
-    diaryEvent = {
-        title : diaryTitle,
-        start : diaryDate,
-        end : diaryDate,
-        description : diaryContent,
-        color : "#E6E6FA",
-        allDay: true
-
+        let diaryScopeId = diary.diaryScopeId;
+  
+        let diaryEvent = {
+          title: diaryTitle,
+          start: diaryDate,
+          end: diaryDate,
+          description: diaryContent,
+          color: "#E6E6FA",
+          allDay: true
         }
-
-    calendar.addEvent(diaryEvent);
-    }
-});
+  
+        // for (let i = 0; i < diaryScopeIds.length; i++) {
+        //   let diaryScopeId = diaryScopeIds[i].getAttribute("value");
+  
+          if (diaryScopeId == 1) {
+            calendar.addEvent(diaryEvent);
+          }
+          
+      }
+    });
 
     calendar.render();
     calendar.setOption('contentHeight', 350);
 
 }
+
+// 쉘 프로필 변경하는 로직.
+function changeProfile(userId){
+    fetch(`/api/member/${userId}`)
+    .then(response => response.json())
+    .then(member => {
+      console.log('member확인:'+member)
+  
+     let userProfile = document.getElementById('s1')
+     userProfile.querySelector('.shell-name').innerHTML=`${member.nickname}의 Shell`
+     userProfile.querySelector('.shell-image').src=`/resources/img/${member.profileImage}`
+    })
+  }
 
 
 window.addEventListener('DOMContentLoaded', function(e) {
@@ -168,10 +198,18 @@ window.addEventListener('DOMContentLoaded', function(e) {
         postAddBtn.style.display = "block";
     } else {
         postAddBtn.style.display = "none";
+        // 아워쉘 메뉴 비활성화, 친구 쉘 메뉴 활성화
+        document.getElementById('s1').style.display = "block";
+        document.getElementById('s1').style.display = "flex";
+        document.getElementById('shell-menu').style.display = "none";
+
         //: 마이쉘 하위메뉴 a링크 값 변경
         document.querySelector('#myshell-menu .monthly').href = "/shell/myshell/" + userId
         document.querySelector('#myshell-menu .diary').href = "/diary/list?uid=" + userId
         document.querySelector('#myshell-menu .guestbook').href = "/guestbook/list/" + userId
+
+        // : 프로필 변경 
+        changeProfile(userId);
     }
 
     let id = (userId == null || loginId == userId) ? loginId : userId;

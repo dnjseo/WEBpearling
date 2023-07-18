@@ -26,7 +26,6 @@ public class Member {
 
     private String Domain; // 도메인과 이메일 주소를 합친 이메일
 
-    // 비밀번호 변경
     private String currentPassword;
     private String newPassword;
     private String confirmPassword;

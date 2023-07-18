@@ -21,6 +21,7 @@
                         </p>                    
                         <div class="names">
                             <p class="nickname"><span sec:authentication="principal.nickname"></span></p>
+                            <p class="admin-name"></p>
                             <p class="name"><span sec:authentication="principal.name"></span> 님</p>
                             <input type="hidden" name="loginId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.id}" />
                         </div>
@@ -51,6 +52,18 @@
                     <ul>
                         <li><a href="/setting/profile">프로필 수정</a></li>
                         <li><a href="/setting/accountmanage">계정 관리</a></li>
+                    </ul>
+                </div>
+
+                <div class="aside-etc-list">
+                    <p>etc</p>
+                    <ul>
+                        <li><a th:href="${#authorization.expression('hasRole(''ROLE_ADMIN'')')} ? '/admin/notice/list' : '/notice/list'">
+                            공지사항
+                          </a>
+                        </li>
+                        <li><a th:href="${#authorization.expression('hasRole(''ROLE_ADMIN'')')} ? '/admin/qa/list' : '/qa/list'">
+                            QA</a></li>
                     </ul>
                 </div>
 

@@ -59,6 +59,17 @@ window.addEventListener('DOMContentLoaded', function (e) {
   let diaryTitleInput = document.querySelector(".diary-detail-title");
   let diaryContentInput = document.querySelector(".diary-detail-input");
 
+  let selectElementInput = document.querySelector(".diaryScopeHiddenId");
+  let selectElementId = selectElementInput.value;
+  console.log("밸류값" + selectElementId);
+
+  // 전체공개, 비공개 값 저장
+  if (selectElementId === "1") {
+    selectElement.selectedIndex = 0; // 전체공개 옵션 선택
+  } else {
+    selectElement.selectedIndex = 1; // 비공개 옵션 선택
+  }
+
   function disabledRemove() {
     selectElement.removeAttribute("disabled");
     diaryDateInput.removeAttribute("disabled");

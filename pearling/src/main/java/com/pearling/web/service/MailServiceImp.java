@@ -14,21 +14,21 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MailServiceImp implements MailService{
-    @Autowired
-    private JavaMailSender emailsender;
+public class MailServiceImp implements MailService {
+	@Autowired
+	private JavaMailSender emailsender;
 
-    private String ePw; // 인증번호
+	private String ePw; // 인증번호
 
-    // 메일 내용 작성
+	// 메일 내용 작성
 	@Override
 	public MimeMessage createMessage(String to) throws MessagingException, UnsupportedEncodingException {
-        
+
 		MimeMessage message = emailsender.createMimeMessage();
 
 		message.addRecipients(RecipientType.TO, to);// 보내는 대상
 		message.setSubject("Pearling 회원가입 이메일 인증");// 제목
-        
+
 		System.out.println("보내는 대상 : " + to);
 		System.out.println("인증 번호 : " + ePw);
 
@@ -64,18 +64,18 @@ public class MailServiceImp implements MailService{
 			int index = rnd.nextInt(3); // 0~2 까지 랜덤, rnd 값에 따라서 아래 switch 문이 실행됨
 
 			switch (index) {
-			case 0:
-				key.append((char) ((int) (rnd.nextInt(26)) + 97));
-				// a~z (ex. 1+97=98 => (char)98 = 'b')
-				break;
-			case 1:
-				key.append((char) ((int) (rnd.nextInt(26)) + 65));
-				// A~Z
-				break;
-			case 2:
-				key.append((rnd.nextInt(10)));
-				// 0~9
-				break;
+				case 0:
+					key.append((char) ((int) (rnd.nextInt(26)) + 97));
+					// a~z (ex. 1+97=98 => (char)98 = 'b')
+					break;
+				case 1:
+					key.append((char) ((int) (rnd.nextInt(26)) + 65));
+					// A~Z
+					break;
+				case 2:
+					key.append((rnd.nextInt(10)));
+					// 0~9
+					break;
 			}
 		}
 		return key.toString();

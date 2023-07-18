@@ -61,3 +61,23 @@
 
     margin-top: 30px;
 }
+
+.list-content table colgroup col:first-child {
+    width: 5%;
+}
+
+.list-content table colgroup col:nth-child(2) {
+    width: 20%;
+}
+
+.list-content table colgroup col:nth-child(3) {
+    width: 25%;
+}
+
+.list-content table colgroup col:nth-child(4) {
+    width: 25%;
+}
+
+.list-content table colgroup col:nth-child(5) {
+    width: 25%;
+}

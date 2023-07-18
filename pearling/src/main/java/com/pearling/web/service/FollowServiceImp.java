@@ -48,5 +48,17 @@ public class FollowServiceImp implements FollowService{
     public List<Member> getFollowingsList(int memberId) {
        return repository.findFollowingsList(memberId);
     }
+
+    @Override
+    public List<Member> getFollowersListByQuery(int memberId, String query) {
+        
+        return repository.findFollowersListByQuery(memberId, query);
+    }
+
+    @Override
+    public List<Member> getFollowingsListByQuery(int memberId, String query) {
+       
+        return repository.findFollowingsListByQuery(memberId, query);
+    }
     
 }

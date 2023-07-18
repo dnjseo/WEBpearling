@@ -17,4 +17,7 @@ public interface FollowService {
 
     List<Member> getFollowersList(int memberId);
     List<Member> getFollowingsList(int memberId);
+
+    List<Member> getFollowersListByQuery(int memberId, String query);
+    List<Member> getFollowingsListByQuery(int memberId, String query);
 }

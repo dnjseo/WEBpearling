@@ -25,17 +25,17 @@ public class MemberController {
     private MemberService service;
 
     @GetMapping("/signup")
-    public String signupForm(Model model){
+    public String signupForm(Model model) {
         model.addAttribute("member", new Member());
         return "signup";
     }
 
     @PostMapping("/profile")
     public String profileSubmit(@ModelAttribute Member member,
-                                @AuthenticationPrincipal MyUserDetails user,
-                                @RequestParam("file") MultipartFile file,
-                                HttpServletRequest request,
-                                Model model) throws IOException {
+            @AuthenticationPrincipal MyUserDetails user,
+            @RequestParam("file") MultipartFile file,
+            HttpServletRequest request,
+            Model model) throws IOException {
         Member existingMember = service.getByUsername(user.getUsername());
 
         if (existingMember != null) {
@@ -65,5 +65,4 @@ public class MemberController {
 
         return "redirect:/setting/profile";
     }
-
 }

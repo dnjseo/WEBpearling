@@ -84,6 +84,7 @@ p.lock img {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-top: 100px;
 }
 
 .pagination li {
@@ -91,7 +92,7 @@ p.lock img {
 }
 
 .pagination li a {
-    font-size: 20px;
+    font-size: 12px;
     padding-right: 20px;
 }
 
@@ -117,7 +118,7 @@ section.guestbook {
 
     width: 80%;
     max-width: 600px;
-    height: 35%;
+    height: 40%;
 
     display: flex;
     flex-direction: column;
@@ -236,7 +237,7 @@ section.guestbook {
     position: absolute;
     /* 부모 요소에 position 설정 추가 */
     top: 80%;
-    left: 90%;
+    left: 92%;
     transform: translatex(-50%);
     width: 50px;
     height: 50px;
@@ -249,7 +250,7 @@ section.guestbook {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 95%;
+    width: 90%;
     padding: 10px;
     transform: translate(-50%, -50%);
     text-align: justify;
@@ -295,6 +296,14 @@ section.guestbook {
 
 #delete-modal p {
     color: #797979;
+}
+
+.modal-content > p:nth-child(1) {
+    color: #797979 !important;
+}
+
+.modal-content {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,     system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",     "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
   /* 모바일 규격 */

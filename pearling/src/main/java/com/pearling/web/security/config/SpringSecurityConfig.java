@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import com.pearling.web.security.MyUserDetailsService;
 
@@ -20,7 +21,6 @@ public class SpringSecurityConfig {
 	@Autowired
     private CustomLoginSuccessHandler customLoginSuccessHandler;
 
-	
     @Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
@@ -66,4 +66,7 @@ public class SpringSecurityConfig {
 	public UserDetailsService myUserDetailService(){
 		return new MyUserDetailsService();
 	}
+
+	
+
 }

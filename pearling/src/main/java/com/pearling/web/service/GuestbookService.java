@@ -12,11 +12,11 @@ public interface GuestbookService {
     List<Guestbook> getGuestBookList(Integer toId);
 
     GuestbookView getGuestbookById(Integer id);
-    
+
     void add(Guestbook guestbook);
     void update(Guestbook guestbook);
     void delete(Integer id);
-    
+
     int count(Integer toId);
     int allCount();
     int getTotalCountWithQuery(String query);

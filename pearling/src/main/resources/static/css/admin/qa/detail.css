@@ -153,6 +153,7 @@
     background: transparent;
     font-family: 'Pretendard-Regular';
     color: #797979;
+    cursor: pointer;
 }
 
 .admin-part > div > span {
@@ -203,4 +204,5 @@
 
     font-family: 'Pretendard-Regular';
     font-size: 12px;
+    cursor: pointer;    
 }

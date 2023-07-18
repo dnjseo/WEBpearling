@@ -5,9 +5,22 @@ window.addEventListener("DOMContentLoaded", function(e){
     postBtn.addEventListener('click', function(e){
         e.preventDefault();
         
-        let title = document.querySelector("input[name='title']").value;
-        let content = document.querySelector("textarea[name='content']").value;
+        let titleInput = document.querySelector("input[name='title']");
+        let contentInput = document.querySelector("textarea[name='content']");
+
+        let title = titleInput.value;
+        let content = contentInput.value;
         let roleId = document.querySelector("input[name='hiddenRoleId']").value;
+
+        if (title.trim() === "") {
+            titleInput.placeholder = "제목은 필수로 작성해야 합니다.";
+            return; 
+        }
+
+        if (content.trim() === "") {
+            contentInput.placeholder = "내용은 필수로 작성해야 합니다.";
+            return; 
+        }
         
         
         fetch(`/api/admin/notice`, {

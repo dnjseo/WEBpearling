@@ -39,7 +39,6 @@ public class MemberController {
         member.setPwd(encryptedPassword);
 
         service.add(member);
-        System.out.println("회원가입 컨트롤러입니다 !");
     }
 
     // 이메일 중복 검사
@@ -58,9 +57,9 @@ public class MemberController {
     @PutMapping("/change-password")
     @Transactional
     public void changePassword(@RequestParam("currentPassword") String currentPassword,
-                            @RequestParam("newPassword") String newPassword,
-                            @RequestParam("confirmNewPassword") String confirmNewPassword,
-                            @AuthenticationPrincipal MyUserDetails user) {
+            @RequestParam("newPassword") String newPassword,
+            @RequestParam("confirmNewPassword") String confirmNewPassword,
+            @AuthenticationPrincipal MyUserDetails user) {
         Member existingMember = service.getByUsername(user.getUsername());
 
         if (!newPassword.equals(confirmNewPassword)) {
@@ -68,11 +67,8 @@ public class MemberController {
         }
 
         if (!passwordEncoder.matches(currentPassword, existingMember.getPwd())) {
-            System.out.println("ㅋㅋㅋ 이상함 ");
             throw new IllegalArgumentException("현재 비밀번호가 일치하지 않습니다.");
         }
-
-        System.out.println("변경해주마 ㅋㅋ");
 
         String encryptedNewPassword = passwordEncoder.encode(newPassword);
         existingMember.setPwd(encryptedNewPassword);
@@ -82,32 +78,31 @@ public class MemberController {
     // 회원 삭제
     @DeleteMapping("/delete")
     public void delete(@ModelAttribute Member member,
-                        @AuthenticationPrincipal MyUserDetails user) {
+            @AuthenticationPrincipal MyUserDetails user) {
 
         Member existingMember = service.getByUsername(user.getUsername());
         Member id = service.getById(user.getId());
 
-        if(existingMember != null){
+        if (existingMember != null) {
             service.delete(id);
         }
     }
 
-
     // 로그인한 회원 조회
     @GetMapping
     public Member getLoginMember(
-        @AuthenticationPrincipal MyUserDetails user){
+            @AuthenticationPrincipal MyUserDetails user) {
 
-            Member member = service.getById(user.getId());
+        Member member = service.getById(user.getId());
 
         return member;
     }
 
     @GetMapping("/{userId}")
     public Member getMember(
-        @PathVariable("userId") Integer id) {
+            @PathVariable("userId") Integer id) {
 
-            Member member = service.getById(id);
+        Member member = service.getById(id);
 
         return member;
     }

@@ -7,7 +7,7 @@ import com.pearling.web.entity.Role;
 import com.pearling.web.repository.RoleRepository;
 
 @Service
-public class RoleServiceImp implements RoleService{
+public class RoleServiceImp implements RoleService {
 
     @Autowired
     private RoleRepository repository;

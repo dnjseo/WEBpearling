@@ -35,8 +35,6 @@ public class MemberOauth2UserService extends DefaultOAuth2UserService {
     @Autowired
     private RoleService service;
 
-    private BCryptPasswordEncoder encoder;
-
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User oAuth2User = super.loadUser(userRequest);
@@ -46,16 +44,16 @@ public class MemberOauth2UserService extends DefaultOAuth2UserService {
 
         String provider = userRequest.getClientRegistration().getRegistrationId();
 
-        if(provider.equals("google")) {
+        if (provider.equals("google")) {
             log.info("구글 로그인 요청");
-            oAuth2UserInfo = new GoogleUserInfo( oAuth2User.getAttributes() );
-        } else if(provider.equals("kakao")) {
+            oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
+        } else if (provider.equals("kakao")) {
             log.info("카카오 로그인 요청");
-            oAuth2UserInfo = new KakaoUserInfo( (Map)oAuth2User.getAttributes() );
-        } else if(provider.equals("naver")) {
+            oAuth2UserInfo = new KakaoUserInfo((Map) oAuth2User.getAttributes());
+        } else if (provider.equals("naver")) {
             log.info("네이버 로그인 요청");
-            oAuth2UserInfo = new NaverUserInfo( (Map)oAuth2User.getAttributes().get("response") );
-        } 
+            oAuth2UserInfo = new NaverUserInfo((Map) oAuth2User.getAttributes().get("response"));
+        }
 
         String providerId = oAuth2UserInfo.getProviderId();
         String email = oAuth2UserInfo.getEmail();
@@ -84,13 +82,13 @@ public class MemberOauth2UserService extends DefaultOAuth2UserService {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(role.getName()));
 
-        // Create MyUserDetails with additional attributes
-        MyUserDetails userDetails = new MyUserDetails(member, oAuth2User.getAttributes(), authorities);
-		userDetails.setEmail(member.getEmail());
+        MyUserDetails userDetails = new MyUserDetails(member, oAuth2User.getAttributes(), authorities, member.getRoleId());
+        userDetails.setEmail(member.getEmail());
         userDetails.setName(member.getName());
-		userDetails.setNickname(member.getNickname());
-		userDetails.setProfileImage(member.getProfileImage());
-
+        userDetails.setNickname(member.getNickname());
+        userDetails.setProfileImage(member.getProfileImage());
+        System.out.println(authorities);
+        System.out.println(new SimpleGrantedAuthority(role.getName()));
         return userDetails;
     }
 }

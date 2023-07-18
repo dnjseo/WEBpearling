@@ -114,8 +114,18 @@ table td{
 }
 
 table th{
+    padding-left: 10px; 
     height: 35px;
     background-color: #c3c3c3;
+}
+
+.list-content table {
+    width: 100%;
+    border-spacing: 10px; /* 원하는 간격으로 설정 */
+}
+
+.list-content table td {
+    padding-left: 10px; /* td 안의 내용과 간격을 조정 */
 }
 
 h1{
@@ -128,13 +138,24 @@ h1{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
+    margin-top: 20px;
 }
 
 .pagination a{
     color: black;
-    margin-right: 8px;
+    margin-right: 10px;
+    display: none;
+
+    font-size: 16px;
 }
 
 #prev-button{
-    margin-right: 8px;
+    margin-right: 10px;
 }
+
+/* 선택된 페이지 번호에 대한 스타일 */
+.active {
+    text-decoration: underline;
+  }
+  

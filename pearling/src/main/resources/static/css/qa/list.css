@@ -9,7 +9,7 @@
 .qa-search{
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 10px;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
@@ -57,6 +57,7 @@
     color: #797979;
     font-family: 'Pretendard-Regular';
     font-size: 12px;
+    cursor: pointer;
 }
 
 

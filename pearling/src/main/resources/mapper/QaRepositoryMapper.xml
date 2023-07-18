@@ -5,7 +5,7 @@
 <mapper namespace="com.pearling.web.repository.QaRepository">
    <select id="findAll" resultType="com.pearling.web.entity.Qa">
     SELECT *,
-      ROW_NUMBER() OVER (ORDER BY regdate ASC) AS new_id
+      ROW_NUMBER() OVER (ORDER BY regdate DESC) AS new_id
       FROM (
       SELECT qa.*, 
          CASE WHEN qa_comment.answer IS NOT NULL THEN 1 ELSE 0 END AS qaStatus
@@ -13,7 +13,7 @@
       LEFT JOIN qa_comment ON qa.id = qa_comment.qa_id
       GROUP BY qa.id
       ) AS subquery
-      ORDER BY regdate ASC;
+      ORDER BY regdate DESC;
    </select>
 
   <select id="findAllQa" resultType="com.pearling.web.entity.Qa">

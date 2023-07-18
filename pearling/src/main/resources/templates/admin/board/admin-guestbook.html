@@ -49,6 +49,13 @@ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
                 </div>
             </div>
             <table>
+                <colgroup>
+                    <col style="width: 5%;">
+                    <col style="width: 35%;">
+                    <col style="width: 15%;">
+                    <col style="width: 15%;">
+                    <col style="width: 15%;">
+                </colgroup>
                 <thead>
                 <tr>
                     <th></th>
@@ -60,7 +67,7 @@ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
                 </thead>
                 <tbody id="table-body">
                 <tr th:each="list : ${list}">
-                    <td><input type="checkbox" class="list-checkbox" th:data-id="${list.id}"></td>
+                    <td style="width:59px"><input type="checkbox" class="list-checkbox" th:data-id="${list.id}"></td>
                     <td th:text="${list.content}"></td>
                     <td th:text="${#dates.format(list.regdate, 'yyyy-MM-dd')}"></td>
                     <td th:text="${list.fromNickname}"></td>
@@ -79,6 +86,7 @@ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
             </div>
         </div>
         <input id="current-page" type="hidden" th:value="${currentPage}">
+        <input id="total-page" type="hidden" th:value="${totalPages}">
     </section>
 </div>
 </body>

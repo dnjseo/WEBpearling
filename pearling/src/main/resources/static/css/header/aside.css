@@ -21,7 +21,7 @@
         height: 70px;
     }
 
-    .nickname{
+    .nickname, .admin-name{
         color: #b4b4b4;
         font-size: 18px;
     }
@@ -95,7 +95,7 @@
         height: 100px;
     }
 
-    .nickname{
+    .nickname, .admin-name{
         font-size: 30px;
     }
 
@@ -223,7 +223,7 @@
     gap: 10px;
 }
 
-.nickname{
+.nickname, .admin-name{
     text-align: center;
     font-weight: bolder;
 }

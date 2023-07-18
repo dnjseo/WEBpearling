@@ -51,6 +51,10 @@
     letter-spacing: 0.1em;
 }
 
+.select-btn button:nth-child(1) {
+    color: #797979;
+}
+
 .select-btn button:hover{
     background: rgba(252, 251, 251, 0.75);
 }

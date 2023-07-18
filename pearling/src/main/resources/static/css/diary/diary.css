@@ -88,12 +88,9 @@ form {
     margin: 0;
 
     white-space: nowrap;
-    /* overflow-wrap: break-word; */
-    /* 텍스트를 한 줄로 유지합니다. */
     overflow: hidden;
-    /* 넘치는 부분을 감춥니다. */
     text-overflow: ellipsis;
-    /* 넘치는 부분에 대해 말줄임표(...)를 표시합니다. */
+    word-break: break-word;
 }
 
 .diary-content>a {
@@ -283,12 +280,19 @@ form {
     }
 
     .diary-content {
-        white-space: inherit;
-    }
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; /* 넘치는 텍스트를 생략 부호로 표시 */
+        word-break: break-word; /* 텍스트가 박스 내에서 줄 바꿈됨 */
+      }
 
     .diary-detail {
         margin-left: 0;
         margin-right: 0;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
 

@@ -49,6 +49,14 @@ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
                 </div>
             </div>
             <table>
+                <colgroup>
+                    <col style="width: 5%;">
+                    <col style="width: 15%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                </colgroup>
                 <thead>
                 <tr>
                     <th></th>
@@ -81,6 +89,7 @@ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
             </div>
         </div>
         <input id="current-page" type="hidden" th:value="${currentPage}">
+        <input id="total-page" type="hidden" th:value="${totalPages}">
     </section>
 </div>
 </body>

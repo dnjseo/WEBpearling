@@ -35,22 +35,22 @@ public class GuestbookController extends BaseController {
 
    @GetMapping("/list")
    public String list(@RequestParam(name = "uid", required = false) Integer userId,
-                     @RequestParam(name = "page", defaultValue = "1") int page,
-                     @AuthenticationPrincipal MyUserDetails user,
-                     Model model) {
+         @RequestParam(name = "page", defaultValue = "1") int page,
+         @AuthenticationPrincipal MyUserDetails user,
+         Model model) {
 
       model.addAttribute("headerShow", true);
 
       Integer toId = null;
 
-      if(user != null)
+      if (user != null)
          toId = user.getId();
 
       int totalCount = service.count(toId); // 전체 방명록 개수
       int totalPages = (int) Math.ceil((double) totalCount / pageSize); // 전체 페이지 수
-      
+
       // 현재 페이지 번호가 유효한 범위를 벗어나는 경우 첫 페이지로 설정
-      if (page < 1 || page > totalPages) 
+      if (page < 1 || page > totalPages)
          page = 1;
 
       List<Guestbook> list = service.getGuestBookList(toId);
@@ -63,16 +63,16 @@ public class GuestbookController extends BaseController {
       model.addAttribute("list", list);
       model.addAttribute("totalPages", totalPages);
       model.addAttribute("currentPage", page);
-      
+
       return "guestbook/list";
    }
 
    @GetMapping("/list/{id}")
    public String otherlist(@PathVariable("id") int userId,
-                           @RequestParam(name = "page", defaultValue = "1") int page,
-                           @AuthenticationPrincipal MyUserDetails user,
-                           Model model) {
-                     
+         @RequestParam(name = "page", defaultValue = "1") int page,
+         @AuthenticationPrincipal MyUserDetails user,
+         Model model) {
+
       model.addAttribute("headerShow", true);
       Member otherUser = memberService.getById(userId);
 
@@ -86,7 +86,7 @@ public class GuestbookController extends BaseController {
 
       int totalCount = service.count(otherUser.getId()); // 전체 방명록 개수
       int totalPages = (int) Math.ceil((double) totalCount / pageSize); // 전체 페이지 수
-      
+
       // 현재 페이지 번호가 유효한 범위를 벗어나는 경우 첫 페이지로 설정
       if (page < 1 || page > totalPages) {
          page = 1;
@@ -110,11 +110,11 @@ public class GuestbookController extends BaseController {
 
    @GetMapping("post/{userId}")
    public String post(
-      @PathVariable("userId") int userId,
-      @RequestParam(name = "s", required = false) boolean editShow,
-      @RequestParam(name = "gid", required = false) Integer id,
-      @AuthenticationPrincipal MyUserDetails user,
-      Model model) {
+         @PathVariable("userId") int userId,
+         @RequestParam(name = "s", required = false) boolean editShow,
+         @RequestParam(name = "gid", required = false) Integer id,
+         @AuthenticationPrincipal MyUserDetails user,
+         Model model) {
 
       String pageTitle;
       GuestbookView guestbook = null;

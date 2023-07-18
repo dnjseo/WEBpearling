@@ -23,7 +23,7 @@ window.addEventListener("DOMContentLoaded", function(e) {
                 let itemTemplate = `
                 <form class="profile-x">
                 <img class="shell-image" src="/images/profile/profile_yr.png">
-                <p class="shell-name"> 탐정's shell</p>
+                <p class="shell-name"></p>
                 <button class="follobutton">팔로우</button>
                 </form>
                 `;
@@ -40,7 +40,7 @@ window.addEventListener("DOMContentLoaded", function(e) {
                     itemTemplate = `
                     <form class="profile-x">
                     <img class="shell-image" src="/images/profile/profile_yr.png">
-                    <p class="shell-name"> 탐정's shell</p>
+                    <p class="shell-name"></p>
                     <button class="follobutton">팔로잉</button>
                         </form>
                         `;

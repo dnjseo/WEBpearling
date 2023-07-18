@@ -140,7 +140,6 @@ function printCalendar(calendar){
     fetch(url)
     .then(response => response.json())
     .then(list => {
-    //   let diaryScopeIds = document.querySelectorAll(".diary-lock");
   
       for (let diary of list) {
         let diaryTitle = diary.title;
@@ -157,9 +156,6 @@ function printCalendar(calendar){
           allDay: true
         }
   
-        // for (let i = 0; i < diaryScopeIds.length; i++) {
-        //   let diaryScopeId = diaryScopeIds[i].getAttribute("value");
-  
           if (diaryScopeId == 1) {
             calendar.addEvent(diaryEvent);
           }
@@ -171,20 +167,6 @@ function printCalendar(calendar){
     calendar.setOption('contentHeight', 350);
 
 }
-
-// 쉘 프로필 변경하는 로직.
-function changeProfile(userId){
-    fetch(`/api/member/${userId}`)
-    .then(response => response.json())
-    .then(member => {
-      console.log('member확인:'+member)
-  
-     let userProfile = document.getElementById('s1')
-     userProfile.querySelector('.shell-name').innerHTML=`${member.nickname}의 Shell`
-     userProfile.querySelector('.shell-image').src=`/resources/img/${member.profileImage}`
-    })
-  }
-
 
 window.addEventListener('DOMContentLoaded', function(e) {
     // css 파일이 js 파일보다 먼저 로드될 수 있도록 DOMContentLoaded 사용 
@@ -198,28 +180,11 @@ window.addEventListener('DOMContentLoaded', function(e) {
         postAddBtn.style.display = "block";
     } else {
         postAddBtn.style.display = "none";
-        // 아워쉘 메뉴 비활성화, 친구 쉘 메뉴 활성화
-        document.getElementById('s1').style.display = "block";
-        document.getElementById('s1').style.display = "flex";
-        document.getElementById('shell-menu').style.display = "none";
-
-        //: 마이쉘 하위메뉴 a링크 값 변경
-        document.querySelector('#myshell-menu .monthly').href = "/shell/myshell/" + userId
-        document.querySelector('#myshell-menu .diary').href = "/diary/list?uid=" + userId
-        document.querySelector('#myshell-menu .guestbook').href = "/guestbook/list/" + userId
-
-        // : 프로필 변경 
-        changeProfile(userId);
     }
 
     let id = (userId == null || loginId == userId) ? loginId : userId;
 
     diaryListLoad(`/api/diary/${loadDate()}/${id}`);
-
-    // for (let scope of diaryScopeIdInputs) {
-    //     console.log("스코프 값은 " + scope.value);
-    // }
-    // 캘린더 호출
         
     let calendarEl = document.getElementById('calendar');
     let calendar = new FullCalendar.Calendar(calendarEl, {

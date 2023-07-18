@@ -181,30 +181,12 @@ window.addEventListener("DOMContentLoaded", function (e) {
     }
   }
 
-  // 링크 이동
-  if (loginId != userId && userId != "") {
-    document.getElementById("s1").style.display = "block";
-    document.getElementById("s1").style.display = "flex";
-    document.getElementById("shell-menu").style.display = "none";
-
-    //: 마이쉘 하위메뉴 a링크 값 변경
-    document.querySelector("#myshell-menu .monthly").href =
-      "/shell/myshell/" + userId;
-    document.querySelector("#myshell-menu .diary").href =
-      "/diary/list?uid=" + userId;
-    document.querySelector("#myshell-menu .guestbook").href =
-      "/guestbook/list/" + userId;
-
-    // : 프로필 변경
-    changeProfile(userId);
-  }
-
   // 이전 페이지로 이동
-  let previousPageBtn = document.getElementById("previous-page");
+  let previousPageBtn1 = document.getElementById("previous-page1");
   let previousPageBtn2 = document.getElementById("previous-page2");
 
   // 내버전
-  previousPageBtn.addEventListener("click", function (e) {
+  previousPageBtn1.addEventListener("click", function (e) {
     e.preventDefault();
     let previousPage = currentPage - 1;
     if (previousPage >= 1) {

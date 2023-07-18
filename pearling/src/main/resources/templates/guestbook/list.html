@@ -26,24 +26,24 @@
             <!-- 페이징 처리 -->
             <div class="pagination">
                 <ul class="my-paging">
-                <li>
-                    <a href="#" id="previous-page1">〈</a>
-                </li>
-                <li th:each="page, i : ${#numbers.sequence(1, totalPages)}">
-                    <a th:href="@{/guestbook/list(uid=${userId}, page=${page})}"
-                    th:class="${currentPage == page ? 'active' : ''}"
-                    th:text="${page}"
-                    data-page="${page}"></a>
-                </li>
-                <li>
-                    <a href="#" id="next-page">〉</a>
-                </li>
+                    <li>
+                        <a href="#" id="previous-page">&lt;&lt;</a>
+                    </li>
+                    <li th:each="page, i : ${#numbers.sequence(1, totalPages)}">
+                        <a th:href="@{/guestbook/list(uid=${userId}, page=${page})}"
+                        th:class="${currentPage == page ? 'active' : ''}"
+                        th:text="${page}"
+                        data-page="${page}"></a>
+                    </li>
+                    <li>
+                        <a href="#" id="next-page">&gt;&gt;</a>
+                    </li>
                 </ul>
 
                 <!-- 친구용 -->
                 <ul class="friend-paging">
                     <li>
-                        <a href="#" id="previous-page2">〈</a>
+                        <a href="#" id="previous-page2">&lt;&lt;</a>
                     </li>
                     <li th:each="page, i : ${#numbers.sequence(1, totalPages)}">
                         <a th:href="@{/guestbook/list/{id}(id=${userId}, page=${page})}"
@@ -53,7 +53,7 @@
                         ></a>
                     </li>
                     <li>
-                        <a href="#" id="next-page2">〉</a>
+                        <a href="#" id="next-page2">&gt;&gt;</a>
                     </li>
                 </ul>
             </div>

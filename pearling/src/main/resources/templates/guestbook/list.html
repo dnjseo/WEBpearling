@@ -8,6 +8,7 @@
     <link href="/css/guestbook/guestbook.css" type="text/css" rel="stylesheet">
     <link href="/css/header/guestbook.css" type="text/css" rel="stylesheet">
     <script src="/js/guestbook/list.js"></script>
+    <script src="/js/guestbook/checkOwnGuestbook.js"></script>
     <title>Pearl-ing 방명록</title>
 </head>
 
@@ -26,7 +27,7 @@
             <div class="pagination">
                 <ul class="my-paging">
                 <li>
-                    <a href="#" id="previous-page">〈</a>
+                    <a href="#" id="previous-page1">〈</a>
                 </li>
                 <li th:each="page, i : ${#numbers.sequence(1, totalPages)}">
                     <a th:href="@{/guestbook/list(uid=${userId}, page=${page})}"

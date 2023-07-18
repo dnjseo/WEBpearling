@@ -80,7 +80,7 @@ function printCalendarEvent(calendar) {
         deP =  `${schedulePlace?  "🔖 : "+schedule.place : ''}`
 
         if(scheduleFriends && scheduleFriends != '')
-        deF = `${scheduleFriends? "🩶 : "+ scheduleFriends : ''}`
+        deF = `${scheduleFriends? "🖤 : "+ scheduleFriends : ''}`
 
         scDescription = `${deP? deP+"<br>" : ''}${deF? deF:''}`
 

@@ -51,21 +51,6 @@
 
 }
 
-/* 화면 너무 작을 경우 대비 */
-/* @media screen and (min-width: 350px) {
-    #ms4 {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        justify-content: center;
-        gap: 30px; 
-    
-        width: 85%;
-    
-        position: relative;
-    }
-} */
-
-
 
 .flip-effect{
     transform-style: preserve-3d;
@@ -287,7 +272,6 @@ input[type="checkbox"]:checked + p {
     transition: .13s ease-in-out;
     outline:none;
     background-color: #ffffff;
-    /* box-shadow:  -0.6px -2px 3.5px #ffffff, -1px -1px 1.5px #ffffff, -2px 0px 3px #ffffff, 2px 2px 2px rgba(0,0,0,0.2); */
 }
 
 .todo-delete-button:hover{
@@ -350,6 +334,8 @@ input[type="checkbox"]:checked + p {
 }
 
 .plus{
+    backdrop-filter: blur(5px);
+
     color: #797979;
     position: absolute;
     bottom: 5%;
@@ -373,13 +359,13 @@ input[type="checkbox"]:checked + p {
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), 
         inset 0px 2px 2px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
+    
 }
 
 .plusDetail{
     opacity: 0;
     width: 100%;
-    overflow: hidden; /* 초과 내용을 숨김 */
-    transition: opacity 0.3s linear; /* transition 효과 설정 */
+    transition: opacity 0.3s linear; 
 }
 
 .act{
@@ -399,23 +385,22 @@ input[type="checkbox"]:checked + p {
     width: 50px;
     height: 50px;
     background: rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(5px);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), 
         inset 0px 2px 2px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
+    
 }
 
 .plus-todo{
     bottom: 10%;
     right: 50%;
-
     cursor: pointer;
 }
 
 .plus-schedule{
-
     bottom: 60%;
     right: 30%; 
-
     cursor: pointer;
 }
 

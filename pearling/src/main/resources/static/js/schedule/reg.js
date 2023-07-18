@@ -26,6 +26,7 @@ window.addEventListener("load", function(e) {
   const id = urlParams.get('id');
   const delScheduleBtn = document.querySelector('#schedule-del-btn-in-header')
   const friendIds = [];
+
     // 삭제 버튼 클릭 시 스케쥴 삭제.
     delScheduleBtn.addEventListener("click", function () {
         deleteSchedule(id);
@@ -33,7 +34,6 @@ window.addEventListener("load", function(e) {
 
     setOffsetDate(schedule);
     paintPallet(schedule);
-
     
     // 스케쥴 디테일 가져오는 경우
     if(id!=null){
@@ -44,12 +44,20 @@ window.addEventListener("load", function(e) {
     
     // reg.html 하단의 확인키 
     const postBtn = this.document.querySelector('.confirm-yes')
-    
+
     postBtn.addEventListener("click", function () {
-      const friends = document.querySelectorAll('.taged-id-input');
+
+    const friends = document.querySelectorAll('.taged-id-input');
+
+      //태그 된 친구 배열에 넣기
       friends.forEach(friend => {
-        friendIds.push(friend.value);
+        //중복 값이 들어가지 않게 조건 검사 
+        if (!friendIds.includes(friend.value)) {
+          friendIds.push(friend.value);
+        }
       });
+
+      // 스케쥴 등록, 수정 구분
       if(id==null){
         postSchedule(id, schedule, friendIds);
       }else{
@@ -354,13 +362,13 @@ function updateFriendTag(id, friendIds, titlefornoti) {
         window.location.href = "/shell/myshell";
       } else {
         // 요청이 실패한 경우의 동작
-        console.error('폼 제출 실패');
+        console.error('친구태그 수정 폼 제출 실패');
         console.log(requestData);
       }
     })
     .catch(error => {
       // 네트워크 오류 등 예외 처리
-      console.error('폼 제출 오류:', error);
+      console.error('친구태그 수정 폼 제출 오류:', error);
     })
 
 }

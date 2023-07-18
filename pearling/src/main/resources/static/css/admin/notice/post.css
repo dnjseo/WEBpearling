@@ -1,4 +1,39 @@
 
+  /* PC 규격 */
+  @media screen and (min-width: 769px) {
+
+    .wrap{
+        width: 100%;
+    }
+
+    .notice-post-form{
+        width: 100%;
+    }
+
+    .notice-content{
+        width: 100%;
+        max-width: inherit;
+    }
+
+    .notice-list{
+        width: 90%;
+    }
+
+    .notice-content textarea {
+        resize: none;
+    }
+  }
+
+    /* 모바일 규격 */
+    @media screen and (max-width: 768px) {
+
+        .notice-content{
+            width: 80%;
+        }
+
+    }
+
+
 .notice-icon{
     
     display: flex;
@@ -27,6 +62,7 @@
     margin-top: 20px;
 }
 
+
 .notice-box{
     display: flex;
     flex-direction: column;
@@ -42,9 +78,7 @@
     padding: 20px 20px;
     gap: 16px;
     
-    width: 80%;
-    height: auto;
-       
+    height: auto;   
 
     background: #FFFFFF;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 2px 2px rgba(0, 0, 0, 0.25);
@@ -92,12 +126,10 @@
     justify-content: flex-end;
     align-items: center;
     margin-top: 20px;
-
-    width: 80%;
-    max-width: 700px;
-
+     width: 93%;
     margin-bottom: 100px;
 }
+
 
 .post-btn{
     width: 50px;

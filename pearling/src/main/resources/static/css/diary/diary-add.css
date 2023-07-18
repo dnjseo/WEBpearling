@@ -102,14 +102,14 @@
     border: none;
     margin-top: 10px;
     margin-bottom: 30px;
-    font-family: monospace;
+    font-family: 'Pretendard-Regular';
 }
 
     .diary-detail-date:disabled {
         background-color: transparent;
         color: #797979;
         opacity: 1;
-        font-family: monospace;
+        font-family: 'Pretendard-Regular';
     }
 
 .diary-detail-title {
@@ -171,6 +171,10 @@
 /* -----버튼(등록 버튼)--------------------------------------------------- */
 
 /* 다이어리 수정, 삭제창 버튼 */
+
+.show-diary-del-edit-btn > button {
+    font-family: 'Pretendard-Regular';
+}
 .diary-btns {
     display: flex;
     flex-direction: row;
@@ -262,6 +266,8 @@
             font-size: 12px;
 
             appearance: 0;
+
+            font-family: 'Pretendard-Regular';
         }
 
         .diary-scope-summit-btns>button {
@@ -498,6 +504,7 @@
         border-radius: 30px;
         border: none;
 
+        font-family: 'Pretendard-Regular';
         font-size: 12px;
         color: #797979;
     }
@@ -598,6 +605,7 @@ color: rgb(247, 150, 150);
     .diary-detail-input {
         border-radius: 12px;
         padding: 5px;
+        font-family: 'Pretendard-Regular';
     }
 
 }

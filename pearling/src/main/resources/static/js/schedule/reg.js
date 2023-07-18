@@ -208,6 +208,10 @@ function postSchedule(id, schedule, friendIds){
   document.getElementById('schedule-title').classList.add('alert')
   return;
   }
+
+  if(schedule.backgroundColor.value.trim() == ''){
+    schedule.backgroundColor.value = "#E6E6FA";
+  }
   
     const scheduleData = {
       startDate: schedule.startDate.value,

@@ -12,5 +12,4 @@ public interface QaService {
     void addQa(Qa qa);
     void updateQa(Qa qa);
     Integer deleteQa(Integer id);
-
 }

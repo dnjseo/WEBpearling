@@ -6,6 +6,7 @@
     <title>Document</title>
     <link href="/css/admin/qa/detail.css" type="text/css" rel="stylesheet">
     <script src="/js/admin/qa/comment-detail.js"></script>
+    <script src="/js/admin/qa/delete.js"></script>
 </head>
 <body>
     <!-- header -->
@@ -18,6 +19,12 @@
                 <div class="qa-box">
                     <div class="qa-content">
                         <div>
+                            <div>
+                                <p class="three-btn">•••</p>
+                                <div class="edit-btn" style="display: none;">
+                                    <button class="deleteBtn" type="button" onClick="location.href='list'">삭제</button>
+                                </div>
+                            </div>
                             <div class="qa-title">
                                 <input type="text" class="qa-title" name="title" maxlength="80"  th:value="${qa.title}" disabled></input>
                                 <input type="hidden" name="roleId" sec:authorize="isAuthenticated()" th:value="${#authentication.principal.roleId}">
@@ -44,7 +51,7 @@
                                             <img src="/images/profile/circle.png">
                                             <p> PEARLING </p>
                                         </div>
-                                        <div class="edit-btn">
+                                        <div class="edit2-btn">
                                             <button class="update-btn" >수정</button>
                                             <p> </p>
                                             <button class="delete-btn" type="button">삭제</button>

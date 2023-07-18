@@ -14,7 +14,7 @@ function qaCommentListLoad(url){
                     <img src="/images/profile/circle.png">
                         <p> PEARLING </p>
                     </div>
-                    <div class="edit-btn" value=${qaComment.id}>
+                    <div class="edit2-btn" value=${qaComment.id}>
                         <button class="update-btn" type="button">수정</button>
                         <p> </p>
                         <button class="delete-btn" type="button">삭제</button>

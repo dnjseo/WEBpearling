@@ -16,7 +16,7 @@ import com.pearling.web.entity.QaComment;
 import com.pearling.web.service.QaCommentService;
 
 
-@RestController("apiQaCommentController")
+@RestController("apiAdminQaCommentController")
 @RequestMapping("/api/admin/QaComment")
 public class QaCommentController {
 

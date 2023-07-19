@@ -294,7 +294,7 @@ section.guestbook {
 
     z-index: 5;
 
-    display: none;
+    display: block;
 }
 
 /* 삭제모달 */

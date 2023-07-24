@@ -13,11 +13,15 @@
 - 팀원: 최예린
 
 ## 개발 환경
+- Java
+- JavaScript
+- HTML/CSS
 - Visual Studio Code
 - Spring-Boot
 - Mybatis
 - MySql
-- Vue.js
+- Maven
+- Apache Tomcat
 
 ## 주요 기능
 
@@ -36,6 +40,8 @@
 - 프로필 변경
 - 프로필 변경 내 이미지 파일업로드 구현
 - 비밀번호 변경
+- 회원 탈퇴
+- 문의 조회, 추가, 변경, 삭제
 
 ### 모달 - [상세보기 - 위키 페이지](https://github.com/dnjseo/WEBpearling/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C(%EB%AA%A8%EB%8B%AC))
 - 추가 기능 모달 알림창
@@ -47,7 +53,7 @@
 
 ### 나의 일정 관리(My Shell) - [상세보기 - 위키 페이지](https://github.com/dnjseo/WEBpearling/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C(%EB%82%98%EC%9D%98-%EC%9D%BC%EC%A0%95-%EA%B4%80%EB%A6%AC))
 - 캘린더 구현
-- 할일 조회, 추가, 삭제
+- 할일 조회, 추가, 변경, 삭제
 - 일정 조회, 추가, 변경, 삭제
 - 일정 내 장소 카카오맵 지도 API 구현
 - 일정 내 친구 태그 구현
@@ -74,11 +80,5 @@
 
 ### 관리자 페이지 - [상세보기 - 위키 페이지](https://github.com/dnjseo/WEBpearling/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C(%EA%B4%80%EB%A6%AC%EC%9E%90-%ED%8E%98%EC%9D%B4%EC%A7%80))
 - 공지사항 관리
-- 문의 답변
-
-
-
-
-
-
+- 문의 관리
 

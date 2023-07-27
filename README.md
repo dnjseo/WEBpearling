@@ -47,6 +47,12 @@
 - 추가 기능 모달 알림창
 - 삭제 기능 모달 알림창
 
+### 알림 - [상세보기 - 위키 페이지](https://github.com/dnjseo/WEBpearling/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C(%EC%95%8C%EB%A6%BC))
+- 다이어리 댓글 등록 시 알림
+- 팔로우 신청 시 알림
+- 방명록 등록 시 알림
+- 일정 등록 시, 태그 등록하면 알림
+
 ### 친구 일정 함께보기(Our Shell) - [상세보기 - 위키 페이지](https://github.com/dnjseo/WEBpearling/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C(%EC%B9%9C%EA%B5%AC-%EC%9D%BC%EC%A0%95-%ED%95%A8%EA%BB%98%EB%B3%B4%EA%B8%B0))
 - 친구 목록 보기
 - 친구 일정 보기
